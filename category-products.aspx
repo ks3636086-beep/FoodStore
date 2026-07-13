@@ -65,7 +65,7 @@
                 <div class="row special-list">
                     <asp:Repeater ID="rptProducts" runat="server">
                         <ItemTemplate>
-                            <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="col-lg-3 col-md-6 col-6 special-grid best-seller">
                                 <div class="products-single fix">
                                     <div class="box-img-hover">
 

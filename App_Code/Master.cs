@@ -1,8 +1,10 @@
 ﻿//using Razorpay.Api;
 using System;
+using System.Activities.Statements;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI.WebControls;
 
 /// <summary>
@@ -32,11 +34,11 @@ public class Master
         con.Close();
     }
 
-    
+
 
     public String Get_Shipping_charge()
     {
-       
+
         String shipping = "";
         try
         {
@@ -46,7 +48,7 @@ public class Master
             cmd.Connection = con;
             cmd.CommandText = "SELECT shipping_charge from ecommerce_shipping ";
             cmd.CommandType = CommandType.Text;
-            
+
             shipping = Convert.ToString(cmd.ExecuteScalar());
             con.Close();
         }
@@ -56,10 +58,10 @@ public class Master
         }
         return (shipping);
     }
-    
+
     public String Get_Total(string customer_id)
     {
-       
+
         String shipping = "";
         try
         {
@@ -69,7 +71,7 @@ public class Master
             cmd.Connection = con;
             cmd.CommandText = "select sum(total_amount_of_product) from ecommerce_order where customer_id='" + customer_id + "' and order_id is null";
             cmd.CommandType = CommandType.Text;
-            
+
             shipping = Convert.ToString(cmd.ExecuteScalar());
             con.Close();
         }
@@ -80,11 +82,11 @@ public class Master
         return (shipping);
     }
 
-  //  Shipping Charge End
+    //  Shipping Charge End
 
     public SqlDataReader Get_Coupon_Info(String coupan_code)
     {
-       
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -125,17 +127,14 @@ public class Master
             con.Close();
             return dt;
 
-           
         }
     }
-
-
 
     // Delete Operation
 
     public SqlDataReader Delete_Operation(string query)
     {
-        
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -154,9 +153,11 @@ public class Master
         return (reader);
     }
 
+
+
     // Delete Operation End
 
-        // Count Data
+    // Count Data
 
     public int Count_data(string query)
     {
@@ -184,7 +185,7 @@ public class Master
 
     public SqlDataReader Select_Operation(string query)
     {
-       
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -269,7 +270,7 @@ public class Master
 
     }
 
-    public void Bind_Checkbox(CheckBoxList chklist,string valueField, string textField,string query)
+    public void Bind_Checkbox(CheckBoxList chklist, string valueField, string textField, string query)
     {
         DataSet ds = new DataSet();
         SqlDataAdapter adp = new SqlDataAdapter(query, con);
@@ -281,7 +282,7 @@ public class Master
         con.Close();
     }
 
-    public int Insert_Enquiry(string name,string mobileno,string email,string message,string date)
+    public int Insert_Enquiry(string name, string mobileno, string email, string message, string date)
     {
         con.Close();
         con.Open();
@@ -309,7 +310,7 @@ public class Master
         return (RowsAffected);
     }
 
-    public int Add_Wallet_Credit_Debit(string customer_id, string transaction_id, string transaction_amount, string transaction_date, string transaction_time, string transaction_type, string transaction_payment_mode, string transaction_status,string transaction_by)
+    public int Add_Wallet_Credit_Debit(string customer_id, string transaction_id, string transaction_amount, string transaction_date, string transaction_time, string transaction_type, string transaction_payment_mode, string transaction_status, string transaction_by)
     {
         con.Close();
         con.Open();
@@ -341,7 +342,7 @@ public class Master
         return (RowsAffected);
     }
 
-    public int Add_Referal_Point(string customer_id, string transaction_id, string transaction_amount, string transaction_date, string transaction_time, string transaction_type, string transaction_payment_mode, string transaction_status, string transaction_by,string delivery_date)
+    public int Add_Referal_Point(string customer_id, string transaction_id, string transaction_amount, string transaction_date, string transaction_time, string transaction_type, string transaction_payment_mode, string transaction_status, string transaction_by, string delivery_date)
     {
         con.Close();
         con.Open();
@@ -383,7 +384,7 @@ public class Master
             con.Close();
             con.Open();
             cmd.Connection = con;
-           // cmd.CommandText = "SELECT sum(a.total_amount_of_product) as total_order_amount FROM [gro_shop].[ecommerce_order] a where a.order_section='Restaurant' AND a.order_date = '" + order_date + "' and a.order_status!='Cancelled' group by a.order_id";
+            // cmd.CommandText = "SELECT sum(a.total_amount_of_product) as total_order_amount FROM [gro_shop].[ecommerce_order] a where a.order_section='Restaurant' AND a.order_date = '" + order_date + "' and a.order_status!='Cancelled' group by a.order_id";
             cmd.CommandText = "SELECT (sum(a.total_amount_of_product)-sum(a.product_discount_price)) as total_order_amount,sum(b.original_price) as original_price FROM [gro_shop].[ecommerce_order] a left join ecommerce_product_price as b on b.id=a.product_price_id where a.order_section='Restaurant' AND a.order_date = '" + order_date + "' and a.order_status!='Cancelled'";
             cmd.CommandType = CommandType.Text;
             reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);

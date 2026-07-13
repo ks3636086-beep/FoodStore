@@ -20,14 +20,14 @@
     <div id="slides-shop" class="cover-slides">
         <ul class="slides-container">
             <li class="text-center">
-                <img src="images/banner-01.jpg" alt="">
+                <img src="images/banner-05.png" alt="">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To
+                            <h1 class="display-6"><strong>Welcome To
                                 <br>
                                 Freshshop</strong></h1>
-                            <p class="m-b-40">
+                            <p class="small">
                                 See how your users experience your website in realtime or view
                                 <br>
                                 trends to see any changes in performance over time.
@@ -38,17 +38,17 @@
                 </div>
             </li>
             <li class="text-center">
-                <img src="images/banner-02.jpg" alt="">
+                <img src="images/banner-06.png" alt="">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To
                                 <br>
-                                Freshshop</strong></h1>
+                                FoodStore</strong></h1>
                             <p class="m-b-40">
-                                See how your users experience your website in realtime or view
+                                Fresh groceries, fruits, vegetables, snacks, and daily essentials
                                 <br>
-                                trends to see any changes in performance over time.
+                                delivered to your doorstep with quality you can trust.
                             </p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
@@ -56,7 +56,7 @@
                 </div>
             </li>
             <li class="text-center">
-                <img src="images/banner-03.jpg" alt="">
+                <img src="images/banner-04.png" alt="">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -87,7 +87,7 @@
             <div class="row">
                 <asp:Repeater ID="rptCategory" runat="server">
                     <ItemTemplate>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 col-xs-6 mb-3">
                             <div class="shop-cat-box">
                                 <img class="img-fluid"
                                     src='auth/<%# Eval("category_photo") %>'
@@ -134,7 +134,7 @@
         <div class="row special-list">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
                 <ItemTemplate>
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 special-grid best-seller">
                         <div class="products-single fix">
                             <div class="box-img-hover">
 

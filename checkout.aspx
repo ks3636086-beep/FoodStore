@@ -65,6 +65,10 @@
                                 <label for="address2">Mobile No *</label>
                                 <asp:TextBox runat="server" type="tel" class="form-control" ID="mob" placeholder=""></asp:TextBox>
                             </div>
+                            <div class="mb-3">
+                                <label for="city">City *</label>
+                                <asp:TextBox runat="server" type="text" class="form-control" ID="city" placeholder=""></asp:TextBox>
+                            </div>
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <label for="country">Country *</label>
@@ -80,35 +84,28 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="state">State *</label>
-                                    <select class="wide w-100" id="state">
-                                        <option data-display="Select">Choose...</option>
-                                        <option>California</option>
-                                    </select>
+                                    <asp:DropDownList ID="state" runat="server" CssClass="wide w-100">
+                                        <asp:ListItem Text="Choose..." Value="" />
+                                        <asp:ListItem Text="Uttar Pradesh" Value="UttarPradesh" />
+                                    </asp:DropDownList>
                                     <div class="invalid-feedback">Please provide a valid state. </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label for="zip">Zip *</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                                    <div class="invalid-feedback">Zip code required. </div>
+                                    <label for="pin_code">Pin Code *</label>
+                                    <asp:TextBox ID="pincode" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+                                    <div class="invalid-feedback">Pin code required. </div>
                                 </div>
                             </div>
-
 
                             <hr class="mb-4">
                             <div class="title"><span>Payment</span> </div>
                             <div class="d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="credit">Credit card</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="debit">Debit card</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
-                                </div>
+                                <asp:DropDownList ID="dblmode" runat="server" CssClass="form-control">
+                                    <asp:ListItem Text="Select Payment Method" Value="" />
+                                    <asp:ListItem Text="Online" Value="Credit card" />
+                                    <asp:ListItem Text="UPI" Value="Debit card" />
+                                    <asp:ListItem Text="Cash" Value="Paypal" />
+                                </asp:DropDownList>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -212,12 +209,14 @@
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>Grand Total</h5>
-                                    <asp:Label runat="server" ID="FGrandTotal" class="ml-auto h5"> </asp:Label>
+                                    <asp:Label runat="server" ID="lblgrandtotal" class="ml-auto h5"> </asp:Label>
                                 </div>
                                 <hr>
                             </div>
                         </div>
-                        <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Place Order</a> </div>
+                        <div class="col-12 d-flex shopping-box">
+                            <asp:LinkButton ID="btnorder" runat="server" OnClick="btnorder_Click" Text="Place Order" CssClass="ml-auto btn hvr-hover"></asp:LinkButton>
+                        </div>
                     </div>
                 </div>
             </div>

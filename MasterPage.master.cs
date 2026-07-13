@@ -25,13 +25,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     public void CartCount()
     {
-        string query = "select count(*) from ecommerce_cart where customer_id='"
-                       + Session["customer_id"].ToString() + "'";
+        string query = "";
 
-        DataTable dt = mst.GetData(query);
-
-        if (dt.Rows.Count > 0)
+        if (Session["customer_id"] != null)
         {
+            query = "select count(*) from ecommerce_cart where customer_id='"
+                    + Session["customer_id"].ToString() + "'";
+
+            DataTable dt = mst.GetData(query);
+
             cart_count1.InnerText = dt.Rows[0][0].ToString();
         }
         else
