@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 public class Master
 {
     public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString);
+
     public Master()
     {
         //

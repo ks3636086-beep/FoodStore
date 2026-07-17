@@ -74,14 +74,20 @@
         <div>
             <div class="login-box">
                 <h2>Customer Login</h2>
+                <asp:TextBox ID="txtname" runat="server" CssClass="input-box" placeholder="Your Name "></asp:TextBox>
 
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="input-box" placeholder="Email"></asp:TextBox>
+                <asp:TextBox ID="txtemail" runat="server" CssClass="input-box" placeholder="Email"></asp:TextBox>
 
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input-box" placeholder="Password"></asp:TextBox>
+                <%--                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input-box" placeholder="Password"></asp:TextBox>--%>
+                <asp:TextBox ID="txtmobileno" runat="server" CssClass="input-box" placeholder="Mobile"></asp:TextBox>
 
                 <asp:Button ID="btnLogin" OnClick="btnLogin_Click" runat="server" Text="Login" CssClass="btn-login" />
             </div>
         </div>
+
+        <asp:Label ID="lbltempid" hidden runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblid" hidden runat="server" Text=""></asp:Label>
+
     </form>
 </body>
 </html>

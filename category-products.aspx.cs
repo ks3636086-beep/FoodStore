@@ -24,12 +24,7 @@ public partial class category_products : System.Web.UI.Page
         rptProducts.DataSource = mst.GetData("select * from ecommerce_product a left join ecommerce_product_price as b on a.product_id = b.product_id left join ecommerce_product_photos as c on a.product_id = c.product_id where a.product_parent_category_id = '" + Request.QueryString[0] +"'");
         rptProducts.DataBind();
     }
-    //private void BindData1()
-    //{
-    //    rptProducts.DataSource = mst.GetData("select * from ecommerce_product a left join ecommerce_product_price as b on a.product_id = b.product_id left join ecommerce_product_photos as c on a.product_id = c.product_id");
-    //    rptProducts.DataBind();
-    //}
-
+    
     protected void btnCart_Click(object sender, EventArgs e)
     {
 

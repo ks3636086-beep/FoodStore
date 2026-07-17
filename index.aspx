@@ -72,8 +72,9 @@
                         </div>
                     </div>
                 </div>
+                 
             </li>
-        </ul>
+        </ul>i
         <div class="slides-navigation">
             <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
             <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
@@ -147,14 +148,19 @@
                                         <li>
                                             <asp:LinkButton runat="server" ID="btnwishlist" CommandArgument='<%# Eval("product_id") %>' CommandName="btnwishlist" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></asp:LinkButton></li>
                                     </ul>
-                                    <asp:LinkButton runat="server" ID="btncart" CommandArgument='<%# Eval("product_id") %>' CommandName="cartbtn" CssClass="cart" Text="Add to Cart"></asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="lnkdelete" CommandName="btncart" CssClass="cart" Text="Add to Cart"></asp:LinkButton>
                                 </div>
                             </div>
-                            <asp:Label ID="lblproduct_id" runat="server" Text='<%# Eval("product_id") %>' Visible="false" />
+                            <asp:Label ID="lbldeletecategoryid" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
                             <asp:Label ID="lblname" runat="server" Text='<%# Eval("product_full_name") %>' Visible="false" />
-                            <asp:Label ID="lbl_sell_price" runat="server" Text='<%# Eval("product_final_sell_price") %>' Visible="false" />
-                            <asp:Label ID="lbl_unit" runat="server" Text='<%# Eval("product_unit") %>' Visible="false" />
-                            <asp:Label ID="lbl_unit_value" runat="server" Text='<%# Eval("product_unit_value") %>' Visible="false" />
+
+                            <asp:Label ID="lbl_sell_price" runat="server" Text='<%# Eval("product_sell_price") %>' Visible="false" />
+                            <asp:Label ID="lbl_market_price" runat="server" Text='<%# Eval("product_market_price") %>' Visible="false" />
+
+                            <asp:Label ID="Label1" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
+                            <asp:Label ID="product_price_id" hidden runat="server" Text='<%# Eval("price_id") %>'></asp:Label>
+                            <asp:Label ID="lbl_unit" hidden runat="server" Text='<%# Eval("product_unit") %>'></asp:Label>
+                            <asp:Label ID="lbl_unit_value" hidden runat="server" Text='<%# Eval("product_unit_value") %>'></asp:Label>
                             <div class="why-text">
                                 <a
                                     href='product_details.aspx?ref=<%# Eval("product_id") %>'>

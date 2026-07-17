@@ -176,7 +176,8 @@
                                                     <div class="small text-muted">
                                                         Price: ₹<%# Eval("product_sell_price") %>
                                                         <span class="mx-2">|</span>
-                                                        Qty: <%# Eval("cart_qty") %>
+                                                        Qty: 
+                                                        <asp:Label ID="qty" runat="server" Text='<%# Eval("cart_qty") %>'></asp:Label>
                                                         <span class="mx-2">|</span>
                                                         Subtotal: ₹<%# Eval("total_amount_of_product") %>
                                                     </div>

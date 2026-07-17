@@ -149,8 +149,6 @@ public partial class checkout : System.Web.UI.Page
                     cmd_category.Parameters.AddWithValue("@product_GST_rate", Convert.ToDouble(product_GST_rate));
                 }
 
-
-
                 if (product_CGST_percentage == null || product_CGST_percentage == "")
                 {
                     cmd_category.Parameters.AddWithValue("@product_CGST_percentage", Convert.ToDouble(0));
@@ -159,7 +157,6 @@ public partial class checkout : System.Web.UI.Page
                 {
                     cmd_category.Parameters.AddWithValue("@product_CGST_percentage", Convert.ToDouble(product_CGST_percentage));
                 }
-
 
 
                 if (product_CGST_rate == null || product_CGST_rate == "")
@@ -206,7 +203,6 @@ public partial class checkout : System.Web.UI.Page
                 {
                     cmd_category.Parameters.AddWithValue("@product_IGST_rate", Convert.ToDouble(product_IGST_percentage));
                 }
-
                 cmd_category.Parameters.AddWithValue("@product_market_price", Convert.ToDouble(product_market_price));
                 cmd_category.Parameters.AddWithValue("@product_sell_price", Convert.ToDouble(product_sell_price));
                 cmd_category.Parameters.AddWithValue("@product_discount_percentage", Convert.ToDouble(product_discount_percentage));
@@ -231,12 +227,12 @@ public partial class checkout : System.Web.UI.Page
 
                 int success = cmd_category.ExecuteNonQuery();
                 Response.Write("Updated Rows = " + success);
-                Response.End();
+                // Response.End();
                 if (success > 0)
                 {
                     ShowMessage("Data has been saved.", MessageType.Success);
                     mst.con.Close();
-                   // DeleteCart(lblproduct_id.Text, lblproductprice_id.Text);
+                    // DeleteCart(lblproduct_id.Text, lblproductprice_id.Text);
                 }
                 else
                 {
@@ -246,7 +242,7 @@ public partial class checkout : System.Web.UI.Page
             }
 
         }
-
+        // CartCount();
         Response.Redirect("page-orderdetails.aspx?ref='" + order_id + "'");
 
     }

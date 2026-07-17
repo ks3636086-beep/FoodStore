@@ -21,24 +21,14 @@ public partial class cart : System.Web.UI.Page
         if (Session["customer_id"] != null)
         {
             BindCart();
-
-            string totalStr = mst.Get_Total(Session["customer_id"].ToString());
-            
-            decimal subTotal = 0;
-            decimal.TryParse(totalStr, out subTotal);
-
-            decimal shipping = 0;
-
-            SubTotal.Text = subTotal.ToString();
-            lblshipping.Text = shipping.ToString();
-            GrandTotal.Text = (subTotal + shipping).ToString();
+            SubTotal.Text = mst.Get_Total(Session["customer_id"].ToString());
+            GrandTotal.Text = mst.Get_Total(Session["customer_id"].ToString());
         }
         else
         {
             Response.Redirect("ecommerce_customer.aspx");
         }
     }
-
     private void BindCart()
     {
         rptCart.DataSource = mst.GetData("select * from ecommerce_cart a left join ecommerce_order as b on b.customer_id=a.customer_id and b.product_id=a.product_id left join ecommerce_product_photos as c on c.product_id=a.product_id where a.customer_id='" + Session["customer_id"].ToString() + "' and order_id is null");
@@ -47,14 +37,11 @@ public partial class cart : System.Web.UI.Page
 
     protected void rptCart_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-
         Label lblprc = (Label)rptCart.Items[e.Item.ItemIndex].FindControl("lblprc");
         Label lbltotal = (Label)rptCart.Items[e.Item.ItemIndex].FindControl("lbltotal");
         Label lblproduct_id = (Label)rptCart.Items[e.Item.ItemIndex].FindControl("lblproduct_id");
         Label qty = (Label)rptCart.Items[e.Item.ItemIndex].FindControl("qty");
         Label qty1 = (Label)rptCart.Items[e.Item.ItemIndex].FindControl("qty1");
-        
-
 
         if (e.CommandName.Equals("btnminus"))
         {
