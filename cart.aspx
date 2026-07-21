@@ -68,7 +68,7 @@
                                             <td class="total-pr">
                                                 <asp:Label ID="lbltotal" runat="server" Text='<%# Eval("total_amount_of_product") %>'></asp:Label></td>
                                             <asp:Label ID="lblprc" hidden runat="server" Text='<%# Eval("product_sell_price") %>'></asp:Label>
-                                            <%--                                            <asp:Label runat="server" ID="lblprc" Text='<%# Eval("product_final_sell_price") %>'></asp:Label>--%>
+                                            <%-- <asp:Label runat="server" ID="lblprc" Text='<%# Eval("product_final_sell_price") %>'></asp:Label>--%>
                                             <asp:Label ID="lblproduct_id" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
 
                                             </td>

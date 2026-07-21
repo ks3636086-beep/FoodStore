@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 /// </summary>
 public class Customer
 {
-    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString);
     public Customer()
     {
 

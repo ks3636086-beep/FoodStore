@@ -57,7 +57,7 @@ public partial class auth_edit_delivery_boy : System.Web.UI.Page
         dbl_state.Items.Add(new ListItem("Please Select", " "));
         dbl_state.AppendDataBoundItems = true;
 
-        String strConnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        String strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
         String strQuery = "SELECT * FROM ecommerce_state order by state_name asc";
         SqlConnection con = new SqlConnection(strConnString);
         SqlCommand cmd = new SqlCommand();
@@ -91,7 +91,7 @@ public partial class auth_edit_delivery_boy : System.Web.UI.Page
         dbl_city.Items.Add(new ListItem("Please Select", " "));
         dbl_city.AppendDataBoundItems = true;
 
-        String strConnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        String strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
         String strQuery = "SELECT district_id,district_name FROM ecommerce_city where state_id='" + dbl_state.SelectedValue + "' order by district_name asc";
         SqlConnection con = new SqlConnection(strConnString);
         SqlCommand cmd = new SqlCommand();

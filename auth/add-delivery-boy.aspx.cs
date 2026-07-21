@@ -69,7 +69,7 @@ public partial class auth_add_delivery_boy : System.Web.UI.Page
 
             dbl_state.DataSource = cmd.ExecuteReader();
             dbl_state.DataTextField = "state_name";
-            dbl_state.DataValueField = "state_id";
+            dbl_state.DataValueField = "id";
             dbl_state.DataBind();
         }
         catch (Exception ex)
@@ -144,10 +144,10 @@ public partial class auth_add_delivery_boy : System.Web.UI.Page
                 {
                     string imgName = upld_photo.FileName.ToString();
                     string extension = Path.GetExtension(upld_photo.FileName);
-                    upld_photo.SaveAs(Server.MapPath("upload/delivery-boy-photo/") + imgName +lbl_id.Text + extension);
+                    upld_photo.SaveAs(Server.MapPath("upload/delivery-boy-document/") + imgName +lbl_id.Text + extension);
 
                     //sets the image path
-                    string imgPath = "upload/delivery-boy-photo/" + imgName + lbl_id.Text + extension;
+                    string imgPath = "upload/delivery-boy-document/" + imgName + lbl_id.Text + extension;
 
                     int success = bnc.Add_Delivery_Boy(lbl_id.Text,txt_name.Text,txt_email.Text,txt_mobileno.Text,dbl_gender.SelectedValue,txt_address_line_1.Text,"",dbl_state.SelectedValue,dbl_state.SelectedItem.Text,dbl_city.SelectedValue,dbl_city.SelectedItem.Text,txt_pincode.Text,enc.Encrypted(txt_password.Text),imgPath,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("hh:mm tt"),dbl_status.SelectedValue);
 

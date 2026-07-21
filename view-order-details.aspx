@@ -174,7 +174,7 @@
 
                     <div class="text-center mt-4">
 
-                        <button id="btncancel" runat="server"
+                        <button id="btncancel" runat="server" onserverclick="btncancel_ServerClick"
                          
                         class="btn"
                         style="background:#dc3545;color:white;border-radius:25px;padding:10px 30px;">

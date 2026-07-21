@@ -28,8 +28,8 @@ public partial class my_profile : System.Web.UI.Page
                 name.Text = Session["customer_name"].ToString();
                 email.Text = Session["customer_email"].ToString();
                 mobileno.Text = Session["customer_mobileno"].ToString();
-                //gender.Text = Session["customer_gender"].ToString();
-                //dob.Text = Session["customer_dob"].ToString();
+                gender.Text = Session["customer_gender"].ToString();
+                dob.Text = Session["customer_dob"].ToString();
             }
             else
             {
@@ -81,4 +81,3 @@ public partial class my_profile : System.Web.UI.Page
     }
 }
 
- 

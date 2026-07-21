@@ -232,7 +232,7 @@ public partial class checkout : System.Web.UI.Page
                 {
                     ShowMessage("Data has been saved.", MessageType.Success);
                     mst.con.Close();
-                    // DeleteCart(lblproduct_id.Text, lblproductprice_id.Text);
+                    DeleteCart(lblproduct_id.Text, lblproductprice_id.Text);
                 }
                 else
                 {
@@ -242,9 +242,19 @@ public partial class checkout : System.Web.UI.Page
             }
 
         }
-        // CartCount();
+        
         Response.Redirect("page-orderdetails.aspx?ref='" + order_id + "'");
 
+    }
+    private void DeleteCart(string text1, string text2)
+    {
+        mst.con.Open();
+        string query_delete_photo = "delete from ecommerce_cart where product_id='" + text1 + "' and product_price_id='" + text2 + "' and customer_id='" + Session["customer_id"].ToString() + "'";
+        SqlCommand cmd_delete_photo = new SqlCommand(query_delete_photo, mst.con);
+        SqlDataReader dr_delete_photo = cmd_delete_photo.ExecuteReader();
+
+        dr_delete_photo.Close();
+        mst.con.Close();
     }
 
     private string getorder_id()

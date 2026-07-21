@@ -20,7 +20,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if (!IsPostBack)
         {
-            CartCount();
             if (Session["customer_id"] != null)
             {
                 loginbtn.Visible = false;
@@ -32,7 +31,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 if (get_data.Read())
                 {
                     cart_count1.InnerText = get_data["count"].ToString();
-                   // cart_count.InnerText = get_data["count"].ToString();
+                    //cart_count.InnerText = get_data["count"].ToString();
                 }
 
                 get_data.Close();
@@ -45,26 +44,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 logoutbtn.Visible = false;
                 orderbtn.Visible = false;
             }
-            
+
         }
     }
 
-    public void CartCount()
-    {
-        string query = "";
 
-        if (Session["customer_id"] != null)
-        {
-            query = "select count(*) from ecommerce_cart where customer_id='"
-                    + Session["customer_id"].ToString() + "'";
-
-            DataTable dt = mst.GetData(query);
-
-            cart_count1.InnerText = dt.Rows[0][0].ToString();
-        }
-        else
-        {
-            cart_count1.InnerText = "0";
-        }
-    }
 }

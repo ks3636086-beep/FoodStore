@@ -59,7 +59,7 @@ public partial class auth_edit_product_price : System.Web.UI.Page
         dblunit.Items.Add(new ListItem("Please Select", ""));
         dblunit.AppendDataBoundItems = true;
 
-        String strConnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        String strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
         String strQuery = "SELECT [unit_name] FROM [ecommerce_unit]";
         SqlConnection con = new SqlConnection(strConnString);
         SqlCommand cmd = new SqlCommand();
@@ -92,7 +92,7 @@ public partial class auth_edit_product_price : System.Web.UI.Page
         dblgstpercentage.Items.Add(new ListItem("Please Select", ""));
         dblgstpercentage.AppendDataBoundItems = true;
 
-        String strConnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        String strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
         String strQuery = "SELECT [gst_value] FROM [ecommerce_gst]";
         SqlConnection con = new SqlConnection(strConnString);
         SqlCommand cmd = new SqlCommand();
