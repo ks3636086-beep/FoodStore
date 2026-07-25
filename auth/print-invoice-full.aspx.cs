@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 public partial class auth_printreceipt : System.Web.UI.Page
 {
-    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString);
 
     Master mst = new Master();
     Order odr = new Order();

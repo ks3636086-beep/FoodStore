@@ -25,7 +25,7 @@ public partial class gesture_login : System.Web.UI.Page
             {
                 if (Request.Cookies["AdminUserName"] != null && Request.Cookies["AdminPassword"] != null)
                 {
-                   // Login();
+                   //Login();
                 }
             }
         }

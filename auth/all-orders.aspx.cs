@@ -42,7 +42,7 @@ public partial class auth_all_orders : System.Web.UI.Page
 
     private void BindOrder()
     {
-        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id,Max(a.order_delivery_time) as order_delivery_time,Max(a.order_date) as order_date,Max(b.customer_name) as customer_name,Max(a.payment_mode) as payment_mode,Max(a.total_order_amount) as total_order_amount,Max(b.customer_mobileno) as customer_mobileno,Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id where a.order_section='Grocery' Group by order_id order by id desc");
+        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id WHERE a.order_status!='Cancelled' GROUP BY order_id ORDER BY id DESC");
         this.rptbindorderdata.DataBind();
     }
 

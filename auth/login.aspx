@@ -5,44 +5,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server" />
 
-    <!-- Title -->
-    <title>Login </title>
+<!-- Title -->
+<title>Login </title>
 
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta charset="UTF-8" />
-    <meta name="description" content="" />
-    <link rel="shortcut icon" href="" title="Favicon" />
-    <!-- Styles -->
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta charset="UTF-8" />
+<meta name="description" content="" />
+<link rel="shortcut icon" href="" title="Favicon" />
+<!-- Styles -->
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css' />
-    <link href="assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet" />
-    <link href="assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href=" https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/product-preview-slider/css/style.css" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href="assets/css/Message.css" rel="stylesheet" type="text/css" />
-    <script src="assets/js/Message.js"></script>
-    <!-- Theme Styles -->
-    <link href="assets/css/modern.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css' />
+<link href="assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet" />
+<link href="assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet" />
+<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href=" https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/product-preview-slider/css/style.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="assets/css/Message.css" rel="stylesheet" type="text/css" />
+<script src="assets/js/Message.js"></script>
+<!-- Theme Styles -->
+<link href="assets/css/modern.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
 
-    <script src="assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
-    <style>
-        hr {
-            border-top: 1px solid #083b3f;
-        }
+<script src="assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
 
-        .page-inner {
-            background: unset !important
-        }
-    </style>
+<style>
+    hr {
+        border-top: 1px solid #083b3f;
+    }
+
+    .page-inner {
+        background: unset !important
+    }
+</style>
 
 </head>
 <body class="page-login">
@@ -69,9 +70,11 @@
                                         <br />
                                         <br />
                                     </div>
-                                    <p class="text-center m-t-xs text-sm">Developed by
+                                    <p class="text-center m-t-xs text-sm">
+                                        Developed by
                                         <br />
-                                        <b>Digital Bull</b></p>
+                                        <b>Digital Bull</b>
+                                    </p>
                                 </div>
                             </div>
                         </div>

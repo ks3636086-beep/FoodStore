@@ -49,7 +49,7 @@
             </div>
         </div>
 
-       <%-- <div class="col-lg-3 col-md-6">
+        <%-- <div class="col-lg-3 col-md-6">
             <div class="small-box" style="background-color: #f06292;">
                 <div class="inner">
                     <h3>
@@ -63,7 +63,6 @@
             </div>
 
         </div>--%>
-
     </div>
 
     <div class="row">
@@ -84,7 +83,7 @@
 
         </div>
 
-        
+
 
 
         <div class="col-lg-4 col-md-6">
@@ -103,9 +102,9 @@
 
         </div>
 
-         <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6">
 
-            <div class="small-box " style="background-color:#078f61;">
+            <div class="small-box " style="background-color: #078f61;">
                 <div class="inner">
                     <h3>
                         <asp:Label ID="lbl_total_delivery_boy" runat="server" Text="0"></asp:Label></h3>
@@ -118,12 +117,6 @@
             </div>
 
         </div>
-
-
-        
-
-
-        
 
         <div class="col-lg-12 col-md-12">
             <div class="panel panel-white">
@@ -141,7 +134,7 @@
                                     <th>Payment</th>
                                     <th>Amount</th>
                                     <th>No of Items</th>
-
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -191,7 +184,7 @@
             </div>
         </div>
 
-        
+
 
 
     </div>

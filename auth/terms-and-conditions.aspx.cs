@@ -7,7 +7,7 @@ using System.Web.UI;
 
 public partial class auth_terms_and_contditions : System.Web.UI.Page
 {
-    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString);
     public enum MessageType { Success, Error, Info, Warning };
     protected void ShowMessage(string Message, MessageType type)
     {

@@ -122,8 +122,8 @@
                 <div class="special-menu text-center">
                     <div class="button-group filter-button-group">
                         <button class="active" data-filter="*">All</button>
-                        <button data-filter=".top-featured">Top featured</button>
-                        <button data-filter=".best-seller">Best seller</button>
+                        <button runat="server" id="Latestbtn" onserverclick="Latestbtn_ServerClick" data-filter=".top-featured">Latest featured</button>
+                        <button runat="server" id="Bestsellbtn" onserverclick="Bestsellbtn_ServerClick" data-filter=".best-seller">Best seller</button>
                     </div>
                 </div>
             </div>

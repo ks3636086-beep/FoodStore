@@ -21,19 +21,19 @@ public partial class auth_order_details : System.Web.UI.Page
     Product pdt = new Product();
     Order odr = new Order();
     Customer cmr = new Customer();
-   
+
     Backend bnc = new Backend();
 
     string fy_from, fy_to;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             BindOrderItem();
 
             lblorderno.Text = Request.QueryString[0].ToString();
-         
+
             printinvoiceformartlink.HRef = "print-invoice-full.aspx?ref=" + Request.QueryString[0];
 
             // Get Order Info
@@ -61,11 +61,11 @@ public partial class auth_order_details : System.Web.UI.Page
                 lblbillinglandmark.Text = get_order_info["billing_landmark"].ToString();
                 lblshippinglandmark.Text = get_order_info["shipping_landmark"].ToString();
 
-					string ss = get_order_info["order_time"].ToString();
-					DateTime tm = DateTime.Parse(ss);
-					ss = tm.ToString("hh:mm tt");
-					
-                lblorderplacedate.Text = get_order_info["order_date"].ToString()+" "+ ss;
+                string ss = get_order_info["order_time"].ToString();
+                DateTime tm = DateTime.Parse(ss);
+                ss = tm.ToString("hh:mm tt");
+
+                lblorderplacedate.Text = get_order_info["order_date"].ToString() + " " + ss;
 
                 lblcoupon.Text = get_order_info["coupan_value"].ToString();
 
@@ -79,13 +79,13 @@ public partial class auth_order_details : System.Web.UI.Page
 
             // Show Bank Details
 
-            int check_any_return = mst.Count_data("Select Count(id) from ecommerce_order where order_id='"+Request.QueryString[0]+ "' AND (order_status='Return Request' AND order_status='Cancelled') ");
-            if(check_any_return>0)
+            int check_any_return = mst.Count_data("Select Count(id) from ecommerce_order where order_id='" + Request.QueryString[0] + "' AND (order_status='Return Request' AND order_status='Cancelled') ");
+            if (check_any_return > 0)
             {
                 // Get Details
 
-                SqlDataReader get_bank_details = mst.Select_Operation("Select * from ecommerce_bank_account where customer_id='"+ lbl_customer_id.Text + "' ");
-                if(get_bank_details.Read())
+                SqlDataReader get_bank_details = mst.Select_Operation("Select * from ecommerce_bank_account where customer_id='" + lbl_customer_id.Text + "' ");
+                if (get_bank_details.Read())
                 {
                     lbl_bank_name.Text = get_bank_details["bank_name"].ToString();
                     lbl_bank_account_holder_name.Text = get_bank_details["bank_ac_holder_name"].ToString();
@@ -109,11 +109,11 @@ public partial class auth_order_details : System.Web.UI.Page
 
             if (odr.GetTotalAmountShippingOrder(lblorderno.Text) == "")
             {
-                lblgrandtotalamount.Text = Convert.ToString(Convert.ToDecimal(odr.GetTotalAmountOrder(lblorderno.Text)) + Convert.ToDecimal(0)-Convert.ToDecimal(lblcoupon.Text)-Convert.ToDecimal(lbltotaldiscount.Text));
+                lblgrandtotalamount.Text = Convert.ToString(Convert.ToDecimal(odr.GetTotalAmountOrder(lblorderno.Text)) + Convert.ToDecimal(0) - Convert.ToDecimal(lblcoupon.Text) - Convert.ToDecimal(lbltotaldiscount.Text));
             }
             else
             {
-                lblgrandtotalamount.Text = Convert.ToString(Convert.ToDecimal(odr.GetTotalAmountOrder(lblorderno.Text)) + Convert.ToDecimal(odr.GetTotalAmountShippingOrder(lblorderno.Text))-Convert.ToDecimal(lblcoupon.Text) - Convert.ToDecimal(lbltotaldiscount.Text));
+                lblgrandtotalamount.Text = Convert.ToString(Convert.ToDecimal(odr.GetTotalAmountOrder(lblorderno.Text)) + Convert.ToDecimal(odr.GetTotalAmountShippingOrder(lblorderno.Text)) - Convert.ToDecimal(lblcoupon.Text) - Convert.ToDecimal(lbltotaldiscount.Text));
             }
 
 
@@ -123,7 +123,7 @@ public partial class auth_order_details : System.Web.UI.Page
 
             string order_section = odr.GetOrderSection(lblorderno.Text);
 
-            if (Convert.ToDecimal(lblsubtotal.Text) > Convert.ToDecimal(149) && order_section== "Grocery")
+            if (Convert.ToDecimal(lblsubtotal.Text) > Convert.ToDecimal(149) && order_section == "Grocery")
             {
                 lbltotalshippingamount.Text = "Free";
             }
@@ -162,7 +162,7 @@ public partial class auth_order_details : System.Web.UI.Page
 
             if (get_photo.Read())
             {
-                productphoto.Src =  get_photo["photo_path"].ToString();
+                productphoto.Src = get_photo["photo_path"].ToString();
             }
 
             get_photo.Close();
@@ -201,17 +201,15 @@ public partial class auth_order_details : System.Web.UI.Page
 
             string status = dblorderstatus.SelectedValue;
 
-            switch(status)
+            switch (status)
             {
                 case "Confirm":
 
-                    int confirm = odr.Update_Order_status_Normal(lblsuborderid.Text,dblorderstatus.SelectedValue);
+                    int confirm = odr.Update_Order_status_Normal(lblsuborderid.Text, dblorderstatus.SelectedValue);
 
-                    if(confirm>0)
+                    if (confirm > 0)
                     {
-                        ShowMessage("Order has been "+dblorderstatus.SelectedValue+".",MessageType.Success);
-
-                       
+                        ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
 
                         BindOrderItem();
                     }
@@ -226,7 +224,7 @@ public partial class auth_order_details : System.Web.UI.Page
                     {
                         ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
 
-                        
+
 
                         BindOrderItem();
                     }
@@ -236,14 +234,14 @@ public partial class auth_order_details : System.Web.UI.Page
 
                 case "Delivered":
 
-                    int delivered = odr.Update_Order_status_Deliver(lblsuborderid.Text, dblorderstatus.SelectedValue,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("hh:mm tt"));
+                    int delivered = odr.Update_Order_status_Deliver(lblsuborderid.Text, dblorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
 
                     if (delivered > 0)
                     {
 
                         ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
 
-                       
+
 
                         BindOrderItem();
                     }
@@ -257,17 +255,15 @@ public partial class auth_order_details : System.Web.UI.Page
                     if (cancelled > 0)
                     {
 
-                        string new_total_order_amount= Convert.ToString(Math.Round(Convert.ToDouble(Convert.ToDecimal(lblgrandtotalamount.Text) -Convert.ToDecimal(lbl_total_amount_of_product.Text)), 0, MidpointRounding.AwayFromZero));
+                        string new_total_order_amount = Convert.ToString(Math.Round(Convert.ToDouble(Convert.ToDecimal(lblgrandtotalamount.Text) - Convert.ToDecimal(lbl_total_amount_of_product.Text)), 0, MidpointRounding.AwayFromZero));
 
-                        int update_total_order_amount = odr.Update_Total_Order_Amount(new_total_order_amount,Request.QueryString[0]);
+                        int update_total_order_amount = odr.Update_Total_Order_Amount(new_total_order_amount, Request.QueryString[0]);
 
                         // Refund Amount
 
-                        if(lblpaymentmethod.Text== "Razor Pay" || lblpaymentmethod.Text == "Cash on delivery")
+                        if (lblpaymentmethod.Text == "Razor Pay" || lblpaymentmethod.Text == "Cash on delivery")
                         {
                             ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
-
-                          
 
                         }
                         else
@@ -276,17 +272,17 @@ public partial class auth_order_details : System.Web.UI.Page
                             {
                                 ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
 
-                               
+
 
                             }
-                            
+
                         }
 
                         BindOrderItem();
                     }
 
                     break;
-              
+
             }
 
         }
@@ -330,7 +326,7 @@ public partial class auth_order_details : System.Web.UI.Page
 
                 if (delivered > 0)
                 {
-                   
+
                     ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
 
                     BindOrderItem();
@@ -344,8 +340,8 @@ public partial class auth_order_details : System.Web.UI.Page
 
                 if (cancelled > 0)
                 {
-                    
-                   // int update_invoice_status = odr.Update_Invoice_Status("Cancelled", Request.QueryString[0]);
+
+                    // int update_invoice_status = odr.Update_Invoice_Status("Cancelled", Request.QueryString[0]);
 
                     // Refund Amount
 
@@ -360,7 +356,7 @@ public partial class auth_order_details : System.Web.UI.Page
                             ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
 
                         }
-                        
+
                     }
 
                     BindOrderItem();
@@ -371,5 +367,5 @@ public partial class auth_order_details : System.Web.UI.Page
         }
     }
 
-    
+
 }

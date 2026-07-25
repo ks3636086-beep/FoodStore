@@ -78,7 +78,7 @@
 
                 <asp:TextBox ID="txtemail" runat="server" CssClass="input-box" placeholder="Email"></asp:TextBox>
 
-                <%--                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input-box" placeholder="Password"></asp:TextBox>--%>
+                <%--   <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input-box" placeholder="Password"></asp:TextBox>--%>
                 <asp:TextBox ID="txtmobileno" runat="server" CssClass="input-box" placeholder="Mobile"></asp:TextBox>
 
                 <asp:Button ID="btnLogin" OnClick="btnLogin_Click" runat="server" Text="Login" CssClass="btn-login" />

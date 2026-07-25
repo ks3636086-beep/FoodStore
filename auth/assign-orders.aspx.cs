@@ -66,7 +66,7 @@ public partial class auth_assign_orders : System.Web.UI.Page
 
     private void BindOrder()
     {
-        this.rptbindorderdata.DataSource = GetData("SELECT Max(id) as id, Max(order_id) as order_id,Max(order_delivery_time) as order_delivery_time,Max(order_date) as order_date,Max(customer_name) as customer_name,Max(payment_mode) as payment_mode,Max(total_order_amount) as total_order_amount,Max(customer_mobileno) as customer_mobileno FROM ecommerce_order where order_section='Grocery' and order_status!='Cancelled' and assigned_delivery_boy_id is null Group by order_id order by id desc");
+        this.rptbindorderdata.DataSource = GetData("SELECT Max(id) as id, Max(order_id) as order_id,Max(order_delivery_time) as order_delivery_time,Max(order_date) as order_date,Max(customer_name) as customer_name,Max(payment_mode) as payment_mode,Max(total_order_amount) as total_order_amount,Max(customer_mobileno) as customer_mobileno FROM ecommerce_order where order_status!='Cancelled' and assigned_delivery_boy_id is null Group by order_id order by id desc");
         this.rptbindorderdata.DataBind();
     }
 
@@ -117,9 +117,10 @@ public partial class auth_assign_orders : System.Web.UI.Page
             Label lblorderid = (Label)e.Item.FindControl("lblorderid");
             Label lblnoofitems = (Label)e.Item.FindControl("lblnoofitems");
 
+            lblnoofitems.Text = odr.GetNoOfItemsOrder(lblorderid.Text);
         }
     }
-        
+
     protected void btnsearch_ServerClick(object sender, EventArgs e)
     {
 
@@ -162,7 +163,7 @@ public partial class auth_assign_orders : System.Web.UI.Page
         {
             ShowMessage("Select delivery boy.", MessageType.Error);
         }
-        
+
     }
 
 }
