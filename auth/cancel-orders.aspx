@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/auth/admin.master" AutoEventWireup="true" CodeFile="cancel-orders.aspx.cs" Inherits="auth_cancel_orders" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="alert" id="alert_container"></div>
 
@@ -32,8 +32,8 @@
                                             <th>Date</th>
                                             <th>Customer</th>
                                             <th>Amount</th>
-                                             <th>Reason</th>
-                                             <th>Comment</th>
+                                            <th>Reason</th>
+                                            <th>Comment</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,25 +53,23 @@
                                                         </a>
                                                     </td>
 
-                                                     <td>
+                                                    <td>
                                                         <%# Eval("id") %>
                                                     </td>
                                                     <td>
-                                                        <%#   DateTime.ParseExact(Eval("order_cancel_date").ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("MMMM, dd, yyyy", System.Globalization.CultureInfo.InvariantCulture)  %> <%# Eval("order_cancel_time") %>
-                                                    </td>
+                                                        <%# Eval("order_cancel_date") == DBNull.Value || string.IsNullOrEmpty(Eval("order_cancel_date").ToString()) ? "" : Convert.ToDateTime(Eval("order_cancel_date")).ToString("MMMM, dd, yyyy") %> <%# Eval("order_cancel_time") %>                                                    </td>
                                                     <td>
                                                         <%# Eval("customer_name") %>
                                                     </td>
-                                                   
-                                                    <td>
-                                                        ₹ <%# Eval("total_amount_of_product") %>
+
+                                                    <td>₹ <%# Eval("total_amount_of_product") %>
                                                     </td>
 
                                                     <td>
                                                         <%# Eval("order_return_reason") %>
                                                     </td>
 
-                                                     <td>
+                                                    <td>
                                                         <%# Eval("order_return_comment") %>
                                                     </td>
 
@@ -98,7 +96,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <center>
-                                                                             <label style="font-size:25px;">Are you sure you want to delete?</label>
+                                                                            <label style="font-size: 25px;">Are you sure you want to delete?</label>
                                                                         </center>
                                                                     </div>
                                                                 </div>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Statements;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,7 +17,7 @@ public partial class auth_all_orders : System.Web.UI.Page
     }
 
     Order odr = new Order();
-    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,19 +37,31 @@ public partial class auth_all_orders : System.Web.UI.Page
 
     private void BindOrder_Date()
     {
-        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id,Max(a.order_delivery_time) as order_delivery_time,Max(a.order_date) as order_date,Max(b.customer_name) as customer_name,Max(a.payment_mode) as payment_mode,Max(a.total_order_amount) as total_order_amount,Max(b.customer_mobileno) as customer_mobileno,Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id where a.order_section='Grocery'  and a.order_date='" + txt_date_from.Text+ "' and order_status!='Cancelled' Group by order_id order by id desc");
+        // Fetch orders according to selected date
+        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id,Max(a.order_delivery_time) as order_delivery_time,Max(a.order_date) as order_date,Max(b.customer_name) as customer_name,Max(a.payment_mode) as payment_mode,Max(a.total_order_amount) as total_order_amount,Max(b.customer_mobileno) as customer_mobileno,Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id where a.order_date='" + txt_date_from.Text + "' and order_status!='Cancelled' Group by order_id order by id desc");
         this.rptbindorderdata.DataBind();
     }
 
     private void BindOrder()
     {
-        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id WHERE a.order_status!='Cancelled' GROUP BY order_id ORDER BY id DESC");
+        // Fetch all orders
+        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id GROUP BY order_id ORDER BY id DESC");
         this.rptbindorderdata.DataBind();
     }
 
     private void BindOrderByStatus()
     {
-        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id,Max(a.order_delivery_time) as order_delivery_time,Max(a.order_date) as order_date,Max(b.customer_name) as customer_name,Max(a.payment_mode) as payment_mode,Max(a.total_order_amount) as total_order_amount,Max(b.customer_mobileno) as customer_mobileno,Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id where a.order_section='Grocery'  and a.order_status='"+ dblorderstatus.SelectedValue +"' Group by order_id order by id desc");
+        if (dblorderstatus.SelectedValue == "Assigned")
+        {
+           // Assigned → query
+            this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id WHERE a.assigned_delivery_boy_id IS NOT NULL GROUP BY order_id ORDER BY id DESC");
+        }
+        else
+        {
+            //Confirm / Cancel / Delivered →   query
+            this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id WHERE a.order_status='" + dblorderstatus.SelectedValue + "' GROUP BY order_id ORDER BY id DESC");
+        }
+
         this.rptbindorderdata.DataBind();
     }
 
@@ -74,7 +87,7 @@ public partial class auth_all_orders : System.Web.UI.Page
 
     protected void rptbindorderdata_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-       
+
         if (e.CommandName.Equals("btndelete"))
         {
             Label lblroworderid = (Label)rptbindorderdata.Items[e.Item.ItemIndex].FindControl("lblroworderid");
@@ -99,7 +112,7 @@ public partial class auth_all_orders : System.Web.UI.Page
             Label lblorderid = (Label)e.Item.FindControl("lblorderid");
             Label lblnoofitems = (Label)e.Item.FindControl("lblnoofitems");
 
-            if(dblorderstatus.SelectedItem.Text== "Cancelled")
+            if (dblorderstatus.SelectedItem.Text == "Cancelled")
             {
                 lblnoofitems.Text = odr.GetNoOfItemsOrder_cancel(lblorderid.Text);
 
@@ -123,6 +136,6 @@ public partial class auth_all_orders : System.Web.UI.Page
         {
             BindOrderByStatus();
         }
-       
+
     }
 }

@@ -99,7 +99,7 @@
     <script src="assets/plugins/waves/waves.min.js"></script>
     <script src="assets/plugins/3d-bold-navigation/js/main.js"></script>
     <%--  <script src="assets/plugins/product-preview-slider/js/jquery.mobile.min.js"></script>
- <script src="assets/plugins/product-preview-slider/js/main.js"></script>--%>
+    <script src="assets/plugins/product-preview-slider/js/main.js"></script>--%>
 
     <script src="assets/js/modern.min.js"></script>
 

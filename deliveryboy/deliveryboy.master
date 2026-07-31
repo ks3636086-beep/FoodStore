@@ -125,6 +125,7 @@
                                         <img class="img-circle avatar" style="background-color: black" src="assets/upload/boy.png" id="pic" runat="server" width="40" height="40" alt="" />
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
+                                        <li role="presentation"><a href="Profile.aspx"><i class="fas fa-sign-out-alt"></i>Profile out</a></li>
                                         <li role="presentation"><a href="logout.aspx"><i class="fas fa-sign-out-alt"></i>Log out</a></li>
                                         <li role="presentation"><a href="change-password.aspx"><i class="fas fa-key"></i>Change Password</a></li>
                                     </ul>
@@ -143,8 +144,7 @@
                     <ul class="menu accordion-menu">
                         <li class="nav-heading"><span>Navigation</span></li>
 
-
-                        <li class="droplink"><a href="all-orders.aspx"><i class="fas fa-clipboard-list"></i>
+                        <li class="droplink"><a href="all-order.aspx"><i class="fas fa-clipboard-list"></i>
                             <p>&nbsp;All Order</p>
                             <span class="arrow"></span></a>
 
@@ -155,7 +155,6 @@
                             <span class="arrow"></span></a>
 
                         </li>
-
 
                         <li class="droplink"><a href="#"><i class="fas fa-bars"></i>
                             <p>&nbsp;Report</p>
@@ -170,8 +169,6 @@
                                 <li><a href="sale-report.aspx?ref=date-range">Date Range</a></li>
                             </ul>
                         </li>
-
-
 
                         <li class="droplink hidden-lg hidden-md"><a href="#">
                             <img class="img-circle avatar" style="background-color: black" src="assets/upload/boy.png" id="Img1" runat="server" width="20" height="20" alt="" />

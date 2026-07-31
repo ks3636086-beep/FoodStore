@@ -36,7 +36,7 @@
                                             <asp:ListItem>Dispatched</asp:ListItem>
                                             <asp:ListItem>Delivered</asp:ListItem>
                                             <asp:ListItem>Assigned</asp:ListItem>
-                                            <asp:ListItem>Cancelled</asp:ListItem>
+                                            <asp:ListItem Value="Cancel">Cancelled</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -91,31 +91,29 @@
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <%#   DateTime.ParseExact(Eval("order_date").ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("MMMM, dd, yyyy", System.Globalization.CultureInfo.InvariantCulture)  %> <%# Eval("order_delivery_time") %>
-                                                        </td>
-                                                        <td>
-                                                            <%# Eval("customer_name") %>
-                                                        </td>
-                                                        <td>
-                                                            <%# Eval("customer_mobileno") %>
-                                                        </td>
-                                                        <td>
-                                                            <%# Eval("payment_mode") %>
-                                                        </td>
-                                                        <td>₹ <%# Eval("total_order_amount") %>
-                                                        </td>
-                                                        <td><%# Eval("delivery_status") %>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lblnoofitems" runat="server" Text="0"></asp:Label>
-                                                        </td>
+                                                            <%# Eval("order_date") == DBNull.Value ? "" : Convert.ToDateTime(Eval("order_date")).ToString("MMMM, dd, yyyy") %>
+                                                            <td>
+                                                                <%# Eval("customer_name") %>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("customer_mobileno") %>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("payment_mode") %>
+                                                            </td>
+                                                            <td>₹ <%# Eval("total_order_amount") %>
+                                                            </td>
+                                                            <td><%# Eval("delivery_status") %>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label ID="lblnoofitems" runat="server" Text="0"></asp:Label>
+                                                            </td>
 
-                                                        <td>
-                                                            <a class="link-primary" href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank" title="View Order Details"><i class="fa fa-eye"></i></a>
-                                                            <a class="link-danger" href="#" data-toggle="modal" data-target="#Del<%#  Eval("order_id") %>" title="Delete" hidden><i class="fa fa-trash"></i></a>
+                                                            <td>
+                                                                <a class="link-primary" href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank" title="View Order Details"><i class="fa fa-eye"></i></a>
+                                                                <a class="link-danger" href="#" data-toggle="modal" data-target="#Del<%#  Eval("order_id") %>" title="Delete" hidden><i class="fa fa-trash"></i></a>
 
-                                                        </td>
-
+                                                            </td>
                                                     </tr>
 
                                                     <%-- Delete Modal--%>
@@ -147,7 +145,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
 
                                                 </ItemTemplate>
                                             </asp:Repeater>

@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/deliveryboy/deliveryboy.master" AutoEventWireup="false" CodeFile="all-orders.aspx.vb" Inherits="deliveryboy_all_orders" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/deliveryboy/deliveryboy.master" AutoEventWireup="true" CodeFile="all-order.aspx.cs" Inherits="deliveryboy_all_order" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="alert" id="alert_container"></div>
 
     <div class="row"></div>
@@ -28,13 +27,11 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">By Order Status</label>
-                                        <asp:DropDownList ID="dblorderstatus" AutoPostBack="true" class="form-control" runat="server">
+                                        <asp:DropDownList ID="dblorderstatus" AutoPostBack="true" class="form-control" runat="server" OnSelectedIndexChanged="dblorderstatus_SelectedIndexChanged">
                                             <asp:ListItem>All</asp:ListItem>
-                                            <%--<asp:ListItem>Processing</asp:ListItem>--%>
-                                            <%--<asp:ListItem>Confirm</asp:ListItem>--%>
-                                            <asp:ListItem>Assigned</asp:ListItem>
                                             <asp:ListItem>Delivered</asp:ListItem>
-
+                                            <asp:ListItem>Assigned</asp:ListItem>
+                                            <%-- <asp:ListItem Value="Cancel">Cancelled</asp:ListItem>--%>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -47,7 +44,7 @@
                                 </div>
 
                                 <div class="col-md-3" id="btn_search" runat="server">
-                                    <button type="submit" id="btnsearch" runat="server" class="btn btn-success" style="margin-top: 22px">Search</button>
+                                    <button type="submit" id="btnsearch" runat="server" onserverclick="btnsearch_ServerClick" class="btn btn-success" style="margin-top: 22px">Search</button>
                                 </div>
 
                             </div>
@@ -89,8 +86,7 @@
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <%#   DateTime.ParseExact(Eval("order_date").ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("MMMM, dd, yyyy", System.Globalization.CultureInfo.InvariantCulture)  %> <%# Eval("order_delivery_time") %>
-                                                        </td>
+                                                            <%# Eval("order_date") == DBNull.Value ? "" : Convert.ToDateTime(Eval("order_date")).ToString("MMMM, dd, yyyy") %>
                                                         <td>
                                                             <%# Eval("customer_name") %>
                                                         </td>
@@ -113,7 +109,6 @@
                                                             <a class="link-danger" href="#" data-toggle="modal" data-target="#Del<%#  Eval("order_id") %>" title="Delete" hidden><i class="fa fa-trash"></i></a>
 
                                                         </td>
-
                                                     </tr>
 
                                                     <%-- Delete Modal--%>
@@ -145,7 +140,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
 
                                                 </ItemTemplate>
                                             </asp:Repeater>
@@ -181,6 +175,7 @@
             $('#example2').DataTable();
         });
     </script>
+
 
 </asp:Content>
 

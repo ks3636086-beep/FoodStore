@@ -67,7 +67,8 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
 
                 lblorderplacedate.Text = get_order_info["order_date"].ToString() + " " + ss;
 
-                lblcoupon.Text = get_order_info["coupan_value"].ToString();
+                // lblcoupon.Text = get_order_info["coupan_value"].ToString();
+                lblcoupon.Text = get_order_info["coupan_value"] == DBNull.Value ? "0" : get_order_info["coupan_value"].ToString();
 
                 lbl_refund_mode.Text = get_order_info["refund_mode"].ToString();
                 lbl_customer_id.Text = get_order_info["customer_id"].ToString();
@@ -141,7 +142,7 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
 
     private void BindOrderItem()
     {
-        rptbinddataprice.DataSource = mst.GetData("SELECT * FROM ecommerce_order where order_id='" + Request.QueryString[0] + "' ");
+        rptbinddataprice.DataSource = mst.GetData("SELECT * FROM ecommerce_order WHERE order_id='" + Request.QueryString[0] + "' AND assigned_delivery_boy_id='" + Session["id"] + "'");
         rptbinddataprice.DataBind();
     }
     protected void btnorderstatusupdate_ServerClick(object sender, EventArgs e)
@@ -223,7 +224,6 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
         }
     }
 
-
     protected void rptbinddataprice_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -288,5 +288,16 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
                 BindOrderItem();
             }
         }
+    }
+
+    protected void dblchangeorderstatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string status = dblchangeorderstatus.SelectedValue;
+
+        string query = "UPDATE ecommerce_order SET order_status='" + status + "', delivery_status='" + status + "', order_delivery_date=GETDATE(), order_delivery_time=GETDATE() WHERE order_id='" + Request.QueryString["id"] + "'";
+
+        mst.Select_Operation(query);
+
+        ShowMessage("Order status updated.", MessageType.Success);
     }
 }

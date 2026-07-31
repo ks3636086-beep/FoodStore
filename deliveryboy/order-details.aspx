@@ -128,12 +128,10 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1" style="font-weight: 600">Order Status</label>
-                                    <asp:DropDownList ID="dblchangeorderstatus" class="form-control" runat="server">
+                                    <asp:DropDownList ID="dblchangeorderstatus" OnSelectedIndexChanged="dblchangeorderstatus_SelectedIndexChanged" AutoPostBack="true" class="form-control" runat="server">
                                         <%-- <asp:ListItem>Processing</asp:ListItem>--%>
                                         <asp:ListItem>Confirm</asp:ListItem>
-                                        <asp:ListItem>Dispatched</asp:ListItem>
                                         <asp:ListItem>Delivered</asp:ListItem>
-                                        <asp:ListItem>Cancelled</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>

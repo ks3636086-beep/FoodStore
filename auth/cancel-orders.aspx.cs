@@ -25,7 +25,7 @@ public partial class auth_cancel_orders : System.Web.UI.Page
 
     private void BindData()
     {
-        this.rptbindorderdata.DataSource = GetData("SELECT * FROM ecommerce_order where order_status='Cancelled' AND order_section='Grocery' order by id desc");
+        this.rptbindorderdata.DataSource = GetData("SELECT * FROM ecommerce_order where order_status='Cancel' order by id desc");
         this.rptbindorderdata.DataBind();
     }
 
