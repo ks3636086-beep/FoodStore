@@ -72,7 +72,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="panel panel-white">
                 <div class="panel-heading">
-                    <h4 class="panel-title" style="color: #3f51b5">Recent Order</h4>
+                    <h4 class="panel-title" style="color: #3f51b5">Recent Assigned Orders</h4>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive project-stats">
@@ -119,7 +119,9 @@
                                             </td>
 
                                             <td>
-                                                <a class="btn btn-primary" href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank" title="View Order Details"><i class="fa fa-eye"></i></a>
+                                                <a class="btn btn-primary" href="order-details.aspx?id=<%# Eval("order_id") %>" target="_blank" title="View Order Details">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                             </td>
 
                                         </tr>

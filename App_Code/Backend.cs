@@ -176,7 +176,7 @@ public class Backend
 
     // Shipping Charge
 
-    public int Add_Shipping_Charge(string shipping_charge,string restaurant_shipping_charge)
+    public int Add_Shipping_Charge(string shipping_charge, string restaurant_shipping_charge)
     {
         con.Close();
         con.Open();
@@ -201,7 +201,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Edit_Shipping_Charge(string shipping_charge,string restaurant_shipping_charge)
+    public int Edit_Shipping_Charge(string shipping_charge, string restaurant_shipping_charge)
     {
         con.Close();
         con.Open();
@@ -328,7 +328,7 @@ public class Backend
 
     // Add Custom Section
 
-    public int Add_Custom_Section(string section_name, string section_description,string section_priority,string section_status)
+    public int Add_Custom_Section(string section_name, string section_description, string section_priority, string section_status)
     {
         con.Close();
         con.Open();
@@ -357,7 +357,7 @@ public class Backend
 
     // Update Custom Section
 
-    public int Update_Custom_Section(string section_name, string section_description,string section_priority,string section_status,  string id)
+    public int Update_Custom_Section(string section_name, string section_description, string section_priority, string section_status, string id)
     {
         con.Close();
         con.Open();
@@ -374,7 +374,7 @@ public class Backend
             cmd.Parameters.AddWithValue("@section_priority", SqlDbType.NVarChar).Value = section_priority;
             cmd.Parameters.AddWithValue("@section_status", SqlDbType.NVarChar).Value = section_status;
 
-            cmd.Parameters.AddWithValue("@id",id);
+            cmd.Parameters.AddWithValue("@id", id);
 
             RowsAffected = cmd.ExecuteNonQuery();
             con.Close();
@@ -388,7 +388,7 @@ public class Backend
 
     // Add Product To Custom Section
 
-    public int Add_Product_To_Custom_Section(string section_id, string product_id,string seller_id)
+    public int Add_Product_To_Custom_Section(string section_id, string product_id, string seller_id)
     {
         con.Close();
         con.Open();
@@ -414,7 +414,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Add_Slider(string slider_photo,string slider_link,string slider_mode)
+    public int Add_Slider(string slider_photo, string slider_link, string slider_mode)
     {
         con.Close();
         con.Open();
@@ -440,7 +440,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Add_Product_To_Deal_Section(string section_id, string product_id,string seller_id, string deal_date)
+    public int Add_Product_To_Deal_Section(string section_id, string product_id, string seller_id, string deal_date)
     {
         con.Close();
         con.Open();
@@ -800,7 +800,7 @@ public class Backend
 
     // Add Product
 
-    public int Add_Product(string product_temp_id, string product_id, string product_full_name, string product_description, string product_hsnORsac, string product_parent_category_id, string product_parent_category_name, string product_sub_category_id, string product_sub_category_name, string product_full_description, string publish_status, string product_postion_no, string country_of_origin,string verticle_id,string verticle_name,string product_brand_name,string product_barcode,string product_seller_id, string product_seller_name,string product_sku,string super_point,string product_type)
+    public int Add_Product(string product_temp_id, string product_id, string product_full_name, string product_description, string product_hsnORsac, string product_parent_category_id, string product_parent_category_name, string product_sub_category_id, string product_sub_category_name, string product_full_description, string publish_status, string product_postion_no, string country_of_origin, string verticle_id, string verticle_name, string product_brand_name, string product_barcode, string product_seller_id, string product_seller_name, string product_sku, string super_point, string product_type)
     {
         con.Close();
         con.Open();
@@ -849,10 +849,10 @@ public class Backend
         }
         return (RowsAffected);
     }
-   
+
     // Edit Product
 
-    public int Edit_Product(string product_full_name, string product_description, string product_hsnORsac, string country_of_origin, string product_full_description, string publish_status, string product_brand_name,string product_barcode, string product_sku,string super_point, string product_id)
+    public int Edit_Product(string product_full_name, string product_description, string product_hsnORsac, string country_of_origin, string product_full_description, string publish_status, string product_brand_name, string product_barcode, string product_sku, string super_point, string product_id)
     {
         con.Close();
         con.Open();
@@ -890,7 +890,7 @@ public class Backend
 
     // Add Product Price
 
-    public int Add_Product_Price(string product_id, string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_shipping_charge, string product_stock, string product_tax_type,string original_price)
+    public int Add_Product_Price(string product_id, string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_shipping_charge, string product_stock, string product_tax_type, string original_price)
     {
         con.Close();
         con.Open();
@@ -939,7 +939,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Edit_Product_Price(string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_stock, string product_tax_type,string original_price, string id)
+    public int Edit_Product_Price(string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_stock, string product_tax_type, string original_price, string id)
     {
         con.Close();
         con.Open();
@@ -991,7 +991,7 @@ public class Backend
 
     // Update Product Attribute/Variation
 
-    public int Update_Product_Variation(string attribute_title_1, string attribute_title_2,string attribute_title_3,string attribute_value_1,string attribute_value_2,string attribute_value_3,string variants_id,string product_id)
+    public int Update_Product_Variation(string attribute_title_1, string attribute_title_2, string attribute_title_3, string attribute_value_1, string attribute_value_2, string attribute_value_3, string variants_id, string product_id)
     {
         con.Close();
         con.Open();
@@ -1027,7 +1027,7 @@ public class Backend
 
     // Product Variaion
 
-    public int Add_Product_Variation(string variation_id, string category_id, string attributes_id, string product_id,string attributes_value,string product_sell_price,string product_discount_percentage,string product_discount_price,string product_with_gst_Price,string product_final_sell_price,string product_stock,string variation_type)
+    public int Add_Product_Variation(string variation_id, string category_id, string attributes_id, string product_id, string attributes_value, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_stock, string variation_type)
     {
         con.Close();
         con.Open();
@@ -1052,7 +1052,7 @@ public class Backend
             cmd.Parameters.AddWithValue("@product_final_sell_price", SqlDbType.NVarChar).Value = product_final_sell_price;
             cmd.Parameters.AddWithValue("@product_stock", SqlDbType.NVarChar).Value = product_stock;
             cmd.Parameters.AddWithValue("@variation_type", SqlDbType.NVarChar).Value = variation_type;
-         
+
             RowsAffected = cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -1147,7 +1147,7 @@ public class Backend
 
     // Update Product Category
 
-    public int Edit_Product_Category(string product_parent_category_id, string product_parent_category_name, string product_sub_category_id, string product_sub_category_name,string verticle_id,string verticle_name, string product_id)
+    public int Edit_Product_Category(string product_parent_category_id, string product_parent_category_name, string product_sub_category_id, string product_sub_category_name, string verticle_id, string verticle_name, string product_id)
     {
         con.Close();
         con.Open();
@@ -1183,7 +1183,7 @@ public class Backend
 
     // Category > Sub Category > Verticle
 
-    public int Add_Verticle(string category_id, string sub_category_id,string verticle_name,string verticle_status,string display_order,string verticle_title)
+    public int Add_Verticle(string category_id, string sub_category_id, string verticle_name, string verticle_status, string display_order, string verticle_title)
     {
         con.Close();
         con.Open();
@@ -1212,7 +1212,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Edit_Verticle(string category_id, string sub_category_id, string verticle_name, string verticle_status,string verticle_title, string id)
+    public int Edit_Verticle(string category_id, string sub_category_id, string verticle_name, string verticle_status, string verticle_title, string id)
     {
         con.Close();
         con.Open();
@@ -1270,7 +1270,7 @@ public class Backend
 
     // Brand
 
-    public int Add_Brand(string brand_name,string display_order)
+    public int Add_Brand(string brand_name, string display_order)
     {
         con.Close();
         con.Open();
@@ -1295,7 +1295,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Edit_Brand(string brand_name, string display_order,string id)
+    public int Edit_Brand(string brand_name, string display_order, string id)
     {
         con.Close();
         con.Open();
@@ -1324,7 +1324,7 @@ public class Backend
 
     // Update product SEO
 
-    public int Edit_Product_Seo(string meta_title, string meta_description,string meta_keyword,string product_id)
+    public int Edit_Product_Seo(string meta_title, string meta_description, string meta_keyword, string product_id)
     {
         con.Close();
         con.Open();
@@ -1352,7 +1352,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Edit_Category(string main_category_id, string category_name, string category_status,string category_orderno,string category_title, string category_id)
+    public int Edit_Category(string main_category_id, string category_name, string category_status, string category_orderno, string category_title, string category_id)
     {
         con.Close();
         con.Open();
@@ -1550,7 +1550,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Update_Payment_Api(string api_key, string secret_key,string mode_status, string payment_mode)
+    public int Update_Payment_Api(string api_key, string secret_key, string mode_status, string payment_mode)
     {
         con.Close();
         con.Open();
@@ -1562,7 +1562,7 @@ public class Backend
             cmd.CommandText = "Update ecommerce_payment_mode Set api_key=@api_key,secret_key=@secret_key,mode_status=@mode_status where payment_mode=@payment_mode ";
             cmd.CommandType = CommandType.Text;
 
-            cmd.Parameters.AddWithValue("@api_key", SqlDbType.NVarChar).Value= api_key;
+            cmd.Parameters.AddWithValue("@api_key", SqlDbType.NVarChar).Value = api_key;
             cmd.Parameters.AddWithValue("@secret_key", SqlDbType.NVarChar).Value = secret_key;
             cmd.Parameters.AddWithValue("@mode_status", SqlDbType.NVarChar).Value = mode_status;
             cmd.Parameters.AddWithValue("@payment_mode", SqlDbType.NVarChar).Value = payment_mode;
@@ -1634,7 +1634,7 @@ public class Backend
 
     // Firm Social
 
-    public int Add_Social_Firm(string firm_fb_link, string firm_tw_link, string firm_insta_link,string firm_yt_link,string firm_linkedin_link)
+    public int Add_Social_Firm(string firm_fb_link, string firm_tw_link, string firm_insta_link, string firm_yt_link, string firm_linkedin_link)
     {
         con.Close();
         con.Open();
@@ -1692,7 +1692,7 @@ public class Backend
 
     // Google Integration
 
-    public int Add_Google_inetration(string integration_title, string integration_path,string tracking_code)
+    public int Add_Google_inetration(string integration_title, string integration_path, string tracking_code)
     {
         con.Close();
         con.Open();
@@ -1855,7 +1855,7 @@ public class Backend
 
     // In Between Banner
 
-    public int Add_Between_Banner(string banner_option, string photo_path, string photo_link,string link_title)
+    public int Add_Between_Banner(string banner_option, string photo_path, string photo_link, string link_title)
     {
         con.Close();
         con.Open();
@@ -1885,7 +1885,7 @@ public class Backend
 
     // Update Categort SuperPoint
 
-    public int Update_Category_Point(string super_point,string category_id)
+    public int Update_Category_Point(string super_point, string category_id)
     {
         con.Close();
         con.Open();
@@ -1897,7 +1897,7 @@ public class Backend
             cmd.CommandText = "Update ecommerce_category Set super_point=@super_point Where category_id=@category_id";
             cmd.CommandType = CommandType.Text;
 
-            cmd.Parameters.AddWithValue("@super_point", SqlDbType.NVarChar).Value= super_point;
+            cmd.Parameters.AddWithValue("@super_point", SqlDbType.NVarChar).Value = super_point;
             cmd.Parameters.AddWithValue("@category_id", SqlDbType.NVarChar).Value = category_id;
 
             RowsAffected = cmd.ExecuteNonQuery();
@@ -1941,7 +1941,7 @@ public class Backend
 
     // Add Food Item
 
-    public int Add_Food_Item(string product_temp_id, string product_id, string product_full_name, string product_description, string product_parent_category_id, string product_parent_category_name,string product_full_description, string publish_status,string product_type,string food_type)
+    public int Add_Food_Item(string product_temp_id, string product_id, string product_full_name, string product_description, string product_parent_category_id, string product_parent_category_name, string product_full_description, string publish_status, string product_type, string food_type)
     {
         con.Close();
         con.Open();
@@ -1987,7 +1987,7 @@ public class Backend
             cmd.Connection = con;
             cmd.CommandText = "Update ecommerce_product Set product_full_name=@product_full_name,product_description=@product_description,product_parent_category_id=@product_parent_category_id,product_parent_category_name=@product_parent_category_name,product_full_description=@product_full_description,publish_status=@publish_status,product_type=@product_type,food_type=@food_type Where product_id=@product_id";
             cmd.CommandType = CommandType.Text;
-           
+
             cmd.Parameters.AddWithValue("@product_full_name", SqlDbType.NVarChar).Value = product_full_name;
             cmd.Parameters.AddWithValue("@product_description", SqlDbType.NVarChar).Value = product_description;
             cmd.Parameters.AddWithValue("@product_parent_category_id", SqlDbType.NVarChar).Value = product_parent_category_id;
@@ -2011,7 +2011,7 @@ public class Backend
 
     // Add Food Price By Restaurant
 
-    public int Add_Food_Price(string product_id, string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_shipping_charge, string product_stock, string product_tax_type,string price_seller_id,string price_seller_name,string original_price)
+    public int Add_Food_Price(string product_id, string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_shipping_charge, string product_stock, string product_tax_type, string price_seller_id, string price_seller_name, string original_price)
     {
         con.Close();
         con.Open();
@@ -2062,7 +2062,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Edit_Food_Price(string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_stock, string product_tax_type,string price_seller_id,string price_seller_name,string original_price, string id)
+    public int Edit_Food_Price(string product_unit, string product_unit_value, string product_GST_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string product_stock, string product_tax_type, string price_seller_id, string price_seller_name, string original_price, string id)
     {
         con.Close();
         con.Open();
@@ -2154,7 +2154,7 @@ public class Backend
 
 
 
-    public int Update_Seller_Registration(string seller_firm_name, string seller_address_line_1, string seller_state_id, string seller_state_name, string seller_city_id, string seller_city_name, string seller_pincode,string seller_area_id, string seller_gst, string seller_gst_state_code, string seller_gst_state,string opening_time,string closing_time, string seller_id)
+    public int Update_Seller_Registration(string seller_firm_name, string seller_address_line_1, string seller_state_id, string seller_state_name, string seller_city_id, string seller_city_name, string seller_pincode, string seller_area_id, string seller_gst, string seller_gst_state_code, string seller_gst_state, string opening_time, string closing_time, string seller_id)
     {
         con.Close();
         con.Open();
@@ -2179,7 +2179,7 @@ public class Backend
 
             cmd.Parameters.AddWithValue("@seller_gst_state_code", SqlDbType.NVarChar).Value = seller_gst_state_code;
             cmd.Parameters.AddWithValue("@seller_gst_state", SqlDbType.NVarChar).Value = seller_gst_state;
-            
+
             cmd.Parameters.AddWithValue("@opening_time", SqlDbType.NVarChar).Value = opening_time;
             cmd.Parameters.AddWithValue("@closing_time", SqlDbType.NVarChar).Value = closing_time;
 
@@ -2196,7 +2196,7 @@ public class Backend
     }
 
 
-    public int Add_Seller_Document(string seller_id, string document_name, string document_path, string document_section,string document_no)
+    public int Add_Seller_Document(string seller_id, string document_name, string document_path, string document_section, string document_no)
     {
         con.Close();
         con.Open();
@@ -2227,7 +2227,7 @@ public class Backend
 
 
 
-    public int Update_Seller_Profile(string seller_name, string seller_mobileno, string seller_firm_name, string seller_address_line_1, string seller_state_id, string seller_state_name, string seller_city_id, string seller_city_name, string seller_pincode,string seller_area_id, string seller_gst_state_code, string seller_gst_state,string seller_gst,string opening_time,string closing_time, string seller_id)
+    public int Update_Seller_Profile(string seller_name, string seller_mobileno, string seller_firm_name, string seller_address_line_1, string seller_state_id, string seller_state_name, string seller_city_id, string seller_city_name, string seller_pincode, string seller_area_id, string seller_gst_state_code, string seller_gst_state, string seller_gst, string opening_time, string closing_time, string seller_id)
     {
         con.Close();
         con.Open();
@@ -2321,7 +2321,7 @@ public class Backend
 
     // Restaurant Menu Category
 
-    public int Add_Restaurant_Menu_Category(string seller_id, string category_id,string category_name)
+    public int Add_Restaurant_Menu_Category(string seller_id, string category_id, string category_name)
     {
         con.Close();
         con.Open();
@@ -2347,7 +2347,7 @@ public class Backend
         return (RowsAffected);
     }
 
-    public int Update_Customer_Status(string customer_status,string customer_id)
+    public int Update_Customer_Status(string customer_status, string customer_id)
     {
         con.Close();
         con.Open();
@@ -2395,5 +2395,48 @@ public class Backend
             throw ex;
         }
         return (RowsAffected);
+    }
+
+
+
+    public int Update_Delivery_Status(string status, string order_id)
+    {
+        con.Close();
+        con.Open();
+
+        if (string.IsNullOrEmpty(order_id))
+        {
+            return 0;
+        }
+
+        int RowsAffected = 0;
+
+        try
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+
+            cmd.CommandText = @"UPDATE ecommerce_order 
+                  SET order_status=@delivery_status,
+                      delivery_status=@delivery_status,
+                      order_delivery_date=GETDATE(),
+                      order_delivery_time=GETDATE()
+                  WHERE order_id=@order_id";
+
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.AddWithValue("@delivery_status", status);
+            cmd.Parameters.AddWithValue("@order_id", order_id);
+
+            RowsAffected = cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+        return RowsAffected;
     }
 }

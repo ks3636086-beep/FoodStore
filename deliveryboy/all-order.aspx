@@ -62,7 +62,7 @@
                                                 <th>Mobile no.</th>
                                                 <th>Payment</th>
                                                 <th>Amount</th>
-                                                <th>Delivey Time</th>
+                                                <th>Delivey Status</th>
                                                 <th>No of Items</th>
                                                 <th>Action</th>
                                             </tr>

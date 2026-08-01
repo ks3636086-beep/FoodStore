@@ -294,10 +294,12 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
     {
         string status = dblchangeorderstatus.SelectedValue;
 
-        string query = "UPDATE ecommerce_order SET order_status='" + status + "', delivery_status='" + status + "', order_delivery_date=GETDATE(), order_delivery_time=GETDATE() WHERE order_id='" + Request.QueryString["id"] + "'";
+        int result = bnc.Update_Delivery_Status(status, Request.QueryString["id"]);
 
-        mst.Select_Operation(query);
-
-        ShowMessage("Order status updated.", MessageType.Success);
+        if (result > 0)
+        {
+            ShowMessage("Delivery status updated.", MessageType.Success);
+        }
+        
     }
 }

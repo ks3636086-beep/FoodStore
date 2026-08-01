@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="view-order-details.aspx.cs" Inherits="view_order_details" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <!-- Breadcrumb -->
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <!-- Breadcrumb -->
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
@@ -25,8 +25,8 @@
 
                 <div class="bg-light p-4 mb-4 shadow-sm">
 
-                    <h4 class="mb-3" style="color:#28a745;">
-                        <i class="fa fa-map-marker"></i> Shipping Details
+                    <h4 class="mb-3" style="color: #28a745;">
+                        <i class="fa fa-map-marker"></i>Shipping Details
                     </h4>
 
                     <div class="row">
@@ -73,8 +73,8 @@
 
                 <div class="bg-light p-4 shadow-sm">
 
-                    <h4 class="mb-4" style="color:#28a745;">
-                        <i class="fa fa-shopping-cart"></i> Ordered Products
+                    <h4 class="mb-4" style="color: #28a745;">
+                        <i class="fa fa-shopping-cart"></i>Ordered Products
                     </h4>
 
 
@@ -82,7 +82,7 @@
 
                         <table class="table table-hover text-center">
 
-                            <thead style="background:#343a40;color:white;">
+                            <thead style="background: #343a40; color: white;">
 
                                 <tr>
                                     <th>Product</th>
@@ -97,70 +97,67 @@
                             <tbody>
 
 
-                            <asp:Repeater ID="rptbindproduct" runat="server" 
-                                >
+                                <asp:Repeater ID="rptbindproduct" runat="server">
 
-                            <ItemTemplate>
+                                    <ItemTemplate>
 
 
-                                <tr>
+                                        <tr>
 
-                                    <td class="align-middle">
+                                            <td class="align-middle">
 
-                                        <asp:Label ID="lblname" runat="server"
-                                        Text='<%# Eval("product_name") %>'>
+                                                <asp:Label ID="lblname" runat="server"
+                                                    Text='<%# Eval("product_name") %>'>
                                         </asp:Label>
 
-                                    </td>
+                                            </td>
 
 
-                                    <td class="align-middle">
-
-                                        ₹
-                                        <asp:Label ID="lblprice" runat="server"
-                                        Text='<%# Eval("product_sell_price") %>'>
+                                            <td class="align-middle">₹
+                                       
+                                                <asp:Label ID="lblprice" runat="server"
+                                                    Text='<%# Eval("product_sell_price") %>'>
                                         </asp:Label>
 
-                                    </td>
+                                            </td>
 
 
-                                    <td class="align-middle">
+                                            <td class="align-middle">
 
-                                        <span class="badge badge-success">
-                                            <asp:Label ID="lblqty" runat="server"
-                                            Text='<%# Eval("product_qty") %>'>
+                                                <span class="badge badge-success">
+                                                    <asp:Label ID="lblqty" runat="server"
+                                                        Text='<%# Eval("product_qty") %>'>
                                             </asp:Label>
-                                        </span>
+                                                </span>
 
-                                    </td>
+                                            </td>
 
 
-                                    <td class="align-middle">
-
-                                        ₹
-                                        <asp:Label ID="lbltotal" runat="server"
-                                        Text='<%# Eval("total_amount_of_product") %>'>
+                                            <td class="align-middle">₹
+                                       
+                                                <asp:Label ID="lbltotal" runat="server"
+                                                    Text='<%# Eval("total_amount_of_product") %>'>
                                         </asp:Label>
 
-                                    </td>
+                                            </td>
 
 
-                                    <asp:Label ID="lblprc" hidden runat="server"
-                                    Text='<%# Eval("product_sell_price") %>'>
+                                            <asp:Label ID="lblprc" hidden runat="server"
+                                                Text='<%# Eval("product_sell_price") %>'>
                                     </asp:Label>
 
 
-                                    <asp:Label ID="lblproduct_id" hidden runat="server"
-                                    Text='<%# Eval("product_id") %>'>
+                                            <asp:Label ID="lblproduct_id" hidden runat="server"
+                                                Text='<%# Eval("product_id") %>'>
                                     </asp:Label>
 
 
-                                </tr>
+                                        </tr>
 
 
-                            </ItemTemplate>
+                                    </ItemTemplate>
 
-                            </asp:Repeater>
+                                </asp:Repeater>
 
 
                             </tbody>
@@ -175,13 +172,23 @@
                     <div class="text-center mt-4">
 
                         <button id="btncancel" runat="server" onserverclick="btncancel_ServerClick"
-                         
-                        class="btn"
-                        style="background:#dc3545;color:white;border-radius:25px;padding:10px 30px;">
+                            class="btn"
+                            style="background: #dc3545; color: white; border-radius: 25px; padding: 10px 30px;">
 
                             <i class="fa fa-times"></i>
                             Cancel Order
 
+                       
+                        </button>
+
+                        <button id="btnreturn" runat="server" onserverclick="btnreturn_ServerClick"
+                            class="btn"
+                            style="background: #28a745; color: white; border-radius: 25px; padding: 10px 30px;">
+
+                            <i class="fa fa-undo"></i>
+                            Return Order
+
+   
                         </button>
 
                     </div>

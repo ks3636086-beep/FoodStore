@@ -30,6 +30,7 @@ public partial class view_order_details : System.Web.UI.Page
                 lblcmob.Text = getData["customer_mobileno"].ToString();
                 lblcmail.Text = getData["customer_email"].ToString();
                 lblcadd.Text = getData["billing_address_line1"].ToString() + ", " + getData["billing_address_line2"].ToString() + ", " + getData["billing_city_name"].ToString() + ", " + getData["billing_state_name"].ToString() + ", " + getData["billing_landmark"].ToString() + "-" + getData["billing_pincode"].ToString();
+                CheckOrderButton(getData);
             }
             getData.Close();
 
@@ -37,6 +38,28 @@ public partial class view_order_details : System.Web.UI.Page
         else
         {
             Response.Redirect("login.aspx");
+        }
+    }
+
+    private void CheckOrderButton(SqlDataReader getData)
+    {
+        if (getData["delivery_status"].ToString() == "Delivered")
+        {
+            // Delivered order 
+            btncancel.Visible = false;
+            btnreturn.Visible = true;
+        }
+        else if (getData["assigned_delivery_boy_id"].ToString() != "")
+        {
+            // Assigned order  
+            btncancel.Visible = false;
+            btnreturn.Visible = false;
+        }
+        else
+        {
+
+            btncancel.Visible = true;
+            btnreturn.Visible = false;
         }
     }
     private void Binddata()
@@ -57,5 +80,11 @@ public partial class view_order_details : System.Web.UI.Page
         mst.con.Close();
 
         Response.Redirect("my-order.aspx");
+    }
+
+    protected void btnreturn_ServerClick(object sender, EventArgs e)
+    {
+        Response.Redirect("return-order.aspx?id=" + Request.QueryString[0]);
+
     }
 }
