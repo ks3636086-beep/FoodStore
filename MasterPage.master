@@ -16,7 +16,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Site Icons -->
     <link rel="icon" href="images/FoodStore_logo.png?v=1" type="image/png">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -45,38 +49,65 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div class="custom-select-box">
-                        </div>
-
-                        <div class="our-link">
-                            <ul>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-user s_color"></i>My Account
+                        <div class="our-link d-flex justify-content-lg-end justify-content-start position-relative" style="z-index: 9999;">
+                            <ul class="list-unstyled mb-0">
+                                <li class="dropdown position-relative">
+                                    <!-- Dropdown Trigger Button -->
+                                    <a href="#"
+                                        class="dropdown-toggle d-inline-flex align-items-center gap-2 text-decoration-none fw-semibold text-white px-3 py-1 rounded small"
+                                        data-bs-toggle="dropdown"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa fa-user"></i>
+                                        <span>MY ACCOUNT</span>
                                     </a>
 
-                                    <div class="dropdown-menu bg-white">
-                                        <a href="my-profile.aspx" runat="server" id="profilebtn" class="dropdown-item text-dark">Profile</a>
-                                        <a href="my-order.aspx" runat="server" id="orderbtn" class="dropdown-item text-dark">My Order</a>
-                                        <a href="ecommerce_customer.aspx" runat="server" id="loginbtn" class="dropdown-item text-dark">Sign Up</a>
-                                        <a href="logout.aspx" runat="server" id="logoutbtn" class="dropdown-item text-dark">Logout</a>
+                                    <!-- Dropdown Menu -->
+                                    <div class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 p-2 bg-white mt-1"
+                                        style="min-width: 170px; z-index: 10000; position: absolute;">
+
+                                        <a href="my-profile.aspx"
+                                            runat="server"
+                                            id="profilebtn"
+                                            class="dropdown-item rounded-2 py-2 text-dark small d-flex align-items-center gap-2">
+                                            <i class="fas fa-user-circle text-muted" style="width: 16px;"></i>
+                                            <span>Profile</span>
+                                        </a>
+
+                                        <a href="my-order.aspx"
+                                            runat="server"
+                                            id="orderbtn"
+                                            class="dropdown-item rounded-2 py-2 text-dark small d-flex align-items-center gap-2">
+                                            <i class="fas fa-shopping-bag text-muted" style="width: 16px;"></i>
+                                            <span>My Orders</span>
+                                        </a>
+
+                                        <a href="ecommerce_customer.aspx"
+                                            runat="server"
+                                            id="loginbtn"
+                                            class="dropdown-item rounded-2 py-2 text-dark small d-flex align-items-center gap-2">
+                                            <i class="fas fa-user-plus text-muted" style="width: 16px;"></i>
+                                            <span>Sign Up</span>
+                                        </a>
+
+                                        <div class="dropdown-divider my-1 opacity-25"></div>
+
+                                        <a href="logout.aspx"
+                                            runat="server"
+                                            id="logoutbtn"
+                                            class="dropdown-item rounded-2 py-2 text-danger small d-flex align-items-center gap-2 fw-semibold">
+                                            <i class="fas fa-sign-out-alt text-danger" style="width: 16px;"></i>
+                                            <span>Logout</span>
+                                        </a>
+
                                     </div>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <%-- <div class="login-box">
-                            <button type="button" id="basic" class="selectpicker show-tick form-control" style="background: #28a745; color: white;" data-toggle="dropdown">My Account</button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="login.aspx" class="dropdown-item" id="loginbtn" runat="server">Sign in/Sign up</a>
-                                <a href="my-profile.aspx" class="dropdown-item" id="profilebtn" runat="server">Profile</a>
-                                <a href="my-order.aspx" class="dropdown-item" id="orderbtn" runat="server">My Order</a>
-                                <a href="logout.aspx" class="dropdown-item" id="logoutbtn" runat="server">Logout</a>
-                            </div>
-                        </div>--%>
+
                         <div class="text-slid-box">
                             <div id="offer-box" class="carouselTicker">
                                 <ul class="offer-box">
@@ -117,86 +148,73 @@
         <!-- Start Main Top -->
         <header class="main-header">
             <!-- Start Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-                <div class="container">
-                    <!-- Start Header Navigation -->
-                    <div class="navbar-header">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="index.aspx">
-                            <img src="images/FoodStore_logo.png" style="width: 100px; height: auto;" class="logo" alt=""></a>
-                    </div>
-                    <!-- End Header Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 sticky-top">
+                <div class="container-fluid px-4">
 
+                    <!-- 1. Logo (Left Side) -->
+                    <a class="navbar-brand me-2" href="index.aspx">
+                        <img src="images/FoodStore_logo.png" alt="Food Store" style="height: 50px; width: auto;">
+                    </a>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class="nav-item active"><a class="nav-link" href="index.aspx">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.aspx">About Us</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="shop.aspx">Sidebar Shop</a></li>
-                                    <li><a href="shop-detail.aspx">Shop Detail</a></li>
-                                    <li><a href="cart.aspx">Cart</a></li>
-                                    <li><a href="checkout.aspx">Checkout</a></li>
-                                    <li><a href="my-account.aspx">My Account</a></li>
-                                    <li><a href="wishlist.aspx">Wishlist</a></li>
+                    <!-- Mobile Toggler -->
+                    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Navbar Content -->
+                    <div class="collapse navbar-collapse" id="navbarContent">
+
+                        <!-- 2. Search Bar (Full Available Space Leega) -->
+                        <div class="flex-grow-1 mx-lg-4 my-2 my-lg-0">
+                            <div class="input-group w-100">
+                                <input class="form-control bg-light border-end-0 rounded-start-pill ps-3" type="search" placeholder="Search fresh groceries..." aria-label="Search">
+                                <button class="btn btn-success rounded-end-pill px-3" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. Navigation Links & Cart (Right Side) -->
+                        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark active fw-semibold px-2" href="index.aspx">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-secondary fw-semibold px-2" href="about.aspx">About Us</a>
+                            </li>
+
+                            <li class="nav-item dropdown dropdown-hover">
+                                <a class="nav-link dropdown-toggle text-secondary fw-semibold px-2" href="shop.aspx" id="shopDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-0 rounded-3" aria-labelledby="shopDropdown">
+                                    <li><a class="dropdown-item py-2" href="shop.aspx">Sidebar Shop</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item py-2" href="cart.aspx">Cart</a></li>
+                                    <li><a class="dropdown-item py-2" href="checkout.aspx">Checkout</a></li>
+                                    <li><a class="dropdown-item py-2" href="my-account.aspx">My Account</a></li>
+                                    <li><a class="dropdown-item py-2" href="wishlist.aspx">Wishlist</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="contact-us.aspx">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
 
-                    <!-- Start Atribute Navigation -->
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                            <li class="side-menu">
-                                <a href="cart.aspx">
+                            <li class="nav-item">
+                                <a class="nav-link text-secondary fw-semibold px-2" href="contact-us.aspx">Contact Us</a>
+                            </li>
+
+                            <!-- Cart Button -->
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <a href="cart.aspx" class="btn btn-outline-success position-relative rounded-pill px-3 py-1 d-inline-flex align-items-center gap-2">
                                     <i class="fa fa-shopping-bag"></i>
-                                    <span runat="server" id="cart_count1" style="color: black;" class="badge">0</span>
-                                    <p>My Cart</p>
+                                    <span class="fw-bold">Cart</span>
+                                    <span runat="server" id="cart_count1" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0
+                                    </span>
                                 </a>
                             </li>
                         </ul>
+
                     </div>
-                    <!-- End Atribute Navigation -->
                 </div>
-                <!-- Start Side Menu -->
-                <div class="side">
-                    <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                    <li class="cart-box">
-                        <ul class="cart-list">
-                            <li>
-                                <a href="#" class="photo">
-                                    <img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                                <h6><a href="#">Delica omtantur </a></h6>
-                                <p>1x - <span class="price">$80.00</span></p>
-                            </li>
-                            <li>
-                                <a href="#" class="photo">
-                                    <img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                                <h6><a href="#">Omnes ocurreret</a></h6>
-                                <p>1x - <span class="price">$60.00</span></p>
-                            </li>
-                            <li>
-                                <a href="#" class="photo">
-                                    <img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                                <h6><a href="#">Agam facilisis</a></h6>
-                                <p>1x - <span class="price">$40.00</span></p>
-                            </li>
-                            <li class="total">
-                                <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                                <span class="float-right"><strong>Total</strong>: $180.00</span>
-                            </li>
-                        </ul>
-                    </li>
-                </div>
-                <!-- End Side Menu -->
             </nav>
             <!-- End Navigation -->
         </header>
@@ -238,16 +256,15 @@
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
-                            <h3>Social Media</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>Follow FoodStore</h3>
+                            <p>Stay connected with FoodStore for the latest offers, new products and updates.</p>
+
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -256,9 +273,18 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
-                            <h4>About Freshshop</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <h4>About FoodStore</h4>
+
+                            <p>
+                                FoodStore makes everyday grocery shopping simple and convenient.
+        Explore a wide range of fresh groceries, daily essentials and quality
+        products, all in one place.
+                            </p>
+
+                            <p>
+                                From fresh food to household essentials, we are committed to making
+        your shopping experience easy, reliable and hassle-free.
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -281,9 +307,11 @@
                                 <li>
                                     <p>
                                         <i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756
+                                       
                                         <br>
                                         Preston Street Wichita,<br>
                                         KS 67213
+                                   
                                     </p>
                                 </li>
                                 <li>
@@ -306,6 +334,8 @@
         <p class="footer-company">
             All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
           
+           
+
             <a href="https://html.design/">html design</a>
         </p>
     </div>
@@ -313,7 +343,10 @@
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
+    <!-- Bootstrap 5 JS Bundle (Includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS Bundle (Iske bina dropdown click kaam nahi karega) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- ALL JS FILES -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>

@@ -251,7 +251,7 @@
                             </ul>
                         </li>
 
-                        <li class="droplink"><a href="#"><i class="fas fa-paste"></i>
+                        <li class="droplink"><a href="#"><i class="fas fa-undo"></i>
                             <p>&nbsp;Return Report</p>
                             <span class="arrow"></span></a>
                             <ul class="sub-menu">

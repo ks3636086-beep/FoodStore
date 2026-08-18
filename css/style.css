@@ -32,6 +32,16 @@
 /*------------------------------------------------------------------
     SKELETON
 -------------------------------------------------------------------*/
+
+@media (max-width: 360px) {
+    #ContentPlaceHolder1_checkoutbtn {
+        width: 100%;
+        margin-left: 0 !important;
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+}
+
 body {
     color: #42891f;
     font-size: 15px;
