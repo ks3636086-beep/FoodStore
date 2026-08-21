@@ -19,7 +19,7 @@ public partial class product_details : System.Web.UI.Page
     {
         BindData1();
 
-        SqlDataReader dr_product_data = mst.Select_Operation("select * from ecommerce_product a left join ecommerce_product_price as b on a.product_id = b.product_id left join ecommerce_product_photos as c on a.product_id = c.product_id where a.product_id='" + Request.QueryString[0] + "' ");
+        SqlDataReader dr_product_data = mst.Select_Operation("select * from ecommerce_product a left join ecommerce_product_price as b on a.product_id = b.product_id left join ecommerce_product_photos as c on a.product_id = c.product_id where a.product_id='" + Request.QueryString["ref"] + "'");
         if (dr_product_data.Read())
         {
             prductid.Src = "auth/" + dr_product_data["photo_path"].ToString();
@@ -30,6 +30,7 @@ public partial class product_details : System.Web.UI.Page
 
         dr_product_data.Close();
     }
+
 
     private void BindData1()
     {

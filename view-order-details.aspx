@@ -23,34 +23,61 @@
 
             <div class="col-lg-12">
 
-                <div class="bg-light p-4 mb-4 shadow-sm">
+                <!-- MAIN CONTAINER WITH LIGHT BACKGROUND & SOFT SHADOW -->
+                <div class="bg-light p-4 mb-4 shadow-sm rounded-3 border">
 
-                    <h4 class="mb-3" style="color: #28a745;">
-                        <i class="fa fa-map-marker"></i>Shipping Details
-                    </h4>
+                    <!-- HEADER -->
+                    <h5 class="mb-3 text-success fw-bold d-flex align-items-center gap-2">
+                        <i class="fas fa-map-marker-alt"></i>Shipping Details
+                    </h5>
 
-                    <div class="row">
+                    <hr class="my-3 text-secondary opacity-25" />
 
-                        <div class="col-md-6 mb-2">
-                            <b>Customer Name :</b>
-                            <asp:Label ID="lblcname" runat="server"></asp:Label>
+                    <!-- DETAILS LIST -->
+                    <div class="row g-3">
+
+                        <!-- Customer Name -->
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-user text-success me-2 fs-6"></i>
+                                <span class="fw-bold text-dark me-2">Customer Name :</span>
+                                <span class="text-secondary fw-medium">
+                                    <asp:Label ID="lblcname" runat="server"></asp:Label>
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="col-md-6 mb-2">
-                            <b>Mobile :</b>
-                            <asp:Label ID="lblcmob" runat="server"></asp:Label>
+                        <!-- Mobile -->
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-phone-alt text-success me-2 fs-6"></i>
+                                <span class="fw-bold text-dark me-2">Mobile :</span>
+                                <span class="text-secondary fw-medium">
+                                    <asp:Label ID="lblcmob" runat="server"></asp:Label>
+                                </span>
+                            </div>
                         </div>
 
-
-                        <div class="col-md-6 mb-2">
-                            <b>Email :</b>
-                            <asp:Label ID="lblcmail" runat="server"></asp:Label>
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-envelope text-success me-2 fs-6"></i>
+                                <span class="fw-bold text-dark me-2">Email :</span>
+                                <span class="text-secondary fw-medium">
+                                    <asp:Label ID="lblcmail" runat="server"></asp:Label>
+                                </span>
+                            </div>
                         </div>
 
-
-                        <div class="col-md-6 mb-2">
-                            <b>Address :</b>
-                            <asp:Label ID="lblcadd" runat="server"></asp:Label>
+                        <!-- Address -->
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-home text-success me-2 mt-1 fs-6"></i>
+                                <span class="fw-bold text-dark me-2">Address :</span>
+                                <span class="text-secondary fw-medium">
+                                    <asp:Label ID="lblcadd" runat="server"></asp:Label>
+                                </span>
+                            </div>
                         </div>
 
                     </div>
@@ -115,6 +142,8 @@
 
                                             <td class="align-middle">₹
                                        
+                                               
+
                                                 <asp:Label ID="lblprice" runat="server"
                                                     Text='<%# Eval("product_sell_price") %>'>
                                         </asp:Label>
@@ -135,6 +164,8 @@
 
                                             <td class="align-middle">₹
                                        
+                                               
+
                                                 <asp:Label ID="lbltotal" runat="server"
                                                     Text='<%# Eval("total_amount_of_product") %>'>
                                         </asp:Label>
@@ -179,9 +210,10 @@
                             Cancel Order
 
                        
+                       
                         </button>
 
-                        <button id="btnreturn" runat="server" onserverclick="btnreturn_ServerClick"
+                        <button id="btnreturn" runat="server" onserverclick="btnreturn_ServerClick"  
                             class="btn"
                             style="background: #28a745; color: white; border-radius: 25px; padding: 10px 30px;">
 
@@ -189,6 +221,7 @@
                             Return Order
 
    
+                       
                         </button>
 
                     </div>

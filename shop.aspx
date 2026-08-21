@@ -78,7 +78,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- 1. Shop Header / Breadcrumb (Full Width Edge-to-Edge) -->
-    <div class="bg-light py-4 border-bottom w-100">
+    <div class="bg-light py-4 border-bottom w-100"
+        data-aos="fade-down"
+        data-aos-duration="800">
         <div class="container-fluid px-4 px-lg-5 text-center text-md-start">
             <h2 class="fw-bold text-dark mb-1">Shop</h2>
             <nav aria-label="breadcrumb">
@@ -99,7 +101,10 @@
                 <div class="pe-lg-2">
 
                     <!-- Search Widget -->
-                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white">
+                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white"
+                        data-aos="fade-right"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <h6 class="fw-bold text-dark mb-3">Search Products</h6>
                         <div class="input-group">
                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control border-end-0 shadow-none fs-7" Placeholder="Search products..."></asp:TextBox>
@@ -110,7 +115,11 @@
                     </div>
 
                     <!-- Categories Widget -->
-                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white">
+                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white"
+                        data-aos="fade-right"
+                        data-aos-duration="800"
+                        data-aos-delay="150"
+                        data-aos-once="true">
                         <h6 class="fw-bold text-dark mb-3">Categories</h6>
                         <div class="list-group list-group-flush small">
                             <a href="shop.aspx" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link active">
@@ -135,7 +144,11 @@
                     </div>
 
                     <!-- Price Filter Widget -->
-                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white">
+                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white"
+                        data-aos="fade-right"
+                        data-aos-duration="800"
+                        data-aos-delay="300"
+                        data-aos-once="true">
                         <h6 class="fw-bold text-dark mb-3">Price Filter</h6>
                         <div class="row g-2 mb-3">
                             <div class="col-6">
@@ -155,7 +168,11 @@
             <main class="col-xl-10 col-lg-9 col-md-8">
 
                 <!-- 4. Product Toolbar -->
-                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center bg-white p-3 rounded-3 shadow-sm border mb-4 gap-3">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center bg-white p-3 rounded-3 shadow-sm border mb-4 gap-3"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-delay="200"
+                    data-aos-once="true">
                     <div class="text-muted small">
                         Showing <span id="visible-count" class="fw-bold text-dark">0</span> of <span id="total-count" class="fw-bold text-dark">0</span> products
                    
@@ -177,9 +194,11 @@
                 <!-- 5. Product Grid (6 per row on Desktop, 3 on Tablet, 2 on Mobile) -->
                 <div class="row g-3" id="product-container">
                     <asp:Repeater ID="rptProducts" runat="server">
-                        <ItemTemplate>
+                        <itemtemplate>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
-                                <div class="card h-100 bg-white rounded-3 shadow-sm overflow-hidden product-card">
+                                <div class="card h-100 bg-white rounded-3 shadow-sm overflow-hidden product-card"
+                                    data-aos="fade-up"
+                                    data-aos-duration="700">
 
                                     <!-- Product Image & Overlay Actions -->
                                     <div class="product-img-wrapper">
@@ -215,7 +234,7 @@
 
                                 </div>
                             </div>
-                        </ItemTemplate>
+                        </itemtemplate>
                     </asp:Repeater>
                 </div>
 
@@ -238,21 +257,38 @@
 
                 <!-- 8. Compact Special Offer Banner -->
                 <!-- Special Offer Banner -->
-                <div class="bg-success rounded-4 p-4 p-lg-5 text-white shadow-sm mt-5 position-relative overflow-hidden">
+                <div class="rounded-4 p-4 p-lg-5 text-white shadow-sm mt-5 position-relative overflow-hidden"
+                    style="background: linear-gradient(135deg, #14532d 0%, #1e7e34 25%, #28a745 50%, #34b94f 75%, #5dcc72 100%);"
+                    data-aos="fade-up"
+                    data-aos-duration="900"
+                    data-aos-once="true">
+
                     <div class="row align-items-center g-3">
+
                         <!-- Text Column -->
                         <div class="col-md-8 text-center text-md-start">
-                            <span class="badge bg-white text-success fw-bold px-3 py-2 rounded-pill mb-3">SPECIAL OFFER</span>
+                            <span class="badge bg-white text-success fw-bold px-3 py-2 rounded-pill mb-3">SPECIAL OFFER
+                            </span>
+
                             <h2 class="fw-bold mb-2">Fresh Products. Great Prices.</h2>
-                            <p class="mb-0 opacity-90">Shop quality groceries and everyday essentials at FoodStore.</p>
+
+                            <p class="mb-0 opacity-90">
+                                Shop quality groceries and everyday essentials at FoodStore.
+                            </p>
                         </div>
+
                         <!-- Button Column -->
                         <div class="col-md-4 text-center text-md-end">
-                            <a href="shop.aspx" class="btn btn-light text-success fw-bold rounded-pill px-4 py-3 shadow-sm d-inline-flex align-items-center justify-content-center">
+                            <a href="shop.aspx"
+                                class="btn btn-light text-success fw-bold rounded-pill px-4 py-3 shadow-sm d-inline-flex align-items-center justify-content-center"
+                                data-aos="zoom-in"
+                                data-aos-duration="700"
+                                data-aos-delay="300">
                                 <span>Shop Now</span>
                                 <i class="fas fa-arrow-right ms-2"></i>
                             </a>
                         </div>
+
                     </div>
                 </div>
 
@@ -315,92 +351,6 @@
         });
     </script>
 
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
 </asp:Content>
 

@@ -23,17 +23,20 @@ public partial class view_order_details : System.Web.UI.Page
         {
             Binddata();
 
-            SqlDataReader getData = mst.Select_Operation("Select * from ecommerce_order Where order_id='" + Request.QueryString[0] + "' ");
+            string customerId = Session["customer_id"].ToString();
+
+            SqlDataReader getData = mst.Select_Operation(
+                "SELECT * FROM ecommerce_customer WHERE customer_id='" + customerId + "'"
+            );
+
             if (getData.Read())
             {
                 lblcname.Text = getData["customer_name"].ToString();
                 lblcmob.Text = getData["customer_mobileno"].ToString();
                 lblcmail.Text = getData["customer_email"].ToString();
-                lblcadd.Text = getData["billing_address_line1"].ToString() + ", " + getData["billing_address_line2"].ToString() + ", " + getData["billing_city_name"].ToString() + ", " + getData["billing_state_name"].ToString() + ", " + getData["billing_landmark"].ToString() + "-" + getData["billing_pincode"].ToString();
-                CheckOrderButton(getData);
             }
-            getData.Close();
 
+            getData.Close();
         }
         else
         {
@@ -43,21 +46,15 @@ public partial class view_order_details : System.Web.UI.Page
 
     private void CheckOrderButton(SqlDataReader getData)
     {
-        if (getData["delivery_status"].ToString() == "Delivered")
+        string status = getData["delivery_status"].ToString().Trim();
+
+        if (status.Equals("Delivered", StringComparison.OrdinalIgnoreCase))
         {
-            // Delivered order 
             btncancel.Visible = false;
             btnreturn.Visible = true;
         }
-        else if (getData["assigned_delivery_boy_id"].ToString() != "")
-        {
-            // Assigned order  
-            btncancel.Visible = false;
-            btnreturn.Visible = false;
-        }
         else
         {
-
             btncancel.Visible = true;
             btnreturn.Visible = false;
         }

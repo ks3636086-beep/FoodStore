@@ -35,7 +35,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 }
 
                 get_data.Close();
-
+                cart_total.InnerText = mst.Get_Total(Session["customer_id"].ToString());
+                BindWishlistCount();
             }
             else
             {
@@ -48,5 +49,21 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
     }
 
+    private void BindWishlistCount()
+    {
+        if (Session["customer_id"] != null)
+        {
+            SqlDataReader wishlistData = mst.Select_Operation(
+                "Select count(*) as count from ecommerce_wishlist where customer_id='"
+                + Session["customer_id"].ToString() + "'"
+            );
 
+            if (wishlistData.Read())
+            {
+                wishlist_count.InnerText = wishlistData["count"].ToString();
+            }
+
+            wishlistData.Close();
+        }
+    }
 }

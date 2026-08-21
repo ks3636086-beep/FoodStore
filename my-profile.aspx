@@ -87,21 +87,39 @@
     </style>
 </head>
 <body>
-    <form id="form" runat="server">
+    <form id="form" runat="server" enctype="multipart/form-data">
 
         <div class="container-xl min-vh-100 d-flex align-items-center justify-content-center py-4 px-3">
 
             <!-- MAIN PROFILE CARD -->
-            <div class="profile-card shadow-sm p-4 p-md-5 my-auto">
+            <div class="card border-0 rounded-4 shadow-sm p-4 p-md-5 my-auto w-100 bg-white" style="max-width: 850px;">
 
-                <!-- 1. HEADER SECTION -->
-                <div class="d-flex align-items-center gap-3 pb-3 mb-4 border-bottom">
-                    <div class="profile-avatar-box flex-shrink-0">
-                        <i class="fas fa-user"></i>
+                <!-- 1. HEADER SECTION & PROFILE IMAGE UPLOAD -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-4 pb-4 mb-4 border-bottom text-center text-sm-start">
+
+                    <!-- PROFILE IMAGE CONTAINER -->
+                    <div class="position-relative">
+                        <!-- ASP.NET Image Control / Dynamic User Photo -->
+                        <asp:Image ID="imgProfile" runat="server"
+                            ImageUrl="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+                            CssClass="rounded-circle object-fit-cover border border-3 border-success shadow-sm"
+                            Width="100px" Height="100px" AlternateText="User Profile Photo" />
+
+                        <!-- EDIT/UPLOAD ICON BUTTON -->
+                        <label for="fuProfileImage" class="position-absolute bottom-0 end-0 bg-success text-white rounded-circle shadow-sm d-flex align-items-center justify-content-center cursor-pointer"
+                            style="width: 32px; height: 32px; cursor: pointer;"
+                            title="Change Profile Photo">
+                            <i class="fas fa-camera small"></i>
+                        </label>
+
+                        <!-- HIDDEN ASP.NET FILE UPLOAD CONTROL (PRESERVED FOR BACKEND) -->
+                        <asp:FileUpload ID="fuProfileImage" runat="server" CssClass="d-none" ClientIDMode="Static" />
                     </div>
+
+                    <!-- USER DETAILS HEADER -->
                     <div>
-                        <h1 class="h4 fw-bold text-dark mb-0">My Profile</h1>
-                        <p class="text-muted small mb-0">Manage your personal information and account settings.</p>
+                        <h1 class="h4 fw-bold text-dark mb-1">My Profile</h1>
+                        <p class="text-muted small mb-0">Manage your personal information, contact details & account settings.</p>
                     </div>
                 </div>
 
@@ -118,35 +136,35 @@
                         <div class="col-md-6">
                             <label for="name" class="form-label small fw-semibold text-secondary">Full Name <span class="text-danger">*</span></label>
                             <!-- PRESERVED ID: name -->
-                            <asp:TextBox ID="name" runat="server" CssClass="form-control form-control-custom" placeholder="Enter your full name"></asp:TextBox>
+                            <asp:TextBox ID="name" runat="server" CssClass="form-control rounded-3 py-2 shadow-none" placeholder="Enter your full name"></asp:TextBox>
                         </div>
 
                         <!-- Email Field -->
                         <div class="col-md-6">
                             <label for="email" class="form-label small fw-semibold text-secondary">Email Address <span class="text-danger">*</span></label>
                             <!-- PRESERVED ID: email -->
-                            <asp:TextBox ID="email" runat="server" CssClass="form-control form-control-custom" placeholder="name@example.com"></asp:TextBox>
+                            <asp:TextBox ID="email" runat="server" CssClass="form-control rounded-3 py-2 shadow-none" placeholder="name@example.com"></asp:TextBox>
                         </div>
 
                         <!-- Mobile Field -->
                         <div class="col-md-4">
                             <label for="mobileno" class="form-label small fw-semibold text-secondary">Mobile No. <span class="text-danger">*</span></label>
                             <!-- PRESERVED ID: mobileno -->
-                            <asp:TextBox ID="mobileno" runat="server" CssClass="form-control form-control-custom" placeholder="10-digit mobile number"></asp:TextBox>
+                            <asp:TextBox ID="mobileno" runat="server" CssClass="form-control rounded-3 py-2 shadow-none" placeholder="10-digit mobile number"></asp:TextBox>
                         </div>
 
                         <!-- Gender Field -->
                         <div class="col-md-4">
                             <label for="gender" class="form-label small fw-semibold text-secondary">Gender <span class="text-danger">*</span></label>
                             <!-- PRESERVED ID: gender -->
-                            <asp:TextBox ID="gender" runat="server" CssClass="form-control form-control-custom" placeholder="Male / Female / Other"></asp:TextBox>
+                            <asp:TextBox ID="gender" runat="server" CssClass="form-control rounded-3 py-2 shadow-none" placeholder="Male / Female / Other"></asp:TextBox>
                         </div>
 
                         <!-- DOB Field -->
                         <div class="col-md-4">
                             <label for="dob" class="form-label small fw-semibold text-secondary">Date of Birth <span class="text-danger">*</span></label>
                             <!-- PRESERVED ID: dob & TextMode="Date" -->
-                            <asp:TextBox ID="dob" TextMode="Date" runat="server" CssClass="form-control form-control-custom"></asp:TextBox>
+                            <asp:TextBox ID="dob" TextMode="Date" runat="server" CssClass="form-control rounded-3 py-2 shadow-none"></asp:TextBox>
                         </div>
 
                     </div>
@@ -156,19 +174,18 @@
                 <div class="pt-2 mb-4">
                     <!-- PRESERVED ID: btnsubmit & onserverclick="btnsubmit_ServerClick" -->
                     <button type="submit"
-                        class="btn btn-success btn-save shadow-sm"
+                        class="btn btn-success btn-lg rounded-pill px-4 py-2 fw-bold shadow-sm fs-6"
                         id="btnsubmit"
                         runat="server"
                         onserverclick="btnsubmit_ServerClick">
                         <i class="fas fa-check-circle me-2"></i>Save Changes
-                   
                     </button>
                 </div>
 
                 <!-- 4. INFORMATIONAL FOOTER -->
-                <div class="bg-light border rounded-3 p-3 d-flex align-items-center gap-2 text-muted small">
-                    <i class="fas fa-info-circle text-success fs-6"></i>
-                    <span>Keep your profile information up to date for a better shopping and delivery experience.</span>
+                <div class="bg-light border border-0 rounded-3 p-3 d-flex align-items-center gap-2 text-muted small">
+                    <i class="fas fa-info-circle text-success fs-6 flex-shrink-0"></i>
+                    <span>Keep your profile information up to date for a better shopping and doorstep delivery experience.</span>
                 </div>
 
             </div>
@@ -176,7 +193,6 @@
         </div>
 
     </form>
-
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 </body>

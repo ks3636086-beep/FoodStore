@@ -21,14 +21,16 @@
 
         <!-- SECTION 1 & 2: About FoodStore & Our Mission -->
         <div class="row align-items-center g-4 mb-5">
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
                 <div class="rounded-4 overflow-hidden shadow-sm border">
                     <img class="img-fluid w-100" src="images/about-img.jpg" alt="About FoodStore"
                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800&auto=format&fit=crop';"
                         style="object-fit: cover; max-height: 400px;" />
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6"
+                data-aos="fade-left"
+                data-aos-duration="1000">
                 <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill border border-success border-opacity-25 mb-2">WELCOME TO FOODSTORE
                 </span>
                 <h2 class="fw-bold text-dark mb-3">Your One-Stop Shop for Everyday Essentials</h2>
@@ -51,13 +53,18 @@
         </div>
 
         <!-- SECTION 3: Why Choose FoodStore -->
-        <div class="text-center mb-4">
+        <div class="text-center mb-4"
+            data-aos="fade-up"
+            data-aos-duration="800">
             <h3 class="fw-bold text-dark">Why Choose FoodStore</h3>
             <p class="text-muted small">We prioritize quality and customer satisfaction in everything we do</p>
         </div>
 
         <div class="row g-4 mb-5">
-            <div class="col-md-4">
+            <div class="col-md-4"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="100">
                 <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center bg-white hover-up">
                     <div class="bg-success-subtle text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3 mx-auto" style="width: 60px; height: 60px;">
                         <i class="fas fa-leaf fs-3"></i>
@@ -69,7 +76,10 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="250">
                 <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center bg-white hover-up">
                     <div class="bg-warning-subtle text-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3 mx-auto" style="width: 60px; height: 60px;">
                         <i class="fas fa-tags fs-3"></i>
@@ -81,7 +91,10 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="400">
                 <div class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center bg-white hover-up">
                     <div class="bg-info-subtle text-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3 mx-auto" style="width: 60px; height: 60px;">
                         <i class="fas fa-shipping-fast fs-3"></i>
@@ -96,7 +109,9 @@
         </div>
 
         <!-- SECTION 4: How FoodStore Works -->
-        <div class="bg-light rounded-5 p-4 p-md-5 mb-5 border">
+        <div class="bg-light rounded-5 p-4 p-md-5 mb-5 border"
+            data-aos="fade-up"
+            data-aos-duration="1000">
             <div class="text-center mb-4">
                 <span class="badge bg-white text-success fw-bold px-3 py-2 rounded-pill shadow-sm mb-2">SIMPLE 3-STEP PROCESS</span>
                 <h3 class="fw-bold text-dark">How FoodStore Works</h3>
@@ -128,14 +143,18 @@
 
         <!-- SECTION 5: Our Promise -->
         <div class="row align-items-center g-4 mb-5">
-            <div class="col-lg-6 order-lg-2">
+            <div class="col-lg-6 order-lg-2"
+                data-aos="fade-left"
+                data-aos-duration="1000">
                 <div class="rounded-4 overflow-hidden shadow-sm border">
                     <img class="img-fluid w-100" src="images/instagram-img-01.jpg" alt="Our Promise"
                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1578916171728-46686eac8d58?q=80&w=800&auto=format&fit=crop';"
                         style="object-fit: cover; max-height: 350px;" />
                 </div>
             </div>
-            <div class="col-lg-6 order-lg-1">
+            <div class="col-lg-6 order-lg-1"
+                data-aos="fade-right"
+                data-aos-duration="1000">
                 <h3 class="fw-bold text-dark mb-3">Our Promise to You</h3>
                 <ul class="list-unstyled">
                     <li class="d-flex align-items-start mb-3">
@@ -164,8 +183,12 @@
         </div>
 
         <!-- SECTION 6: Call To Action -->
-        <div class="bg-success rounded-5 p-4 p-md-5 text-center text-white shadow-sm position-relative overflow-hidden">
-            <div class="position-relative" style="z-index: 2;">
+        <div class="rounded-5 p-4 p-md-5 text-center text-white shadow-sm position-relative overflow-hidden"
+            style="background: linear-gradient(135deg, #14532d 0%, #1e7e34 25%, #28a745 50%, #34b94f 75%, #5dcc72 100%);">
+            <div class="position-relative"
+                style="z-index: 2;"
+                data-aos="fade-up"
+                data-aos-duration="1000">
                 <h2 class="fw-bold mb-2">Ready to Shop?</h2>
                 <p class="mb-4 opacity-90 mx-auto" style="max-width: 500px;">
                     Explore our fresh groceries, daily essentials, and exclusive deals right now.
@@ -197,92 +220,7 @@
             }
     </style>
 
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
+
 </asp:Content>
 
 

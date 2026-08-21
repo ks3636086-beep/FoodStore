@@ -73,26 +73,53 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- 1. BREADCRUMB & HEADER SECTION -->
     <div class="bg-light border-bottom py-3 mb-4">
+
         <div class="container-xl px-3 px-md-4">
-            <nav aria-label="breadcrumb">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb"
+                data-aos="fade-right"
+                data-aos-duration="700">
                 <ol class="breadcrumb mb-1 small">
-                    <li class="breadcrumb-item"><a href="shop.aspx" class="text-decoration-none text-success">Shop</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                    <li class="breadcrumb-item">
+                        <a href="shop.aspx" class="text-decoration-none text-success">Shop</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Wishlist
+                    </li>
                 </ol>
             </nav>
+
             <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
-                <div class="mb-3">
-                    <h2 class="h6 fw-semibold text-dark mb-1">❤️ My Wishlist</h2>
-                    <p class="text-muted mb-0 small">Save your favorite products and shop them whenever you're ready.</p>
+
+                <!-- Wishlist Heading -->
+                <div class="mb-3"
+                    data-aos="fade-left"
+                    data-aos-duration="800"
+                    data-aos-delay="150">
+
+                    <h2 class="h6 fw-semibold text-dark mb-1">❤️ My Wishlist
+                    </h2>
+
+                    <p class="text-muted mb-0 small">
+                        Save your favorite products and shop them whenever you're ready.
+                    </p>
+
                 </div>
+
             </div>
         </div>
     </div>
 
     <!-- 2. MAIN WISHLIST CONTENT -->
     <div class="container-xl px-3 px-md-4 pb-5">
-        <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
-            <div class="card-body p-0">
+        <div class="card border-0 shadow-sm rounded-3 overflow-hidden"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-once="true">
+            <div class="card-body p-0"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-once="true">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead class="bg-light border-bottom">
@@ -168,7 +195,10 @@
         </div>
 
         <!-- 3. ACTION BAR / CONTINUE SHOPPING -->
-        <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class="d-flex justify-content-between align-items-center mt-4"
+             data-aos="fade-up"
+             data-aos-duration="800"
+             data-aos-once="true">
             <a href="shop.aspx" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold small d-inline-flex align-items-center gap-2">
                 <i class="fas fa-arrow-left"></i>
                 <span>Continue Shopping</span>
@@ -178,93 +208,6 @@
 
 
 
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
 </asp:Content>
 

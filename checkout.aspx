@@ -76,7 +76,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- 1. CHECKOUT HEADER & BREADCRUMB -->
-    <div class="bg-light border-bottom py-3 mb-4">
+    <div class="bg-light border-bottom py-3 mb-4"
+        data-aos="fade-down"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="container-xl px-3 px-md-4">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
                 <h1 class="h4 fw-bold text-dark mb-0">Checkout</h1>
@@ -95,7 +98,10 @@
     <div class="container-xl px-3 px-md-4 pb-5">
 
         <!-- 2. CHECKOUT STEP INDICATOR -->
-        <div class="checkout-card p-3 mb-4 shadow-sm">
+        <div class="checkout-card p-3 mb-4 shadow-sm"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-once="true">
             <div class="d-flex align-items-center justify-content-center gap-2 gap-md-4 step-indicator">
                 <div class="step-item text-muted">
                     <span class="step-number">01</span>
@@ -123,7 +129,10 @@
                 <div class="needs-validation">
 
                     <!-- 4. CONTACT INFORMATION CARD -->
-                    <div class="checkout-card shadow-sm p-3 p-md-4 mb-4">
+                    <div class="checkout-card shadow-sm p-3 p-md-4 mb-4"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <div class="border-bottom pb-2 mb-3">
                             <h2 class="h6 fw-bold text-dark mb-0 d-flex align-items-center gap-2">
                                 <i class="fas fa-user-circle text-success"></i>Contact Information
@@ -157,7 +166,10 @@
                     </div>
 
                     <!-- 5. DELIVERY ADDRESS CARD -->
-                    <div class="checkout-card shadow-sm p-3 p-md-4 mb-4">
+                    <div class="checkout-card shadow-sm p-3 p-md-4 mb-4"
+                        data-aos="fade-right"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <div class="border-bottom pb-2 mb-3">
                             <h2 class="h6 fw-bold text-dark mb-0 d-flex align-items-center gap-2">
                                 <i class="fas fa-map-marker-alt text-success"></i>Delivery Address
@@ -219,7 +231,10 @@
                     </div>
 
                     <!-- 7. PAYMENT METHOD CARD -->
-                    <div class="checkout-card shadow-sm p-3 p-md-4 mb-4">
+                    <div class="checkout-card shadow-sm p-3 p-md-4 mb-4"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <div class="border-bottom pb-2 mb-3">
                             <h2 class="h6 fw-bold text-dark mb-0 d-flex align-items-center gap-2">
                                 <i class="fas fa-credit-card text-success"></i>Payment Method
@@ -249,10 +264,12 @@
 
             <!-- RIGHT COLUMN: Order Summary & Place Order (~35% Desktop) -->
             <div class="col-lg-4">
-                <div class="sticky-lg-top" style="top: 20px;">
-
+                <div class="sticky-lg-top" style="top: 90px; z-index: 10;">
                     <!-- 8. ORDER SUMMARY CARD -->
-                    <div class="checkout-card shadow-sm mb-3">
+                    <div class="checkout-card shadow-sm mb-3"
+                        data-aos="fade-left"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <div class="bg-light p-3 border-bottom rounded-top">
                             <h2 class="h6 fw-bold text-dark mb-0 d-flex align-items-center justify-content-between">
                                 <span><i class="fas fa-shopping-bag text-success me-2"></i>Your Order</span>
@@ -314,7 +331,10 @@
                     </div>
 
                     <!-- 11. TRUST & SECURITY STRIP -->
-                    <div class="checkout-card p-3 mb-3 text-center bg-light">
+                    <div class="checkout-card p-3 mb-3 text-center bg-light"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <div class="row g-2 text-muted small fw-semibold">
                             <div class="col-6 col-md-6"><i class="fas fa-shield-alt text-success me-1"></i>Secure Checkout</div>
                             <div class="col-6 col-md-6"><i class="fas fa-credit-card text-success me-1"></i>Safe Payment</div>
@@ -324,7 +344,11 @@
                     </div>
 
                     <!-- 12. HELP & SUPPORT -->
-                    <div class="checkout-card p-3 text-center">
+                    <div class="checkout-card p-3 text-center"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-delay="200"
+                        data-aos-once="true">
                         <h6 class="small fw-bold text-dark mb-1">Need Help With Your Order?</h6>
                         <p class="small text-muted mb-2" style="font-size: 0.8rem;">Our customer support team is here to assist you.</p>
                         <div class="d-flex justify-content-center gap-3 small fw-semibold">
@@ -341,94 +365,6 @@
 
     </div>
 
-
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
 </asp:Content>
 

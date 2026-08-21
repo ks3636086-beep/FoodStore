@@ -1,2 +1,24 @@
 
 /** ADD YOUR AWESOME CODES HERE **/
+
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+    .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+.product-reveal {
+    opacity: 0;
+    transform: translateY(35px) scale(0.97);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+    .product-reveal.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }

@@ -98,8 +98,10 @@
 
             <!-- TOP HERO BANNER (Modern Blended Design) -->
             <div class="card border-0 rounded-4 overflow-hidden shadow-sm my-3 mx-lg-4 position-relative"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-delay="100"
                 style="min-height: 340px; background: url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1400&q=80') center right / cover no-repeat;">
-
                 <!-- Dark Green Overlay Gradient (Text Readability & Smooth Image Blend) -->
                 <div class="position-absolute top-0 start-0 w-100 h-100"
                     style="background: linear-gradient(90deg, #133e1b 0%, rgba(19, 62, 27, 0.95) 45%, rgba(19, 62, 27, 0.2) 100%);">
@@ -131,8 +133,12 @@
                 </div>
             </div>
 
+
+
             <!-- 2. BOTTOM 3 PROMO CARDS -->
-            <div class="px-3 px-lg-4 py-3 bg-light">
+            <div class="px-3 px-lg-4 py-3 bg-light"
+                data-aos="fade-up"
+                data-aos-duration="1000">
                 <div class="row g-3">
 
                     <!-- Card 1: Fresh Vegetables & Fruits -->
@@ -216,39 +222,81 @@
     <!-- Start Categories -->
     <div class="categories-shop py-5">
         <div class="container">
-            <!-- Added Section Title -->
+
             <div class="text-center mb-4">
                 <h2 class="fw-bold text-dark">Explore Categories</h2>
-                <p class="text-muted small">Pick your daily needs from our wide range of categories</p>
+                <p class="text-muted small mb-0">
+                    Pick your daily needs from our wide range of categories
+                </p>
             </div>
 
-            <div class="row g-3">
+            <div class="row justify-content-center gx-0">
+
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <ItemTemplate>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-                            <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 text-center p-3 cat-hover-box" style="transition: all 0.3s ease;">
-                                <div class="p-2 mb-2">
-                                    <img class="img-fluid rounded-3" style="max-height: 140px; object-fit: contain;"
-                                        src='auth/<%# Eval("category_photo") %>'
-                                        alt='<%# Eval("category_title") %>' />
+                    <itemtemplate>
+
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-3"
+                            data-aos="zoom-in"
+                            data-aos-delay="<%# Container.ItemIndex * 120 %>"
+                            data-aos-duration="700">
+
+                            <a href='category-products.aspx?catid=<%# Eval("category_id") %>'
+                                class="text-decoration-none">
+
+                                <img src='auth/<%# Eval("category_photo") %>'
+                                    alt='<%# Eval("category_title") %>'
+                                    class="category-round-img rounded-circle">
+
+                                <div class="mt-2">
+                                    <span class="btn btn-outline-success btn-sm rounded-pill fw-semibold px-3 py-1">
+                                        <%# Eval("category_title") %>
+                                    </span>
                                 </div>
-                                <a class="btn btn-outline-success btn-sm rounded-pill fw-bold text-truncate mt-auto"
-                                    href='category-products.aspx?catid=<%# Eval("category_id") %>'>
-                                    <%# Eval("category_title") %>
-                                </a>
-                            </div>
+
+                            </a>
+
                         </div>
-                    </ItemTemplate>
+
+                    </itemtemplate>
                 </asp:Repeater>
+
             </div>
         </div>
     </div>
+    <style>
+        .category-round-img {
+            width: 105px;
+            height: 105px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            transition: transform .2s ease;
+        }
+
+            .category-round-img:hover {
+                transform: scale(1.05);
+            }
+
+        @media (max-width: 576px) {
+            .category-round-img {
+                width: 85px;
+                height: 85px;
+            }
+
+            .categories-shop .btn {
+                font-size: 12px;
+                padding: 4px 10px !important;
+            }
+        }
+    </style>
     <!-- End Categories -->
 
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="title-all text-center">
+                <div class="title-all text-center"
+                    data-aos="fade-up"
+                    data-aos-duration="800">
                     <h1>Fruits & Vegetables</h1>
                     <p>Fresh and healthy products for your daily needs.</p>
                 </div>
@@ -257,7 +305,10 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <div class="special-menu text-center">
+                <div class="special-menu text-center"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-delay="200">
                     <div class="button-group filter-button-group">
                         <button class="active" data-filter="*">All</button>
                         <button runat="server" id="Latestbtn" onserverclick="Latestbtn_ServerClick" data-filter=".top-featured">Latest featured</button>
@@ -317,22 +368,17 @@
     </div>--%>
 
 
-
-
-
-
-
-
     <!-- PRODUCT GRID SECTION -->
     <div class="container-fluid py-4">
 
         <!-- 6-COLUMN GRID MATCHING THE IMAGE -->
         <div class="row g-3" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
-                        <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card">
-
+                        <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card product-reveal"
+                            data-aos="fade-left"
+                            data-aos-delay="<%# Container.ItemIndex * 100 %>">
                             <!-- PRODUCT IMAGE & TOP-RIGHT ACTION BUTTONS -->
                             <div class="product-img-wrapper position-relative bg-light">
                                 <img src='<%# "auth/" + Eval("photo_path") %>'
@@ -355,7 +401,7 @@
                                         CommandName="btnwishlist"
                                         CssClass="btn btn-white rounded-circle shadow-sm p-0 flex-center action-circle-btn"
                                         title="Add to Wishlist">
-                                    <i class="far fa-heart text-dark extra-small"></i>
+                                        <i class="far fa-heart text-dark extra-small"></i>
                                     </asp:LinkButton>
                                 </div>
                             </div>
@@ -383,15 +429,15 @@
 
                                 <!-- PRESERVED: Add to Cart LinkButton -->
                                 <asp:LinkButton runat="server" ID="lnkdelete" CommandName="btncart"
-                                    CssClass="btn btn-outline-success btn-sm w-100 rounded-3 fw-semibold py-1.5 d-inline-flex align-items-center justify-content-center gap-1.5 cart-btn">
-                                <i class="fas fa-shopping-basket small"></i>
-                                <span>Add to Cart</span>
+                                    CssClass="btn btn-outline-success btn-sm w-100 rounded-3 fw-semibold py-1.5 d-inline-flex align-items-center justify-content-center gap-2 cart-btn">
+                                    <i class="fas fa-shopping-basket small"></i>
+                                    <span>Add to Cart</span>
                                 </asp:LinkButton>
                             </div>
 
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
 
@@ -460,16 +506,13 @@
 
 
 
-
-
-
-
-
     <!-- Load More Button -->
-    <div class="text-center mt-4 mb-4">
-        <button type="button" id="loadMoreBtn" class="btn hvr-hover">
+    <div class="text-center mt-4 mb-4"
+        data-aos="fade-up"
+        data-aos-duration="700"
+        data-aos-delay="200">
+        <button type="button" id="loadMoreBtn" class="btn hvr-hover text-white">
             Load More
-   
         </button>
     </div>
 
@@ -478,7 +521,12 @@
 
     <!-- STATIC ADDITION 3: Why Choose Us (3 Column Banner) -->
 
-    <div class="py-5" style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);">
+    <div class="py-5"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+        data-aos-easing="ease-out-cubic"
+        style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container">
             <div class="row g-4">
 
@@ -547,9 +595,10 @@
     </div>
 
 
-
     <!-- STATIC ADDITION 4: Customer Testimonial Carousel Banner -->
-    <div class="container my-5 overflow-hidden">
+    <div class="container my-5 overflow-hidden"
+        data-aos="fade-right"
+        data-aos-duration="1000">
         <!-- Header -->
         <div class="text-center mb-4">
             <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill border border-success border-opacity-25">
@@ -607,7 +656,10 @@
     </div>
 
 
-    <div class="container my-5">
+    <div class="container my-5"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        data-aos-easing="ease-out-back">
         <!-- Header -->
         <div class="text-center mb-4">
             <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill border border-success border-opacity-25">
@@ -699,93 +751,6 @@
             }
     </style>
 
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

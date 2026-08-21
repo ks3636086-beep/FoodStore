@@ -52,7 +52,10 @@
     <div class="container-xl py-4 px-3 px-md-4">
 
         <!-- 1. Page Header & Breadcrumb -->
-        <div class="border-bottom pb-3 mb-4">
+        <div class="border-bottom pb-3 mb-4"
+            data-aos="fade-down"
+            data-aos-duration="800"
+            data-aos-once="true">
             <h1 class="h3 fw-bold text-dark mb-1">Shopping Cart</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 small">
@@ -67,7 +70,10 @@
             <div class="col-lg-8">
 
                 <!-- 2. CART PRODUCT LIST / TABLE (Exact Repeater Structure Kept) -->
-                <div class="card border rounded-3 shadow-sm mb-4">
+                <div class="card border rounded-3 shadow-sm mb-4"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-once="true">
                     <div class="card-header bg-white py-3 border-bottom">
                         <h2 class="h6 fw-bold text-dark mb-0"><i class="fas fa-shopping-cart me-2 text-success"></i>Your Cart Products</h2>
                     </div>
@@ -150,18 +156,27 @@
                 </div>
 
                 <!-- 3. Continue Shopping Link -->
-                <div class="mb-4">
+                <div class="mb-4"
+                    data-aos="fade-left"
+                    data-aos-duration="700"
+                    data-aos-once="true">
                     <a href="shop.aspx" class="btn btn-outline-secondary rounded-pill px-4 btn-sm fw-semibold">
                         <i class="fas fa-arrow-left me-2"></i>Continue Shopping
                     </a>
                 </div>
 
                 <!-- 4. You May Also Like Section (Compact Grid) -->
-                <div class="mb-4">
+                <div class="mb-4"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-once="true">
                     <h3 class="h6 fw-bold text-dark mb-3"><i class="fas fa-thumbs-up me-2 text-success"></i>You May Also Like</h3>
                     <div class="row g-2 g-md-3">
                         <div class="col-6 col-md-3">
-                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm">
+                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm"
+                                data-aos="fade-up"
+                                data-aos-duration="800"
+                                data-aos-once="true">
                                 <img src="images/big-img-01.jpg" alt="Related" class="img-fluid rounded mb-2" style="height: 110px; object-fit: contain;" />
                                 <h6 class="small fw-semibold text-truncate mb-1" title="Organic Apple">Organic Fresh Apples</h6>
                                 <div class="text-success fw-bold small mb-2">₹120</div>
@@ -169,7 +184,10 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm">
+                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm"
+                                data-aos="fade-up"
+                                data-aos-duration="800"
+                                data-aos-once="true">
                                 <img src="images/big-img-02.jpg" alt="Related" class="img-fluid rounded mb-2" style="height: 110px; object-fit: contain;" />
                                 <h6 class="small fw-semibold text-truncate mb-1" title="Cow Milk">Pure Cow Milk Pack</h6>
                                 <div class="text-success fw-bold small mb-2">₹65</div>
@@ -177,7 +195,10 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm">
+                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm"
+                                data-aos="fade-up"
+                                data-aos-duration="800"
+                                data-aos-once="true">
                                 <img src="images/big-img-03.jpg" alt="Related" class="img-fluid rounded mb-2" style="height: 110px; object-fit: contain;" />
                                 <h6 class="small fw-semibold text-truncate mb-1" title="Farm Carrots">Fresh Farm Carrots</h6>
                                 <div class="text-success fw-bold small mb-2">₹45</div>
@@ -185,7 +206,10 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm">
+                            <div class="card h-100 border rounded-3 p-2 text-center shadow-sm"
+                                data-aos="fade-up"
+                                data-aos-duration="800"
+                                data-aos-once="true">
                                 <img src="images/big-img-01.jpg" alt="Related" class="img-fluid rounded mb-2" style="height: 110px; object-fit: contain;" />
                                 <h6 class="small fw-semibold text-truncate mb-1" title="Leaf Veggies">Green Leaf Vegetables</h6>
                                 <div class="text-success fw-bold small mb-2">₹30</div>
@@ -199,7 +223,10 @@
                 <div class="accordion mb-4" id="cartAccordions">
 
                     <!-- Gift Accordion -->
-                    <div class="accordion-item border rounded-3 overflow-hidden mb-2">
+                    <div class="accordion-item border rounded-3 overflow-hidden mb-2"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <h2 class="accordion-header" id="headingGift">
                             <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGift" aria-expanded="false" aria-controls="collapseGift">
                                 🎁 Gift / Special Offers
@@ -215,7 +242,10 @@
                     </div>
 
                     <!-- Coupon Accordion -->
-                    <div class="accordion-item border rounded-3 overflow-hidden mb-2">
+                    <div class="accordion-item border rounded-3 overflow-hidden mb-2"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <h2 class="accordion-header" id="headingCoupon">
                             <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCoupon" aria-expanded="false" aria-controls="collapseCoupon">
                                 🏷 Apply Coupon Code
@@ -223,7 +253,10 @@
                             </button>
                         </h2>
                         <div id="collapseCoupon" class="accordion-collapse collapse" aria-labelledby="headingCoupon" data-bs-parent="#cartAccordions">
-                            <div class="accordion-body p-3 bg-light">
+                            <div class="accordion-body p-3 bg-light"
+                                data-aos="fade-up"
+                                data-aos-duration="800"
+                                data-aos-once="true">
                                 <label class="form-label small fw-bold text-secondary mb-1">Have a promo code?</label>
                                 <div class="input-group input-group-sm" style="max-width: 360px;">
                                     <input type="text" class="form-control" placeholder="Enter coupon code" />
@@ -234,17 +267,26 @@
                     </div>
 
                     <!-- Bank Offers Accordion -->
-                    <div class="accordion-item border rounded-3 overflow-hidden">
+                    <div class="accordion-item border rounded-3 overflow-hidden"
+                        data-aos="fade-right"
+                        data-aos-duration="800"
+                        data-aos-once="true">
                         <h2 class="accordion-header" id="headingBank">
-                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBank" aria-expanded="false" aria-controls="collapseBank">
+                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseBank"
+                                aria-expanded="false"
+                                aria-controls="collapseBank">
                                 🏦 Bank & Payment Offers
-                           
                             </button>
                         </h2>
-                        <div id="collapseBank" class="accordion-collapse collapse" aria-labelledby="headingBank" data-bs-parent="#cartAccordions">
+
+                        <div id="collapseBank" class="accordion-collapse collapse"
+                            aria-labelledby="headingBank"
+                            data-bs-parent="#cartAccordions">
                             <div class="accordion-body p-3 bg-light text-muted small">
                                 • Bank discounts and payment offers are automatically calculated at checkout.
-                           
                             </div>
                         </div>
                     </div>
@@ -255,7 +297,11 @@
 
             <!-- Right Column (Price Details / Summary) -->
             <div class="col-lg-4">
-                <div class="card border rounded-3 shadow-sm sticky-lg-top" style="top: 90px; z-index: 10;">
+                <div class="card border rounded-3 shadow-sm sticky-lg-top"
+                    style="top: 90px; z-index: 10;"
+                    data-aos="fade-left"
+                    data-aos-duration="900"
+                    data-aos-once="true">
                     <div class="card-header bg-white py-3 border-bottom">
                         <h2 class="h6 fw-bold text-dark mb-0"><i class="fas fa-receipt me-2 text-success"></i>Price Details</h2>
                     </div>
@@ -303,92 +349,6 @@
     </div>
 
 
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
 </asp:Content>
 

@@ -61,12 +61,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- 1. Header / Breadcrumb Banner -->
-    <div class="bg-light py-4 border-bottom w-100">
+    <div class="bg-light py-4 border-bottom w-100"
+        data-aos="fade-down"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="container-fluid px-4 px-lg-5 text-center text-md-start">
             <h2 class="fw-bold text-dark mb-1">Contact Us</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 justify-content-center justify-content-md-start">
-                    <li class="breadcrumb-item"><a href="default.aspx" class="text-success text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item">
+                        <a href="default.aspx" class="text-success text-decoration-none">Home</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                 </ol>
             </nav>
@@ -79,7 +84,10 @@
 
             <!-- LEFT COLUMN: GET IN TOUCH (Contact Form) -->
             <div class="col-lg-8 col-md-12">
-                <div class="contact-card p-4 p-md-5 h-100">
+                <div class="contact-card p-4 p-md-5 h-100"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-once="true">
                     <h3 class="fw-bold text-dark mb-2">GET IN TOUCH</h3>
                     <p class="text-muted small mb-4">Have questions or feedback? Fill out the form below and our team will get back to you shortly.</p>
 
@@ -135,7 +143,10 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="col-md-12 mt-4">
+                        <div class="col-md-12 mt-4"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-once="true">
                             <div class="submit-button">
                                 <!-- Preserved ID="submit" and onserverclick="submit_ServerClick" -->
                                 <button runat="server" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-semibold fs-6 shadow-sm w-100 w-md-auto" id="submit" onserverclick="submit_ServerClick" type="submit">
@@ -150,14 +161,20 @@
             </div>
 
             <!-- RIGHT COLUMN: CONTACT INFORMATION -->
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-12"
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-once="true">
                 <div class="contact-card p-4 p-md-5 h-100">
                     <h3 class="fw-bold text-dark mb-4">CONTACT INFO</h3>
 
                     <div class="d-flex flex-column gap-4">
 
                         <!-- Address Card -->
-                        <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-start gap-3"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-once="true">
                             <div class="info-item-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
@@ -172,7 +189,10 @@
                         </div>
 
                         <!-- Phone Card -->
-                        <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-start gap-3"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-once="true">
                             <div class="info-item-icon">
                                 <i class="fas fa-phone-alt"></i>
                             </div>
@@ -185,7 +205,10 @@
                         </div>
 
                         <!-- Email Card -->
-                        <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-start gap-3"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-once="true">
                             <div class="info-item-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
@@ -198,7 +221,10 @@
                         </div>
 
                         <!-- Business Hours Card -->
-                        <div class="d-flex align-items-start gap-3">
+                        <div class="d-flex align-items-start gap-3"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                            data-aos-once="true">
                             <div class="info-item-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
@@ -219,7 +245,10 @@
         </div>
 
         <!-- 3. Google Map Section -->
-        <div class="mt-5">
+        <div class="mt-5"
+            data-aos="fade-right"
+            data-aos-duration="800"
+            data-aos-once="true">
             <h4 class="fw-bold text-dark mb-3 text-center text-md-start">Find Us On Map</h4>
             <div class="map-container">
                 <iframe
@@ -234,93 +263,6 @@
     </div>
 
 
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
 
 </asp:Content>
 

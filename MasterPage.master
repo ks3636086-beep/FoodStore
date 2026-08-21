@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -148,11 +149,16 @@
         <!-- Start Main Top -->
         <header class="main-header">
             <!-- Start Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 sticky-top"
+                data-aos="fade-down"
+                data-aos-duration="900">
                 <div class="container-fluid px-4">
 
                     <!-- 1. Logo (Left Side) -->
-                    <a class="navbar-brand me-2" href="index.aspx">
+                    <a class="navbar-brand me-2"
+                        href="index.aspx"
+                        data-aos="zoom-in"
+                        data-aos-duration="1000">
                         <img src="images/FoodStore_logo.png" alt="Food Store" style="height: 50px; width: auto;">
                     </a>
 
@@ -198,17 +204,50 @@
                                 </ul>
                             </li>
 
+
                             <li class="nav-item">
                                 <a class="nav-link text-secondary fw-semibold px-2" href="contact-us.aspx">Contact Us</a>
                             </li>
 
+                            <li class="nav-item ms-lg-1">
+                                <!-- Wishlist Button with Badge (PURE BOOTSTRAP 5 - NO CUSTOM CSS) -->
+                                <a href="wishlist.aspx"
+                                    class="btn btn-outline-danger position-relative rounded-circle p-0 d-inline-flex align-items-center justify-content-center border-0 shadow-sm bg-danger-subtle text-danger wishlist-pop"
+                                    style="width: 38px; height: 38px;"
+                                    title="View Wishlist">
+
+                                    <!-- Heart Icon -->
+                                    <i class="far fa-heart fs-6"></i>
+
+                                    <!-- Wishlist Count Badge (Preserved for ASP.NET Backend) -->
+                                    <span runat="server" id="wishlist_count"
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-2 border-white"
+                                        style="font-size: 0.65rem;"></span>
+                                </a>
+                            </li>
+
+
                             <!-- Cart Button -->
                             <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-                                <a href="cart.aspx" class="btn btn-outline-success position-relative rounded-pill px-3 py-1 d-inline-flex align-items-center gap-2">
-                                    <i class="fa fa-shopping-bag"></i>
-                                    <span class="fw-bold">Cart</span>
-                                    <span runat="server" id="cart_count1" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0
-                                    </span>
+                                <!-- BLINKIT STYLE SOLID GREEN CART BUTTON (PURE BOOTSTRAP 5) -->
+                                <a href="cart.aspx"
+                                    class="btn btn-success rounded-3 px-3 py-1 d-inline-flex align-items-center gap-2 shadow-sm text-decoration-none">
+
+                                    <!-- Left Cart Icon -->
+                                    <i class="fas fa-shopping-cart fs-5 text-white"></i>
+
+                                    <!-- Right Side Stacked Items & Price -->
+                                    <div class="d-flex flex-column text-start lh-1"
+                                        data-aos="fade-up"
+                                        data-aos-duration="700"
+                                        data-aos-delay="300">
+                                        <span class="fw-bold text-white extra-small">
+                                            <span runat="server" id="cart_count1">1</span> item
+                                        </span>
+                                        <span runat="server" class="fw-extrabold text-white fs-6">₹<span runat="server" id="cart_total"> </span>
+                                        </span>
+                                    </div>
+
                                 </a>
                             </li>
                         </ul>
@@ -227,116 +266,510 @@
         </div>
     </form>
 
-    <!-- Start Footer  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Business Time</h3>
-                            <ul class="list-time">
-                                <li>Monday - Friday: 08.00am to 05.00pm</li>
-                                <li>Saturday: 10.00am to 08.00pm</li>
-                                <li>Sunday: <span>Closed</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Newsletter</h3>
-                            <form class="newsletter-box">
-                                <div class="form-group">
-                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <button class="btn hvr-hover" type="submit">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-top-box">
-                            <h3>Follow FoodStore</h3>
-                            <p>Stay connected with FoodStore for the latest offers, new products and updates.</p>
 
-                            <ul>
-                                <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+
+    <!-- 2026 BENTO-GRID INSTAGRAM SHOWCASE SECTION (MIXED GROCERY & SNACKS THEME) -->
+    <section class="py-5 bg-white position-relative overflow-hidden border-top border-bottom"
+        data-aos="fade-up"
+        data-aos-duration="900"
+        data-aos-once="true">
+        <div class="container-xl">
+
+            <!-- 1. STYLISH CENTERED HEADER -->
+            <div class="text-center mb-4 mb-lg-5"
+                data-aos="zoom-in"
+                data-aos-duration="900"
+                data-aos-once="true">
+                <div class="d-inline-flex align-items-center gap-2 bg-danger-subtle text-danger rounded-pill px-3 py-1.5 fw-bold extra-small mb-2 shadow-sm">
+                    <i class="fab fa-instagram fs-6"></i>
+                    <span>@FoodStore</span>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-widget">
-                            <h4>About FoodStore</h4>
-
-                            <p>
-                                FoodStore makes everyday grocery shopping simple and convenient.
-        Explore a wide range of fresh groceries, daily essentials and quality
-        products, all in one place.
-                            </p>
-
-                            <p>
-                                From fresh food to household essentials, we are committed to making
-        your shopping experience easy, reliable and hassle-free.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link-contact">
-                            <h4>Contact Us</h4>
-                            <ul>
-                                <li>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756
-                                       
-                                        <br>
-                                        Preston Street Wichita,<br>
-                                        KS 67213
-                                   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="fw-extrabold text-dark tracking-tight mb-2 display-6">Follow Us on Instagram
+                </h2>
+                <p class="text-muted small mb-0 max-w-md mx-auto">
+                    Fresh fruits, veggies, cookies & snacks — straight from FoodStore.
+                </p>
             </div>
+
+            <!-- 2. MIXED BENTO GRID GALLERY -->
+            <div class="row g-3 g-md-4">
+
+                <!-- Bento Item 1: Large Featured Card (Fresh Colorful Fruits - Left) -->
+
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                        <div class="bento-card position-relative rounded-5 overflow-hidden shadow-sm h-100 bg-light group-hover" style="min-height: 400px;">
+                            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?q=80&w=800&auto=format&fit=crop"
+                                class="w-100 h-100 object-fit-cover bento-img"
+                                alt="Fresh Colorful Fruits - Berries, Oranges & Apples" />
+
+                            <!-- Glassmorphism Hover Overlay -->
+                            <div class="bento-overlay position-absolute inset-0 d-flex flex-column align-items-center justify-content-center text-white p-3">
+                                <a href="https://instagram.com" target="_blank" class="insta-pop-btn btn btn-light rounded-circle shadow p-0 d-flex align-items-center justify-content-center text-danger mb-2">
+                                    <i class="fab fa-instagram fs-4"></i>
+                                </a>
+                                <span class="badge bg-white text-dark rounded-pill px-3 py-1.5 fw-semibold shadow-sm extra-small">View on Instagram <i class="fas fa-arrow-up-right-from-square ms-1 extra-small"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Sub-Grid (2x2 Mix - Right) -->
+                <div class="col-12 col-md-6 col-lg-7">
+                    <div class="row g-3 g-md-4">
+
+                        <!-- Bento Item 2: Golden Cookies & Biscuits -->
+                        <div class="col-6">
+                            <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+
+                                <div class="bento-card position-relative rounded-4 overflow-hidden shadow-sm bg-light group-hover" style="height: 190px;">
+                                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=500&auto=format&fit=crop"
+                                        class="w-100 h-100 object-fit-cover bento-img"
+                                        alt="Golden Chocolate Chip Cookies" />
+                                    <div class="bento-overlay position-absolute inset-0 d-flex flex-column align-items-center justify-content-center text-white p-2">
+                                        <a href="https://instagram.com" target="_blank" class="insta-pop-btn btn btn-light rounded-circle shadow p-0 d-flex align-items-center justify-content-center text-danger mb-1">
+                                            <i class="fab fa-instagram fs-5"></i>
+                                        </a>
+                                        <span class="extra-small text-white fw-bold">View on Instagram</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bento Item 3: Crispy Snacks, Chips & Nuts -->
+                        <div class="col-6">
+                            <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+
+                                <div class="bento-card position-relative rounded-4 overflow-hidden shadow-sm bg-light group-hover" style="height: 190px;">
+                                    <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=500&auto=format&fit=crop"
+                                        class="w-100 h-100 object-fit-cover bento-img"
+                                        alt="Crispy Snacks and Nuts Mix" />
+                                    <div class="bento-overlay position-absolute inset-0 d-flex flex-column align-items-center justify-content-center text-white p-2">
+                                        <a href="https://instagram.com" target="_blank" class="insta-pop-btn btn btn-light rounded-circle shadow p-0 d-flex align-items-center justify-content-center text-danger mb-1">
+                                            <i class="fab fa-instagram fs-5"></i>
+                                        </a>
+                                        <span class="extra-small text-white fw-bold">View on Instagram</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bento Item 4: Farm Fresh Vegetables -->
+                        <div class="col-6">
+                            <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+
+                                <div class="bento-card position-relative rounded-4 overflow-hidden shadow-sm bg-light group-hover" style="height: 190px;">
+                                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=500&auto=format&fit=crop"
+                                        class="w-100 h-100 object-fit-cover bento-img"
+                                        alt="Fresh Green Farm Vegetables" />
+                                    <div class="bento-overlay position-absolute inset-0 d-flex flex-column align-items-center justify-content-center text-white p-2">
+                                        <a href="https://instagram.com" target="_blank" class="insta-pop-btn btn btn-light rounded-circle shadow p-0 d-flex align-items-center justify-content-center text-danger mb-1">
+                                            <i class="fab fa-instagram fs-5"></i>
+                                        </a>
+                                        <span class="extra-small text-white fw-bold">View on Instagram</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bento Item 5: Bakery Croissant & Fresh Breads -->
+                        <div class="col-6">
+                            <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+
+                                <div class="bento-card position-relative rounded-4 overflow-hidden shadow-sm bg-light group-hover" style="height: 190px;">
+                                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=500&auto=format&fit=crop"
+                                        class="w-100 h-100 object-fit-cover bento-img"
+                                        alt="Fresh Bakery Croissant" />
+                                    <div class="bento-overlay position-absolute inset-0 d-flex flex-column align-items-center justify-content-center text-white p-2">
+                                        <a href="https://instagram.com" target="_blank" class="insta-pop-btn btn btn-light rounded-circle shadow p-0 d-flex align-items-center justify-content-center text-danger mb-1">
+                                            <i class="fab fa-instagram fs-5"></i>
+                                        </a>
+                                        <span class="extra-small text-white fw-bold">View on Instagram</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. BOTTOM INSTAGRAM CTA BUTTON -->
+            <div class="text-center mt-4 mt-lg-5"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="200"
+                data-aos-once="true">
+                <a href="https://instagram.com" target="_blank" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-bold shadow-sm d-inline-flex align-items-center gap-2">
+                    <i class="fab fa-instagram fs-6"></i>
+                    <span>Explore More @FoodStore</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GLASSMorphism & MICRO-ANIMATION UTILITIES -->
+    <style>
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .extra-small {
+            font-size: 0.75rem;
+        }
+
+        .fw-extrabold {
+            font-weight: 800;
+        }
+
+        /* CARD CONTAINER & SHADOWS */
+        .bento-card {
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+        }
+
+            .bento-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08) !important;
+            }
+
+        /* SMOOTH IMAGE ZOOM */
+        .bento-img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover .bento-img {
+            transform: scale(1.08);
+        }
+
+        /* SOFT GLASSMORPHISM OVERLAY */
+        .bento-overlay {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .bento-card:hover .bento-overlay {
+            opacity: 1;
+        }
+
+        /* INSTAGRAM ICON SPRING POP ANIMATION */
+        .insta-pop-btn {
+            width: 44px;
+            height: 44px;
+            transform: scale(0.6);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .bento-card:hover .insta-pop-btn {
+            transform: scale(1);
+        }
+    </style>
+
+
+
+    <!-- Start Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container-fluid px-4 px-lg-5">
+
+            <!-- TOP FOOTER -->
+            <div class="row g-4 pb-4 border-bottom border-secondary"
+                data-aos="fade-up"
+                data-aos-duration="900">
+
+                <!-- Business Time -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="h-100 pe-lg-4"
+                         data-aos="fade-right"
+                         data-aos-duration="800"
+                         data-aos-delay="100">
+                        <h5 class="fw-bold text-white mb-3">
+                            <i class="far fa-clock text-success me-2"></i>
+                            Business Time
+                        </h5>
+
+                        <ul class="list-unstyled mb-0 fs-6 text-white">
+                            <li class="mb-2 opacity-75">Monday - Friday: 08.00am to 05.00pm
+                            </li>
+                            <li class="mb-2 opacity-75">Saturday: 10.00am to 08.00pm
+                            </li>
+                            <li class="opacity-75">Sunday:
+                            <span class="text-danger fw-semibold">Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="h-100 px-lg-4 border-start border-end border-secondary"
+                         data-aos="fade-left"
+                         data-aos-duration="800"
+                         data-aos-delay="200">
+                        <h5 class="fw-bold text-white mb-3">
+                            <i class="far fa-envelope text-success me-2"></i>
+                            Newsletter
+                        </h5>
+
+                        <p class="fs-6 text-white opacity-75 mb-3">
+                            Subscribe to receive our latest offers and updates.
+                        </p>
+
+                        <form class="d-flex">
+                            <input type="email"
+                                name="Email"
+                                class="form-control bg-white border-0 shadow-none rounded-start-2 rounded-end-0"
+                                placeholder="Email Address*" />
+
+                            <button type="submit"
+                                class="btn btn-success rounded-end-2 rounded-start-0 px-4 fw-semibold">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Social -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="h-100 ps-lg-4"
+                         data-aos="fade-left"
+                         data-aos-duration="800"
+                         data-aos-delay="300">
+                        <h5 class="fw-bold text-white mb-3">
+                            <i class="fas fa-share-alt text-success me-2"></i>
+                            Follow FoodStore
+                        </h5>
+
+                        <p class="fs-6 text-white opacity-75 mb-3">
+                            Stay connected with FoodStore for the latest offers,
+                        new products and updates.
+                        </p>
+
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a href="#" aria-label="Facebook"
+                                class="social-footer-btn">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+
+                            <a href="#" aria-label="Twitter"
+                                class="social-footer-btn">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                            <a href="#" aria-label="LinkedIn"
+                                class="social-footer-btn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+
+                            <a href="#" aria-label="Pinterest"
+                                class="social-footer-btn">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+
+                            <a href="#" aria-label="WhatsApp"
+                                class="social-footer-btn">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- MAIN FOOTER -->
+            <div class="row g-4 py-5">
+
+                <!-- About -->
+                <div class="col-lg-5 col-md-6"
+                     data-aos="fade-up"
+                     data-aos-duration="800"
+                     data-aos-delay="400">
+                    <h5 class="fw-bold text-white mb-3">About FoodStore
+                    </h5>
+
+                    <div class="footer-heading-line mb-3"></div>
+
+                    <p class="fs-6 text-white opacity-75 lh-lg mb-3">
+                        FoodStore makes everyday grocery shopping simple and convenient.
+                    Explore a wide range of fresh groceries, daily essentials and quality
+                    products, all in one place.
+                    </p>
+
+                    <p class="fs-6 text-white opacity-75 lh-lg mb-0">
+                        From fresh food to household essentials, we are committed to making
+                    your shopping experience easy, reliable and hassle-free.
+                    </p>
+                </div>
+
+
+                <!-- Information -->
+                <div class="col-lg-3 col-md-6"
+                     data-aos="fade-up"
+                     data-aos-duration="800"
+                     data-aos-delay="400">
+                    <h5 class="fw-bold text-white mb-3">Information
+                    </h5>
+
+                    <div class="footer-heading-line mb-3"></div>
+
+                    <ul class="list-unstyled mb-0 fs-6">
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">About Us</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">Customer Service</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">Our Sitemap</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">Terms &amp; Conditions</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer-link">Delivery Information</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!-- Contact -->
+                <div class="col-lg-4 col-md-12"
+                     data-aos="fade-up"
+                     data-aos-duration="800"
+                     data-aos-delay="500">
+                    <h5 class="fw-bold text-white mb-3">Contact Us
+                    </h5>
+
+                    <div class="footer-heading-line mb-3"></div>
+
+                    <div class="d-flex mb-3">
+                        <div class="contact-icon me-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+
+                        <p class="fs-6 text-white opacity-75 mb-0">
+                            Address: Michael I. Days 3756<br>
+                            Preston Street Wichita,<br>
+                            KS 67213
+                        </p>
+                    </div>
+
+                    <div class="d-flex mb-3">
+                        <div class="contact-icon me-3">
+                            <i class="fas fa-phone-square"></i>
+                        </div>
+
+                        <p class="fs-6 text-white opacity-75 mb-0">
+                            Phone:
+                        <a href="tel:+1-888705770"
+                            class="text-white text-decoration-none">+1-888 705 770
+                        </a>
+                        </p>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="contact-icon me-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+
+                        <p class="fs-6 text-white opacity-75 mb-0">
+                            Email:
+                        <a href="mailto:contactinfo@gmail.com"
+                            class="text-white text-decoration-none">contactinfo@gmail.com
+                        </a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+ 
         </div>
     </footer>
+    <!-- End Footer -->
+
+
+    <style>
+        .footer-heading-line {
+            width: 38px;
+            height: 3px;
+            background: #28a745;
+            border-radius: 10px;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            opacity: 0.75;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+            .footer-link:hover {
+                color: #28a745;
+                opacity: 1;
+                padding-left: 5px;
+            }
+
+        .social-footer-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+            .social-footer-btn:hover {
+                background: #28a745;
+                border-color: #28a745;
+                color: #ffffff;
+                transform: translateY(-3px);
+            }
+
+        .contact-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 50%;
+            background: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 767.98px) {
+            .border-start,
+            .border-end {
+                border: 0 !important;
+            }
+        }
+    </style>
     <!-- End Footer  -->
 
     <!-- Start copyright  -->
     <div class="footer-copyright">
         <p class="footer-company">
-            All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-          
-           
-
-            <a href="https://html.design/">html design</a>
+            All Rights Reserved. &copy; 2026
+        <a href="#">FoodStore</a> |
+        Designed &amp; Developed by
+        <a href="#">Digital Bull</a>
         </p>
     </div>
     <!-- End copyright  -->
@@ -363,5 +796,13 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
