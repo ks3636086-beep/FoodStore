@@ -47,7 +47,7 @@
                             <tbody>
 
                                 <asp:Repeater ID="rptbindproduct" OnItemCommand="rptbindproduct_ItemCommand" runat="server">
-                                  
+
 
                                     <ItemTemplate>
 
@@ -58,7 +58,7 @@
                                             </td>
 
 
-                                      <td class="align-middle">
+                                            <td class="align-middle">
                                                 <asp:Label ID="lblname" runat="server"
                                                     Text='<%# Eval("customer_name") %>'></asp:Label>
                                             </td>
@@ -73,6 +73,8 @@
                                             <td class="align-middle">
                                                 <span style="color: #28a745; font-weight: bold;">₹
                                            
+                                                   
+
                                                     <asp:Label ID="lbltotal" runat="server"
                                                         Text='<%# Eval("total_order_amount") %>'></asp:Label>
                                                 </span>
@@ -87,7 +89,7 @@
 
                                             <td class="align-middle">
 
-                                                <span class="badge badge-success">
+                                                <span class="badge badge-success" style="font-size: 14px;">
                                                     <asp:Label ID="lblstatus" runat="server"
                                                         Text='<%# Eval("order_status") %>'></asp:Label>
                                                 </span>
@@ -125,7 +127,7 @@
 
         </div>
     </div>
-   
+
 
 </asp:Content>
 

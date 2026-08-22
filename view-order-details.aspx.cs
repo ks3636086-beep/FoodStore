@@ -19,6 +19,7 @@ public partial class view_order_details : System.Web.UI.Page
     Master mst = new Master();
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (Session["customer_id"] != null)
         {
             Binddata();
@@ -46,23 +47,48 @@ public partial class view_order_details : System.Web.UI.Page
 
     private void CheckOrderButton(SqlDataReader getData)
     {
-        string status = getData["delivery_status"].ToString().Trim();
+        string status = getData["order_status"].ToString().Trim();
 
-        if (status.Equals("Delivered", StringComparison.OrdinalIgnoreCase))
+        if (status.Equals("Confirm", StringComparison.OrdinalIgnoreCase))
+        {
+            btncancel.Visible = true;
+            btnreturn.Visible = false;
+        }
+        else if (status.Equals("Delivered", StringComparison.OrdinalIgnoreCase))
         {
             btncancel.Visible = false;
             btnreturn.Visible = true;
         }
+        else if (status.Equals("Rejected", StringComparison.OrdinalIgnoreCase))
+        {
+            btncancel.Visible = false;
+            btnreturn.Visible = false;
+        }
         else
         {
-            btncancel.Visible = true;
+            btncancel.Visible = false;
             btnreturn.Visible = false;
         }
     }
     private void Binddata()
     {
-        rptbindproduct.DataSource = mst.GetData("select * from ecommerce_order a where a.order_id='" + Request.QueryString[0] + "'");
+        string orderId = Request.QueryString[0];
+
+        rptbindproduct.DataSource = mst.GetData(
+            "select * from ecommerce_order where order_id='" + orderId + "'"
+        );
         rptbindproduct.DataBind();
+
+        SqlDataReader getData = mst.Select_Operation(
+            "select order_status from ecommerce_order where order_id='" + orderId + "'"
+        );
+
+        if (getData.Read())
+        {
+            CheckOrderButton(getData);
+        }
+
+        getData.Close();
     }
     protected void btncancel_ServerClick(object sender, EventArgs e)
     {

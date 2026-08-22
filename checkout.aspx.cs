@@ -242,7 +242,7 @@ public partial class checkout : System.Web.UI.Page
             }
 
         }
-        
+
         Response.Redirect("page-orderdetails.aspx?ref='" + order_id + "'");
 
     }
@@ -260,52 +260,47 @@ public partial class checkout : System.Web.UI.Page
     private string getorder_id()
     {
         string ctno = string.Empty;
+
         mst.con.Open();
-        string query_delete_photo = "select isnull(count(order_id),1) as num from ecommerce_order";
+
+        string query_delete_photo =
+            "SELECT ISNULL(MAX(order_id_temp), 0) + 1 AS num FROM ecommerce_order";
+
         SqlCommand cmd_delete_photo = new SqlCommand(query_delete_photo, mst.con);
         SqlDataReader dr_delete_photo = cmd_delete_photo.ExecuteReader();
 
         if (dr_delete_photo.Read())
         {
-            ctno = dr_delete_photo["num"].ToString();
-            if (ctno == "0")
-            {
-                ctno = "ODR-1";
-            }
-            else
-            {
-                ctno = "ODR-" + ctno;
-            }
+            ctno = "ODR-" + dr_delete_photo["num"].ToString();
         }
+
         dr_delete_photo.Close();
         mst.con.Close();
+
         return ctno;
     }
 
     private string getorder_id_temp()
     {
         string ctno = string.Empty;
+
         mst.con.Open();
-        string query_delete_photo = "select isnull(count(order_id_temp),1) as num from ecommerce_order";
+
+        string query_delete_photo =
+            "SELECT ISNULL(MAX(order_id_temp), 0) + 1 AS num FROM ecommerce_order";
+
         SqlCommand cmd_delete_photo = new SqlCommand(query_delete_photo, mst.con);
         SqlDataReader dr_delete_photo = cmd_delete_photo.ExecuteReader();
 
         if (dr_delete_photo.Read())
         {
             ctno = dr_delete_photo["num"].ToString();
-            if (ctno == "0")
-            {
-                ctno = "1";
-            }
-            else
-            {
-                ctno = ctno;
-            }
-
         }
+
         dr_delete_photo.Close();
         mst.con.Close();
-        return ctno;
-    }
 
+        return ctno;
+
+    }
 }

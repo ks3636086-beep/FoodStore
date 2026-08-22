@@ -67,7 +67,9 @@ public partial class auth_order_details : System.Web.UI.Page
 
                 lblorderplacedate.Text = get_order_info["order_date"].ToString() + " " + ss;
 
-                lblcoupon.Text = get_order_info["coupan_value"].ToString();
+                //lblcoupon.Text = get_order_info["coupan_value"].ToString();
+                lblcoupon.Text = get_order_info["coupan_value"] == DBNull.Value ? "0" : get_order_info["coupan_value"].ToString();
+
 
                 lbl_refund_mode.Text = get_order_info["refund_mode"].ToString();
                 lbl_customer_id.Text = get_order_info["customer_id"].ToString();
