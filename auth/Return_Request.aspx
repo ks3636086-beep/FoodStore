@@ -66,7 +66,7 @@
                                         </tfoot>
                                         <tbody>
 
-                                            <asp:Repeater ID="rptbindorderdata" runat="server" OnItemCommand="rptbindorderdata_ItemCommand" >
+                                            <asp:Repeater ID="rptbindorderdata" runat="server" OnItemCommand="rptbindorderdata_ItemCommand">
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblorderid" hidden runat="server" Text='<%# Eval("order_id") %>'></asp:Label>

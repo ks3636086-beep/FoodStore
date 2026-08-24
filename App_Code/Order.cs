@@ -44,7 +44,7 @@ public class Order
     }
 
 
-   
+
     // Get Cart No Guest End
 
 
@@ -207,7 +207,7 @@ public class Order
     // Get Wishlist Item have or no
 
 
-    public String GetWishlistItemStatus(String customerid,string productid,string priceid)
+    public String GetWishlistItemStatus(String customerid, string productid, string priceid)
     {
         con.Close();
         con.Open();
@@ -219,8 +219,8 @@ public class Order
             cmd.CommandText = "SELECT Count(id) from ecommerce_wishlist where customer_id=@customer_id AND product_id=@product_id AND product_price_id=@product_price_id";
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@customer_id", customerid);
-            cmd.Parameters.AddWithValue("@product_id",productid);
-            cmd.Parameters.AddWithValue("@product_price_id",priceid);
+            cmd.Parameters.AddWithValue("@product_id", productid);
+            cmd.Parameters.AddWithValue("@product_price_id", priceid);
             status = Convert.ToString(cmd.ExecuteScalar());
             con.Close();
         }
@@ -240,7 +240,7 @@ public class Order
 
     public SqlDataReader Generate_Cart_No()
     {
-       
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -266,7 +266,7 @@ public class Order
 
     public SqlDataReader Get_Order_info(string suborderid)
     {
-    
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -318,7 +318,7 @@ public class Order
 
     public SqlDataReader Get_Order_info_by_Order_id(string orderid)
     {
-      
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -345,7 +345,7 @@ public class Order
 
     public SqlDataReader Generate_Order_id()
     {
-       
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -367,7 +367,7 @@ public class Order
     // Order Id Generate End
 
 
-   
+
 
     // Subscription Id Generate End
 
@@ -376,7 +376,7 @@ public class Order
 
     public SqlDataReader Generate_Sub_Order_id()
     {
-       
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -402,7 +402,7 @@ public class Order
 
     public SqlDataReader Generate_Wishlist_No()
     {
-      
+
         SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
         try
@@ -460,7 +460,7 @@ public class Order
 
     // Insert Data into Order Guest
 
-    public int Insert_Order_product_Guest(int sub_order_id_temp, string sub_order_id, int cart_no, string guest_id, string product_id, string product_name, string product_hsn_sac, int product_qty, string product_unit, string product_unit_value, string product_GST_type, string product_tax_type, decimal product_GST_percentage, decimal product_GST_rate, decimal product_CGST_percentage, decimal product_CGST_rate, decimal product_SGST_percentage, decimal product_SGST_rate, decimal product_market_price, decimal product_sell_price, decimal product_discount_percentage, decimal product_discount_price, decimal product_with_gst_Price, decimal product_final_sell_price, int product_shipping_charge, decimal total_amount_of_product, string total_market_price,string super_point, string product_price_id)
+    public int Insert_Order_product_Guest(int sub_order_id_temp, string sub_order_id, int cart_no, string guest_id, string product_id, string product_name, string product_hsn_sac, int product_qty, string product_unit, string product_unit_value, string product_GST_type, string product_tax_type, decimal product_GST_percentage, decimal product_GST_rate, decimal product_CGST_percentage, decimal product_CGST_rate, decimal product_SGST_percentage, decimal product_SGST_rate, decimal product_market_price, decimal product_sell_price, decimal product_discount_percentage, decimal product_discount_price, decimal product_with_gst_Price, decimal product_final_sell_price, int product_shipping_charge, decimal total_amount_of_product, string total_market_price, string super_point, string product_price_id)
     {
         con.Close();
         con.Open();
@@ -522,7 +522,7 @@ public class Order
         }
         return (RowsAffected);
     }
-   
+
 
     //======================================================================= Customer Order =============================================================//
 
@@ -557,10 +557,10 @@ public class Order
         }
         return (RowsAffected);
     }
-    
+
     // Insert Data into Order Customer
 
-    public int Insert_Order_product(int sub_order_id_temp, string sub_order_id, int cart_no, string customer_id, string product_id, string product_name, string product_hsn_sac, int product_qty, string product_unit, string product_unit_value, string product_GST_type, string product_tax_type, decimal product_GST_percentage, decimal product_GST_rate, decimal product_CGST_percentage, decimal product_CGST_rate, decimal product_SGST_percentage, decimal product_SGST_rate, decimal product_market_price, decimal product_sell_price, decimal product_discount_percentage, decimal product_discount_price, decimal product_with_gst_Price, decimal product_final_sell_price, int product_shipping_charge, decimal total_amount_of_product, string total_market_price,string super_point, string product_price_id)
+    public int Insert_Order_product(int sub_order_id_temp, string sub_order_id, int cart_no, string customer_id, string product_id, string product_name, string product_hsn_sac, int product_qty, string product_unit, string product_unit_value, string product_GST_type, string product_tax_type, decimal product_GST_percentage, decimal product_GST_rate, decimal product_CGST_percentage, decimal product_CGST_rate, decimal product_SGST_percentage, decimal product_SGST_rate, decimal product_market_price, decimal product_sell_price, decimal product_discount_percentage, decimal product_discount_price, decimal product_with_gst_Price, decimal product_final_sell_price, int product_shipping_charge, decimal total_amount_of_product, string total_market_price, string super_point, string product_price_id)
     {
         con.Close();
         con.Open();
@@ -684,7 +684,7 @@ public class Order
         return (total_amount);
     }
 
-   
+
     // Total Amount of shipping charge Guest items
 
     public String GetTotalAmountShipping_Guest(String guestid)
@@ -709,7 +709,7 @@ public class Order
         return (total_amount);
     }
 
-   
+
     // Total Amount of cart Customer items
 
     public String GetTotalAmountCart(String customerid)
@@ -811,7 +811,7 @@ public class Order
 
     // Insert Data into Wishlist
 
-    public int Insert_Wishlist(string wishlist_no, string wishlist_date, string wishlist_qty, string customer_id, string product_id,string product_price_id)
+    public int Insert_Wishlist(string wishlist_no, string wishlist_date, string wishlist_qty, string customer_id, string product_id, string product_price_id)
     {
         con.Close();
         con.Open();
@@ -843,7 +843,7 @@ public class Order
 
     // Update Order table Cash on delivery Customer
 
-    public int Update_Order_COD_Customer(string order_id_temp,string order_id,string order_date,string order_time,string customer_name,string customer_mobileno,string customer_email,string billing_address_line1,string billing_address_line2,string billing_city_name,string billing_state_name,string billing_pincode,string billing_landmark,string shipping_address_line1,string shipping_address_line2,string shipping_state_name,string shipping_city_name, string shipping_pincode,string shipping_landmark,string total_order_amount,string payment_mode,string order_shipping_status,string order_status,string customer_id,string coupan_value,string coupan_code,string product_shipping_charge, string wallet_payment)
+    public int Update_Order_COD_Customer(string order_id_temp, string order_id, string order_date, string order_time, string customer_name, string customer_mobileno, string customer_email, string billing_address_line1, string billing_address_line2, string billing_city_name, string billing_state_name, string billing_pincode, string billing_landmark, string shipping_address_line1, string shipping_address_line2, string shipping_state_name, string shipping_city_name, string shipping_pincode, string shipping_landmark, string total_order_amount, string payment_mode, string order_shipping_status, string order_status, string customer_id, string coupan_value, string coupan_code, string product_shipping_charge, string wallet_payment)
     {
         con.Close();
         con.Open();
@@ -891,7 +891,7 @@ public class Order
             cmd.Parameters.AddWithValue("@wallet_payment", wallet_payment);
 
             cmd.Parameters.AddWithValue("@customer_id", customer_id);
-           
+
             RowsAffected = cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -905,7 +905,7 @@ public class Order
 
     // Update Order table Cash on delivery Guest
 
-    public int Update_Order_COD_Guest(string order_id_temp, string order_id, string order_date, string order_time, string customer_name, string customer_mobileno, string customer_email, string billing_address_line1, string billing_address_line2, string billing_city_name, string billing_state_name, string billing_pincode, string billing_landmark, string shipping_address_line1, string shipping_address_line2,string shipping_city_name, string shipping_state_name, string shipping_pincode, string shipping_landmark, string total_order_amount, string payment_mode, string order_shipping_status, string order_status, string guest_id,string coupan_value,string coupan_code)
+    public int Update_Order_COD_Guest(string order_id_temp, string order_id, string order_date, string order_time, string customer_name, string customer_mobileno, string customer_email, string billing_address_line1, string billing_address_line2, string billing_city_name, string billing_state_name, string billing_pincode, string billing_landmark, string shipping_address_line1, string shipping_address_line2, string shipping_city_name, string shipping_state_name, string shipping_pincode, string shipping_landmark, string total_order_amount, string payment_mode, string order_shipping_status, string order_status, string guest_id, string coupan_value, string coupan_code)
     {
         con.Close();
         con.Open();
@@ -964,7 +964,7 @@ public class Order
 
     // Update Order table Online Customer
 
-    public int Update_Order_Online_Customer(string order_id_temp, string order_id, string order_date, string order_time, string customer_name, string customer_mobileno, string customer_email, string billing_address_line1, string billing_address_line2, string billing_city_name, string billing_state_name, string billing_pincode, string billing_landmark, string shipping_address_line1, string shipping_address_line2, string shipping_state_name, string shipping_city_name, string shipping_pincode, string shipping_landmark, string total_order_amount, string payment_mode, string order_shipping_status, string order_status, string customer_id,string transaction_id, string bank_transaction_id, string transaction_status,string transaction_gatway_name,string transaction_payment_mode, string coupan_value, string coupan_code,string product_shipping_charge,string wallet_payment)
+    public int Update_Order_Online_Customer(string order_id_temp, string order_id, string order_date, string order_time, string customer_name, string customer_mobileno, string customer_email, string billing_address_line1, string billing_address_line2, string billing_city_name, string billing_state_name, string billing_pincode, string billing_landmark, string shipping_address_line1, string shipping_address_line2, string shipping_state_name, string shipping_city_name, string shipping_pincode, string shipping_landmark, string total_order_amount, string payment_mode, string order_shipping_status, string order_status, string customer_id, string transaction_id, string bank_transaction_id, string transaction_status, string transaction_gatway_name, string transaction_payment_mode, string coupan_value, string coupan_code, string product_shipping_charge, string wallet_payment)
     {
         con.Close();
         con.Open();
@@ -1142,7 +1142,7 @@ public class Order
 
             cmd.Parameters.AddWithValue("@product_stock", stock);
             cmd.Parameters.AddWithValue("@id", id);
-           
+
             RowsAffected = cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -1156,7 +1156,7 @@ public class Order
 
     // Update order for return
 
-    public int Update_Order_for_return(string suborderid, string reason, string comment,string return_date, string return_time,string order_status,string refund_mode)
+    public int Update_Order_for_return(string suborderid, string reason, string comment, string return_date, string return_time, string order_status, string refund_mode)
     {
         con.Close();
         con.Open();
@@ -1168,8 +1168,8 @@ public class Order
             cmd.CommandText = "update ecommerce_order Set order_return_reason=@order_return_reason,order_return_comment=@order_return_comment,order_cancel_date=@order_cancel_date,order_cancel_time=@order_cancel_time,order_status=@order_status,refund_mode=@refund_mode where id=@id";
             cmd.CommandType = CommandType.Text;
 
-            cmd.Parameters.AddWithValue("@order_return_reason",reason);
-            cmd.Parameters.AddWithValue("@order_return_comment",SqlDbType.NVarChar).Value= comment;
+            cmd.Parameters.AddWithValue("@order_return_reason", reason);
+            cmd.Parameters.AddWithValue("@order_return_comment", SqlDbType.NVarChar).Value = comment;
             cmd.Parameters.AddWithValue("@order_cancel_date", return_date);
             cmd.Parameters.AddWithValue("@order_cancel_time", return_time);
             cmd.Parameters.AddWithValue("@order_status", order_status);
@@ -1408,7 +1408,7 @@ public class Order
         while (reader.Read())
         {
             var rec = new List<string>();
-            for (int i = 0; i <= reader.FieldCount-1; i++) //The mathematical formula for reading the next fields must be <=
+            for (int i = 0; i <= reader.FieldCount - 1; i++) //The mathematical formula for reading the next fields must be <=
             {
                 rec.Add(reader.GetString(i));
             }
@@ -1445,11 +1445,11 @@ public class Order
                     con.Close();
                 }
 
-                
+
             }
         }
 
-       
+
 
         con.Close();
     }
@@ -1513,13 +1513,13 @@ public class Order
         while (reader.Read())
         {
             s = reader[0].ToString();
-            
+
         }
         con.Close();
         return s;
     }
 
-    public int Update_Order_status_Deliver_OrderID(string order_id, string status,string deliverdate,string delivertime)
+    public int Update_Order_status_Deliver_OrderID(string order_id, string status, string deliverdate, string delivertime)
     {
         con.Close();
         con.Open();
@@ -1559,10 +1559,11 @@ public class Order
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "Update ecommerce_order Set order_status=@order_status,order_delivery_date=@order_delivery_date,order_delivery_time=@order_delivery_time where id=@id AND order_status!=@status";
+            cmd.CommandText = "Update ecommerce_order Set order_status=@order_status,  delivery_status = @delivery_status, order_delivery_date=@order_delivery_date,order_delivery_time=@order_delivery_time where id=@id AND order_status!=@status";
             cmd.CommandType = CommandType.Text;
 
             cmd.Parameters.AddWithValue("@order_status", status);
+            cmd.Parameters.AddWithValue("@delivery_status", status);
             cmd.Parameters.AddWithValue("@order_delivery_date", deliverdate);
             cmd.Parameters.AddWithValue("@order_delivery_time", delivertime);
             cmd.Parameters.AddWithValue("@status", "Cancelled");
@@ -1570,7 +1571,7 @@ public class Order
 
             RowsAffected = cmd.ExecuteNonQuery();
 
-           
+
             con.Close();
         }
         catch (Exception ex)
@@ -1583,6 +1584,30 @@ public class Order
         return (RowsAffected);
     }
 
+
+    public int Update_Order_status_Return(string sub_order_id, string status)
+    {
+        con.Open();
+
+        string query = @"
+        UPDATE ecommerce_order
+        SET 
+            order_status = @order_status,
+            delivery_status = @delivery_status
+        WHERE id = @id";
+
+        SqlCommand cmd = new SqlCommand(query, con);
+
+        cmd.Parameters.AddWithValue("@order_status", status);
+        cmd.Parameters.AddWithValue("@delivery_status", status);
+        cmd.Parameters.AddWithValue("@id", sub_order_id);
+
+        int result = cmd.ExecuteNonQuery();
+
+        con.Close();
+
+        return result;
+    }
 
     public void Update_Stock_Product(string order_id)
     {
@@ -1599,7 +1624,7 @@ public class Order
         while (reader.Read())
         {
             var rec = new List<string>();
-            for (int i = 0; i <= reader.FieldCount - 1; i++) 
+            for (int i = 0; i <= reader.FieldCount - 1; i++)
             {
                 rec.Add(reader.GetString(i));
             }
@@ -1634,7 +1659,7 @@ public class Order
                     con.Close();
                 }
 
-                
+
             }
         }
 
@@ -1800,9 +1825,9 @@ public class Order
         return (RowsAffected);
     }
 
-        // if price update
+    // if price update
 
-    public int Update_Order_price(string sub_order_id, string product_GST_type, string product_tax_type,string product_GST_percentage,string product_GST_rate,string product_CGST_percentage,string product_CGST_rate,string product_SGST_percentage,string product_SGST_rate,string product_market_price,string product_sell_price,string product_discount_percentage,string product_discount_price,string product_with_gst_Price,string product_final_sell_price,string total_amount_of_product,string super_point)
+    public int Update_Order_price(string sub_order_id, string product_GST_type, string product_tax_type, string product_GST_percentage, string product_GST_rate, string product_CGST_percentage, string product_CGST_rate, string product_SGST_percentage, string product_SGST_rate, string product_market_price, string product_sell_price, string product_discount_percentage, string product_discount_price, string product_with_gst_Price, string product_final_sell_price, string total_amount_of_product, string super_point)
     {
         con.Close();
         con.Open();
@@ -1845,7 +1870,7 @@ public class Order
 
     // Get Qty of Same product if item already added in cart 
 
-    public SqlDataReader Get_Qty_Sub_Order_product_Guest(string cart_no,string cart_guest_id,string product_id)
+    public SqlDataReader Get_Qty_Sub_Order_product_Guest(string cart_no, string cart_guest_id, string product_id)
     {
         con.Close();
         con.Open();
@@ -1869,7 +1894,7 @@ public class Order
         }
         return (reader);
     }
-   
+
     // Get Qty of Same product if item already added in cart 
 
     public SqlDataReader Get_Qty_Sub_Order_product_Customer(string cart_no, string customer_id, string product_id)
@@ -1956,7 +1981,7 @@ public class Order
     }
 
 
-    public int Update_Sub_order_Qty(string product_qty,string product_GST_rate,string product_CGST_rate,string product_SGST_rate,string product_discount_price,string product_final_sell_price,  string total_amount_of_product, string sub_order_id)
+    public int Update_Sub_order_Qty(string product_qty, string product_GST_rate, string product_CGST_rate, string product_SGST_rate, string product_discount_price, string product_final_sell_price, string total_amount_of_product, string sub_order_id)
     {
         con.Close();
         con.Open();
@@ -2018,7 +2043,7 @@ public class Order
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT order_section from ecommerce_order where order_id='"+orderno+"'";
+            cmd.CommandText = "SELECT order_section from ecommerce_order where order_id='" + orderno + "'";
             cmd.CommandType = CommandType.Text;
             order_section = Convert.ToString(cmd.ExecuteScalar());
             con.Close();
@@ -2030,7 +2055,7 @@ public class Order
         return (order_section);
     }
 
-    public int Update_Order_Offline_Store(string order_id_temp,string order_id,string order_date,string order_time,string customer_name,string customer_mobileno,string total_order_amount,string payment_mode,string order_shipping_status,string order_status,string customer_id,string coupan_value,string coupan_code,string product_shipping_charge,string guest_id)
+    public int Update_Order_Offline_Store(string order_id_temp, string order_id, string order_date, string order_time, string customer_name, string customer_mobileno, string total_order_amount, string payment_mode, string order_shipping_status, string order_status, string customer_id, string coupan_value, string coupan_code, string product_shipping_charge, string guest_id)
     {
         con.Close();
         con.Open();
@@ -2062,7 +2087,7 @@ public class Order
 
             cmd.Parameters.AddWithValue("@product_shipping_charge", product_shipping_charge);
 
-          
+
             cmd.Parameters.AddWithValue("@guest_id", guest_id);
 
 
@@ -2090,7 +2115,7 @@ public class Order
             cmd.CommandText = "Update ecommerce_order Set total_order_amount=@total_order_amount Where order_id=@order_id";
             cmd.CommandType = CommandType.Text;
 
-            cmd.Parameters.AddWithValue("@total_order_amount", SqlDbType.NVarChar).Value= total_order_amount;
+            cmd.Parameters.AddWithValue("@total_order_amount", SqlDbType.NVarChar).Value = total_order_amount;
             cmd.Parameters.AddWithValue("@order_id", SqlDbType.NVarChar).Value = order_id;
 
             RowsAffected = cmd.ExecuteNonQuery();
@@ -2131,7 +2156,7 @@ public class Order
 
     // Add Invoice No
 
-    public int Add_Invoice_No(string auto_id, string invoice_no,string order_id,string invoice_date,string invoice_time,string fy_year_from,string fy_year_to,string invoide_status)
+    public int Add_Invoice_No(string auto_id, string invoice_no, string order_id, string invoice_date, string invoice_time, string fy_year_from, string fy_year_to, string invoide_status)
     {
         con.Close();
         con.Open();
@@ -2162,7 +2187,7 @@ public class Order
         return (RowsAffected);
     }
 
-    public int Update_Order_for_Cancel_All(string order_id, string reason, string comment, string return_date, string return_time, string order_status,string refund_mode)
+    public int Update_Order_for_Cancel_All(string order_id, string reason, string comment, string return_date, string return_time, string order_status, string refund_mode)
     {
         con.Close();
         con.Open();
@@ -2195,7 +2220,7 @@ public class Order
 
     // Upload Order List
 
-    public int Upload_Order_List(string order_id_temp, string order_id, string order_date, string order_time, string customer_id, string customer_name, string customer_mobileno, string customer_email,string billing_address_line1,string billing_address_line2,string billing_city_id,string billing_city_name,string billing_state_id,string billing_state_name,string billing_pincode,string billing_landmark,string order_list_photo,string payment_mode,string order_status)
+    public int Upload_Order_List(string order_id_temp, string order_id, string order_date, string order_time, string customer_id, string customer_name, string customer_mobileno, string customer_email, string billing_address_line1, string billing_address_line2, string billing_city_id, string billing_city_name, string billing_state_id, string billing_state_name, string billing_pincode, string billing_landmark, string order_list_photo, string payment_mode, string order_status)
     {
         con.Close();
         con.Open();
@@ -2249,7 +2274,7 @@ public class Order
             cmd.CommandText = "Update upload_order_list Set order_status=@order_status where order_id=@order_id";
             cmd.CommandType = CommandType.Text;
 
-            cmd.Parameters.AddWithValue("@order_status", SqlDbType.NVarChar).Value= order_status;
+            cmd.Parameters.AddWithValue("@order_status", SqlDbType.NVarChar).Value = order_status;
             cmd.Parameters.AddWithValue("@order_id", SqlDbType.NVarChar).Value = order_id;
 
             RowsAffected = cmd.ExecuteNonQuery();

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Razorpay.Api;
+using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -67,8 +67,9 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
 
                 lblorderplacedate.Text = get_order_info["order_date"].ToString() + " " + ss;
 
-                // lblcoupon.Text = get_order_info["coupan_value"].ToString();
+                //lblcoupon.Text = get_order_info["coupan_value"].ToString();
                 lblcoupon.Text = get_order_info["coupan_value"] == DBNull.Value ? "0" : get_order_info["coupan_value"].ToString();
+
 
                 lbl_refund_mode.Text = get_order_info["refund_mode"].ToString();
                 lbl_customer_id.Text = get_order_info["customer_id"].ToString();
@@ -142,101 +143,25 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
 
     private void BindOrderItem()
     {
-        rptbinddataprice.DataSource = mst.GetData("SELECT * FROM ecommerce_order WHERE order_id='" + Request.QueryString[0] + "' AND assigned_delivery_boy_id='" + Session["id"] + "'");
+        rptbinddataprice.DataSource = mst.GetData("SELECT * FROM ecommerce_order where order_id='" + Request.QueryString[0] + "' ");
         rptbinddataprice.DataBind();
-    }
-    protected void btnorderstatusupdate_ServerClick(object sender, EventArgs e)
-    {
-        string status = dblchangeorderstatus.SelectedValue;
-
-        switch (status)
-        {
-            case "Confirm":
-
-                int confirm = odr.Update_Order_status_Normal_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue);
-
-                if (confirm > 0)
-                {
-                    ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
-
-                    BindOrderItem();
-                }
-
-                break;
-
-            case "Dispatched":
-
-                int dispatched = odr.Update_Order_status_Normal_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue);
-
-                if (dispatched > 0)
-                {
-                    ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
-
-                    BindOrderItem();
-                }
-
-                break;
-
-            case "Delivered":
-
-                int delivered = odr.Update_Order_status_Deliver_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
-
-                if (delivered > 0)
-                {
-
-                    ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
-
-                    BindOrderItem();
-                }
-
-                break;
-
-            case "Cancelled":
-
-                int cancelled = odr.Update_Order_status_Cancel_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
-
-                if (cancelled > 0)
-                {
-
-                    // int update_invoice_status = odr.Update_Invoice_Status("Cancelled", Request.QueryString[0]);
-
-                    // Refund Amount
-
-                    if (lblpaymentmethod.Text == "Razor Pay" || lblpaymentmethod.Text == "Cash on delivery")
-                    {
-                        ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
-                    }
-                    else
-                    {
-                        if (lbl_refund_mode.Text == "Bank Account")
-                        {
-                            ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
-
-                        }
-
-                    }
-
-                    BindOrderItem();
-                }
-
-                break;
-
-        }
     }
 
     protected void rptbinddataprice_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        if (e.Item.ItemType == ListItemType.AlternatingItem ||
+        e.Item.ItemType == ListItemType.Item)
         {
             Label lblproductid = (Label)e.Item.FindControl("lblproductid");
             Label lblorderstatus = (Label)e.Item.FindControl("lblorderstatus");
 
-            DropDownList dblorderstatus = (DropDownList)e.Item.FindControl("dblorderstatus");
+            DropDownList dblorderstatus =
+                (DropDownList)e.Item.FindControl("dblorderstatus");
 
-            HtmlImage productphoto = (HtmlImage)e.Item.FindControl("productphoto");
+            HtmlImage productphoto =
+                (HtmlImage)e.Item.FindControl("productphoto");
 
             // Get Photo
-
             SqlDataReader get_photo = pdt.Product_Photos(lblproductid.Text);
 
             if (get_photo.Read())
@@ -246,24 +171,32 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
 
             get_photo.Close();
 
+            // dblorderstatus.SelectedValue = lblorderstatus.Text;
 
-            dblorderstatus.SelectedValue = lblorderstatus.Text;
 
-            Status_Option(dblorderstatus);
-            Status_Option(dblchangeorderstatus);
+            Status_Option(dblorderstatus, lblorderstatus);
         }
     }
 
-
-    private void Status_Option(DropDownList orderstatus)
+    private void Status_Option(DropDownList orderstatus, Label lblorderstatus)
     {
-        int no_of_order = mst.Count_data("Select Count(id) from ecommerce_order Where order_id='" + Request.QueryString[0] + "' ");
+        string status = lblorderstatus.Text.Trim();
 
-        int no_of_cancelled_request = mst.Count_data("Select Count(id) from ecommerce_order Where order_id='" + Request.QueryString[0] + "' AND order_status='Cancelled Request' ");
+        orderstatus.Items.Clear();
 
-        int no_of_cancelled = mst.Count_data("Select Count(id) from ecommerce_order Where order_id='" + Request.QueryString[0] + "' AND order_status='Cancelled' ");
-
-        if (no_of_order == no_of_cancelled)
+        if (status == "Order Assigned")
+        {
+            orderstatus.Items.Add(new ListItem("Delivered", "Delivered"));
+        }
+        else if (status == "Return Assigned")
+        {
+            orderstatus.Items.Add(new ListItem("Return Picked", "Return Picked"));
+        }
+        else if (status == "Return Picked")
+        {
+            orderstatus.Items.Add(new ListItem("Return Completed", "Return Completed"));
+        }
+        else
         {
             orderstatus.Enabled = false;
         }
@@ -274,32 +207,194 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
         if (e.CommandName.Equals("btnstatuschangesuborder"))
         {
             Label lblsuborderid = (Label)e.Item.FindControl("lblsuborderid");
+            Label lblorderitemname = (Label)e.Item.FindControl("lblorderitemname");
             DropDownList dblorderstatus = (DropDownList)e.Item.FindControl("dblorderstatus");
 
-            int delivered = odr.Update_Order_status_Deliver(
-                lblsuborderid.Text,
-                "Delivered",
-                DateTime.Now.ToString("yyyy-MM-dd"),
-                DateTime.Now.ToString("hh:mm tt"));
+            Label lbl_total_amount_of_product = (Label)e.Item.FindControl("lbl_total_amount_of_product");
 
-            if (delivered > 0)
+            string status = dblorderstatus.SelectedValue;
+
+            switch (status)
             {
-                ShowMessage("Order has been Delivered.", MessageType.Success);
-                BindOrderItem();
+                case "Confirm":
+
+                    int confirm = odr.Update_Order_status_Normal(lblsuborderid.Text, dblorderstatus.SelectedValue);
+
+                    if (confirm > 0)
+                    {
+                        ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
+
+                        BindOrderItem();
+                    }
+
+                    break;
+
+
+                case "Delivered":
+
+                    int delivered = odr.Update_Order_status_Deliver(lblsuborderid.Text, dblorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
+
+                    if (delivered > 0)
+                    {
+
+                        ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
+
+
+
+                        BindOrderItem();
+                    }
+
+                    break;
+
+                case "Return Picked":
+
+                    int returnPicked = odr.Update_Order_status_Return(
+                        lblsuborderid.Text,
+                        dblorderstatus.SelectedValue
+                    );
+
+                    if (returnPicked > 0)
+                    {
+                        ShowMessage("Return has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
+                        BindOrderItem();
+                    }
+
+                    break;
+
+
+                case "Return Completed":
+
+                    int returnCompleted = odr.Update_Order_status_Return(
+                        lblsuborderid.Text,
+                        dblorderstatus.SelectedValue
+                    );
+
+                    if (returnCompleted > 0)
+                    {
+                        ShowMessage("Return has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
+                        BindOrderItem();
+                    }
+
+                    break;
+
+                case "Cancelled":
+
+                    int cancelled = odr.Update_Order_status_Cancel(lblsuborderid.Text, dblorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
+
+                    if (cancelled > 0)
+                    {
+
+                        string new_total_order_amount = Convert.ToString(Math.Round(Convert.ToDouble(Convert.ToDecimal(lblgrandtotalamount.Text) - Convert.ToDecimal(lbl_total_amount_of_product.Text)), 0, MidpointRounding.AwayFromZero));
+
+                        int update_total_order_amount = odr.Update_Total_Order_Amount(new_total_order_amount, Request.QueryString[0]);
+
+                        // Refund Amount
+
+                        if (lblpaymentmethod.Text == "Razor Pay" || lblpaymentmethod.Text == "Cash on delivery")
+                        {
+                            ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
+
+                        }
+                        else
+                        {
+                            if (lbl_refund_mode.Text == "Bank Account")
+                            {
+                                ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
+
+
+
+                            }
+
+                        }
+
+                        BindOrderItem();
+                    }
+
+                    break;
+
             }
+
         }
     }
 
-    protected void dblchangeorderstatus_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        string status = dblchangeorderstatus.SelectedValue;
+    //protected void btnorderstatusupdate_ServerClick(object sender, EventArgs e)
+    //{
+    //     string status = dblchangeorderstatus.SelectedValue;
 
-        int result = bnc.Update_Delivery_Status(status, Request.QueryString["id"]);
+    //    switch (status)
+    //    {
+    //        case "Confirm":
 
-        if (result > 0)
-        {
-            ShowMessage("Delivery status updated.", MessageType.Success);
-        }
-        
-    }
+    //            int confirm = odr.Update_Order_status_Normal_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue);
+
+    //            if (confirm > 0)
+    //            {
+    //                ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
+
+    //                BindOrderItem();
+    //            }
+
+    //            break;
+
+    //        case "Dispatched":
+
+    //            int dispatched = odr.Update_Order_status_Normal_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue);
+
+    //            if (dispatched > 0)
+    //            {
+    //                ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
+
+    //                BindOrderItem();
+    //            }
+
+    //            break;
+
+    //        case "Delivered":
+
+    //            int delivered = odr.Update_Order_status_Deliver_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
+
+    //            if (delivered > 0)
+    //            {
+
+    //                ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
+
+    //                BindOrderItem();
+    //            }
+
+    //            break;
+
+    //        case "Cancelled":
+
+    //            int cancelled = odr.Update_Order_status_Cancel_OrderID(Request.QueryString[0], dblchangeorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
+
+    //            if (cancelled > 0)
+    //            {
+
+    //                // int update_invoice_status = odr.Update_Invoice_Status("Cancelled", Request.QueryString[0]);
+
+    //                // Refund Amount
+
+    //                if (lblpaymentmethod.Text == "Razor Pay" || lblpaymentmethod.Text == "Cash on delivery")
+    //                {
+    //                    ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
+    //                }
+    //                else
+    //                {
+    //                    if (lbl_refund_mode.Text == "Bank Account")
+    //                    {
+    //                        ShowMessage("Order has been " + dblchangeorderstatus.SelectedValue + ".", MessageType.Success);
+
+    //                    }
+
+    //                }
+
+    //                BindOrderItem();
+    //            }
+
+    //            break;
+
+    //    }
+    //}
+
+
 }

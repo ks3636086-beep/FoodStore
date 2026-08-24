@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+
+public partial class deliveryboy_order_details : System.Web.UI.Page
+{
+    public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString);
+    public enum MessageType { Success, Error, Info, Warning };
+    protected void ShowMessage(string Message, MessageType type)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
+    }
+
+    Master mst = new Master();
+    Product pdt = new Product();
+    Order odr = new Order();
+    Customer cmr = new Customer();
+
+    Backend bnc = new Backend();
+
+    string fy_from, fy_to;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            BindReturnOrder();
+        }
+    }
+
+
+    private DataTable GetData(string query)
+    {
+        DataTable dt = new DataTable();
+        string constr = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand(query))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    sda.SelectCommand = cmd;
+                    sda.Fill(dt);
+                }
+            }
+            return dt;
+        }
+    }
+
+    private void BindReturnOrder()
+    {
+        this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.order_status) as order_status FROM ecommerce_order a LEFT JOIN ecommerce_customer b ON a.customer_id=b.customer_id WHERE a.assigned_delivery_boy_id='" + Session["id"] + "' AND a.order_status IN ('Return Assigned','Return Picked','Return Completed') GROUP BY order_id ORDER BY id DESC");
+
+        this.rptbindorderdata.DataBind();
+    }
+
+    protected void dblorderstatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (dblorderstatus.SelectedValue == "Return Assigned")
+        {
+            this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.order_status) as order_status FROM ecommerce_order a LEFT JOIN ecommerce_customer b ON a.customer_id=b.customer_id WHERE a.assigned_delivery_boy_id='" + Session["id"] + "' AND a.order_status='Return Assigned' GROUP BY order_id ORDER BY id DESC");
+        }
+        else if (dblorderstatus.SelectedValue == "Return Picked")
+        {
+            this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.order_status) as order_status FROM ecommerce_order a LEFT JOIN ecommerce_customer b ON a.customer_id=b.customer_id WHERE a.assigned_delivery_boy_id='" + Session["id"] + "' AND a.order_status='Return Picked' GROUP BY order_id ORDER BY id DESC");
+        }
+        else if (dblorderstatus.SelectedValue == "Return Completed")
+        {
+            this.rptbindorderdata.DataSource = GetData("SELECT Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.order_status) as order_status FROM ecommerce_order a LEFT JOIN ecommerce_customer b ON a.customer_id=b.customer_id WHERE a.assigned_delivery_boy_id='" + Session["id"] + "' AND a.order_status='Return Completed' GROUP BY order_id ORDER BY id DESC");
+        }
+
+        this.rptbindorderdata.DataBind();
+    }
+}

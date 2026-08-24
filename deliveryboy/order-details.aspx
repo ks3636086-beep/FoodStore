@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/deliveryboy/deliveryboy.master" AutoEventWireup="true" CodeFile="order-details.aspx.cs" Inherits="deliveryboy_order_details" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
     <div class="alert" id="alert_container"></div>
 
     <br />
@@ -65,7 +67,8 @@
                                     <asp:Label ID="lblbillingname" Font-Bold="true" runat="server" Style="border: 1px solid #ffffff;"></asp:Label><br />
                                     <asp:Label ID="lblbillingaddress" runat="server" Style="border: 1px solid #ffffff;"></asp:Label><br />
                                     <asp:Label ID="lblbillingcitystatepincode" runat="server" Style="border: 1px solid #ffffff;"></asp:Label>, 
-                                <asp:Label ID="lblbillingcountry" runat="server" Text="India" Style="border: 1px solid #ffffff;"></asp:Label><br />
+                                   
+                                    <asp:Label ID="lblbillingcountry" runat="server" Text="India" Style="border: 1px solid #ffffff;"></asp:Label><br />
                                     <b>Landmark:</b>
                                     <asp:Label ID="lblbillinglandmark" runat="server" Text="India" Style="border: 1px solid #ffffff;"></asp:Label>
                                     <br />
@@ -83,7 +86,8 @@
                                     <asp:Label ID="lblshippingname" Font-Bold="true" runat="server" Style="border: 1px solid #ffffff;"></asp:Label><br />
                                     <asp:Label ID="lblshippingaddress" runat="server" Style="border: 1px solid #ffffff;"></asp:Label><br />
                                     <asp:Label ID="lblshippingcitystatepincode" runat="server" Style="border: 1px solid #ffffff;"></asp:Label>, 
-                                <asp:Label ID="lblshippingcountry" runat="server" Text="India" Style="border: 1px solid #ffffff;"></asp:Label>
+                                   
+                                    <asp:Label ID="lblshippingcountry" runat="server" Text="India" Style="border: 1px solid #ffffff;"></asp:Label>
                                     <br />
                                     <b>Landmark:</b>
                                     <asp:Label ID="lblshippinglandmark" runat="server" Text="India" Style="border: 1px solid #ffffff;"></asp:Label>
@@ -125,20 +129,22 @@
                         <div class="panel-body">
                             <br />
 
-                            <div class="col-md-4">
+                            <%--<div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1" style="font-weight: 600">Order Status</label>
-                                    <asp:DropDownList ID="dblchangeorderstatus" OnSelectedIndexChanged="dblchangeorderstatus_SelectedIndexChanged" AutoPostBack="true" class="form-control" runat="server">
-                                        <%-- <asp:ListItem>Processing</asp:ListItem>--%>
+                                    <asp:DropDownList ID="dblchangeorderstatus" class="form-control" runat="server">
+                                         
                                         <asp:ListItem>Confirm</asp:ListItem>
+                                        <asp:ListItem>Dispatched</asp:ListItem>
                                         <asp:ListItem>Delivered</asp:ListItem>
+                                        <asp:ListItem>Cancelled</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <button type="button" id="btnorderstatusupdate" runat="server" class="btn btn-success" style="margin-top: 22px" onserverclick="btnorderstatusupdate_ServerClick">Save Change</button>
-                            </div>
+                            </div>--%>
 
                             <asp:Label ID="lblorderitemname" hidden runat="server"></asp:Label>
                             <div class="row"></div>
@@ -166,7 +172,7 @@
 
                                         <tbody id="Tbody1" runat="server">
 
-                                            <asp:Repeater ID="rptbinddataprice" OnItemDataBound="rptbinddataprice_ItemDataBound" OnItemCommand="rptbinddataprice_ItemCommand" runat="server">
+                                            <asp:Repeater ID="rptbinddataprice" runat="server" OnItemDataBound="rptbinddataprice_ItemDataBound" OnItemCommand="rptbinddataprice_ItemCommand">
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblproductid" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
@@ -240,9 +246,9 @@
                                                                             <asp:DropDownList ID="dblorderstatus" class="form-control" runat="server">
                                                                                 <%--<asp:ListItem>Processing</asp:ListItem>--%>
                                                                                 <asp:ListItem>Confirm</asp:ListItem>
+                                                                                <asp:ListItem>Dispatched</asp:ListItem>
                                                                                 <asp:ListItem>Delivered</asp:ListItem>
-                                                                                <%--<asp:ListItem>Dispatched</asp:ListItem>
-                                                                                <asp:ListItem>Cancelled</asp:ListItem>--%>
+                                                                                <asp:ListItem>Cancelled</asp:ListItem>
                                                                             </asp:DropDownList>
                                                                         </div>
                                                                     </div>

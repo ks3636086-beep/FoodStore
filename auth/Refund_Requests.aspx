@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/deliveryboy/deliveryboy.master" AutoEventWireup="true" CodeFile="all-order.aspx.cs" Inherits="deliveryboy_all_order" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/auth/admin.master" AutoEventWireup="true" CodeFile="Refund_Requests.aspx.cs" Inherits="auth_Refund_Requests" %>
 
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
     <div class="alert" id="alert_container"></div>
 
     <div class="row"></div>
@@ -13,7 +15,7 @@
 
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" style="text-decoration: none">Orders</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" style="text-decoration: none">Refund Requests</a>
                     </h4>
                 </div>
 
@@ -22,7 +24,8 @@
                         <div class="panel-body">
                             <br />
 
-                            <div class="col-md-12">
+
+                            <%--   <div class="col-md-12">
 
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -31,7 +34,8 @@
                                             <asp:ListItem>All</asp:ListItem>
                                             <asp:ListItem>Delivered</asp:ListItem>
                                             <asp:ListItem>Assigned</asp:ListItem>
-                                           
+                                            <asp:ListItem>Return Assigned</asp:ListItem>
+                                             
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -47,98 +51,83 @@
                                     <button type="submit" id="btnsearch" runat="server" onserverclick="btnsearch_ServerClick" class="btn btn-success" style="margin-top: 22px">Search</button>
                                 </div>
 
-                            </div>
+                            </div>--%>
 
                             <div class="col-md-12">
+
 
                                 <div class="body-box table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
+
                                                 <th>#Order</th>
-                                                <th>Place Date</th>
                                                 <th>Customer</th>
-                                                <th>Mobile no.</th>
-                                                <th>Payment</th>
-                                                <th>Amount</th>
-                                                <th>Delivey Status</th>
-                                                <th>No of Items</th>
+                                                <th>Return Date</th>
+                                                <th>Return Time</th>
+                                                <th>Return Status</th>
+                                                <th>Refund Amount</th>
                                                 <th>Action</th>
+                                                <th>View</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                             </tr>
                                         </tfoot>
-                                        <tbody id="tlist" runat="server">
+                                        <tbody>
 
-                                            <asp:Repeater ID="rptbindorderdata" runat="server">
+                                            <asp:Repeater ID="rptbindorderdata" runat="server" OnItemCommand="rptbindorderdata_ItemCommand">
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lblorderid" hidden runat="server" Text='<%# Eval("order_id") %>'></asp:Label>
-                                                    <asp:Label ID="lbl_customer_mobileno" hidden runat="server" Text='<%# Eval("customer_mobileno") %>'></asp:Label>
-
                                                     <tr>
+
                                                         <td>
                                                             <a href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank">
                                                                 <%# Eval("order_id") %>
                                                             </a>
                                                         </td>
-                                                        <td>
-                                                            <%# Eval("order_date") == DBNull.Value ? "" : Convert.ToDateTime(Eval("order_date")).ToString("MMMM, dd, yyyy") %>
+
                                                         <td>
                                                             <%# Eval("customer_name") %>
                                                         </td>
                                                         <td>
-                                                            <%# Eval("customer_mobileno") %>
+                                                            <%# Eval("order_return_date") %>
+                                                        </td>
+                                                        <td><%# Eval("order_return_time") %>
                                                         </td>
                                                         <td>
-                                                            <%# Eval("payment_mode") %>
+                                                            <%# Eval("order_status") %>
                                                         </td>
+
                                                         <td>₹ <%# Eval("total_order_amount") %>
-                                                        </td>
-                                                        <td><%# Eval("delivery_status") %>
-                                                        </td>
+                                                         </td>
+
+
                                                         <td>
-                                                            <asp:Label ID="lblnoofitems" runat="server" Text="0"></asp:Label>
+                                                            <asp:Button ID="btnRefund"
+                                                                runat="server"
+                                                                Text="Refund"
+                                                                CommandName="Refund"
+                                                                CommandArgument='<%# Eval("order_id") %>'
+                                                                CssClass="btn btn-success btn-sm"
+                                                                OnClientClick="return confirm('Are you sure you want to process this refund?');"
+                                                                Visible='<%# Eval("order_status").ToString() == "Return Completed" %>' />
+
+                                                            <asp:Label ID="lblRefunded"
+                                                                runat="server"
+                                                                Text="Refunded"
+                                                               CssClass="btn btn-success btn-sm"
+                                                                Visible='<%# Eval("order_status").ToString() == "Refunded" %>'>
+                                                            </asp:Label>
                                                         </td>
 
                                                         <td>
-                                                            <a class="link-primary" href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank" title="View Order Details"><i class="fa fa-eye"></i></a>
-                                                            <a class="link-danger" href="#" data-toggle="modal" data-target="#Del<%#  Eval("order_id") %>" title="Delete" hidden><i class="fa fa-trash"></i></a>
-
+                                                            <a class="btn btn-primary" href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank" title="View Order Details"><i class="fa fa-eye"></i></a>
                                                         </td>
+
                                                     </tr>
 
-                                                    <%-- Delete Modal--%>
-
-                                                    <div class="modal fade" id="Del<%# Eval("order_id") %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
-                                                                </div>
-
-                                                                <div class="panel-body">
-                                                                    <asp:Label ID="lblroworderid" hidden runat="server" Text='<%# Eval("order_id") %>'></asp:Label>
-
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <center>
-                                                                                <label style="font-size: 25px;">Are you sure you want to delete this order?</label>
-                                                                            </center>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                                    <asp:LinkButton ID="lnkdelete" CommandName="btndelete" runat="server" class="btn btn-danger" Text="Yes"></asp:LinkButton>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
                                                 </ItemTemplate>
                                             </asp:Repeater>
@@ -149,7 +138,6 @@
 
 
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -173,7 +161,7 @@
         $(document).ready(function () {
             $('#example2').DataTable();
         });
-    </script>
+</script>
 
 
 </asp:Content>

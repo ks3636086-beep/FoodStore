@@ -10,7 +10,8 @@
             <div class="small-box" style="background-color: #3f51b5;">
                 <div class="inner">
                     <h3>
-                        <asp:Label ID="lbltodayorder" runat="server" Text="0"></asp:Label></h3>
+                        <asp:Label ID="lbltodayorder" runat="server" Text="0"></asp:Label>
+                    </h3>
                     <p style="color: white">Today Order</p>
                 </div>
                 <div class="icon">
@@ -25,7 +26,8 @@
             <div class="small-box" style="background-color: #4db6ac;">
                 <div class="inner">
                     <h3>
-                        <asp:Label ID="lbltodayPending" runat="server" Text="0"></asp:Label></h3>
+                        <asp:Label ID="lbltodayPending" runat="server" Text="0"></asp:Label>
+                    </h3>
                     <p style="color: white">Pending Order</p>
                 </div>
                 <div class="icon">
@@ -39,7 +41,8 @@
             <div class="small-box" style="background-color: #9575cd;">
                 <div class="inner">
                     <h3>
-                        <asp:Label ID="lbl_Delivered_order" runat="server" Text="0"></asp:Label></h3>
+                        <asp:Label ID="lbl_Delivered_order" runat="server" Text="0"></asp:Label>
+                    </h3>
                     <p style="color: white">Delivered Order</p>
                 </div>
                 <div class="icon">
@@ -54,7 +57,8 @@
             <div class="small-box " style="background-color: #ff8a65;">
                 <div class="inner">
                     <h3>
-                        <asp:Label ID="lbltotalOrder" runat="server" Text="0"></asp:Label></h3>
+                        <asp:Label ID="lbltotalOrder" runat="server" Text="0"></asp:Label>
+                    </h3>
                     <p style="color: white">Total Order</p>
                 </div>
                 <div class="icon">
@@ -91,7 +95,7 @@
                             <tbody>
 
                                 <asp:Repeater ID="rptbindorderdata" OnItemDataBound="rptbindorderdata_ItemDataBound" runat="server">
-                                    <ItemTemplate>
+                                    <itemtemplate>
 
                                         <asp:Label ID="lblorderid" hidden runat="server" Text='<%# Eval("order_id") %>'></asp:Label>
 
@@ -119,7 +123,10 @@
                                             </td>
 
                                             <td>
-                                                <a class="btn btn-primary" href="order-details.aspx?id=<%# Eval("order_id") %>" target="_blank" title="View Order Details">
+                                                <a class="btn btn-primary"
+                                                    href="order-details.aspx?ref=<%# Eval("order_id") %>"
+                                                    target="_blank"
+                                                    title="View Order Details">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                             </td>
@@ -127,7 +134,7 @@
                                         </tr>
 
 
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </asp:Repeater>
 
                             </tbody>

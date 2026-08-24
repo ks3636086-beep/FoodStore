@@ -142,13 +142,13 @@
                         <li class="nav-heading"><span>Navigation</span></li>
 
                         <li class="droplink"><a href="all-order.aspx"><i class="fas fa-clipboard-list"></i>
-                            <p>&nbsp;All Order</p>
+                            <p>&nbsp;Order Report</p>
                             <span class="arrow"></span></a>
 
                         </li>
 
-                        <li class="droplink"><a href="order-details.aspx"><i class="fas fa-shopping-bag"></i>
-                            <p>&nbsp;Order Details</p>
+                        <li class="droplink"><a href="Returns.aspx"><i class="fas fa-shopping-bag"></i> 
+                            <p>&nbsp;Return Report</p>
                             <span class="arrow"></span></a>
 
                         </li>

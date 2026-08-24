@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/deliveryboy/deliveryboy.master" AutoEventWireup="true" CodeFile="all-order.aspx.cs" Inherits="deliveryboy_all_order" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/deliveryboy/deliveryboy.master" AutoEventWireup="true" CodeFile="Returns.aspx.cs" Inherits="deliveryboy_order_details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="alert" id="alert_container"></div>
@@ -13,7 +13,7 @@
 
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" style="text-decoration: none">Orders</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" style="text-decoration: none">Return</a>
                     </h4>
                 </div>
 
@@ -27,11 +27,12 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">By Order Status</label>
-                                        <asp:DropDownList ID="dblorderstatus" AutoPostBack="true" class="form-control" runat="server" OnSelectedIndexChanged="dblorderstatus_SelectedIndexChanged">
+                                        <asp:DropDownList ID="dblorderstatus" AutoPostBack="true" class="form-control" runat="server" OnSelectedIndexChanged="dblorderstatus_SelectedIndexChanged" >
                                             <asp:ListItem>All</asp:ListItem>
-                                            <asp:ListItem>Delivered</asp:ListItem>
-                                            <asp:ListItem>Assigned</asp:ListItem>
-                                           
+                                            <asp:ListItem>Return Assigned</asp:ListItem>
+                                            <asp:ListItem>Return Picked</asp:ListItem>
+                                            <asp:ListItem>Return Completed</asp:ListItem>
+
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -44,7 +45,7 @@
                                 </div>
 
                                 <div class="col-md-3" id="btn_search" runat="server">
-                                    <button type="submit" id="btnsearch" runat="server" onserverclick="btnsearch_ServerClick" class="btn btn-success" style="margin-top: 22px">Search</button>
+                                    <button type="submit" id="btnsearch" runat="server" class="btn btn-success" style="margin-top: 22px">Search</button>
                                 </div>
 
                             </div>
@@ -82,23 +83,23 @@
                                                         <td>
                                                             <a href="order-details.aspx?ref=<%# Eval("order_id") %>" target="_blank">
                                                                 <%# Eval("order_id") %>
-                                                            </a>
+                                                         </a>
                                                         </td>
                                                         <td>
                                                             <%# Eval("order_date") == DBNull.Value ? "" : Convert.ToDateTime(Eval("order_date")).ToString("MMMM, dd, yyyy") %>
                                                         <td>
                                                             <%# Eval("customer_name") %>
-                                                        </td>
+                                                     </td>
                                                         <td>
                                                             <%# Eval("customer_mobileno") %>
-                                                        </td>
+                                                     </td>
                                                         <td>
                                                             <%# Eval("payment_mode") %>
-                                                        </td>
+                                                     </td>
                                                         <td>₹ <%# Eval("total_order_amount") %>
-                                                        </td>
-                                                        <td><%# Eval("delivery_status") %>
-                                                        </td>
+                                                     </td>
+                                                        <td><%# Eval("order_status") %>
+                                                     </td>
                                                         <td>
                                                             <asp:Label ID="lblnoofitems" runat="server" Text="0"></asp:Label>
                                                         </td>
@@ -173,7 +174,7 @@
         $(document).ready(function () {
             $('#example2').DataTable();
         });
-    </script>
+ </script>
 
 
 </asp:Content>

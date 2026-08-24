@@ -40,7 +40,7 @@ public partial class deliveryboy_dashboard : System.Web.UI.Page
     }
     private void BindOrder()
     {
-        rptbindorderdata.DataSource = mst.GetData("SELECT Top 5 Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a left join ecommerce_customer as b on a.customer_id=b.customer_id WHERE a.order_status!='Cancelled' AND a.assigned_delivery_boy_id='" + Session["id"] + "' AND a.delivery_status='Pending' GROUP BY order_id ORDER BY id DESC");
+        rptbindorderdata.DataSource = mst.GetData("SELECT Top 5 Max(a.id) as id, Max(a.order_id) as order_id, Max(a.order_delivery_time) as order_delivery_time, Max(a.order_date) as order_date, Max(b.customer_name) as customer_name, Max(a.payment_mode) as payment_mode, Max(a.total_order_amount) as total_order_amount, Max(b.customer_mobileno) as customer_mobileno, Max(a.delivery_status) as delivery_status FROM ecommerce_order a LEFT JOIN ecommerce_customer b ON a.customer_id=b.customer_id WHERE a.assigned_delivery_boy_id='" + Session["id"] + "' AND a.order_status='Order Assigned' GROUP BY order_id ORDER BY id DESC");
         rptbindorderdata.DataBind();
     }
 

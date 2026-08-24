@@ -134,7 +134,7 @@ public partial class auth_assign_orders : System.Web.UI.Page
                 {
                     con.Open();
 
-                    string update_status = "update ecommerce_order set assigned_date=@assigned_date,delivery_boy_name=@delivery_boy_name,delivery_boy_id=@delivery_boy_id,assigned_delivery_boy_id=@assigned_delivery_boy_id where order_id=@order_id";
+                    string update_status = "update ecommerce_order set assigned_date=@assigned_date,delivery_boy_name=@delivery_boy_name,delivery_boy_id=@delivery_boy_id, order_status = 'Order Assigned', delivery_status = 'Order Assigned', assigned_delivery_boy_id=@assigned_delivery_boy_id where order_id=@order_id";
                     SqlCommand cmd_status = new SqlCommand(update_status, con);
 
                     cmd_status.Parameters.AddWithValue("@assigned_delivery_boy_id", dblorderstatus.SelectedValue);
