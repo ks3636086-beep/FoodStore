@@ -161,7 +161,6 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 
@@ -180,8 +179,6 @@
             $('#example2').DataTable();
         });
     </script>
-
-
 
 </asp:Content>
 

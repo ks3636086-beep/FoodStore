@@ -122,24 +122,57 @@
                         data-aos-once="true">
                         <h6 class="fw-bold text-dark mb-3">Categories</h6>
                         <div class="list-group list-group-flush small">
-                            <a href="shop.aspx" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link active">
-                                <i class="fas fa-th-large me-2"></i>All Products
-                            </a>
-                            <a href="shop.aspx?cat=veg" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-                                <i class="fas fa-carrot me-2"></i>Vegetables
-                            </a>
-                            <a href="shop.aspx?cat=fruits" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-                                <i class="fas fa-apple-alt me-2"></i>Fruits
-                            </a>
-                            <a href="shop.aspx?cat=snacks" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-                                <i class="fas fa-cookie me-2"></i>Snacks
-                            </a>
-                            <a href="shop.aspx?cat=cookies" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-                                <i class="fas fa-bread-slice me-2"></i>Cookies
-                            </a>
-                            <a href="shop.aspx?cat=care" class="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3">
-                                <i class="fas fa-pump-soap me-2"></i>Personal Care
-                            </a>
+
+                            <asp:LinkButton
+                                runat="server"
+                                ID="lnkAllProducts"
+                                CommandName="category"
+                                CommandArgument="all"
+                                OnCommand="Category_Command"
+                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+        <i class="fas fa-th-large me-2"></i>All Products
+                            </asp:LinkButton>
+
+                            <asp:LinkButton
+                                runat="server"
+                                ID="lnkVegetables"
+                                CommandName="category"
+                                CommandArgument="2026081"
+                                OnCommand="Category_Command"
+                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+        <i class="fas fa-carrot me-2"></i>Vegetables
+                            </asp:LinkButton>
+
+                            <asp:LinkButton
+                                runat="server"
+                                ID="lnkFruits"
+                                CommandName="category"
+                                CommandArgument="2026082"
+                                OnCommand="Category_Command"
+                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+        <i class="fas fa-apple-alt me-2"></i>Fruits
+                            </asp:LinkButton>
+
+                            <asp:LinkButton
+                                runat="server"
+                                ID="lnkSnacks"
+                                CommandName="category"
+                                CommandArgument="2026083"
+                                OnCommand="Category_Command"
+                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+        <i class="fas fa-cookie me-2"></i>Snacks
+                            </asp:LinkButton>
+
+                            <asp:LinkButton
+                                runat="server"
+                                ID="lnkCookies"
+                                CommandName="category"
+                                CommandArgument="2026084"
+                                OnCommand="Category_Command"
+                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+        <i class="fas fa-bread-slice me-2"></i>Cookies
+                            </asp:LinkButton>
+
                         </div>
                     </div>
 
@@ -158,7 +191,7 @@
                                 <asp:TextBox ID="txtMaxPrice" runat="server" CssClass="form-control form-control-sm" Placeholder="Max ₹"></asp:TextBox>
                             </div>
                         </div>
-                        <asp:Button ID="btnFilterPrice" runat="server" Text="Apply Filter" CssClass="btn btn-success btn-sm w-100 rounded-2 fw-semibold" />
+                        <asp:Button ID="btnFilterPrice" runat="server" OnClick="btnFilterPrice_Click" Text="Apply Filter" CssClass="btn btn-success btn-sm w-100 rounded-2 fw-semibold" />
                     </div>
 
                 </div>
@@ -194,12 +227,13 @@
                 <!-- 5. Product Grid (6 per row on Desktop, 3 on Tablet, 2 on Mobile) -->
                 <div class="row g-3" id="product-container">
                     <asp:Repeater ID="rptProducts" runat="server">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
                                 <div class="card h-100 bg-white rounded-3 shadow-sm overflow-hidden product-card"
-                                    data-aos="fade-up"
-                                    data-aos-duration="700">
-
+                                    data-aos="fade-right"
+                                    data-aos-duration="700"
+                                    data-aos-delay="<%# Container.ItemIndex * 150 %>"
+                                    data-aos-once="true">
                                     <!-- Product Image & Overlay Actions -->
                                     <div class="product-img-wrapper">
                                         <img src='<%# "auth/" + Eval("photo_path") %>'
@@ -234,7 +268,7 @@
 
                                 </div>
                             </div>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:Repeater>
                 </div>
 

@@ -35,6 +35,7 @@ public partial class index : System.Web.UI.Page
         rptProducts.DataSource = mst.GetData("SELECT *,b.id as price_id,(select top 1 product_stock from ecommerce_product_price where product_id=a.product_id) as product_stock,(select top 1 photo_path from ecommerce_product_photos where product_id=a.product_id) as photo_path FROM ecommerce_product a left join ecommerce_product_price as b on a.product_id=b.product_id order by a.id asc");
         rptProducts.DataBind();
     }
+
     private string getsub_order_id()
     {
         string ctno = string.Empty;
@@ -158,8 +159,54 @@ public partial class index : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("login.aspx");
+                Response.Redirect("ecommerce_customer.aspx");
             }
+        }
+
+        if (e.CommandName.Equals("btnwishlist"))
+        {
+            if (Session["customer_id"] == null)
+            {
+                Response.Redirect("login.aspx");
+                return;
+            }
+
+            string customerId = Session["customer_id"].ToString();
+            string productId = e.CommandArgument.ToString();
+
+            mst.con.Open();
+
+            SqlCommand checkCmd = new SqlCommand(
+                "SELECT COUNT(*) FROM ecommerce_wishlist WHERE customer_id=@cid AND product_id=@pid",
+                mst.con);
+
+            checkCmd.Parameters.AddWithValue("@cid", customerId);
+            checkCmd.Parameters.AddWithValue("@pid", productId);
+
+            int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+            if (count == 0)
+            {
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO ecommerce_wishlist (wishlist_date, customer_id, product_id) VALUES (@date,@cid,@pid)",
+                    mst.con);
+
+                cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                cmd.Parameters.AddWithValue("@cid", customerId);
+                cmd.Parameters.AddWithValue("@pid", productId);
+
+                cmd.ExecuteNonQuery();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                    "Swal.fire('Added in wishlist ❤️')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                    "Swal.fire('Already in wishlist 🤍')", true);
+            }
+
+            mst.con.Close();
 
         }
     }

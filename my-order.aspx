@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- Breadcrumb -->
-    <div class="container-fluid">
+    <div class="container-fluid"
+        data-aos="fade-left"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
@@ -15,7 +18,10 @@
         </div>
     </div>
     <!-- My Order Start -->
-    <div class="container-fluid">
+    <div class="container-fluid"
+        data-aos="fade-left"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="row px-xl-5">
 
             <div class="col-lg-12">

@@ -134,12 +134,13 @@
                         </thead>
                         <tbody class="border-top-0">
                             <!-- PRESERVED REPEATER CONTROL -->
-                            <asp:Repeater ID="rptWishlist" runat="server">
+                            <asp:Repeater ID="rptWishlist" runat="server" OnItemCommand="rptWishlist_ItemCommand">
                                 <ItemTemplate>
                                     <tr>
                                         <!-- Product Image -->
                                         <td class="py-3 px-4">
-                                            <a href="#" class="d-block text-decoration-none">
+                                            <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'
+                                                class="d-block text-decoration-none">
                                                 <img src='auth/<%# Eval("photo_path") %>'
                                                     alt='<%# Eval("product_full_name") %>'
                                                     class="rounded border bg-light wishlist-img" />
@@ -167,10 +168,10 @@
 
                                         <!-- Add to Cart Action -->
                                         <td class="py-3 px-3 text-center">
-                                            <a class="btn btn-success btn-sm fw-semibold rounded-2 px-3 py-2 w-100 d-inline-flex align-items-center justify-content-center gap-1 shadow-sm action-btn" href="#">
+                                            <asp:LinkButton runat="server" ID="btnAddToCart" CommandArgument='<%# Eval("product_id") %>' CommandName="btnAddToCart" class="btn btn-success btn-sm fw-semibold rounded-2 px-3 py-2 w-100 d-inline-flex align-items-center justify-content-center gap-1 shadow-sm action-btn">
                                                 <i class="fas fa-shopping-cart small"></i>
                                                 <span>Add to Cart</span>
-                                            </a>
+                                            </asp:LinkButton>
                                         </td>
 
                                         <!-- PRESERVED LinkButton Delete Control -->
@@ -185,6 +186,24 @@
                                             <i class="fas fa-trash-alt"></i>
                                         </asp:LinkButton>
                                         </td>
+
+                                        <asp:Label ID="lbldeletecategoryid" runat="server"
+                                            Text='<%# Eval("product_id") %>' Visible="false" />
+
+                                        <asp:Label ID="product_price_id" runat="server"
+                                            Text='<%# Eval("product_price_id") %>' Visible="false" />
+
+                                        <asp:Label ID="lblname" runat="server"
+                                            Text='<%# Eval("product_full_name") %>' Visible="false" />
+
+                                        <asp:Label ID="lbl_sell_price" runat="server"
+                                            Text='<%# Eval("product_final_sell_price") %>' Visible="false" />
+
+                                        <asp:Label ID="lbl_unit" runat="server"
+                                            Text='<%# Eval("product_unit") %>' Visible="false" />
+
+                                        <asp:Label ID="lbl_unit_value" runat="server"
+                                            Text='<%# Eval("product_unit_value") %>' Visible="false" />
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -196,9 +215,9 @@
 
         <!-- 3. ACTION BAR / CONTINUE SHOPPING -->
         <div class="d-flex justify-content-between align-items-center mt-4"
-             data-aos="fade-up"
-             data-aos-duration="800"
-             data-aos-once="true">
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-once="true">
             <a href="shop.aspx" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold small d-inline-flex align-items-center gap-2">
                 <i class="fas fa-arrow-left"></i>
                 <span>Continue Shopping</span>

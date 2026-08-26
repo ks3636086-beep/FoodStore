@@ -197,20 +197,21 @@
                         <!-- Action Buttons (Add To Cart & Buy Now) -->
                         <div class="d-flex flex-row gap-2 gap-sm-3 mb-3">
                             <!-- Add To Cart Button -->
-                            <a href="#" class="btn btn-success btn-sm btn-md-md px-3 px-md-4 py-2 py-md-2.5 rounded-pill fw-semibold fs-7 fs-md-6 shadow-sm flex-fill text-center d-inline-flex align-items-center justify-content-center">
+                            <asp:LinkButton runat="server" ID="btnAddToCart" OnClick="btnAddToCart_Click" class="btn btn-success btn-sm btn-md-md px-3 px-md-4 py-2 py-md-2.5 rounded-pill fw-semibold fs-7 fs-md-6 shadow-sm flex-fill text-center d-inline-flex align-items-center justify-content-center">
                                 <i class="fas fa-shopping-basket me-1 me-sm-2"></i>Add To Cart
-                            </a>
+                            </asp:LinkButton>
 
                             <!-- Buy Now Button -->
-                            <a href="#" class="btn btn-dark btn-sm btn-md-md px-3 px-md-4 py-2 py-md-2.5 rounded-pill fw-semibold fs-7 fs-md-6 shadow-sm flex-fill text-center d-inline-flex align-items-center justify-content-center">
+                            <asp:LinkButton runat="server" ID="btnBuyNow" OnClick="btnBuyNow_Click" class="btn btn-dark btn-sm btn-md-md px-3 px-md-4 py-2 py-md-2.5 rounded-pill fw-semibold fs-7 fs-md-6 shadow-sm flex-fill text-center d-inline-flex align-items-center justify-content-center">
                                 <i class="fas fa-bolt me-1 me-sm-2"></i>Buy Now
-                            </a>
+                            </asp:LinkButton>
                         </div>
 
                         <!-- Wishlist Button (Preserved ID="btnWishlist" & OnClick="btnWishlist_Click") -->
                         <div class="mb-4">
                             <asp:LinkButton runat="server" ID="btnWishlist" OnClick="btnWishlist_Click" CssClass="btn btn-link text-danger text-decoration-none fw-semibold p-0">
-                                <i class="far fa-heart me-1"></i> Add to Wishlist
+                                <i class="far fa-heart me-1"></i>Add to Wishlist
+                           
                             </asp:LinkButton>
                         </div>
 
@@ -260,8 +261,15 @@
                     <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs-pane" type="button" role="tab">Specifications</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-pane" type="button" role="tab">Reviews (3)</button>
-                </li>
+                    <button class="nav-link"
+                        id="reviews-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#reviews-pane"
+                        type="button"
+                        role="tab">
+                        Reviews
+                    </button>
+                </li>   
             </ul>
 
             <div class="tab-content p-2" id="productTabContent">
@@ -300,48 +308,70 @@
 
                 <!-- Product Reviews Pane -->
                 <div class="tab-pane fade" id="reviews-pane" role="tabpanel">
+
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
                             <h5 class="fw-bold text-dark mb-1">Customer Reviews</h5>
+
                             <div class="text-warning small">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+
                                 <span class="text-dark fw-bold ms-1">4.8 / 5</span>
                             </div>
                         </div>
-                        <a href="#leave-review" class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold">Leave a Review</a>
+
+                        <a href="#leave-review"
+                            class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold">Leave a Review
+                        </a>
                     </div>
 
-                    <!-- Review Card 1 -->
-                    <div class="d-flex align-items-start border-bottom pb-3 mb-3">
-                        <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 45px; height: 45px; flex-shrink: 0;">
-                            A
-                       
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-1">
-                                <h6 class="fw-bold text-dark mb-0">Ankit Sharma</h6>
-                                <span class="text-muted small">• 3/1/24</span>
-                            </div>
-                            <div class="text-warning small mb-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <p class="text-muted small mb-0">Extremely fresh quality and prompt packaging. Will definitely order regularly!</p>
-                        </div>
-                    </div>
 
-                    <!-- Review Card 2 -->
-                    <div class="d-flex align-items-start border-bottom pb-3 mb-3">
-                        <div class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 45px; height: 45px; flex-shrink: 0;">
-                            P
-                       
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-1">
-                                <h6 class="fw-bold text-dark mb-0">Pooja Patel</h6>
-                                <span class="text-muted small">• 3/1/24</span>
+                    <!-- YAHAN Review Card 1 & 2 DELETE KARO -->
+
+                    <asp:Repeater ID="rptReviews" runat="server">
+
+                        <itemtemplate>
+
+                            <div class="d-flex align-items-start border-bottom pb-3 mb-3">
+
+                                <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fw-bold me-3"
+                                    style="width: 45px; height: 45px; flex-shrink: 0;">
+
+                                    <%# Eval("reviwer_name").ToString().Substring(0, 1).ToUpper() %>
+                                </div>
+
+                                <div>
+
+                                    <div class="d-flex align-items-center gap-2 mb-1">
+
+                                        <h6 class="fw-bold text-dark mb-0">
+                                            <%# Eval("reviwer_name") %>
+                                        </h6>
+
+                                        <span class="text-muted small">• <%# Eval("review_date") %>
+                                        </span>
+
+                                    </div>
+
+                                  <%--  <div class="text-warning small mb-1">
+                                        <%# GetStars(Eval("review_star")) %>
+                                    </div>--%>
+
+                                    <p class="text-muted small mb-0">
+                                        <%# Eval("reviewer_message") %>
+                                    </p>
+
+                                </div>
+
                             </div>
-                            <div class="text-warning small mb-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <p class="text-muted small mb-0">Great product, completely natural and delivered fast.</p>
-                        </div>
-                    </div>
+
+                        </itemtemplate>
+
+                    </asp:Repeater>
 
                 </div>
 
@@ -358,19 +388,20 @@
             <!-- Preserved Repeater ID="rptProducts" & OnItemCommand="rptProducts_ItemCommand" -->
             <div class="row g-3">
                 <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                    <ItemTemplate>
+                    <itemtemplate>
                         <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                             <div class="card h-100 bg-white shadow-sm related-card">
 
                                 <div class="related-img-wrapper">
-                                    <img src='<%# "auth/" + Eval("photo_path") %>'
-                                        alt='<%# Eval("product_full_name") %>' />
+                                    <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
+                                        <img src='<%# "auth/" + Eval("photo_path") %>'
+                                            alt='<%# Eval("product_full_name") %>' />
                                 </div>
 
                                 <div class="card-body p-3 d-flex flex-column justify-content-between">
                                     <div>
                                         <!-- Preserved URL parameter ref=... -->
-                                        <a href='<%# "shop-detail.aspx?ref=" + Eval("product_id") %>' class="text-decoration-none">
+                                        <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>' class="text-decoration-none">
                                             <h6 class="card-title text-dark fw-bold mb-1 text-truncate" title='<%# Eval("product_full_name") %>'>
                                                 <%# Eval("product_full_name") %>
                                             </h6>
@@ -381,13 +412,14 @@
                                     </div>
 
                                     <asp:LinkButton runat="server" ID="btncart" CommandName="AddToCart" CommandArgument='<%# Eval("product_id") %>' CssClass="btn btn-outline-success btn-sm w-100 rounded-2 mt-2 fw-semibold">
-                                        <i class="fas fa-shopping-basket me-1"></i> Add To Cart
+                                        <i class="fas fa-shopping-basket me-1"></i>Add To Cart
+                                   
                                     </asp:LinkButton>
                                 </div>
 
                             </div>
                         </div>
-                    </ItemTemplate>
+                    </itemtemplate>
                 </asp:Repeater>
             </div>
         </div>

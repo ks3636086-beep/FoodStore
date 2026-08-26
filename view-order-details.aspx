@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- Breadcrumb -->
-    <div class="container-fluid">
+    <div class="container-fluid"
+        data-aos="fade-left"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
@@ -18,7 +21,10 @@
 
 
     <!-- Shipping Details -->
-    <div class="container-fluid">
+    <div class="container-fluid"
+        data-aos="fade-right"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="row px-xl-5">
 
             <div class="col-lg-12">
@@ -93,7 +99,10 @@
 
     <!-- Product Details -->
 
-    <div class="container-fluid">
+    <div class="container-fluid"
+        data-aos="fade-right"
+        data-aos-duration="800"
+        data-aos-once="true">
         <div class="row px-xl-5">
 
             <div class="col-lg-12">
@@ -213,7 +222,7 @@
                        
                         </button>
 
-                        <button id="btnreturn" runat="server" onserverclick="btnreturn_ServerClick"  
+                        <button id="btnreturn" runat="server" onserverclick="btnreturn_ServerClick"
                             class="btn" visible="false"
                             style="background: #28a745; color: white; border-radius: 25px; padding: 10px 30px;">
 

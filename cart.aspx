@@ -96,7 +96,11 @@
                                             <!-- Product Image & Name -->
                                             <td>
                                                 <div class="d-flex align-items-center gap-3">
-                                                    <img src='auth/<%# Eval("photo_path") %>' alt='<%# Eval("product_name") %>' class="cart-img-box border rounded bg-light p-1 flex-shrink-0" />
+                                                    <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
+                                                        <img src='auth/<%# Eval("photo_path") %>'
+                                                            alt='<%# Eval("product_name") %>'
+                                                            class="cart-img-box border rounded bg-light p-1 flex-shrink-0" />
+                                                    </a>
                                                     <div>
                                                         <h6 class="fw-semibold text-dark mb-1 fs-6">
                                                             <!-- Preserved lblname -->

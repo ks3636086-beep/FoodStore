@@ -376,15 +376,19 @@
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
                 <itemtemplate>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
-                        <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card product-reveal"
-                            data-aos="fade-left"
-                            data-aos-delay="<%# Container.ItemIndex * 100 %>">
+                        <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card"
+                            data-aos="fade-up"
+                            data-aos-duration="700"
+                            data-aos-delay="<%# Container.ItemIndex * 150 %>"
+                            data-aos-once="true">
                             <!-- PRODUCT IMAGE & TOP-RIGHT ACTION BUTTONS -->
                             <div class="product-img-wrapper position-relative bg-light">
-                                <img src='<%# "auth/" + Eval("photo_path") %>'
-                                    alt='<%# Eval("product_full_name") %>'
-                                    class="card-img-top product-thumb-img"
-                                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
+                                <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
+                                    <img src='<%# "auth/" + Eval("photo_path") %>'
+                                        alt='<%# Eval("product_full_name") %>'
+                                        class="card-img-top product-thumb-img"
+                                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
+                                </a>
 
                                 <!-- TOP-RIGHT CIRCULAR FLOATING ICONS -->
                                 <div class="position-absolute top-0 end-0 p-2 d-flex flex-column gap-2" style="z-index: 2;">
@@ -519,74 +523,129 @@
     <!-- End Products  -->
 
 
-    <!-- STATIC ADDITION 3: Why Choose Us (3 Column Banner) -->
 
-    <div class="py-5"
-        data-aos="zoom-in"
-        data-aos-duration="1200"
-        data-aos-delay="200"
-        data-aos-easing="ease-out-cubic"
-        style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);">
-        <div class="container">
+    <!-- UNIQUE & MODERN GROCERY VISUAL FEATURES SECTION -->
+    <div class="py-5 position-relative overflow-hidden"
+        style="background: #fafbfc;"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        data-aos-once="true">
+
+        <div class="container position-relative" style="z-index: 2;">
+
+            <!-- SECTION TITLE HEADER -->
+            <div class="row justify-content-center mb-4 text-center">
+                <div class="col-lg-6">
+                    <span class="badge bg-success-subtle text-success fw-bold px-3 py-1.5 rounded-pill mb-2 border border-success border-opacity-20 extra-small">
+                        <i class="fas fa-leaf me-1"></i>WHY CHOOSE FOODSTORE
+                    </span>
+                    <h4 class="fw-bold text-dark mb-1 fs-4">Freshness & Quality You Can Trust</h4>
+                    <p class="text-muted extra-small mb-0">From local organic farms straight to your kitchen table in minutes.</p>
+                </div>
+            </div>
+
+            <!-- 3-COLUMN UNIQUE IMAGE FEATURE CARDS -->
             <div class="row g-4">
 
-                <!-- Feature 1: Naturally Grown -->
+                <!-- Feature 1: Organic Farm Fresh -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 rounded-4 p-3 shadow-sm h-100 bg-white position-relative overflow-hidden"
-                        style="border-left: 4px solid #198754 !important; transition: all 0.3s ease;">
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-4 p-3 d-flex align-items-center justify-content-center me-3 flex-shrink-0 shadow-sm"
-                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #d1e7dd 0%, #a3cfbb 100%); color: #0f5132;">
-                                <i class="fas fa-leaf fa-xl"></i>
-                            </div>
+                    <div class="feature-visual-card card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-white">
+
+                        <!-- Image Area with Micro Overlay -->
+                        <div class="position-relative overflow-hidden" style="height: 180px;">
+                            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop"
+                                alt="Naturally Grown Fresh Produce"
+                                class="w-100 h-100 object-fit-cover feature-card-img" />
+
+                            <!-- Floating Glass Badge -->
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-white bg-opacity-90 text-success fw-bold px-2.5 py-1.5 rounded-pill shadow-sm backdrop-blur extra-small d-flex align-items-center gap-1 border border-white">
+                                <i class="fas fa-certificate text-success"></i>100% ORGANIC
+                            </span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="card-body p-3.5 d-flex flex-column justify-content-between">
                             <div>
-                                <span class="badge bg-success-subtle text-success fw-bold px-2 py-1 mb-1 rounded-pill" style="font-size: 0.7rem;">100% ORGANIC</span>
-                                <h6 class="fw-bold text-dark mb-1 fs-6">Naturally Grown</h6>
-                                <p class="text-muted small mb-0" style="font-size: 0.825rem; line-height: 1.3;">
-                                    Zero chemicals. Direct farm-fresh produce sourced daily.
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="feature-icon-circle bg-success-subtle text-success rounded-circle">
+                                        <i class="fas fa-seedling"></i>
+                                    </span>
+                                    <h6 class="fw-bold text-dark mb-0 fs-6">Naturally Grown</h6>
+                                </div>
+                                <p class="text-muted extra-small mb-0 mt-2 leading-relaxed">
+                                    Zero harmful chemicals or pesticides. Direct farm-fresh organic produce sourced daily from trusted local growers.
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
-                <!-- Feature 2: Quality Inspected -->
+                <!-- Feature 2: Quality Inspection -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 rounded-4 p-3 shadow-sm h-100 bg-white position-relative overflow-hidden"
-                        style="border-left: 4px solid #fd7e14 !important; transition: all 0.3s ease;">
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-4 p-3 d-flex align-items-center justify-content-center me-3 flex-shrink-0 shadow-sm"
-                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffe5d0 0%, #fecba1 100%); color: #a34e00;">
-                                <i class="fas fa-shield-halved fa-xl"></i>
-                            </div>
+                    <div class="feature-visual-card card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-white">
+
+                        <!-- Image Area with Micro Overlay -->
+                        <div class="position-relative overflow-hidden" style="height: 180px;">
+                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=800&auto=format&fit=crop"
+                                alt="Quality Assured Grocery Inspection"
+                                class="w-100 h-100 object-fit-cover feature-card-img" />
+
+                            <!-- Floating Glass Badge -->
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-white bg-opacity-90 text-warning-emphasis fw-bold px-2.5 py-1.5 rounded-pill shadow-sm backdrop-blur extra-small d-flex align-items-center gap-1 border border-white">
+                                <i class="fas fa-shield-check text-warning"></i>3-STEP CHECK
+                            </span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="card-body p-3.5 d-flex flex-column justify-content-between">
                             <div>
-                                <span class="badge bg-warning-subtle text-warning-emphasis fw-bold px-2 py-1 mb-1 rounded-pill" style="font-size: 0.7rem;">3-STEP CHECK</span>
-                                <h6 class="fw-bold text-dark mb-1 fs-6">Quality Assured</h6>
-                                <p class="text-muted small mb-0" style="font-size: 0.825rem; line-height: 1.3;">
-                                    Hand-picked & quality checked before every dispatch.
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="feature-icon-circle bg-warning-subtle text-warning-emphasis rounded-circle">
+                                        <i class="fas fa-check-double"></i>
+                                    </span>
+                                    <h6 class="fw-bold text-dark mb-0 fs-6">Quality Assured</h6>
+                                </div>
+                                <p class="text-muted extra-small mb-0 mt-2 leading-relaxed">
+                                    Every single item is hand-picked and double-checked for weight, freshness, and safety before final dispatch.
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
-                <!-- Feature 3: Superfast Delivery -->
+                <!-- Feature 3: Express Delivery -->
                 <div class="col-lg-4 col-md-12">
-                    <div class="card border-0 rounded-4 p-3 shadow-sm h-100 bg-white position-relative overflow-hidden"
-                        style="border-left: 4px solid #0d6efd !important; transition: all 0.3s ease;">
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-4 p-3 d-flex align-items-center justify-content-center me-3 flex-shrink-0 shadow-sm"
-                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #cfe2ff 0%, #9ec5fe 100%); color: #0a58ca;">
-                                <i class="fas fa-bolt fa-xl"></i>
-                            </div>
+                    <div class="feature-visual-card card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-white">
+
+                        <!-- Image Area with Micro Overlay -->
+                        <div class="position-relative overflow-hidden" style="height: 180px;">
+                            <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=800&auto=format&fit=crop"
+                                alt="Instant Grocery Delivery"
+                                class="w-100 h-100 object-fit-cover feature-card-img" />
+
+                            <!-- Floating Glass Badge -->
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-white bg-opacity-90 text-primary fw-bold px-2.5 py-1.5 rounded-pill shadow-sm backdrop-blur extra-small d-flex align-items-center gap-1 border border-white">
+                                <i class="fas fa-bolt text-primary"></i>EXPRESS DELIVERY
+                            </span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="card-body p-3.5 d-flex flex-column justify-content-between">
                             <div>
-                                <span class="badge bg-primary-subtle text-primary fw-bold px-2 py-1 mb-1 rounded-pill" style="font-size: 0.7rem;">EXPRESS DELIVERY</span>
-                                <h6 class="fw-bold text-dark mb-1 fs-6">Instant Doorstep Delivery</h6>
-                                <p class="text-muted small mb-0" style="font-size: 0.825rem; line-height: 1.3;">
-                                    Packed with care & delivered right to your door in minutes.
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="feature-icon-circle bg-primary-subtle text-primary rounded-circle">
+                                        <i class="fas fa-truck-fast"></i>
+                                    </span>
+                                    <h6 class="fw-bold text-dark mb-0 fs-6">Instant Doorstep Delivery</h6>
+                                </div>
+                                <p class="text-muted extra-small mb-0 mt-2 leading-relaxed">
+                                    Temperature-controlled smart packaging to ensure your veggies and fruits reach your door perfectly fresh in minutes.
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -594,6 +653,51 @@
         </div>
     </div>
 
+    <!-- STYLING FOR MODERN MICRO-INTERACTIONS -->
+    <style>
+        /* Custom Typography & Layout Utilities */
+        .extra-small {
+            font-size: 0.8125rem;
+        }
+
+        .leading-relaxed {
+            line-height: 1.5;
+        }
+
+        .backdrop-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Small Icon Badge Inside Title */
+        .feature-icon-circle {
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        /* Modern Card Hover Effects */
+        .feature-visual-card {
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06) !important;
+        }
+
+        .feature-card-img {
+            transition: transform 0.5s ease;
+        }
+
+        .feature-visual-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+        }
+
+            .feature-visual-card:hover .feature-card-img {
+                transform: scale(1.06);
+            }
+    </style>
 
     <!-- STATIC ADDITION 4: Customer Testimonial Carousel Banner -->
     <div class="container my-5 overflow-hidden"
@@ -794,6 +898,6 @@
 
         });
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 
