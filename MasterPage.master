@@ -213,10 +213,16 @@
                         <!-- 2. Search Bar (Full Available Space Leega) -->
                         <div class="flex-grow-1 mx-lg-4 my-2 my-lg-0">
                             <div class="input-group w-100">
-                                <input class="form-control bg-light border-end-0 rounded-start-pill ps-3" type="search" placeholder="Search fresh groceries..." aria-label="Search">
-                                <button class="btn btn-success rounded-end-pill px-3" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                                <asp:TextBox ID="txtSearch" runat="server"
+                                    CssClass="form-control bg-light border-end-0 rounded-start-pill ps-3"
+                                    placeholder="Search fresh groceries...">
+                                </asp:TextBox>
+
+                                <asp:LinkButton ID="btnSearch" runat="server"
+                                    CssClass="btn btn-success rounded-end-pill px-3"
+                                    OnClick="btnSearch_Click">
+            <i class="fa fa-search"></i>
+                                </asp:LinkButton>
                             </div>
                         </div>
 

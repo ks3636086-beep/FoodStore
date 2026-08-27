@@ -85,7 +85,7 @@
             <h2 class="fw-bold text-dark mb-1">Shop</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 justify-content-center justify-content-md-start">
-                    <li class="breadcrumb-item"><a href="default.aspx" class="text-success text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.aspx" class="text-success text-decoration-none">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Shop</li>
                 </ol>
             </nav>
@@ -107,10 +107,16 @@
                         data-aos-once="true">
                         <h6 class="fw-bold text-dark mb-3">Search Products</h6>
                         <div class="input-group">
-                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control border-end-0 shadow-none fs-7" Placeholder="Search products..."></asp:TextBox>
-                            <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-outline-success border-start-0">
-                                <i class="fas fa-search"></i>
-                            </asp:LinkButton>
+                            <asp:TextBox ID="txtSearch" runat="server"
+                                CssClass="form-control border-end-0 shadow-none fs-7"
+                                Placeholder="Search products...">
+    </asp:TextBox>
+
+                            <asp:LinkButton ID="btnSearch" runat="server"
+                                CssClass="btn btn-outline-success border-start-0"
+                                OnClick="btnSearch_Click">
+        <i class="fas fa-search"></i>
+    </asp:LinkButton>
                         </div>
                     </div>
 
@@ -236,17 +242,18 @@
                                     data-aos-once="true">
                                     <!-- Product Image & Overlay Actions -->
                                     <div class="product-img-wrapper">
+                                         <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
                                         <img src='<%# "auth/" + Eval("photo_path") %>'
                                             alt='<%# Eval("product_full_name") %>'
                                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
 
                                         <div class="product-actions-overlay">
-                                            <a href='<%# "product-details.aspx?id=" + Eval("product_id") %>' class="action-btn" title="View Details">
+                                           <%-- <a href='<%# "product-details.aspx?id=" + Eval("product_id") %>' class="action-btn" title="View Details">
                                                 <i class="fas fa-eye small"></i>
-                                            </a>
-                                            <a href="#" class="action-btn" title="Add to Wishlist">
+                                            </a>--%>
+                                           <%-- <a href="#" class="action-btn" title="Add to Wishlist">
                                                 <i class="far fa-heart small"></i>
-                                            </a>
+                                            </a>--%>
                                         </div>
                                     </div>
 

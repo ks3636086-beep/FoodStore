@@ -19,9 +19,37 @@ public partial class shop : System.Web.UI.Page
     Master mst = new Master();
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindData1();
-        ViewState["CategoryId"] = "all";
+        if (!IsPostBack)
+        {
+            ViewState["CategoryId"] = "all";
 
+            string search = Request.QueryString["search"];
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                SearchProducts(search);
+            }
+            else
+            {
+                BindData1();
+            }
+        }
+
+    }
+
+    private void SearchProducts(string search)
+    {
+        string query = @"SELECT *
+                     FROM ecommerce_product a
+                     LEFT JOIN ecommerce_product_price b
+                         ON a.product_id = b.product_id
+                     LEFT JOIN ecommerce_product_photos c
+                         ON a.product_id = c.product_id
+                     WHERE a.product_full_name LIKE '%" + search + @"%'
+                        OR a.product_description LIKE '%" + search + @"%'";
+
+        rptProducts.DataSource = mst.GetData(query);
+        rptProducts.DataBind();
     }
     private void BindData1()
     {
@@ -102,5 +130,19 @@ public partial class shop : System.Web.UI.Page
 
         rptProducts.DataSource = mst.GetData(query);
         rptProducts.DataBind();
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        string search = txtSearch.Text.Trim();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            SearchProducts(search);
+        }
+        else
+        {
+            BindData1();
+        }
     }
 }

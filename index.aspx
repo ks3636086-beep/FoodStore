@@ -419,6 +419,9 @@
                             <asp:Label ID="lbl_unit" hidden runat="server" Text='<%# Eval("product_unit") %>'></asp:Label>
                             <asp:Label ID="lbl_unit_value" hidden runat="server" Text='<%# Eval("product_unit_value") %>'></asp:Label>
 
+                            <asp:Label ID="Label2" hidden runat="server"
+                                Text='<%# Eval("price_id") %>'></asp:Label>
+
                             <!-- PRODUCT DETAILS & ADD TO CART -->
                             <div class="card-body p-3 d-flex flex-column justify-content-between">
                                 <div>

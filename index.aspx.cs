@@ -21,9 +21,41 @@ public partial class index : System.Web.UI.Page
     string sub_order_id = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindData();
-        BindData1();
+        if (!IsPostBack)
+        {
+            BindData();
+            BindData1();
+
+            string search = Request.QueryString["search"];
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                SearchProducts(search);
+            }
+        }
     }
+
+    private void SearchProducts(string search)
+    {
+        string query = @"SELECT *,
+                            b.id as price_id,
+                            (select top 1 product_stock
+                             from ecommerce_product_price
+                             where product_id=a.product_id) as product_stock,
+                            (select top 1 photo_path
+                             from ecommerce_product_photos
+                             where product_id=a.product_id) as photo_path
+                     FROM ecommerce_product a
+                     LEFT JOIN ecommerce_product_price as b
+                         ON a.product_id=b.product_id
+                     WHERE a.product_full_name LIKE '%" + search + @"%'
+                        OR a.product_description LIKE '%" + search + @"%'
+                     ORDER BY a.id ASC";
+
+        rptProducts.DataSource = mst.GetData(query);
+        rptProducts.DataBind();
+    }
+
     private void BindData()
     {
         rptCategory.DataSource = mst.GetData("SELECT * FROM ecommerce_category ORDER BY ID DESC");

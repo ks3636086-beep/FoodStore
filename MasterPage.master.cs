@@ -66,4 +66,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
             wishlistData.Close();
         }
     }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        SearchProducts();
+    }
+
+
+    private void SearchProducts()
+    {
+        string search = txtSearch.Text.Trim();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
+
+            Response.Redirect(currentPage + "?search=" + Server.UrlEncode(search));
+        }
+    }
 }
