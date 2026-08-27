@@ -62,9 +62,23 @@
                 background: black;
             }
 
-        @media(max-width:500px) {
+        @media (max-width: 500px) {
+            body {
+                padding: 15px;
+                height: 100dvh;
+                min-height: 100dvh;
+                overflow: hidden;
+            }
+
+            form#form1 {
+                width: 100%;
+                max-width: 100%;
+            }
+
             .login-box {
-                width: 90%;
+                width: 100%;
+                max-width: 380px;
+                margin: 0 auto;
             }
         }
     </style>

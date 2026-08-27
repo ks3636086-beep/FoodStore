@@ -82,7 +82,7 @@
                             <thead class="bg-light text-muted small text-uppercase">
                                 <tr>
                                     <th style="min-width: 180px;">Product</th>
-                                    <th class="d-mobile-none">Price</th>
+                                    <th class="d-none d-md-table-cell">Price</th>
                                     <th class="text-center">Quantity</th>
                                     <th class="text-end">Total</th>
                                     <th class="text-end" style="width: 48px;"></th>
@@ -91,7 +91,7 @@
                             <tbody>
                                 <!-- Preserved Repeater ID="rptCart" & OnItemCommand="rptCart_ItemCommand" -->
                                 <asp:Repeater ID="rptCart" runat="server" OnItemCommand="rptCart_ItemCommand">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <tr>
                                             <!-- Product Image & Name -->
                                             <td>
@@ -152,7 +152,7 @@
                                                 </asp:LinkButton>
                                             </td>
                                         </tr>
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </asp:Repeater>
                             </tbody>
                         </table>
@@ -299,55 +299,77 @@
 
             </div>
 
+
+
             <!-- Right Column (Price Details / Summary) -->
-            <div class="col-lg-4">
-                <div class="card border rounded-3 shadow-sm sticky-lg-top"
-                    style="top: 90px; z-index: 10;"
-                    data-aos="fade-left"
-                    data-aos-duration="900"
-                    data-aos-once="true">
-                    <div class="card-header bg-white py-3 border-bottom">
-                        <h2 class="h6 fw-bold text-dark mb-0"><i class="fas fa-receipt me-2 text-success"></i>Price Details</h2>
-                    </div>
-                    <div class="card-body p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
-                            <span>Subtotal</span>
-                            <span class="fw-bold text-dark">
-                                <!-- Preserved SubTotal -->
-                                <asp:Label runat="server" ID="SubTotal"></asp:Label>
-                            </span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
-                            <span>Shipping</span>
-                            <span class="fw-bold text-dark">
-                                <!-- Preserved lblshipping -->
-                                <asp:Label runat="server" ID="lblshipping"></asp:Label>
-                            </span>
-                        </div>
-                        <hr class="my-3 text-muted opacity-25" />
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="fw-bold text-dark">Grand Total</span>
-                            <span class="fw-bold text-success fs-5">
-                                <!-- Preserved GrandTotal -->
-                                <asp:Label runat="server" ID="GrandTotal"></asp:Label>
-                            </span>
-                        </div>
-
-                        <!-- Preserved checkoutbtn & OnClick -->
-                        <asp:Button ID="checkoutbtn" runat="server" Text="Proceed To Checkout" CssClass="btn btn-success w-100 rounded-pill fw-bold shadow-sm py-2 fs-6" OnClick="checkoutbtn_Click" />
-                    </div>
-                </div>
-
-                <!-- Trust Strip -->
-                <div class="card border-0 bg-light rounded-3 mt-3 p-3 text-center">
-                    <div class="row g-2 text-muted small fw-semibold">
-                        <div class="col-6"><i class="fas fa-lock text-success me-1"></i>Secure Checkout</div>
-                        <div class="col-6"><i class="fas fa-shield-alt text-success me-1"></i>Safe Payment</div>
-                        <div class="col-6"><i class="fas fa-truck text-success me-1"></i>Fast Delivery</div>
-                        <div class="col-6"><i class="fas fa-undo text-success me-1"></i>Easy Returns</div>
-                    </div>
-                </div>
+           <div class="col-lg-4">
+    <!-- Desktop Sticky Sidebar Wrapper -->
+    <div class="sticky-sidebar-wrapper">
+        
+        <!-- Price Details Card -->
+        <div class="card border rounded-3 shadow-sm mb-3">
+            <div class="card-header bg-white py-3 border-bottom">
+                <h2 class="h6 fw-bold text-dark mb-0">
+                    <i class="fas fa-receipt me-2 text-success"></i>Price Details
+                </h2>
             </div>
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                    <span>Subtotal</span>
+                    <span class="fw-bold text-dark">
+                        <!-- Preserved SubTotal -->
+                        <asp:Label runat="server" ID="SubTotal"></asp:Label>
+                    </span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                    <span>Shipping</span>
+                    <span class="fw-bold text-dark">
+                        <!-- Preserved lblshipping -->
+                        <asp:Label runat="server" ID="lblshipping"></asp:Label>
+                    </span>
+                </div>
+                <hr class="my-3 text-muted opacity-25" />
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="fw-bold text-dark">Grand Total</span>
+                    <span class="fw-bold text-success fs-5">
+                        <!-- Preserved GrandTotal -->
+                        <asp:Label runat="server" ID="GrandTotal"></asp:Label>
+                    </span>
+                </div>
+
+                <!-- Preserved checkoutbtn & OnClick -->
+                <asp:Button ID="checkoutbtn" runat="server" Text="Proceed To Checkout" 
+                    CssClass="btn btn-success w-100 rounded-pill fw-bold shadow-sm py-2 fs-6" 
+                    OnClick="checkoutbtn_Click" />
+            </div>
+        </div>
+
+        <!-- Trust Strip -->
+        <div class="card border-0 bg-light rounded-3 p-3 text-center">
+            <div class="row g-2 text-muted small fw-semibold">
+                <div class="col-6"><i class="fas fa-lock text-success me-1"></i>Secure Checkout</div>
+                <div class="col-6"><i class="fas fa-shield-alt text-success me-1"></i>Safe Payment</div>
+                <div class="col-6"><i class="fas fa-truck text-success me-1"></i>Fast Delivery</div>
+                <div class="col-6"><i class="fas fa-undo text-success me-1"></i>Easy Returns</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Add CSS in your <style> tag or CSS file -->
+<style>
+    /* Sticky position strictly for Desktop screens */
+    @media (min-width: 992px) {
+        .sticky-sidebar-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 100px; /* Adjust according to your Header height */
+            z-index: 10;
+        }
+    }
+</style>
+
 
         </div>
     </div>

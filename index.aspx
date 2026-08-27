@@ -233,7 +233,7 @@
             <div class="row justify-content-center gx-0">
 
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <itemtemplate>
+                    <ItemTemplate>
 
                         <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-3"
                             data-aos="zoom-in"
@@ -257,7 +257,7 @@
 
                         </div>
 
-                    </itemtemplate>
+                    </ItemTemplate>
                 </asp:Repeater>
 
             </div>
@@ -290,9 +290,8 @@
         }
     </style>
     <!-- End Categories -->
-
-    <div class="container">
-        <div class="row">
+    <div class="container px-0">
+        <div class="row mx-1">
             <div class="col-lg-12">
                 <div class="title-all text-center"
                     data-aos="fade-up"
@@ -303,7 +302,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mx-1">
             <div class="col-lg-12">
                 <div class="special-menu text-center"
                     data-aos="fade-up"
@@ -372,9 +371,9 @@
     <div class="container-fluid py-4">
 
         <!-- 6-COLUMN GRID MATCHING THE IMAGE -->
-        <div class="row g-3" id="product-container">
+        <div class="row g-3 mx-1" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <itemtemplate>
+                <ItemTemplate>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
                         <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card"
                             data-aos="fade-up"
@@ -441,7 +440,7 @@
 
                         </div>
                     </div>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </div>
 
@@ -534,7 +533,7 @@
         <div class="container position-relative" style="z-index: 2;">
 
             <!-- SECTION TITLE HEADER -->
-            <div class="row justify-content-center mb-4 text-center">
+            <div class="row justify-content-center mb-4 text-center mx-1">
                 <div class="col-lg-6">
                     <span class="badge bg-success-subtle text-success fw-bold px-3 py-1.5 rounded-pill mb-2 border border-success border-opacity-20 extra-small">
                         <i class="fas fa-leaf me-1"></i>WHY CHOOSE FOODSTORE
@@ -545,22 +544,26 @@
             </div>
 
             <!-- 3-COLUMN UNIQUE IMAGE FEATURE CARDS -->
-            <div class="row g-4">
+            <div class="row g-4 mx-2 mx-md-0">
 
                 <!-- Feature 1: Organic Farm Fresh -->
                 <div class="col-lg-4 col-md-6">
                     <div class="feature-visual-card card border-0 rounded-4 overflow-hidden shadow-sm h-100 bg-white">
 
                         <!-- Image Area with Micro Overlay -->
-                        <div class="position-relative overflow-hidden" style="height: 180px;">
+                        <!-- FIXED IMAGE AREA WITH EXPLICIT HEIGHT & FLEX BADGE -->
+                        <div class="position-relative overflow-hidden w-100" style="height: 190px; min-height: 190px;">
                             <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop"
                                 alt="Naturally Grown Fresh Produce"
-                                class="w-100 h-100 object-fit-cover feature-card-img" />
+                                class="w-100 h-100 feature-card-img"
+                                style="object-fit: cover; object-position: center; display: block;" />
 
-                            <!-- Floating Glass Badge -->
-                            <span class="position-absolute top-0 start-0 m-3 badge bg-white bg-opacity-90 text-success fw-bold px-2.5 py-1.5 rounded-pill shadow-sm backdrop-blur extra-small d-flex align-items-center gap-1 border border-white">
-                                <i class="fas fa-certificate text-success"></i>100% ORGANIC
-                            </span>
+                            <!-- Floating Glass Badge Fix -->
+                            <div class="position-absolute top-0 start-0 p-3" style="z-index: 2;">
+                                <span class="badge bg-white text-success fw-bold px-3 py-2 rounded-pill shadow-sm extra-small d-inline-flex align-items-center gap-1 border border-white" style="white-space: nowrap;">
+                                    <i class="fas fa-certificate text-success"></i>100% ORGANIC
+                                </span>
+                            </div>
                         </div>
 
                         <!-- Content Body -->
