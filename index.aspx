@@ -15,82 +15,7 @@
         </div>
     </div>
     <!-- End Top Search -->
-
-    <!-- Start Slider -->
-    <%--<div id="slides-shop" class="cover-slides">
-        <ul class="slides-container">
-            <li class="text-center">
-                <img src="images/banner-05.png" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="display-6"><strong>Welcome To
-                               
-                                <br>
-                                FoodStore</strong></h1>
-                            <p class="small">
-                                See how your users experience your website in realtime or view
-                               
-                                <br>
-                                trends to see any changes in performance over time.
-                           
-                            </p>
-                            <p><a class="btn hvr-hover" href="shop.aspx">Shop Now</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="images/banner-06.png" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To
-                               
-                                <br>
-                                FoodStore</strong></h1>
-                            <p class="m-b-40">
-                                Fresh groceries, fruits, vegetables, snacks, and daily essentials
-                               
-                                <br>
-                                delivered to your doorstep with quality you can trust.
-                           
-                            </p>
-                            <p><a class="btn hvr-hover" href="shop.aspx">Shop Now</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="images/banner-04.png" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To
-                               
-                                <br>
-                                FoodStore</strong></h1>
-                            <p class="m-b-40">
-                                See how your users experience your website in realtime or view
-                               
-                                <br>
-                                trends to see any changes in performance over time.
-                           
-                            </p>
-                            <p><a class="btn hvr-hover" href="shop.aspx">Shop Now</a></p>
-                        </div>
-                    </div>
-                </div>
-
-            </li>
-        </ul>
-
-        <div class="slides-navigation">
-            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-        </div>
-    </div>--%>
-    <!-- End Slider -->
+ 
 
     <section class="py-0 w-100 overflow-hidden">
         <!-- container-fluid px-0 se image/banner pure desktop screen ki width me fail jayega -->
@@ -233,7 +158,7 @@
             <div class="row justify-content-center gx-0">
 
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <ItemTemplate>
+                    <itemtemplate>
 
                         <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-3"
                             data-aos="zoom-in"
@@ -257,7 +182,7 @@
 
                         </div>
 
-                    </ItemTemplate>
+                    </itemtemplate>
                 </asp:Repeater>
 
             </div>
@@ -290,6 +215,10 @@
         }
     </style>
     <!-- End Categories -->
+
+
+
+
     <div class="container px-0">
         <div class="row mx-1">
             <div class="col-lg-12">
@@ -373,7 +302,7 @@
         <!-- 6-COLUMN GRID MATCHING THE IMAGE -->
         <div class="row g-3 mx-1" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
                         <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card"
                             data-aos="fade-up"
@@ -382,6 +311,8 @@
                             data-aos-once="true">
                             <!-- PRODUCT IMAGE & TOP-RIGHT ACTION BUTTONS -->
                             <div class="product-img-wrapper position-relative bg-light">
+
+
                                 <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
                                     <img src='<%# "auth/" + Eval("photo_path") %>'
                                         alt='<%# Eval("product_full_name") %>'
@@ -428,9 +359,17 @@
                                     <h6 class="card-title fw-bold text-dark mb-1 text-truncate small" title='<%# Eval("product_full_name") %>'>
                                         <%# Eval("product_full_name") %>
                                     </h6>
-                                    <div class="text-success fw-bold fs-6 mb-3">
-                                        ₹<%# Eval("product_final_sell_price") %>
+
+                                    <div class="mb-3">
+                                        <span class="text-muted text-decoration-line-through small">₹<%# Eval("product_market_price") %>
+                                        </span>
+
+                                        <span class="fw-bold text-success fs-6 ms-1">₹<%# Eval("product_final_sell_price") %>
+                                        </span>
+
+                                        <%# GetDiscount(Eval("product_discount_percentage")) %>
                                     </div>
+
                                 </div>
 
                                 <!-- PRESERVED: Add to Cart LinkButton -->
@@ -443,7 +382,7 @@
 
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
 
@@ -507,6 +446,12 @@
             .product-img-wrapper {
                 height: 160px;
             }
+        }
+
+        .discount-badge {
+            color: #ff3f6c;
+            font-size: 11px;
+            font-weight: 700;
         }
     </style>
 

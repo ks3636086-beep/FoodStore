@@ -269,7 +269,7 @@
                         role="tab">
                         Reviews
                     </button>
-                </li>   
+                </li>
             </ul>
 
             <div class="tab-content p-2" id="productTabContent">
@@ -318,9 +318,16 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
+                                <i class="fas fa-star"></i>
 
-                                <span class="text-dark fw-bold ms-1">4.8 / 5</span>
+                                <span class="text-dark fw-bold ms-1">
+                                    <asp:Label ID="lblAverageRating" runat="server" Text="0.0"></asp:Label>
+                                    / 5
+                                </span>
+
+                                <span class="text-muted ms-1">(<asp:Label ID="lblTotalReviews" runat="server" Text="0"></asp:Label>
+                                    reviews)
+                                </span>
                             </div>
                         </div>
 
@@ -330,11 +337,45 @@
                     </div>
 
 
+                    <div id="leave-review" class="border rounded-3 p-4 mb-4">
+
+                        <h6 class="fw-bold text-dark mb-3">Write Your Review</h6>
+
+                        <label class="form-label fw-semibold">Your Rating</label>
+
+                        <asp:DropDownList ID="ddlReviewStar" runat="server"
+                            CssClass="form-select mb-3">
+                            <asp:ListItem Value="5">★★★★★ (5 Stars)</asp:ListItem>
+                            <asp:ListItem Value="4">★★★★ (4 Stars)</asp:ListItem>
+                            <asp:ListItem Value="3">★★★ (3 Stars)</asp:ListItem>
+                            <asp:ListItem Value="2">★★ (2 Stars)</asp:ListItem>
+                            <asp:ListItem Value="1">★ (1 Star)</asp:ListItem>
+                        </asp:DropDownList>
+
+                        <label class="form-label fw-semibold">Your Review</label>
+
+                        <asp:TextBox ID="txtReviewMessage" runat="server"
+                            TextMode="MultiLine"
+                            Rows="4"
+                            CssClass="form-control mb-3"
+                            placeholder="Write your review...">
+                        </asp:TextBox>
+
+                        <button type="button"
+                            runat="server"
+                            id="btnSubmitReview"
+                        onserverclick="btnSubmitReview_ServerClick"
+                            class="btn btn-success rounded-pill px-4">
+                            Submit Review
+                        </button>
+
+                    </div>
+
                     <!-- YAHAN Review Card 1 & 2 DELETE KARO -->
 
                     <asp:Repeater ID="rptReviews" runat="server">
 
-                        <itemtemplate>
+                        <ItemTemplate>
 
                             <div class="d-flex align-items-start border-bottom pb-3 mb-3">
 
@@ -357,7 +398,7 @@
 
                                     </div>
 
-                                  <%--  <div class="text-warning small mb-1">
+                                    <%--  <div class="text-warning small mb-1">
                                         <%# GetStars(Eval("review_star")) %>
                                     </div>--%>
 
@@ -369,7 +410,7 @@
 
                             </div>
 
-                        </itemtemplate>
+                        </ItemTemplate>
 
                     </asp:Repeater>
 
@@ -388,7 +429,7 @@
             <!-- Preserved Repeater ID="rptProducts" & OnItemCommand="rptProducts_ItemCommand" -->
             <div class="row g-3">
                 <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                    <itemtemplate>
+                    <ItemTemplate>
                         <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                             <div class="card h-100 bg-white shadow-sm related-card">
 
@@ -411,15 +452,15 @@
                                         </div>
                                     </div>
 
-                                    <asp:LinkButton runat="server" ID="btncart" CommandName="AddToCart" CommandArgument='<%# Eval("product_id") %>' CssClass="btn btn-outline-success btn-sm w-100 rounded-2 mt-2 fw-semibold">
+                                    <%-- <asp:LinkButton runat="server" ID="btncart" CommandName="AddToCart" CommandArgument='<%# Eval("product_id") %>' CssClass="btn btn-outline-success btn-sm w-100 rounded-2 mt-2 fw-semibold">
                                         <i class="fas fa-shopping-basket me-1"></i>Add To Cart
                                    
-                                    </asp:LinkButton>
+                                    </asp:LinkButton>--%>
                                 </div>
 
                             </div>
                         </div>
-                    </itemtemplate>
+                    </ItemTemplate>
                 </asp:Repeater>
             </div>
         </div>

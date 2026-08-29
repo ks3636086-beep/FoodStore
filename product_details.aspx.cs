@@ -91,7 +91,7 @@ public partial class product_details : System.Web.UI.Page
 
     protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-
+         
     }
     private string getsub_order_id()
     {
@@ -347,5 +347,10 @@ public partial class product_details : System.Web.UI.Page
     protected void btnBuyNow_Click(object sender, EventArgs e)
     {
         //Response.Redirect("checkout.aspx?ref=" + GrandTotal.Text + "");
+    }
+
+    protected void btnSubmitReview_ServerClick(object sender, EventArgs e)
+    {
+
     }
 }
