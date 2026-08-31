@@ -82,7 +82,7 @@
         data-aos="fade-down"
         data-aos-duration="800">
         <div class="container-fluid px-4 px-lg-5 text-center text-md-start">
-            <h2 class="fw-bold text-dark mb-1">Shop</h2>
+            <%--<h2 class="fw-bold text-dark mb-1">Shop</h2>--%>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 justify-content-center justify-content-md-start">
                     <li class="breadcrumb-item"><a href="index.aspx" class="text-success text-decoration-none">Home</a></li>
@@ -96,110 +96,89 @@
     <div class="container-fluid px-3 px-md-4 px-lg-5 py-4">
         <div class="row g-4">
 
-            <!-- 3. Left Sidebar (Desktop 2 Columns) -->
-            <aside class="col-xl-2 col-lg-3 col-md-4">
-                <div class="pe-lg-2">
 
-                    <!-- Search Widget -->
-                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white"
-                        data-aos="fade-right"
-                        data-aos-duration="800"
-                        data-aos-once="true">
-                        <h6 class="fw-bold text-dark mb-3">Search Products</h6>
-                        <div class="input-group">
-                            <asp:TextBox ID="txtSearch" runat="server"
-                                CssClass="form-control border-end-0 shadow-none fs-7"
-                                Placeholder="Search products...">
-    </asp:TextBox>
-
-                            <asp:LinkButton ID="btnSearch" runat="server"
-                                CssClass="btn btn-outline-success border-start-0"
-                                OnClick="btnSearch_Click">
-        <i class="fas fa-search"></i>
-    </asp:LinkButton>
-                        </div>
+            <!-- 3. Left Sidebar (Filters) -->
+            <aside runat="server" id="asideFilters" class="col-xl-2 col-lg-3 col-md-4">
+                <div class="offcanvas-md offcanvas-start" tabindex="-1" id="filterOffcanvas" aria-labelledby="filterOffcanvasLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="offcanvas-title fw-bold text-dark" id="filterOffcanvasLabel">Filters</h5>
+                        <button type="button"
+                            class="btn-close shadow-none"
+                            data-bs-dismiss="offcanvas"
+                            data-bs-target="#filterOffcanvas"
+                            aria-label="Close">
+                        </button>
                     </div>
+                    <div class="offcanvas-body flex-column p-3 p-md-0 pe-md-2">
 
-                    <!-- Categories Widget -->
-                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white"
-                        data-aos="fade-right"
-                        data-aos-duration="800"
-                        data-aos-delay="150"
-                        data-aos-once="true">
-                        <h6 class="fw-bold text-dark mb-3">Categories</h6>
-                        <div class="list-group list-group-flush small">
+                        <!-- Search Widget -->
+                        <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white w-100"
+                            data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                            <h6 class="fw-bold text-dark mb-3">Search Products</h6>
+                            <div class="input-group">
+                                <asp:TextBox ID="txtSearch" runat="server"
+                                    CssClass="form-control border-end-0 shadow-none fs-7"
+                                    Placeholder="Search products...">
+                                </asp:TextBox>
 
-                            <asp:LinkButton
-                                runat="server"
-                                ID="lnkAllProducts"
-                                CommandName="category"
-                                CommandArgument="all"
-                                OnCommand="Category_Command"
-                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-        <i class="fas fa-th-large me-2"></i>All Products
-                            </asp:LinkButton>
-
-                            <asp:LinkButton
-                                runat="server"
-                                ID="lnkVegetables"
-                                CommandName="category"
-                                CommandArgument="2026081"
-                                OnCommand="Category_Command"
-                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-        <i class="fas fa-carrot me-2"></i>Vegetables
-                            </asp:LinkButton>
-
-                            <asp:LinkButton
-                                runat="server"
-                                ID="lnkFruits"
-                                CommandName="category"
-                                CommandArgument="2026082"
-                                OnCommand="Category_Command"
-                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-        <i class="fas fa-apple-alt me-2"></i>Fruits
-                            </asp:LinkButton>
-
-                            <asp:LinkButton
-                                runat="server"
-                                ID="lnkSnacks"
-                                CommandName="category"
-                                CommandArgument="2026083"
-                                OnCommand="Category_Command"
-                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-        <i class="fas fa-cookie me-2"></i>Snacks
-                            </asp:LinkButton>
-
-                            <asp:LinkButton
-                                runat="server"
-                                ID="lnkCookies"
-                                CommandName="category"
-                                CommandArgument="2026084"
-                                OnCommand="Category_Command"
-                                CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
-        <i class="fas fa-bread-slice me-2"></i>Cookies
-                            </asp:LinkButton>
-
-                        </div>
-                    </div>
-
-                    <!-- Price Filter Widget -->
-                    <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white"
-                        data-aos="fade-right"
-                        data-aos-duration="800"
-                        data-aos-delay="300"
-                        data-aos-once="true">
-                        <h6 class="fw-bold text-dark mb-3">Price Filter</h6>
-                        <div class="row g-2 mb-3">
-                            <div class="col-6">
-                                <asp:TextBox ID="txtMinPrice" runat="server" CssClass="form-control form-control-sm" Placeholder="Min ₹"></asp:TextBox>
-                            </div>
-                            <div class="col-6">
-                                <asp:TextBox ID="txtMaxPrice" runat="server" CssClass="form-control form-control-sm" Placeholder="Max ₹"></asp:TextBox>
+                                <asp:LinkButton ID="btnSearch" runat="server"
+                                    CssClass="btn btn-outline-success border-start-0"
+                                    OnClick="btnSearch_Click">
+                                    <i class="fas fa-search"></i>
+                                </asp:LinkButton>
                             </div>
                         </div>
-                        <asp:Button ID="btnFilterPrice" runat="server" OnClick="btnFilterPrice_Click" Text="Apply Filter" CssClass="btn btn-success btn-sm w-100 rounded-2 fw-semibold" />
-                    </div>
 
+                        <!-- Categories Widget -->
+                        <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white w-100"
+                            data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" data-aos-once="true">
+                            <h6 class="fw-bold text-dark mb-3">Categories</h6>
+                            <div class="list-group list-group-flush small">
+
+                                <asp:LinkButton runat="server" ID="lnkAllProducts" CommandName="category" CommandArgument="all" OnCommand="Category_Command"
+                                    CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+                                    <i class="fas fa-th-large me-2"></i>All Products
+                                </asp:LinkButton>
+
+                                <asp:LinkButton runat="server" ID="lnkVegetables" CommandName="category" CommandArgument="2026081" OnCommand="Category_Command"
+                                    CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+                                    <i class="fas fa-carrot me-2"></i>Vegetables
+                                </asp:LinkButton>
+
+                                <asp:LinkButton runat="server" ID="lnkFruits" CommandName="category" CommandArgument="2026082" OnCommand="Category_Command"
+                                    CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+                                    <i class="fas fa-apple-alt me-2"></i>Fruits
+                                </asp:LinkButton>
+
+                                <asp:LinkButton runat="server" ID="lnkSnacks" CommandName="category" CommandArgument="2026083" OnCommand="Category_Command"
+                                    CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+                                    <i class="fas fa-cookie me-2"></i>Snacks
+                                </asp:LinkButton>
+
+                                <asp:LinkButton runat="server" ID="lnkCookies" CommandName="category" CommandArgument="2026084" OnCommand="Category_Command"
+                                    CssClass="list-group-item list-group-item-action border-0 rounded-2 py-2 px-3 mb-1 category-link">
+                                    <i class="fas fa-bread-slice me-2"></i>Cookies
+                                </asp:LinkButton>
+
+                            </div>
+                        </div>
+
+                        <!-- Price Filter Widget -->
+                        <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white w-100"
+                            data-aos="fade-right" data-aos-duration="800" data-aos-delay="300" data-aos-once="true">
+                            <h6 class="fw-bold text-dark mb-3">Price Filter</h6>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <asp:TextBox ID="txtMinPrice" runat="server" CssClass="form-control form-control-sm" Placeholder="Min ₹"></asp:TextBox>
+                                </div>
+                                <div class="col-6">
+                                    <asp:TextBox ID="txtMaxPrice" runat="server" CssClass="form-control form-control-sm" Placeholder="Max ₹"></asp:TextBox>
+                                </div>
+                            </div>
+                            <asp:Button ID="btnFilterPrice" runat="server" OnClick="btnFilterPrice_Click" Text="Apply Filter" CssClass="btn btn-success btn-sm w-100 rounded-2 fw-semibold" />
+                        </div>
+
+                    </div>
                 </div>
             </aside>
 
@@ -208,18 +187,22 @@
 
                 <!-- 4. Product Toolbar -->
                 <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center bg-white p-3 rounded-3 shadow-sm border mb-4 gap-3"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-delay="200"
-                    data-aos-once="true">
-                    <div class="text-muted small">
-                        Showing <span id="visible-count" class="fw-bold text-dark">0</span> of <span id="total-count" class="fw-bold text-dark">0</span> products
-                   
+                    data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" data-aos-once="true">
+
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Mobile Filter Button -->
+                        <button class="btn btn-outline-success d-md-none fw-semibold btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+                            <i class="fas fa-filter me-1"></i>Filters
+                        </button>
+
+                        <div class="text-muted small">
+                            Showing <span id="visible-count" class="fw-bold text-dark">0</span> of <span id="total-count" class="fw-bold text-dark">0</span> products
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center gap-2">
-                        <label class="small text-muted text-nowrap mb-0">Sort By:</label>
-                        <asp:DropDownList ID="ddlSort" runat="server" CssClass="form-select form-select-sm shadow-none" AutoPostBack="true">
+                        <label class="small text-muted text-nowrap mb-0 fw-semibold">Sort By:</label>
+                        <asp:DropDownList ID="ddlSort" runat="server" CssClass="form-select form-select-sm shadow-none rounded-pill px-3 fw-medium text-dark bg-light border-0" AutoPostBack="true">
                             <asp:ListItem Value="default">Default Sorting</asp:ListItem>
                             <asp:ListItem Value="popularity">Popularity</asp:ListItem>
                             <asp:ListItem Value="price_low">Price: Low to High</asp:ListItem>
@@ -233,7 +216,7 @@
                 <!-- 5. Product Grid (6 per row on Desktop, 3 on Tablet, 2 on Mobile) -->
                 <div class="row g-3" id="product-container">
                     <asp:Repeater ID="rptProducts" runat="server">
-                        <ItemTemplate>
+                        <itemtemplate>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
                                 <div class="card h-100 bg-white rounded-3 shadow-sm overflow-hidden product-card"
                                     data-aos="fade-right"
@@ -242,19 +225,19 @@
                                     data-aos-once="true">
                                     <!-- Product Image & Overlay Actions -->
                                     <div class="product-img-wrapper">
-                                         <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
-                                        <img src='<%# "auth/" + Eval("photo_path") %>'
-                                            alt='<%# Eval("product_full_name") %>'
-                                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
+                                        <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
+                                            <img src='<%# "auth/" + Eval("photo_path") %>'
+                                                alt='<%# Eval("product_full_name") %>'
+                                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
 
-                                        <div class="product-actions-overlay">
-                                           <%-- <a href='<%# "product-details.aspx?id=" + Eval("product_id") %>' class="action-btn" title="View Details">
+                                            <div class="product-actions-overlay">
+                                                <%-- <a href='<%# "product-details.aspx?id=" + Eval("product_id") %>' class="action-btn" title="View Details">
                                                 <i class="fas fa-eye small"></i>
                                             </a>--%>
-                                           <%-- <a href="#" class="action-btn" title="Add to Wishlist">
+                                                <%-- <a href="#" class="action-btn" title="Add to Wishlist">
                                                 <i class="far fa-heart small"></i>
                                             </a>--%>
-                                        </div>
+                                            </div>
                                     </div>
 
                                     <!-- Product Details -->
@@ -275,7 +258,7 @@
 
                                 </div>
                             </div>
-                        </ItemTemplate>
+                        </itemtemplate>
                     </asp:Repeater>
                 </div>
 
@@ -391,7 +374,6 @@
             }
         });
     </script>
-
 
 </asp:Content>
 

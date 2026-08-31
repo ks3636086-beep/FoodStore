@@ -331,51 +331,98 @@
                             </div>
                         </div>
 
-                        <a href="#leave-review"
-                            class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold">Leave a Review
-                        </a>
-                    </div>
-
-
-                    <div id="leave-review" class="border rounded-3 p-4 mb-4">
-
-                        <h6 class="fw-bold text-dark mb-3">Write Your Review</h6>
-
-                        <label class="form-label fw-semibold">Your Rating</label>
-
-                        <asp:DropDownList ID="ddlReviewStar" runat="server"
-                            CssClass="form-select mb-3">
-                            <asp:ListItem Value="5">★★★★★ (5 Stars)</asp:ListItem>
-                            <asp:ListItem Value="4">★★★★ (4 Stars)</asp:ListItem>
-                            <asp:ListItem Value="3">★★★ (3 Stars)</asp:ListItem>
-                            <asp:ListItem Value="2">★★ (2 Stars)</asp:ListItem>
-                            <asp:ListItem Value="1">★ (1 Star)</asp:ListItem>
-                        </asp:DropDownList>
-
-                        <label class="form-label fw-semibold">Your Review</label>
-
-                        <asp:TextBox ID="txtReviewMessage" runat="server"
-                            TextMode="MultiLine"
-                            Rows="4"
-                            CssClass="form-control mb-3"
-                            placeholder="Write your review...">
-                        </asp:TextBox>
-
-                        <button type="button"
-                            runat="server"
-                            id="btnSubmitReview"
-                        onserverclick="btnSubmitReview_ServerClick"
-                            class="btn btn-success rounded-pill px-4">
-                            Submit Review
-                        </button>
+                        <asp:Panel ID="pnlLeaveReview" runat="server">
+                            <a href="#leave-review"
+                                class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold">Leave a Review
+                            </a>
+                        </asp:Panel>
 
                     </div>
+
+                    <asp:Panel ID="pnlReviewForm" runat="server">
+
+                        <div id="leave-review" class="border rounded-3 p-4 mb-4">
+
+                            <h6 class="fw-bold text-dark mb-3">Write Your Review</h6>
+
+                            <label class="form-label fw-semibold">Your Rating</label>
+
+                            <!-- Dynamic Star Rating UI -->
+                            <div class="star-rating-container mb-3" style="cursor: pointer; font-size: 1.8rem;">
+                                <i class="fas fa-star rating-star text-warning" data-value="1"></i>
+                                <i class="fas fa-star rating-star text-warning" data-value="2"></i>
+                                <i class="fas fa-star rating-star text-warning" data-value="3"></i>
+                                <i class="fas fa-star rating-star text-warning" data-value="4"></i>
+                                <i class="fas fa-star rating-star text-warning" data-value="5"></i>
+                            </div>
+                            <!-- Hidden field to store selected rating for backend -->
+                            <asp:HiddenField ID="hdnReviewStar" runat="server" Value="5" />
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const stars = document.querySelectorAll('.rating-star');
+                                    const hdnField = document.getElementById('<%= hdnReviewStar.ClientID %>');
+
+                                    // Optional hover effect
+                                    stars.forEach(star => {
+                                        star.addEventListener('mouseover', function () {
+                                            const hoverValue = this.getAttribute('data-value');
+                                            stars.forEach(s => {
+                                                if (parseInt(s.getAttribute('data-value')) <= parseInt(hoverValue)) {
+                                                    s.classList.add('text-warning');
+                                                    s.classList.remove('text-muted');
+                                                } else {
+                                                    s.classList.remove('text-warning');
+                                                    s.classList.add('text-muted');
+                                                }
+                                            });
+                                        });
+
+                                        star.addEventListener('mouseout', function () {
+                                            const selectedValue = hdnField.value;
+                                            stars.forEach(s => {
+                                                if (parseInt(s.getAttribute('data-value')) <= parseInt(selectedValue)) {
+                                                    s.classList.add('text-warning');
+                                                    s.classList.remove('text-muted');
+                                                } else {
+                                                    s.classList.remove('text-warning');
+                                                    s.classList.add('text-muted');
+                                                }
+                                            });
+                                        });
+
+                                        star.addEventListener('click', function () {
+                                            hdnField.value = this.getAttribute('data-value');
+                                        });
+                                    });
+                                });
+                            </script>
+
+                            <label class="form-label fw-semibold">Your Review</label>
+
+                            <asp:TextBox ID="txtReviewMessage" runat="server"
+                                TextMode="MultiLine"
+                                Rows="4"
+                                CssClass="form-control mb-3"
+                                placeholder="Write your review...">
+                            </asp:TextBox>
+
+                            <button type="button"
+                                runat="server"
+                                id="btnSubmitReview"
+                                onserverclick="btnSubmitReview_ServerClick"
+                                class="btn btn-success rounded-pill px-4">
+                                Submit Review
+                            </button>
+
+                        </div>
+                    </asp:Panel>
 
                     <!-- YAHAN Review Card 1 & 2 DELETE KARO -->
 
                     <asp:Repeater ID="rptReviews" runat="server">
 
-                        <ItemTemplate>
+                        <itemtemplate>
 
                             <div class="d-flex align-items-start border-bottom pb-3 mb-3">
 
@@ -398,9 +445,9 @@
 
                                     </div>
 
-                                    <%--  <div class="text-warning small mb-1">
+                                    <<div class="text-warning small mb-1">
                                         <%# GetStars(Eval("review_star")) %>
-                                    </div>--%>
+                                    </div>
 
                                     <p class="text-muted small mb-0">
                                         <%# Eval("reviewer_message") %>
@@ -410,7 +457,7 @@
 
                             </div>
 
-                        </ItemTemplate>
+                        </itemtemplate>
 
                     </asp:Repeater>
 
@@ -421,6 +468,7 @@
 
         <!-- 11. Related Products Section ("You May Also Like") -->
         <div class="mb-4">
+
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="fw-bold text-dark mb-0">You May Also Like</h3>
                 <a href="shop.aspx" class="text-success text-decoration-none fw-semibold small">View All <i class="fas fa-arrow-right ms-1"></i></a>
@@ -429,7 +477,7 @@
             <!-- Preserved Repeater ID="rptProducts" & OnItemCommand="rptProducts_ItemCommand" -->
             <div class="row g-3">
                 <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                    <ItemTemplate>
+                    <itemtemplate>
                         <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                             <div class="card h-100 bg-white shadow-sm related-card">
 
@@ -460,7 +508,7 @@
 
                             </div>
                         </div>
-                    </ItemTemplate>
+                    </itemtemplate>
                 </asp:Repeater>
             </div>
         </div>

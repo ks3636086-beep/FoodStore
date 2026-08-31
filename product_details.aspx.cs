@@ -22,6 +22,11 @@ public partial class product_details : System.Web.UI.Page
     {
         BindData1();
 
+        if (!IsPostBack)
+        {
+            BindReviews();
+            CheckReviewOption();
+        }
         SqlDataReader dr_product_data = mst.Select_Operation("select * from ecommerce_product a left join ecommerce_product_price as b on a.product_id = b.product_id left join ecommerce_product_photos as c on a.product_id = c.product_id where a.product_id='" + Request.QueryString["ref"] + "'");
         if (dr_product_data.Read())
         {
@@ -33,7 +38,6 @@ public partial class product_details : System.Web.UI.Page
 
         dr_product_data.Close();
     }
-
 
     private void BindData1()
     {
@@ -91,7 +95,7 @@ public partial class product_details : System.Web.UI.Page
 
     protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-         
+
     }
     private string getsub_order_id()
     {
@@ -343,6 +347,34 @@ public partial class product_details : System.Web.UI.Page
         Response.Write("<script>alert('Add to cart..');window.location = 'index.aspx';</script>");
     }
 
+    private void BindReviews()
+    {
+        string productId = Request.QueryString["ref"];
+
+        if (string.IsNullOrEmpty(productId))
+            return;
+
+        string query = @"SELECT reviwer_name, reviewer_message, review_star, review_date
+                     FROM product_rating_review
+                     WHERE product_id = @product_id
+                     AND review_status = 'Active'
+                     ORDER BY id DESC";
+
+        using (SqlCommand cmd = new SqlCommand(query, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@product_id", productId);
+
+            mst.con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            rptReviews.DataSource = dr;
+            rptReviews.DataBind();
+
+            dr.Close();
+            mst.con.Close();
+        }
+    }
 
     protected void btnBuyNow_Click(object sender, EventArgs e)
     {
@@ -351,6 +383,222 @@ public partial class product_details : System.Web.UI.Page
 
     protected void btnSubmitReview_ServerClick(object sender, EventArgs e)
     {
+        // 1. Customer login check
+        if (Session["customer_id"] == null)
+        {
+            Response.Redirect("ecommerce_customer.aspx");
+            return;
+        }
 
+        string customerId = Session["customer_id"].ToString();
+        string productId = Request.QueryString["ref"];
+        string reviewMessage = txtReviewMessage.Text.Trim();
+
+        // 2. Product ID check
+        if (string.IsNullOrEmpty(productId))
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                "Swal.fire('Product not found');", true);
+            return;
+        }
+
+        // 3. Review message check
+        if (string.IsNullOrEmpty(reviewMessage))
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                "Swal.fire('Please enter your review');", true);
+            return;
+        }
+
+        // 4. Rating validation
+        int reviewStar;
+
+        if (!int.TryParse(hdnReviewStar.Value, out reviewStar) ||
+            reviewStar < 1 || reviewStar > 5)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                "Swal.fire('Please select a rating between 1 and 5');", true);
+            return;
+        }
+
+        mst.con.Open();
+
+
+        // 5. Customer must have ordered this product
+        SqlCommand orderCmd = new SqlCommand(@"
+SELECT COUNT(*)
+FROM ecommerce_order
+WHERE customer_id = @customer_id
+AND product_id = @product_id", mst.con);
+
+        orderCmd.Parameters.AddWithValue("@customer_id", customerId);
+        orderCmd.Parameters.AddWithValue("@product_id", productId);
+
+        int orderCount = Convert.ToInt32(orderCmd.ExecuteScalar());
+
+        if (orderCount == 0)
+        {
+            mst.con.Close();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                "Swal.fire('You can review only a product you have ordered');", true);
+            return;
+        }
+
+        // 6. Review is NOT allowed only for Confirm + Pending
+
+        SqlCommand pendingCheckCmd = new SqlCommand(@"
+SELECT COUNT(*)
+FROM ecommerce_order
+WHERE customer_id = @customer_id
+AND product_id = @product_id
+AND order_status = 'Confirm'
+AND delivery_status = 'Pending'
+AND NOT EXISTS
+(
+    SELECT 1
+    FROM ecommerce_order
+    WHERE customer_id = @customer_id
+    AND product_id = @product_id
+    AND NOT (order_status = 'Confirm' AND delivery_status = 'Pending')
+)", mst.con);
+
+        pendingCheckCmd.Parameters.AddWithValue("@customer_id", customerId);
+        pendingCheckCmd.Parameters.AddWithValue("@product_id", productId);
+
+        int pendingCount = Convert.ToInt32(pendingCheckCmd.ExecuteScalar());
+
+        if (pendingCount > 0)
+        {
+            mst.con.Close();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                "Swal.fire('You cannot review this product while the order is pending');", true);
+            return;
+        }
+
+        // 7. Check duplicate review
+        SqlCommand duplicateCmd = new SqlCommand(@"
+        SELECT COUNT(*)
+        FROM product_rating_review
+        WHERE product_id = @product_id
+        AND reviwer_id = @reviwer_id", mst.con);
+
+        duplicateCmd.Parameters.AddWithValue("@product_id", productId);
+        duplicateCmd.Parameters.AddWithValue("@reviwer_id", customerId);
+
+        int reviewCount = Convert.ToInt32(duplicateCmd.ExecuteScalar());
+
+        if (reviewCount > 0)
+        {
+            mst.con.Close();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+                "Swal.fire('You have already reviewed this product');", true);
+            return;
+        }
+
+        // 8. Get customer name
+        SqlCommand customerCmd = new SqlCommand(
+            "SELECT customer_name FROM ecommerce_customer WHERE customer_id=@customer_id",
+            mst.con);
+
+        customerCmd.Parameters.AddWithValue("@customer_id", customerId);
+
+        string reviewerName = Convert.ToString(customerCmd.ExecuteScalar());
+
+        // 9. Insert review
+        SqlCommand cmd = new SqlCommand(@"
+        INSERT INTO product_rating_review
+        (
+            product_id,
+            reviwer_id,
+            seller_id,
+            reviwer_name,
+            reviewer_message,
+            review_star,
+            review_date,
+            review_status
+        )
+        VALUES
+        (
+            @product_id,
+            @reviwer_id,
+            NULL,
+            @reviwer_name,
+            @reviewer_message,
+            @review_star,
+            @review_date,
+            @review_status
+        )", mst.con);
+
+        cmd.Parameters.AddWithValue("@product_id", productId);
+        cmd.Parameters.AddWithValue("@reviwer_id", customerId);
+        cmd.Parameters.AddWithValue("@reviwer_name", reviewerName);
+        cmd.Parameters.AddWithValue("@reviewer_message", reviewMessage);
+        cmd.Parameters.AddWithValue("@review_star", reviewStar);
+        cmd.Parameters.AddWithValue("@review_date", DateTime.Now);
+        cmd.Parameters.AddWithValue("@review_status", "Active");
+
+        cmd.ExecuteNonQuery();
+
+        mst.con.Close();
+
+        // 10. Clear review box
+        txtReviewMessage.Text = "";
+
+        ScriptManager.RegisterStartupScript(this, GetType(), "msg",
+            "Swal.fire('Review submitted successfully ❤️');", true);
+    }
+
+    protected string GetStars(object rating)
+    {
+        int stars = Convert.ToInt32(rating);
+        return new string('★', stars) + new string('☆', 5 - stars);
+    }
+
+    private void CheckReviewOption()
+    {
+        string customerId = "";
+
+        if (Session["customer_id"] != null)
+        {
+            customerId = Session["customer_id"].ToString();
+        }
+
+        string productId = Request.QueryString["ref"];
+
+        // Login nahi hai → review form hide
+        if (string.IsNullOrEmpty(customerId) || string.IsNullOrEmpty(productId))
+        {
+            pnlReviewForm.Visible = false;
+            return;
+        }
+
+        mst.con.Open();
+
+        SqlCommand cmd = new SqlCommand(@"
+        SELECT COUNT(*)
+        FROM product_rating_review
+        WHERE product_id = @product_id
+        AND reviwer_id = @customer_id
+        AND review_status = 'Active'", mst.con);
+
+        cmd.Parameters.AddWithValue("@product_id", productId);
+        cmd.Parameters.AddWithValue("@customer_id", customerId);
+
+        int reviewCount = Convert.ToInt32(cmd.ExecuteScalar());
+
+        mst.con.Close();
+
+        // Review already submitted → form hide
+        if (reviewCount > 0)
+        {
+            pnlLeaveReview.Visible = false;
+        }
+        else
+        {
+            pnlLeaveReview.Visible = true;
+        }
     }
 }

@@ -44,8 +44,48 @@ public class Order
     }
 
 
+    public int Update_Delivery_Status_By_OrderId(string order_id, string status, string deliverdate, string delivertime)
+    {
+        con.Close();
+        con.Open();
 
-    // Get Cart No Guest End
+        int RowsAffected = 0;
+
+        try
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+
+            cmd.CommandText = @"UPDATE ecommerce_order
+                            SET order_status = @order_status,
+                                delivery_status = @delivery_status,
+                                order_delivery_date = @order_delivery_date,
+                                order_delivery_time = @order_delivery_time
+                            WHERE order_id = @order_id
+                            AND order_status != @status";
+
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.AddWithValue("@order_status", status);
+            cmd.Parameters.AddWithValue("@delivery_status", status);
+            cmd.Parameters.AddWithValue("@order_delivery_date", deliverdate);
+            cmd.Parameters.AddWithValue("@order_delivery_time", delivertime);
+            cmd.Parameters.AddWithValue("@status", "Cancelled");
+            cmd.Parameters.AddWithValue("@order_id", order_id);
+
+            RowsAffected = cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
+        catch (Exception ex)
+        {
+            con.Close();
+            throw ex;
+        }
+
+        return RowsAffected;
+    }
+
 
 
     // Get Cart No Guest

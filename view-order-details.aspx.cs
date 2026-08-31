@@ -93,11 +93,17 @@ public partial class view_order_details : System.Web.UI.Page
     protected void btncancel_ServerClick(object sender, EventArgs e)
     {
         mst.con.Open();
+
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = mst.con;
-        cmd.CommandText = "update ecommerce_order set order_status='Cancel' where order_id=@order_id";
+        cmd.CommandText = @"UPDATE ecommerce_order 
+                        SET order_status = 'Cancel',
+                            delivery_status = 'Cancel'
+                        WHERE order_id = @order_id";
+
         cmd.CommandType = CommandType.Text;
         cmd.Parameters.AddWithValue("@order_id", Request.QueryString[0]);
+
         SqlDataReader reader = cmd.ExecuteReader();
         reader.Close();
         mst.con.Close();

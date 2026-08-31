@@ -232,14 +232,17 @@ public partial class deliveryboy_order_details : System.Web.UI.Page
 
                 case "Delivered":
 
-                    int delivered = odr.Update_Order_status_Deliver(lblsuborderid.Text, dblorderstatus.SelectedValue, DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("hh:mm tt"));
+                    int delivered = odr.Update_Delivery_Status_By_OrderId(
+                        Request.QueryString[0],
+                        dblorderstatus.SelectedValue,
+                        DateTime.Now.ToString("yyyy-MM-dd"),
+                        DateTime.Now.ToString("hh:mm tt")
+                    );
 
                     if (delivered > 0)
                     {
 
                         ShowMessage("Order has been " + dblorderstatus.SelectedValue + ".", MessageType.Success);
-
-
 
                         BindOrderItem();
                     }

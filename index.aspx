@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <!-- Start Top Search -->
     <div class="top-search">
         <div class="container">
@@ -15,7 +14,7 @@
         </div>
     </div>
     <!-- End Top Search -->
- 
+
 
     <section class="py-0 w-100 overflow-hidden">
         <!-- container-fluid px-0 se image/banner pure desktop screen ki width me fail jayega -->
@@ -64,10 +63,10 @@
             <div class="px-3 px-lg-4 py-3 bg-light"
                 data-aos="fade-up"
                 data-aos-duration="1000">
-                <div class="row g-3">
+                <div class="row flex-nowrap flex-md-wrap promo-scroll-row gx-3">
 
                     <!-- Card 1: Fresh Vegetables & Fruits -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 promo-card-col">
                         <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
                             style="background: linear-gradient(135deg, #eef9f1 0%, #d8f3dc 100%); transition: all 0.3s ease;">
 
@@ -91,7 +90,7 @@
                     </div>
 
                     <!-- Card 2: Crispy Snacks -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 promo-card-col">
                         <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
                             style="background: linear-gradient(135deg, #fff8e6 0%, #fef0c7 100%); transition: all 0.3s ease;">
 
@@ -115,7 +114,7 @@
                     </div>
 
                     <!-- Card 3: Cookies & Bakery -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 promo-card-col">
                         <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
                             style="background: linear-gradient(135deg, #fdf2f4 0%, #fce7f3 100%); transition: all 0.3s ease;">
 
@@ -144,6 +143,41 @@
         </div>
     </section>
 
+    <!-- FLASH SALE SECTION (NEW ADDITION) -->
+    <div class="container-fluid px-3 px-lg-4 py-4" data-aos="fade-up" data-aos-duration="1000">
+        <div class="card border-0 rounded-4 overflow-hidden shadow" style="background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);">
+            <div class="row align-items-center g-0">
+                <div class="col-md-7 p-4 p-md-5 text-white">
+                    <span class="badge bg-white text-danger fw-bold rounded-pill px-3 py-2 mb-3 shadow-sm">
+                        <i class="fas fa-bolt me-1 text-warning"></i>FLASH SALE
+                    </span>
+                    <h2 class="display-6 fw-bold mb-3" style="text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Deal of the Day</h2>
+                    <p class="fs-6 mb-4 opacity-100" style="max-width: 500px;">Get fresh organic avocados and premium imported berries at half the price! Limited stock available.</p>
+
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="text-center bg-white bg-opacity-25 rounded-3 p-2 shadow-sm" style="min-width: 60px;">
+                            <h3 class="fw-bold mb-0 text-white">05</h3>
+                            <span class="small fw-bold opacity-100">Hours</span>
+                        </div>
+                        <div class="text-center bg-white bg-opacity-25 rounded-3 p-2 shadow-sm" style="min-width: 60px;">
+                            <h3 class="fw-bold mb-0 text-white">42</h3>
+                            <span class="small fw-bold opacity-100">Mins</span>
+                        </div>
+                        <div class="text-center bg-white bg-opacity-25 rounded-3 p-2 shadow-sm" style="min-width: 60px;">
+                            <h3 class="fw-bold mb-0 text-white">18</h3>
+                            <span class="small fw-bold opacity-100">Secs</span>
+                        </div>
+                    </div>
+
+                    <a href="shop.aspx" class="btn btn-light text-danger fw-bold rounded-pill px-4 py-2 shadow-sm">Shop Now <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+                <div class="col-md-5 d-none d-md-block" style="background: url('https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=800&q=80') center center / cover;">
+                    <div style="min-height: 350px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Start Categories -->
     <div class="categories-shop py-5">
         <div class="container">
@@ -155,12 +189,12 @@
                 </p>
             </div>
 
-            <div class="row justify-content-center gx-0">
+            <div class="row flex-nowrap flex-lg-wrap justify-content-start justify-content-lg-center category-scroll-container">
 
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <itemtemplate>
+                    <ItemTemplate>
 
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-3"
+                        <div class="col-auto col-md-3 col-lg-2 text-center mb-3 category-item"
                             data-aos="zoom-in"
                             data-aos-delay="<%# Container.ItemIndex * 120 %>"
                             data-aos-duration="700">
@@ -182,7 +216,7 @@
 
                         </div>
 
-                    </itemtemplate>
+                    </ItemTemplate>
                 </asp:Repeater>
 
             </div>
@@ -202,15 +236,55 @@
                 transform: scale(1.05);
             }
 
-        @media (max-width: 576px) {
+        /* Mobile specific category and promo styles for horizontal scroll */
+        @media (max-width: 767.98px) {
+            .promo-scroll-row {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 15px;
+            }
+
+                .promo-scroll-row::-webkit-scrollbar {
+                    display: none;
+                }
+
+            .promo-card-col {
+                width: 85%; /* Make card take 85% width so next card peaks out */
+                flex: 0 0 auto;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .category-scroll-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 10px;
+                gap: 15px; /* Add some space between items */
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+                .category-scroll-container::-webkit-scrollbar {
+                    display: none; /* Hide scrollbar for a cleaner look */
+                }
+
+            .category-item {
+                width: 90px;
+                padding: 0;
+            }
+
             .category-round-img {
-                width: 85px;
-                height: 85px;
+                width: 75px;
+                height: 75px;
             }
 
             .categories-shop .btn {
-                font-size: 12px;
-                padding: 4px 10px !important;
+                font-size: 11px;
+                padding: 4px 8px !important;
+                white-space: normal;
+                line-height: 1.2;
+                display: inline-block;
+                width: 100%;
             }
         }
     </style>
@@ -300,10 +374,10 @@
     <div class="container-fluid py-4">
 
         <!-- 6-COLUMN GRID MATCHING THE IMAGE -->
-        <div class="row g-3 mx-1" id="product-container">
+        <div class="row g-2 g-md-3 mx-1" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <itemtemplate>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
+                <ItemTemplate>
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 product-item">
                         <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card"
                             data-aos="fade-up"
                             data-aos-duration="700"
@@ -354,19 +428,17 @@
                                 Text='<%# Eval("price_id") %>'></asp:Label>
 
                             <!-- PRODUCT DETAILS & ADD TO CART -->
-                            <div class="card-body p-3 d-flex flex-column justify-content-between">
+                            <div class="card-body p-2 p-md-3 d-flex flex-column justify-content-between">
                                 <div>
-                                    <h6 class="card-title fw-bold text-dark mb-1 text-truncate small" title='<%# Eval("product_full_name") %>'>
+                                    <h6 class="card-title fw-bold text-dark mb-1 product-title" title='<%# Eval("product_full_name") %>'>
                                         <%# Eval("product_full_name") %>
                                     </h6>
 
-                                    <div class="mb-3">
-                                        <span class="text-muted text-decoration-line-through small">₹<%# Eval("product_market_price") %>
-                                        </span>
-
-                                        <span class="fw-bold text-success fs-6 ms-1">₹<%# Eval("product_final_sell_price") %>
-                                        </span>
-
+                                    <div class="mb-2">
+                                        <div class="d-flex align-items-baseline flex-wrap gap-1">
+                                            <span class="fw-bold text-success fs-6">₹<%# Eval("product_final_sell_price") %></span>
+                                            <span class="text-muted text-decoration-line-through small" style="font-size: 0.75rem;">₹<%# Eval("product_market_price") %></span>
+                                        </div>
                                         <%# GetDiscount(Eval("product_discount_percentage")) %>
                                     </div>
 
@@ -374,15 +446,14 @@
 
                                 <!-- PRESERVED: Add to Cart LinkButton -->
                                 <asp:LinkButton runat="server" ID="lnkdelete" CommandName="btncart"
-                                    CssClass="btn btn-outline-success btn-sm w-100 rounded-3 fw-semibold py-1.5 d-inline-flex align-items-center justify-content-center gap-2 cart-btn">
-                                    <i class="fas fa-shopping-basket small"></i>
-                                    <span>Add to Cart</span>
+                                    CssClass="btn btn-outline-success btn-sm w-100 rounded-pill fw-bold py-1 mt-1 d-inline-flex align-items-center justify-content-center gap-1 cart-btn" Style="border-width: 2px;">
+                                    <span>ADD</span>
                                 </asp:LinkButton>
                             </div>
 
                         </div>
                     </div>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </div>
 
@@ -407,6 +478,17 @@
 
         .product-card:hover .product-thumb-img {
             transform: scale(1.05);
+        }
+
+        .product-title {
+            font-size: 0.85rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: normal;
+            height: 2.5em; /* Ensure title has space even if 1 line */
+            line-height: 1.25;
         }
 
         /* Floating Circle Action Buttons (Eye & Wishlist) */
@@ -441,10 +523,24 @@
             font-size: 0.75rem;
         }
 
-        /* Mobile screens ke liye compact height */
+        /* Mobile screens ke liye compact height and styles */
         @media (max-width: 575.98px) {
             .product-img-wrapper {
-                height: 160px;
+                height: 140px;
+            }
+
+            .product-title {
+                font-size: 0.8rem;
+                height: 2.4em;
+            }
+
+            .cart-btn {
+                padding: 4px !important;
+                font-size: 0.85rem;
+            }
+
+            .discount-badge {
+                font-size: 10px;
             }
         }
 

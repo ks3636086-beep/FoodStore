@@ -129,23 +129,6 @@
                         <div class="panel-body">
                             <br />
 
-                            <%--<div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1" style="font-weight: 600">Order Status</label>
-                                    <asp:DropDownList ID="dblchangeorderstatus" class="form-control" runat="server">
-                                         
-                                        <asp:ListItem>Confirm</asp:ListItem>
-                                        <asp:ListItem>Dispatched</asp:ListItem>
-                                        <asp:ListItem>Delivered</asp:ListItem>
-                                        <asp:ListItem>Cancelled</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <button type="button" id="btnorderstatusupdate" runat="server" class="btn btn-success" style="margin-top: 22px" onserverclick="btnorderstatusupdate_ServerClick">Save Change</button>
-                            </div>--%>
-
                             <asp:Label ID="lblorderitemname" hidden runat="server"></asp:Label>
                             <div class="row"></div>
                             <br />
@@ -209,9 +192,16 @@
                                                             <%# Eval("order_status") %>
                                                         </td>
                                                         <td>
-                                                            <a class="link-danger" href="#" data-toggle="modal" data-target="#status<%#  Eval("id") %>" title="Change Order Status"><i class="fa fa-exchange-alt"></i></a>
+                                                            <a class="link-danger" href="#"
+                                                                data-toggle="modal"
+                                                                data-target="#status<%# Eval("id") %>"
+                                                                title="Change Order Status">
+                                                                <i class="fa fa-exchange-alt"></i>
+                                                            </a>
                                                         </td>
 
+                                                        <asp:Label ID="lblorderid" hidden runat="server"
+                                                            Text='<%# Eval("order_id") %>'></asp:Label>
                                                     </tr>
 
                                                     <%-- Status Modal--%>
