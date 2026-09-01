@@ -26,6 +26,7 @@ public partial class product_details : System.Web.UI.Page
         {
             BindReviews();
             CheckReviewOption();
+            BindReviewSummary();
         }
         SqlDataReader dr_product_data = mst.Select_Operation("select * from ecommerce_product a left join ecommerce_product_price as b on a.product_id = b.product_id left join ecommerce_product_photos as c on a.product_id = c.product_id where a.product_id='" + Request.QueryString["ref"] + "'");
         if (dr_product_data.Read())
@@ -492,7 +493,7 @@ AND NOT EXISTS
         if (reviewCount > 0)
         {
             mst.con.Close();
-
+             
             ScriptManager.RegisterStartupScript(this, GetType(), "msg",
                 "Swal.fire('You have already reviewed this product');", true);
             return;
@@ -508,29 +509,7 @@ AND NOT EXISTS
         string reviewerName = Convert.ToString(customerCmd.ExecuteScalar());
 
         // 9. Insert review
-        SqlCommand cmd = new SqlCommand(@"
-        INSERT INTO product_rating_review
-        (
-            product_id,
-            reviwer_id,
-            seller_id,
-            reviwer_name,
-            reviewer_message,
-            review_star,
-            review_date,
-            review_status
-        )
-        VALUES
-        (
-            @product_id,
-            @reviwer_id,
-            NULL,
-            @reviwer_name,
-            @reviewer_message,
-            @review_star,
-            @review_date,
-            @review_status
-        )", mst.con);
+        SqlCommand cmd = new SqlCommand("INSERT INTO product_rating_review (product_id, reviwer_id, seller_id, reviwer_name, reviewer_message, review_star, review_date, review_status) VALUES (@product_id, @reviwer_id, NULL, @reviwer_name, @reviewer_message, @review_star, @review_date, @review_status)", mst.con);
 
         cmd.Parameters.AddWithValue("@product_id", productId);
         cmd.Parameters.AddWithValue("@reviwer_id", customerId);
@@ -600,5 +579,110 @@ AND NOT EXISTS
         {
             pnlLeaveReview.Visible = true;
         }
+    }
+
+
+    private void BindReviewSummary()
+    {
+        string productId = Request.QueryString["ref"];
+
+        if (string.IsNullOrEmpty(productId))
+            return;
+
+        SqlCommand cmd = new SqlCommand(@"
+        SELECT 
+            ISNULL(AVG(CAST(review_star AS DECIMAL(10,1))), 0) AS AverageRating,
+            COUNT(*) AS TotalReviews
+        FROM product_rating_review
+        WHERE product_id = @product_id
+        AND review_status = 'Active'", mst.con);
+
+        cmd.Parameters.AddWithValue("@product_id", productId);
+
+        mst.con.Open();
+
+        SqlDataReader dr = cmd.ExecuteReader();
+
+        if (dr.Read())
+        {
+            double average = Convert.ToDouble(dr["AverageRating"]);
+            int total = Convert.ToInt32(dr["TotalReviews"]);
+
+            lblAverageRating.Text = average.ToString("0.0");
+            lblTotalReviews.Text = total.ToString();
+
+            lblProductAverageRating.Text = average.ToString("0.0");
+            lblProductTotalReviews.Text = total.ToString();
+
+            int fullStars = (int)Math.Floor(average);
+            bool halfStar = (average - fullStars) >= 0.5;
+
+            string stars = "";
+
+            for (int i = 1; i <= 5; i++)
+            {
+                if (i <= fullStars)
+                    stars += "<i class='fas fa-star'></i>";
+                else if (i == fullStars + 1 && halfStar)
+                    stars += "<i class='fas fa-star-half-alt'></i>";
+                else
+                    stars += "<i class='far fa-star'></i>";
+            }
+
+            litAverageStars.Text = stars;
+            litProductStars.Text = stars;
+        }
+
+        dr.Close();
+        mst.con.Close();
+    }
+
+    protected string GetProductRating(object productId)
+    {
+        decimal averageRating = 0;
+        int totalReviews = 0;
+
+        string query = @"
+        SELECT 
+            ISNULL(AVG(CAST(review_star AS DECIMAL(10,1))), 0) AS average_rating,
+            COUNT(*) AS total_reviews
+        FROM product_rating_review
+        WHERE product_id = @product_id
+        AND review_status = 'Active'";
+
+        using (SqlCommand cmd = new SqlCommand(query, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@product_id", productId);
+
+            mst.con.Open();
+
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                if (dr.Read())
+                {
+                    averageRating = Convert.ToDecimal(dr["average_rating"]);
+                    totalReviews = Convert.ToInt32(dr["total_reviews"]);
+                }
+            }
+
+            mst.con.Close();
+        }
+
+        int fullStars = (int)Math.Floor(averageRating);
+        bool halfStar = (averageRating - fullStars) >= 0.5m;
+
+        string stars = "";
+
+        for (int i = 1; i <= 5; i++)
+        {
+            if (i <= fullStars)
+                stars += "<i class='fas fa-star text-warning'></i>";
+            else if (i == fullStars + 1 && halfStar)
+                stars += "<i class='fas fa-star-half-alt text-warning'></i>";
+            else
+                stars += "<i class='far fa-star text-muted'></i>";
+        }
+
+        return stars + " <span class='text-muted' style='font-size:11px;'>(" + totalReviews + ")</span>";
     }
 }

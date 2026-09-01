@@ -84,4 +84,30 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Response.Redirect(currentPage + "?search=" + Server.UrlEncode(search));
         }
     }
+
+    protected void btnFooterSubmit_ServerClick(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(txtFooterEmail.Text))
+        {
+            ShowMessage("Please enter your email.", MessageType.Warning);
+            return;
+        }
+
+        mst.con.Open();
+
+        SqlCommand cmd = new SqlCommand("INSERT INTO ecommerce_enquiry (enquiry_name,enquiry_email,enquiry_contact,enquiry_message,enquiry_create_date,enquiry_status) VALUES (NULL,@email,NULL,@message,@date,@status)", mst.con);
+
+        cmd.Parameters.AddWithValue("@email", txtFooterEmail.Text.Trim());
+        cmd.Parameters.AddWithValue("@message", "Newsletter Subscription");
+        cmd.Parameters.AddWithValue("@date", DateTime.Now);
+        cmd.Parameters.AddWithValue("@status", "Active");
+
+        cmd.ExecuteNonQuery();
+        mst.con.Close();
+
+        txtFooterEmail.Text = "";
+
+        ShowMessage("Thank you for subscribing!", MessageType.Success);
+        Response.Write("<script>alert('Thank you for subscribing!');</script>");
+    }
 }

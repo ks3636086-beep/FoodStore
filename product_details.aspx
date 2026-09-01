@@ -144,16 +144,19 @@
                         </h1>
 
                         <!-- Star Rating UI -->
+                        <!-- Dynamic Star Rating UI -->
                         <div class="d-flex align-items-center mb-3">
                             <div class="text-warning me-2 fs-6">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
+                                <asp:Literal ID="litProductStars" runat="server"></asp:Literal>
                             </div>
-                            <span class="fw-bold text-dark small me-2">4.8</span>
-                            <span class="text-muted small border-start ps-2">(24 Customer Reviews)</span>
+
+                            <span class="fw-bold text-dark small me-2">
+                                <asp:Label ID="lblProductAverageRating" runat="server" Text="0.0"></asp:Label>
+                            </span>
+
+                            <span class="text-muted small border-start ps-2">(<asp:Label ID="lblProductTotalReviews" runat="server" Text="0"></asp:Label>
+                                Customer Reviews)
+                            </span>
                         </div>
 
                         <!-- Price Section (Preserved ID="heading1") -->
@@ -314,11 +317,7 @@
                             <h5 class="fw-bold text-dark mb-1">Customer Reviews</h5>
 
                             <div class="text-warning small">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                                <asp:Literal ID="litAverageStars" runat="server"></asp:Literal>
 
                                 <span class="text-dark fw-bold ms-1">
                                     <asp:Label ID="lblAverageRating" runat="server" Text="0.0"></asp:Label>
@@ -331,6 +330,7 @@
                             </div>
                         </div>
 
+
                         <asp:Panel ID="pnlLeaveReview" runat="server">
                             <a href="#leave-review"
                                 class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold">Leave a Review
@@ -340,7 +340,6 @@
                     </div>
 
                     <asp:Panel ID="pnlReviewForm" runat="server">
-
                         <div id="leave-review" class="border rounded-3 p-4 mb-4">
 
                             <h6 class="fw-bold text-dark mb-3">Write Your Review</h6>
@@ -422,13 +421,12 @@
 
                     <asp:Repeater ID="rptReviews" runat="server">
 
-                        <itemtemplate>
+                        <ItemTemplate>
 
                             <div class="d-flex align-items-start border-bottom pb-3 mb-3">
 
-                                <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fw-bold me-3"
-                                    style="width: 45px; height: 45px; flex-shrink: 0;">
-
+                                <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3"
+                                    style="width: 40px; height: 40px; min-width: 40px; border-radius: 50%; flex-shrink: 0;">
                                     <%# Eval("reviwer_name").ToString().Substring(0, 1).ToUpper() %>
                                 </div>
 
@@ -445,7 +443,7 @@
 
                                     </div>
 
-                                    <<div class="text-warning small mb-1">
+                                    <div class="text-warning small mb-1">
                                         <%# GetStars(Eval("review_star")) %>
                                     </div>
 
@@ -457,7 +455,7 @@
 
                             </div>
 
-                        </itemtemplate>
+                        </ItemTemplate>
 
                     </asp:Repeater>
 
@@ -477,7 +475,7 @@
             <!-- Preserved Repeater ID="rptProducts" & OnItemCommand="rptProducts_ItemCommand" -->
             <div class="row g-3">
                 <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                    <itemtemplate>
+                    <ItemTemplate>
                         <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                             <div class="card h-100 bg-white shadow-sm related-card">
 
@@ -495,6 +493,13 @@
                                                 <%# Eval("product_full_name") %>
                                             </h6>
                                         </a>
+
+                                        <div class="d-flex align-items-center gap-1 mb-2">
+                                            <span style="font-size: 12px;">
+                                                <%# GetProductRating(Eval("product_id")) %>
+                                            </span>
+                                        </div>
+
                                         <div class="text-success fw-bold fs-6 mb-2">
                                             Rs. <%# Eval("product_final_sell_price") %>
                                         </div>
@@ -508,7 +513,7 @@
 
                             </div>
                         </div>
-                    </itemtemplate>
+                    </ItemTemplate>
                 </asp:Repeater>
             </div>
         </div>

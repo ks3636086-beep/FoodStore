@@ -216,7 +216,7 @@
                 <!-- 5. Product Grid (6 per row on Desktop, 3 on Tablet, 2 on Mobile) -->
                 <div class="row g-3" id="product-container">
                     <asp:Repeater ID="rptProducts" runat="server">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
                                 <div class="card h-100 bg-white rounded-3 shadow-sm overflow-hidden product-card"
                                     data-aos="fade-right"
@@ -246,6 +246,13 @@
                                             <h6 class="card-title text-dark fw-bold mb-1 text-truncate" title='<%# Eval("product_full_name") %>'>
                                                 <%# Eval("product_full_name") %>
                                             </h6>
+
+                                            <div class="d-flex align-items-center gap-1 mb-2">
+                                                <span style="font-size: 12px;">
+                                                    <%# GetProductRating(Eval("product_id")) %>
+                                                </span>
+                                            </div>
+
                                             <div class="text-success fw-bold fs-6 mb-2">
                                                 ₹<%# Eval("product_final_sell_price") %>
                                             </div>
@@ -258,7 +265,7 @@
 
                                 </div>
                             </div>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:Repeater>
                 </div>
 

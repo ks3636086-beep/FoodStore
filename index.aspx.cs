@@ -293,4 +293,54 @@ public partial class index : System.Web.UI.Page
         rptProducts.DataSource = mst.GetData("SELECT TOP 10 *,b.id as price_id,(select top 1 product_stock from ecommerce_product_price where product_id=a.product_id) as product_stock,(select top 1 photo_path from ecommerce_product_photos where product_id=a.product_id) as photo_path,(select count(product_id) from ecommerce_order where product_id=a.product_id and order_status!='Cancelled') as total_sale FROM ecommerce_product a left join ecommerce_product_price as b on a.product_id=b.product_id ORDER BY total_sale DESC");
         rptProducts.DataBind();
     }
+
+
+    protected string GetProductRating(object productId)
+    {
+        decimal averageRating = 0;
+        int totalReviews = 0;
+
+        string query = @"
+        SELECT 
+            ISNULL(AVG(CAST(review_star AS DECIMAL(10,1))), 0) AS average_rating,
+            COUNT(*) AS total_reviews
+        FROM product_rating_review
+        WHERE product_id = @product_id
+        AND review_status = 'Active'";
+
+        using (SqlCommand cmd = new SqlCommand(query, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@product_id", productId);
+
+            mst.con.Open();
+
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                if (dr.Read())
+                {
+                    averageRating = Convert.ToDecimal(dr["average_rating"]);
+                    totalReviews = Convert.ToInt32(dr["total_reviews"]);
+                }
+            }
+
+            mst.con.Close();
+        }
+
+        int fullStars = (int)Math.Floor(averageRating);
+        bool halfStar = (averageRating - fullStars) >= 0.5m;
+
+        string stars = "";
+
+        for (int i = 1; i <= 5; i++)
+        {
+            if (i <= fullStars)
+                stars += "<i class='fas fa-star text-warning'></i>";
+            else if (i == fullStars + 1 && halfStar)
+                stars += "<i class='fas fa-star-half-alt text-warning'></i>";
+            else
+                stars += "<i class='far fa-star text-muted'></i>";
+        }
+
+        return stars + " <span class='text-muted' style='font-size:11px;'>(" + totalReviews + ")</span>";
+    }
 }

@@ -145,4 +145,53 @@ public partial class shop : System.Web.UI.Page
             BindData1();
         }
     }
+
+    protected string GetProductRating(object productId)
+    {
+        decimal averageRating = 0;
+        int totalReviews = 0;
+
+        string query = @"
+        SELECT 
+            ISNULL(AVG(CAST(review_star AS DECIMAL(10,1))), 0) AS average_rating,
+            COUNT(*) AS total_reviews
+        FROM product_rating_review
+        WHERE product_id = @product_id
+        AND review_status = 'Active'";
+
+        using (SqlCommand cmd = new SqlCommand(query, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@product_id", productId);
+
+            mst.con.Open();
+
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                if (dr.Read())
+                {
+                    averageRating = Convert.ToDecimal(dr["average_rating"]);
+                    totalReviews = Convert.ToInt32(dr["total_reviews"]);
+                }
+            }
+
+            mst.con.Close();
+        }
+
+        int fullStars = (int)Math.Floor(averageRating);
+        bool halfStar = (averageRating - fullStars) >= 0.5m;
+
+        string stars = "";
+
+        for (int i = 1; i <= 5; i++)
+        {
+            if (i <= fullStars)
+                stars += "<i class='fas fa-star text-warning'></i>";
+            else if (i == fullStars + 1 && halfStar)
+                stars += "<i class='fas fa-star-half-alt text-warning'></i>";
+            else
+                stars += "<i class='far fa-star text-muted'></i>";
+        }
+
+        return stars + " <span class='text-muted' style='font-size:11px;'>(" + totalReviews + ")</span>";
+    }
 }

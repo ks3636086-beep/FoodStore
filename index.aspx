@@ -192,7 +192,7 @@
             <div class="row flex-nowrap flex-lg-wrap justify-content-start justify-content-lg-center category-scroll-container">
 
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <ItemTemplate>
+                    <itemtemplate>
 
                         <div class="col-auto col-md-3 col-lg-2 text-center mb-3 category-item"
                             data-aos="zoom-in"
@@ -216,7 +216,7 @@
 
                         </div>
 
-                    </ItemTemplate>
+                    </itemtemplate>
                 </asp:Repeater>
 
             </div>
@@ -376,7 +376,7 @@
         <!-- 6-COLUMN GRID MATCHING THE IMAGE -->
         <div class="row g-2 g-md-3 mx-1" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 product-item">
                         <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card"
                             data-aos="fade-up"
@@ -428,13 +428,19 @@
                                 Text='<%# Eval("price_id") %>'></asp:Label>
 
                             <!-- PRODUCT DETAILS & ADD TO CART -->
-                            <div class="card-body p-2 p-md-3 d-flex flex-column justify-content-between">
+                            <div class="card-body p-2 p-md- d-flex flex-column justify-content-between">
                                 <div>
                                     <h6 class="card-title fw-bold text-dark mb-1 product-title" title='<%# Eval("product_full_name") %>'>
                                         <%# Eval("product_full_name") %>
                                     </h6>
 
-                                    <div class="mb-2">
+                                    <div class="d-flex align-items-center gap-1 mb-1">
+                                        <span style="font-size: 12px;">
+                                            <%# GetProductRating(Eval("product_id")) %>
+                                        </span>
+                                    </div>
+
+                                    <div class="mb-1">
                                         <div class="d-flex align-items-baseline flex-wrap gap-1">
                                             <span class="fw-bold text-success fs-6">₹<%# Eval("product_final_sell_price") %></span>
                                             <span class="text-muted text-decoration-line-through small" style="font-size: 0.75rem;">₹<%# Eval("product_market_price") %></span>
@@ -453,13 +459,11 @@
 
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
 
         <!-- LOAD MORE BUTTON SECTION -->
-
-
     </div>
     <style>
         /* Image Container - Height ko 180px se bada karke 215px kar diya h */
@@ -550,8 +554,6 @@
             font-weight: 700;
         }
     </style>
-
-
 
     <!-- Load More Button -->
     <div class="text-center mt-4 mb-4"
