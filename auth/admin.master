@@ -181,6 +181,15 @@
                             </ul>
                         </li>
 
+                        <li class="droplink"><a href="Add_Coupon.aspx"><i class="fas fa-tags"></i>
+                            <p>&nbsp;Add Coupon</p>
+                            <span class="arrow"></span></a>
+                            <ul class="sub-menu">
+                                <li><a href="Coupon_List.aspx">Coupon List</a></li>
+                                 
+                            </ul>
+                        </li>
+
                         <li class="droplink"><a href="#"><i class="fas fa-people-carry"></i>
                             <p>&nbsp;Delivery Boy</p>
                             <span class="arrow"></span></a>
@@ -257,7 +266,7 @@
                             <ul class="sub-menu">
                                 <li><a href="Return_Request.aspx">Return Report</a></li>
                                 <li><a href="Refund_Requests.aspx">Refund Requests</a></li>
- 
+
                             </ul>
                         </li>
 

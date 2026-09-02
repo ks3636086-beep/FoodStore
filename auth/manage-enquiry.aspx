@@ -35,7 +35,6 @@
                                         </tr>
                                     </tfoot>
                                     <tbody id="tlist" runat="server">
-
                                         <asp:Repeater ID="rptbinddata" runat="server" OnItemDataBound="rptbinddata_ItemDataBound" OnItemCommand="rptbinddata_ItemCommand">
                                             <ItemTemplate>
                                                 <tr>

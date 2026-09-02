@@ -71,7 +71,73 @@ public class Backend
     }
 
 
+    public int Check_Coupon_Code(string couponCode)
+    {
+        string strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
 
+        using (SqlConnection con = new SqlConnection(strConnString))
+        {
+            string strQuery = "SELECT COUNT(*) FROM ecommerce_coupon WHERE coupon_code = @coupon_code";
+
+            using (SqlCommand cmd = new SqlCommand(strQuery, con))
+            {
+                cmd.Parameters.AddWithValue("@coupon_code", couponCode);
+
+                con.Open();
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+    }
+
+    public int Add_Coupon(string couponName, string applyCustomer, string fromDate, string toDate, decimal discountPercentage, string couponDetail, string couponCode, string couponStatus)
+    {
+        string strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
+
+        using (SqlConnection con = new SqlConnection(strConnString))
+        {
+            string strQuery = @"INSERT INTO ecommerce_coupon
+                            (coupon_name, apply_customer, from_date, to_date, discount_percentage, coupon_detail, coupon_code, coupon_status)
+                            OUTPUT INSERTED.id
+                            VALUES
+                            (@coupon_name, @apply_customer, @from_date, @to_date, @discount_percentage, @coupon_detail, @coupon_code, @coupon_status)";
+
+            using (SqlCommand cmd = new SqlCommand(strQuery, con))
+            {
+                cmd.Parameters.AddWithValue("@coupon_name", couponName);
+                cmd.Parameters.AddWithValue("@apply_customer", applyCustomer);
+                cmd.Parameters.AddWithValue("@from_date", Convert.ToDateTime(fromDate));
+                cmd.Parameters.AddWithValue("@to_date", Convert.ToDateTime(toDate));
+                cmd.Parameters.AddWithValue("@discount_percentage", discountPercentage);
+                cmd.Parameters.AddWithValue("@coupon_detail", couponDetail);
+                cmd.Parameters.AddWithValue("@coupon_code", couponCode);
+                cmd.Parameters.AddWithValue("@coupon_status", couponStatus);
+
+                con.Open();
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+    }
+    public int Add_Coupon_Customer(int couponId, string customerId)
+    {
+        string strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;
+
+        using (SqlConnection con = new SqlConnection(strConnString))
+        {
+            string strQuery = "INSERT INTO ecommerce_coupon_customer (coupon_id, customer_id) VALUES (@coupon_id, @customer_id)";
+
+            using (SqlCommand cmd = new SqlCommand(strQuery, con))
+            {
+                cmd.Parameters.AddWithValue("@coupon_id", couponId);
+                cmd.Parameters.AddWithValue("@customer_id", customerId);
+
+                con.Open();
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+    }
     public int Edit_City_Name(string district_name, string city_name)
     {
         con.Close();
