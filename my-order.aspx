@@ -95,7 +95,7 @@
 
                                             <td class="align-middle">
 
-                                                <span class="badge badge-success" style="font-size: 14px;">
+                                                <span class="badge badge-success" style="font-size: 14px; color: black;">
                                                     <asp:Label ID="lblstatus" runat="server"
                                                         Text='<%# Eval("order_status") %>'></asp:Label>
                                                 </span>

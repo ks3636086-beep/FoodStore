@@ -91,7 +91,7 @@
                             <tbody>
                                 <!-- Preserved Repeater ID="rptCart" & OnItemCommand="rptCart_ItemCommand" -->
                                 <asp:Repeater ID="rptCart" runat="server" OnItemCommand="rptCart_ItemCommand">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <tr>
                                             <!-- Product Image & Name -->
                                             <td>
@@ -152,12 +152,162 @@
                                                 </asp:LinkButton>
                                             </td>
                                         </tr>
-                                    </itemtemplate>
+                                    </ItemTemplate>
                                 </asp:Repeater>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+
+                <!-- 5. Collapsible Accordions (Gift, Coupon, Bank Offers) -->
+                <div class="accordion mb-4" id="cartAccordions">
+
+                    <!-- Coupon Accordion -->
+                    <div class="accordion-item border rounded-3 overflow-hidden mb-2"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
+
+                        <h2 class="accordion-header" id="headingCoupon">
+                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseCoupon"
+                                aria-expanded="false"
+                                aria-controls="collapseCoupon">
+                                🏷 Apply Coupon Code
+                            </button>
+                        </h2>
+
+                        <div id="collapseCoupon"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="headingCoupon"
+                            data-bs-parent="#cartAccordions">
+
+                            <div class="accordion-body p-3 bg-light">
+
+                                <!-- Coupon Input -->
+                                <label class="form-label small fw-bold text-secondary mb-1">
+                                    Have a promo code?
+                                </label>
+
+                                <div class="input-group input-group-sm mb-3" style="max-width: 360px;">
+                                    <asp:TextBox runat="server" ID="txtCouponCode"
+                                        class="form-control"
+                                        placeholder="Enter coupon code" />
+
+                                    <asp:Button runat="server"
+                                        ID="btnSelectCoupon"
+                                        Text="Apply"
+                                        CssClass="btn btn-dark btn-sm mt-1 px-2 px-md-3"
+                                        CommandName="ApplyCoupon"
+                                        CommandArgument='<%# Eval("coupon_code") %>'
+                                        OnCommand="btnSelectCoupon_Command" />
+                                </div>
+
+
+                                <!-- Available Coupons -->
+                                <asp:Repeater ID="rptCoupons" runat="server">
+
+                                    <ItemTemplate>
+
+                                        <div class="border rounded-3 bg-white p-3 mb-2 shadow-sm">
+
+                                            <div class="d-flex justify-content-between align-items-center">
+
+                                                <div>
+                                                    <div class="fw-bold text-dark"
+                                                        style="line-height: 1.2;">
+                                                        <%# Eval("coupon_code") %>
+                                                    </div>
+
+                                                    <div class="small text-muted"
+                                                        style="line-height: 1.2;">
+                                                        <%# Eval("coupon_detail") %>
+                                                    </div>
+
+                                                    <div class="small text-muted mt-1"
+                                                        style="line-height: 1.2;">
+                                                        Valid till
+                                    <%# Eval("to_date", "{0:dd-MMM-yyyy}") %>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-end ms-2">
+
+                                                    <div class="fw-bold text-success small">
+                                                        <%# Eval("discount_percentage") %>% OFF
+                                                    </div>
+
+                                                    <asp:Button runat="server" ID="btnSelectCoupon" Text="Apply" type="button"
+                                                        class="btn btn-dark btn-sm mt-1 px-2 px-md-3" OnClick="btnApplyCoupon_Click"></asp:Button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </ItemTemplate>
+
+                                </asp:Repeater>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Gift Accordion -->
+                    <div class="accordion-item border rounded-3 overflow-hidden mb-2"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-once="true">
+                        <h2 class="accordion-header" id="headingGift">
+                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGift" aria-expanded="false" aria-controls="collapseGift">
+                                🎁 Gift / Special Offers
+                           
+                            </button>
+                        </h2>
+                        <div id="collapseGift" class="accordion-collapse collapse" aria-labelledby="headingGift" data-bs-parent="#cartAccordions">
+                            <div class="accordion-body p-3 bg-light text-muted small">
+                                Check applicable gifts and special offers for your order during payment step.
+                           
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Bank Offers Accordion -->
+                    <div class="accordion-item border rounded-3 overflow-hidden"
+                        data-aos="fade-right"
+                        data-aos-duration="800"
+                        data-aos-once="true">
+                        <h2 class="accordion-header" id="headingBank">
+                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseBank"
+                                aria-expanded="false"
+                                aria-controls="collapseBank">
+                                🏦 Bank & Payment Offers
+                            </button>
+                        </h2>
+
+                        <div id="collapseBank" class="accordion-collapse collapse"
+                            aria-labelledby="headingBank"
+                            data-bs-parent="#cartAccordions">
+                            <div class="accordion-body p-3 bg-light text-muted small">
+                                • Bank discounts and payment offers are automatically calculated at checkout.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <!-- 3. Continue Shopping Link -->
                 <div class="mb-4"
@@ -222,153 +372,85 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- 5. Collapsible Accordions (Gift, Coupon, Bank Offers) -->
-                <div class="accordion mb-4" id="cartAccordions">
-
-                    <!-- Gift Accordion -->
-                    <div class="accordion-item border rounded-3 overflow-hidden mb-2"
-                        data-aos="fade-up"
-                        data-aos-duration="800"
-                        data-aos-once="true">
-                        <h2 class="accordion-header" id="headingGift">
-                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGift" aria-expanded="false" aria-controls="collapseGift">
-                                🎁 Gift / Special Offers
-                           
-                            </button>
-                        </h2>
-                        <div id="collapseGift" class="accordion-collapse collapse" aria-labelledby="headingGift" data-bs-parent="#cartAccordions">
-                            <div class="accordion-body p-3 bg-light text-muted small">
-                                Check applicable gifts and special offers for your order during payment step.
-                           
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Coupon Accordion -->
-                    <div class="accordion-item border rounded-3 overflow-hidden mb-2"
-                        data-aos="fade-up"
-                        data-aos-duration="800"
-                        data-aos-once="true">
-                        <h2 class="accordion-header" id="headingCoupon">
-                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCoupon" aria-expanded="false" aria-controls="collapseCoupon">
-                                🏷 Apply Coupon Code
-                           
-                            </button>
-                        </h2>
-                        <div id="collapseCoupon" class="accordion-collapse collapse" aria-labelledby="headingCoupon" data-bs-parent="#cartAccordions">
-                            <div class="accordion-body p-3 bg-light"
-                                data-aos="fade-up"
-                                data-aos-duration="800"
-                                data-aos-once="true">
-                                <label class="form-label small fw-bold text-secondary mb-1">Have a promo code?</label>
-                                <div class="input-group input-group-sm" style="max-width: 360px;">
-                                    <input type="text" class="form-control" placeholder="Enter coupon code" />
-                                    <button class="btn btn-dark fw-semibold px-3" type="button">Apply</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bank Offers Accordion -->
-                    <div class="accordion-item border rounded-3 overflow-hidden"
-                        data-aos="fade-right"
-                        data-aos-duration="800"
-                        data-aos-once="true">
-                        <h2 class="accordion-header" id="headingBank">
-                            <button class="accordion-button collapsed py-2 px-3 fw-semibold small text-dark"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseBank"
-                                aria-expanded="false"
-                                aria-controls="collapseBank">
-                                🏦 Bank & Payment Offers
-                            </button>
-                        </h2>
-
-                        <div id="collapseBank" class="accordion-collapse collapse"
-                            aria-labelledby="headingBank"
-                            data-bs-parent="#cartAccordions">
-                            <div class="accordion-body p-3 bg-light text-muted small">
-                                • Bank discounts and payment offers are automatically calculated at checkout.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
 
 
 
             <!-- Right Column (Price Details / Summary) -->
-           <div class="col-lg-4">
-    <!-- Desktop Sticky Sidebar Wrapper -->
-    <div class="sticky-sidebar-wrapper">
-        
-        <!-- Price Details Card -->
-        <div class="card border rounded-3 shadow-sm mb-3">
-            <div class="card-header bg-white py-3 border-bottom">
-                <h2 class="h6 fw-bold text-dark mb-0">
-                    <i class="fas fa-receipt me-2 text-success"></i>Price Details
-                </h2>
-            </div>
-            <div class="card-body p-3">
-                <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
-                    <span>Subtotal</span>
-                    <span class="fw-bold text-dark">
-                        <!-- Preserved SubTotal -->
-                        <asp:Label runat="server" ID="SubTotal"></asp:Label>
-                    </span>
+            <div class="col-lg-4">
+                <!-- Desktop Sticky Sidebar Wrapper -->
+                <div class="sticky-sidebar-wrapper">
+
+                    <!-- Price Details Card -->
+                    <div class="card border rounded-3 shadow-sm mb-3">
+                        <div class="card-header bg-white py-3 border-bottom">
+                            <h2 class="h6 fw-bold text-dark mb-0">
+                                <i class="fas fa-receipt me-2 text-success"></i>Price Details
+                            </h2>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="fw-bold text-dark">
+                                    <!-- Preserved SubTotal -->
+                                    <asp:Label runat="server" ID="SubTotal"></asp:Label>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                                <span>Shipping</span>
+                                <span class="fw-bold text-dark">
+                                    <!-- Preserved lblshipping -->
+                                    <asp:Label runat="server" ID="lblshipping"></asp:Label>
+                                </span>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                                <span>Coupon Discount</span>
+                                <span class="fw-bold text-success">- ₹<asp:Label runat="server" ID="lblCouponDiscount" Text="0"></asp:Label>
+                                </span>
+                            </div>
+
+                            <hr class="my-3 text-muted opacity-25" />
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fw-bold text-dark">Grand Total</span>
+                                <span class="fw-bold text-success fs-5">
+                                    <!-- Preserved GrandTotal -->
+                                    <asp:Label runat="server" ID="GrandTotal"></asp:Label>
+                                </span>
+                            </div>
+
+                            <!-- Preserved checkoutbtn & OnClick -->
+                            <asp:Button ID="checkoutbtn" runat="server" Text="Proceed To Checkout"
+                                CssClass="btn btn-success w-100 rounded-pill fw-bold shadow-sm py-2 fs-6"
+                                OnClick="checkoutbtn_Click" />
+                        </div>
+                    </div>
+
+                    <!-- Trust Strip -->
+                    <div class="card border-0 bg-light rounded-3 p-3 text-center">
+                        <div class="row g-2 text-muted small fw-semibold">
+                            <div class="col-6"><i class="fas fa-lock text-success me-1"></i>Secure Checkout</div>
+                            <div class="col-6"><i class="fas fa-shield-alt text-success me-1"></i>Safe Payment</div>
+                            <div class="col-6"><i class="fas fa-truck text-success me-1"></i>Fast Delivery</div>
+                            <div class="col-6"><i class="fas fa-undo text-success me-1"></i>Easy Returns</div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
-                    <span>Shipping</span>
-                    <span class="fw-bold text-dark">
-                        <!-- Preserved lblshipping -->
-                        <asp:Label runat="server" ID="lblshipping"></asp:Label>
-                    </span>
-                </div>
-                <hr class="my-3 text-muted opacity-25" />
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="fw-bold text-dark">Grand Total</span>
-                    <span class="fw-bold text-success fs-5">
-                        <!-- Preserved GrandTotal -->
-                        <asp:Label runat="server" ID="GrandTotal"></asp:Label>
-                    </span>
-                </div>
-
-                <!-- Preserved checkoutbtn & OnClick -->
-                <asp:Button ID="checkoutbtn" runat="server" Text="Proceed To Checkout" 
-                    CssClass="btn btn-success w-100 rounded-pill fw-bold shadow-sm py-2 fs-6" 
-                    OnClick="checkoutbtn_Click" />
             </div>
-        </div>
 
-        <!-- Trust Strip -->
-        <div class="card border-0 bg-light rounded-3 p-3 text-center">
-            <div class="row g-2 text-muted small fw-semibold">
-                <div class="col-6"><i class="fas fa-lock text-success me-1"></i>Secure Checkout</div>
-                <div class="col-6"><i class="fas fa-shield-alt text-success me-1"></i>Safe Payment</div>
-                <div class="col-6"><i class="fas fa-truck text-success me-1"></i>Fast Delivery</div>
-                <div class="col-6"><i class="fas fa-undo text-success me-1"></i>Easy Returns</div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Add CSS in your <style> tag or CSS file -->
-<style>
-    /* Sticky position strictly for Desktop screens */
-    @media (min-width: 992px) {
-        .sticky-sidebar-wrapper {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 100px; /* Adjust according to your Header height */
-            z-index: 10;
-        }
-    }
-</style>
+            <!-- Add CSS in your <style> tag or CSS file -->
+            <style>
+                /* Sticky position strictly for Desktop screens */
+                @media (min-width: 992px) {
+                    .sticky-sidebar-wrapper {
+                        position: -webkit-sticky;
+                        position: sticky;
+                        top: 100px; /* Adjust according to your Header height */
+                        z-index: 10;
+                    }
+                }
+            </style>
 
 
         </div>

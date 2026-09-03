@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6" id="specific_customer_container" runat="server">
+                            <div class="col-md-6" id="specific_customer_container" runat="server" style="display:none;">
                                 <div class="form-group">
                                     <label>Select Customer<span style="color: red">&nbsp;*</span></label>
                                     <asp:ListBox ID="ddl_specific_customer" class="selectpicker form-control"

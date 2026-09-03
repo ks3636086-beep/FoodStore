@@ -24,10 +24,17 @@ public partial class auth_Coupon_List : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-
+            BindCoupons();
         }
     }
+    private void BindCoupons()
+    {
+        SqlDataReader getData = mst.Select_Operation(@"SELECT * FROM ecommerce_coupon ORDER BY id DESC");
+        rptCoupons.DataSource = getData;
+        rptCoupons.DataBind();
 
+        getData.Close();
+    }
     protected void rptCoupons_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
 

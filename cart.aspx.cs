@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Razorpay.Api;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -20,6 +21,7 @@ public partial class cart : System.Web.UI.Page
     {
         if (Session["customer_id"] != null)
         {
+            BindCoupons();
             BindCart();
             SubTotal.Text = mst.Get_Total(Session["customer_id"].ToString());
             GrandTotal.Text = mst.Get_Total(Session["customer_id"].ToString());
@@ -102,5 +104,200 @@ public partial class cart : System.Web.UI.Page
     {
         Response.Redirect("checkout.aspx?ref=" + GrandTotal.Text + "");
 
+    }
+    private string AppliedCouponCode
+    {
+        get { return ViewState["AppliedCouponCode"] as string ?? ""; }
+        set { ViewState["AppliedCouponCode"] = value; }
+    }
+
+    private decimal AppliedCouponDiscount
+    {
+        get
+        {
+            return ViewState["AppliedCouponDiscount"] != null
+                ? Convert.ToDecimal(ViewState["AppliedCouponDiscount"])
+                : 0;
+        }
+        set
+        {
+            ViewState["AppliedCouponDiscount"] = value;
+        }
+    }
+    private void BindCoupons()
+    {
+        string customerId = Session["customer_id"].ToString();
+
+        string query = @"SELECT id, coupon_code, coupon_detail, discount_percentage, to_date, apply_customer FROM ecommerce_coupon WHERE coupon_status = 'Active' AND (apply_customer = 'All' OR (apply_customer = 'Specific' AND id IN (SELECT coupon_id FROM ecommerce_coupon_customer WHERE customer_id = '" + customerId + @"'))) ORDER BY id DESC";
+        SqlDataReader getData = mst.Select_Operation(query);
+        rptCoupons.DataSource = getData;
+        rptCoupons.DataBind();
+        getData.Close();
+    }
+
+    protected void btnSelectCoupon_Command(object sender, CommandEventArgs e)
+    {
+        string couponCode = e.CommandArgument.ToString();
+
+        txtCouponCode.Text = couponCode;
+
+        btnApplyCoupon_Click1(sender, e);
+    }
+
+    protected void btnApplyCoupon_Click(object sender, EventArgs e)
+    {
+        string couponCode = txtCouponCode.Text.Trim();
+
+        if (string.IsNullOrEmpty(couponCode))
+        {
+            ShowMessage("Please enter coupon code.", MessageType.Error);
+            return;
+        }
+
+        SqlDataReader getCoupon = mst.Select_Operation(
+            "SELECT id, coupon_code, discount_percentage, from_date, to_date, apply_customer " +
+            "FROM ecommerce_coupon WHERE coupon_code = '" + couponCode + "' AND coupon_status = 'Active'"
+        );
+
+        if (getCoupon.Read())
+        {
+            int couponId = Convert.ToInt32(getCoupon["id"]);
+            string applyCustomer = getCoupon["apply_customer"].ToString();
+
+            DateTime fromDate = Convert.ToDateTime(getCoupon["from_date"]);
+            DateTime toDate = Convert.ToDateTime(getCoupon["to_date"]);
+
+            if (DateTime.Today < fromDate.Date || DateTime.Today > toDate.Date)
+            {
+                getCoupon.Close();
+                ShowMessage("This coupon has expired or is not active yet.", MessageType.Error);
+                return;
+            }
+
+            // Specific Customer Check
+            if (applyCustomer == "Specific")
+            {
+                string customerId = Session["customer_id"].ToString();
+
+                SqlDataReader checkCustomer = mst.Select_Operation(
+                    "SELECT id FROM ecommerce_coupon_customer WHERE coupon_id = "
+                    + couponId + " AND customer_id = '" + customerId + "'"
+                );
+
+                if (!checkCustomer.Read())
+                {
+                    checkCustomer.Close();
+                    getCoupon.Close();
+
+                    ShowMessage("This coupon is not applicable for your account.", MessageType.Error);
+                    return;
+                }
+
+                checkCustomer.Close();
+            }
+
+            // Calculate Discount
+            decimal subTotal = Convert.ToDecimal(mst.Get_Total(Session["customer_id"].ToString()));
+            decimal discountPercentage = Convert.ToDecimal(getCoupon["discount_percentage"]);
+
+            decimal discountAmount = (subTotal * discountPercentage) / 100;
+
+            decimal shipping = 0;
+
+            if (!string.IsNullOrEmpty(lblshipping.Text))
+            {
+                decimal.TryParse(lblshipping.Text, out shipping);
+            }
+
+            decimal grandTotal = subTotal - discountAmount + shipping;
+
+            if (grandTotal < 0)
+            {
+                grandTotal = 0;
+            }
+
+            // Remember Applied Coupon
+            AppliedCouponCode = getCoupon["coupon_code"].ToString();
+            AppliedCouponDiscount = discountAmount;
+
+            // Display
+            lblCouponDiscount.Text = discountAmount.ToString("0.00");
+            GrandTotal.Text = grandTotal.ToString("0.00");
+
+            getCoupon.Close();
+
+            ShowMessage("Coupon applied successfully.", MessageType.Success);
+        }
+        else
+        {
+            getCoupon.Close();
+            ShowMessage("Invalid or inactive coupon code.", MessageType.Error);
+        }
+    }
+
+    protected void btnApplyCoupon_Click1(object sender, EventArgs e)
+    {
+        string couponCode = txtCouponCode.Text.Trim();
+
+        if (string.IsNullOrEmpty(couponCode))
+        {
+            ShowMessage("Please enter coupon code.", MessageType.Error);
+            return;
+        }
+
+        SqlDataReader getCoupon = mst.Select_Operation(
+            "SELECT id, coupon_code, coupon_detail, discount_percentage, from_date, to_date, apply_customer " +
+            "FROM ecommerce_coupon " +
+            "WHERE coupon_code = '" + couponCode + "' AND coupon_status = 'Active'"
+        );
+
+        if (getCoupon.Read())
+        {
+            string applyCustomer = getCoupon["apply_customer"].ToString();
+
+            // Date Check
+            DateTime fromDate = Convert.ToDateTime(getCoupon["from_date"]);
+            DateTime toDate = Convert.ToDateTime(getCoupon["to_date"]);
+            DateTime today = DateTime.Today;
+
+            if (today < fromDate.Date || today > toDate.Date)
+            {
+                getCoupon.Close();
+                ShowMessage("This coupon has expired or is not active yet.", MessageType.Error);
+                return;
+            }
+
+            // Specific Customer Check
+            if (applyCustomer == "Specific")
+            {
+                string customerId = Session["customer_id"].ToString();
+
+                SqlDataReader checkCustomer = mst.Select_Operation(
+                    "SELECT id FROM ecommerce_coupon_customer " +
+                    "WHERE coupon_id = " + getCoupon["id"].ToString() +
+                    " AND customer_id = '" + customerId + "'"
+                );
+
+                if (!checkCustomer.Read())
+                {
+                    checkCustomer.Close();
+                    getCoupon.Close();
+
+                    ShowMessage("This coupon is not applicable for your account.", MessageType.Error);
+                    return;
+                }
+
+                checkCustomer.Close();
+            }
+
+            // Coupon valid and customer eligible
+            ShowMessage("Coupon applied successfully.", MessageType.Success);
+        }
+        else
+        {
+            ShowMessage("Invalid or inactive coupon code.", MessageType.Error);
+        }
+
+        getCoupon.Close();
     }
 }

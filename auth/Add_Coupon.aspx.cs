@@ -32,8 +32,7 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
     {
         ddl_specific_customer.Items.Clear();
 
-        SqlDataReader getCustomer = mst.Select_Operation("SELECT customer_id, customer_name, customer_mobileno FROM ecommerce_customer WHERE customer_status = 'Active' ORDER BY customer_name");
-
+        SqlDataReader getCustomer = mst.Select_Operation(@"SELECT customer_id, customer_name, customer_mobileno FROM ecommerce_customer WHERE customer_status = 'Active' AND customer_id IN (SELECT customer_id FROM ecommerce_order WHERE order_status = 'Delivered' AND delivery_status = 'Delivered' GROUP BY customer_id HAVING COUNT(DISTINCT order_id) >= 2 OR MAX(total_order_amount) >= 300) ORDER BY customer_name");
         ddl_specific_customer.DataSource = getCustomer;
         ddl_specific_customer.DataTextField = "customer_name";
         ddl_specific_customer.DataValueField = "customer_id";
@@ -41,6 +40,7 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
 
         getCustomer.Close();
     }
+
     protected void btnsave_ServerClick(object sender, EventArgs e)
     {
         try
@@ -81,6 +81,7 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
 
                 int success = bnc.Add_Coupon(txt_coupon_name.Text, ddl_apply_customer.SelectedValue, txt_from_date.Text, txt_to_date.Text, discount, txt_coupon_detail.Text, txt_coupon_code.Text, ddl_coupon_status.SelectedValue);
 
+
                 if (success > 0 && ddl_apply_customer.SelectedValue == "Specific")
                 {
                     foreach (ListItem item in ddl_specific_customer.Items)
@@ -106,11 +107,10 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
         }
         catch (SqlException ex)
         {
-            ShowMessage(ex.Message, MessageType.Warning);
+            //ShowMessage(ex.Message, MessageType.Warning);
+            ShowMessage(ex.Message, MessageType.Error);
         }
     }
-
-
 
     protected void ddl_apply_customer_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -122,5 +122,13 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
         {
             specific_customer_container.Style["display"] = "none";
         }
+
+        ScriptManager.RegisterStartupScript(
+            this,
+            this.GetType(),
+            "refreshPicker",
+            "$('.selectpicker').selectpicker('refresh');",
+            true
+        );
     }
 }

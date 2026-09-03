@@ -162,7 +162,7 @@
 
                                             <td class="align-middle">
 
-                                                <span class="badge badge-success">
+                                               <span class="badge badge-success" style="color: black;">
                                                     <asp:Label ID="lblqty" runat="server"
                                                         Text='<%# Eval("product_qty") %>'>
                                             </asp:Label>
