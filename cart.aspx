@@ -91,7 +91,7 @@
                             <tbody>
                                 <!-- Preserved Repeater ID="rptCart" & OnItemCommand="rptCart_ItemCommand" -->
                                 <asp:Repeater ID="rptCart" runat="server" OnItemCommand="rptCart_ItemCommand">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <tr>
                                             <!-- Product Image & Name -->
                                             <td>
@@ -152,7 +152,7 @@
                                                 </asp:LinkButton>
                                             </td>
                                         </tr>
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </asp:Repeater>
                             </tbody>
                         </table>
@@ -210,7 +210,7 @@
                                 <!-- Available Coupons -->
                                 <asp:Repeater ID="rptCoupons" runat="server">
 
-                                    <ItemTemplate>
+                                    <itemtemplate>
 
                                         <div class="border rounded-3 bg-white p-3 mb-2 shadow-sm">
 
@@ -240,8 +240,12 @@
                                                         <%# Eval("discount_percentage") %>% OFF
                                                     </div>
 
-                                                    <asp:Button runat="server" ID="btnSelectCoupon" Text="Apply" type="button"
-                                                        class="btn btn-dark btn-sm mt-1 px-2 px-md-3" OnClick="btnApplyCoupon_Click"></asp:Button>
+                                                    <asp:Button runat="server"
+                                                        ID="Button1"
+                                                        Text="Apply"
+                                                        CssClass="btn btn-dark btn-sm mt-1 px-2 px-md-3"
+                                                        CommandArgument='<%# Eval("coupon_code") %>'
+                                                        OnCommand="btnSelectCoupon_Command" />
 
                                                 </div>
 
@@ -249,7 +253,7 @@
 
                                         </div>
 
-                                    </ItemTemplate>
+                                    </itemtemplate>
 
                                 </asp:Repeater>
 

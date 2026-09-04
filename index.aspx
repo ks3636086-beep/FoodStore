@@ -143,40 +143,208 @@
         </div>
     </section>
 
-    <!-- FLASH SALE SECTION (NEW ADDITION) -->
-    <div class="container-fluid px-3 px-lg-4 py-4" data-aos="fade-up" data-aos-duration="1000">
-        <div class="card border-0 rounded-4 overflow-hidden shadow" style="background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);">
-            <div class="row align-items-center g-0">
-                <div class="col-md-7 p-4 p-md-5 text-white">
-                    <span class="badge bg-white text-danger fw-bold rounded-pill px-3 py-2 mb-3 shadow-sm">
-                        <i class="fas fa-bolt me-1 text-warning"></i>FLASH SALE
-                    </span>
-                    <h2 class="display-6 fw-bold mb-3" style="text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Deal of the Day</h2>
-                    <p class="fs-6 mb-4 opacity-100" style="max-width: 500px;">Get fresh organic avocados and premium imported berries at half the price! Limited stock available.</p>
 
-                    <div class="d-flex gap-3 mb-4">
-                        <div class="text-center bg-white bg-opacity-25 rounded-3 p-2 shadow-sm" style="min-width: 60px;">
-                            <h3 class="fw-bold mb-0 text-white">05</h3>
-                            <span class="small fw-bold opacity-100">Hours</span>
+
+    <!-- FULL BACKGROUND IMAGE BANNER (RESPONSIVE & MOBILE-OPTIMIZED) -->
+    <asp:Panel ID="pnlExclusiveCoupon" runat="server" Visible="true">
+
+        <style>
+            .exclusive-coupon-banner {
+                min-height: 340px;
+                position: relative;
+                overflow: hidden;
+                border-radius: 24px;
+                background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 48%, rgba(255,255,255,0.25) 100%), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1400&q=85') center / cover no-repeat;
+            }
+
+            .coupon-title {
+                color: #111827;
+                font-weight: 900;
+                line-height: 1.1;
+                letter-spacing: -1px;
+            }
+
+            .coupon-highlight {
+                color: #dc2626;
+            }
+
+            .coupon-box {
+                max-width: 420px;
+                background: #fff;
+                border: 2px dashed #f59e0b;
+                border-radius: 14px;
+                padding: 14px 18px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            }
+
+            .coupon-code {
+                font-size: 1.25rem;
+                font-weight: 900;
+                letter-spacing: 2px;
+            }
+
+            .timer-box {
+                display: flex;
+                gap: 8px;
+            }
+
+            .timer-item {
+                min-width: 55px;
+                padding: 7px 8px;
+                text-align: center;
+                background: #111827;
+                color: white;
+                border-radius: 10px;
+            }
+
+            .timer-number {
+                display: block;
+                font-size: 1rem;
+                font-weight: 900;
+            }
+
+            .timer-label {
+                font-size: 0.55rem;
+                text-transform: uppercase;
+                opacity: 0.75;
+            }
+
+            @media (max-width: 767px) {
+                .exclusive-coupon-banner {
+                    min-height: auto;
+                    background: linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=80') center / cover no-repeat;
+                }
+
+                .coupon-title {
+                    font-size: 1.7rem;
+                }
+
+                .coupon-box {
+                    max-width: 100%;
+                }
+
+                .coupon-code {
+                    font-size: 1rem;
+                }
+
+                .timer-item {
+                    min-width: 48px;
+                }
+            }
+        </style>
+
+
+        <div class="container-fluid px-2 px-md-4 py-4">
+
+            <div class="exclusive-coupon-banner shadow">
+
+                <div class="row align-items-center h-100 g-0">
+
+                    <!-- CONTENT -->
+                    <div class="col-12 col-lg-7 p-4 p-md-5">
+
+                        <span class="badge bg-danger rounded-pill px-3 py-2 mb-3">
+                            <i class="fas fa-gift me-1"></i>
+                            EXCLUSIVE OFFER FOR YOU
+                        </span>
+
+                        <h2 class="coupon-title display-5 mb-2">Your Special
+                        <span class="coupon-highlight">
+                            <asp:Label ID="lblCouponDiscountPercentage"
+                                runat="server">30</asp:Label>% OFF
+                        </span>
+                            Is Waiting!
+                        </h2>
+
+                        <p class="text-secondary fw-semibold mb-4">
+                            Enjoy an exclusive discount on your next order.
+                        This special offer is available only for your account.
+                        </p>
+
+
+                        <!-- COUPON -->
+                        <div class="coupon-box mb-3">
+
+                            <small class="text-muted fw-bold d-block mb-1">YOUR EXCLUSIVE COUPON
+                            </small>
+
+                            <div class="d-flex align-items-center justify-content-between gap-2">
+
+                                <span class="coupon-code font-monospace">
+                                    <asp:Label ID="lblExclusiveCouponCode"
+                                        runat="server">MAGGIE30</asp:Label>
+                                </span>
+
+                                <button type="button"
+                                    class="btn btn-warning btn-sm fw-bold rounded-pill px-3"
+                                    onclick="navigator.clipboard.writeText(document.getElementById('<%= lblExclusiveCouponCode.ClientID %>').innerText);">
+                                    <i class="fas fa-copy me-1"></i>
+                                    COPY
+                                </button>
+
+                            </div>
+
                         </div>
-                        <div class="text-center bg-white bg-opacity-25 rounded-3 p-2 shadow-sm" style="min-width: 60px;">
-                            <h3 class="fw-bold mb-0 text-white">42</h3>
-                            <span class="small fw-bold opacity-100">Mins</span>
+
+
+                        <!-- COUNTDOWN -->
+                        <div class="mb-4">
+
+                            <div class="small text-secondary fw-bold mb-2">
+                                <i class="fas fa-clock text-danger me-1"></i>
+                                OFFER ENDS IN
+                            </div>
+
+                            <div class="timer-box">
+
+                                <div class="timer-item">
+                                    <asp:Label ID="lblCouponHours"
+                                        runat="server"
+                                        CssClass="timer-number">02</asp:Label>
+                                    <span class="timer-label">Hours</span>
+                                </div>
+
+                                <div class="timer-item">
+                                    <asp:Label ID="lblCouponMinutes"
+                                        runat="server"
+                                        CssClass="timer-number">15</asp:Label>
+                                    <span class="timer-label">Mins</span>
+                                </div>
+
+                                <div class="timer-item">
+                                    <asp:Label ID="lblCouponSeconds"
+                                        runat="server"
+                                        CssClass="timer-number">45</asp:Label>
+                                    <span class="timer-label">Secs</span>
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div class="text-center bg-white bg-opacity-25 rounded-3 p-2 shadow-sm" style="min-width: 60px;">
-                            <h3 class="fw-bold mb-0 text-white">18</h3>
-                            <span class="small fw-bold opacity-100">Secs</span>
-                        </div>
+
+
+                        <!-- BUTTON -->
+                        <asp:Button ID="btnUseExclusiveCoupon"
+                            runat="server"
+                            Text="Claim & Order Now →"
+                            CssClass="btn btn-danger fw-bold rounded-pill px-4 py-2 shadow-sm border-0" />
+
                     </div>
 
-                    <a href="shop.aspx" class="btn btn-light text-danger fw-bold rounded-pill px-4 py-2 shadow-sm">Shop Now <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
-                <div class="col-md-5 d-none d-md-block" style="background: url('https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=800&q=80') center center / cover;">
-                    <div style="min-height: 350px; width: 100%;"></div>
-                </div>
+
             </div>
+
         </div>
-    </div>
+
+
+        <!-- EXPIRY DATE -->
+        <asp:HiddenField ID="hfCouponExpiryDate"
+            runat="server" />
+
+    </asp:Panel>
+
+
 
     <!-- Start Categories -->
     <div class="categories-shop py-5">

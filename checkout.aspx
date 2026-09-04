@@ -306,19 +306,35 @@
 
                             <!-- 9. PRICE DETAILS -->
                             <div class="border-top pt-2 mb-3">
+
+                                <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                                    <span>Subtotal</span>
+                                    <asp:Label ID="lblsubtotal" runat="server"></asp:Label>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
+                                    <span>Coupon Discount</span>
+                                    <asp:Label ID="lblCouponDiscount" runat="server" CssClass="text-success"></asp:Label>
+                                </div>
+
                                 <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
                                     <span>Shipping Cost</span>
                                     <span class="fw-semibold text-success">Free</span>
                                 </div>
+
                                 <hr class="my-2 opacity-25" />
+
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="fw-bold text-dark">Grand Total</span>
                                     <div class="text-end">
-                                        <!-- Preserved ID="lblgrandtotal" -->
-                                        <asp:Label runat="server" ID="lblgrandtotal" CssClass="h5 fw-bold text-success mb-0 d-block"></asp:Label>
+                                        <asp:Label ID="lblgrandtotal" runat="server"
+                                            CssClass="h5 fw-bold text-success mb-0 d-block">
+                                        </asp:Label>
                                     </div>
                                 </div>
+
                             </div>
+
 
                             <!-- 10. PLACE ORDER BUTTON -->
                             <div>

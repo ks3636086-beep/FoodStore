@@ -23,8 +23,41 @@ public partial class checkout : System.Web.UI.Page
         if (!IsPostBack)
         {
             Binddata();
-            lblgrandtotal.Text = mst.Get_Total(Session["customer_id"].ToString());
+            CalculateCheckoutTotal();
+            // lblgrandtotal.Text = mst.Get_Total(Session["customer_id"].ToString());
         }
+    }
+
+    private void CalculateCheckoutTotal()
+    {
+        string totalText = mst.Get_Total(Session["customer_id"].ToString());
+
+        decimal subTotal = 0;
+
+        if (!decimal.TryParse(totalText, out subTotal))
+        {
+            subTotal = 0;
+        }
+
+        decimal couponDiscount = 0;
+
+        if (Session["AppliedCouponDiscount"] != null)
+        {
+            couponDiscount = Convert.ToDecimal(
+                Session["AppliedCouponDiscount"]
+            );
+        }
+
+        decimal grandTotal = subTotal - couponDiscount;
+
+        if (grandTotal < 0)
+        {
+            grandTotal = 0;
+        }
+
+        lblsubtotal.Text = "₹" + subTotal.ToString("0.00");
+        lblCouponDiscount.Text = "- ₹" + couponDiscount.ToString("0.00");
+        lblgrandtotal.Text = grandTotal.ToString("0.00");
     }
 
     private void Binddata()
@@ -109,7 +142,7 @@ public partial class checkout : System.Web.UI.Page
                 mst.con.Close();
 
                 mst.con.Open();
-                string insert_category = "update ecommerce_order set product_GST_type=@product_GST_type,product_tax_type=@product_tax_type, product_GST_percentage=@product_GST_percentage, product_GST_rate=@product_GST_rate, product_CGST_percentage = @product_CGST_percentage,product_CGST_rate =@product_CGST_rate, product_SGST_percentage =@product_SGST_percentage ,product_SGST_rate =@product_SGST_rate ,product_IGST_percentage =@product_IGST_percentage ,product_IGST_rate =@product_IGST_rate, product_market_price =@product_market_price ,product_sell_price =@product_sell_price ,product_discount_percentage =@product_discount_percentage ,product_discount_price =@product_discount_price ,product_with_gst_Price =@product_with_gst_Price ,product_final_sell_price =@product_final_sell_price ,total_market_price =@total_market_price, product_shipping_charge =@product_shipping_charge, total_amount_of_product =@total_amount_of_product, total_order_amount =@total_order_amount, product_photo =@product_photo, product_qty =@product_qty, payment_mode =@payment_mode, order_status =@order_status, delivery_status =@delivery_status,billing_landmark=@billing_landmark,billing_pincode=@billing_pincode,billing_state_name=@billing_state_name,billing_city_name=@billing_city_name,billing_address_line2=@billing_address_line2,billing_address_line1=@billing_address_line1,customer_email=@customer_email,customer_mobileno=@customer_mobileno,customer_name=@customer_name,order_time=@order_time,order_date=@order_date,order_id=@order_id,order_id_temp=@order_id_temp  where customer_id=@customer_id and product_id=@product_id and product_price_id=@product_price_id and order_id is null";
+                string insert_category = "update ecommerce_order set product_GST_type=@product_GST_type,coupan_value=@coupan_value, coupan_code=@coupan_code, product_tax_type=@product_tax_type, product_GST_percentage=@product_GST_percentage, product_GST_rate=@product_GST_rate, product_CGST_percentage = @product_CGST_percentage,product_CGST_rate =@product_CGST_rate, product_SGST_percentage =@product_SGST_percentage ,product_SGST_rate =@product_SGST_rate ,product_IGST_percentage =@product_IGST_percentage ,product_IGST_rate =@product_IGST_rate, product_market_price =@product_market_price ,product_sell_price =@product_sell_price ,product_discount_percentage =@product_discount_percentage ,product_discount_price =@product_discount_price ,product_with_gst_Price =@product_with_gst_Price ,product_final_sell_price =@product_final_sell_price ,total_market_price =@total_market_price, product_shipping_charge =@product_shipping_charge, total_amount_of_product =@total_amount_of_product, total_order_amount =@total_order_amount, product_photo =@product_photo, product_qty =@product_qty, payment_mode =@payment_mode, order_status =@order_status, delivery_status =@delivery_status,billing_landmark=@billing_landmark,billing_pincode=@billing_pincode,billing_state_name=@billing_state_name,billing_city_name=@billing_city_name,billing_address_line2=@billing_address_line2,billing_address_line1=@billing_address_line1,customer_email=@customer_email,customer_mobileno=@customer_mobileno,customer_name=@customer_name,order_time=@order_time,order_date=@order_date,order_id=@order_id,order_id_temp=@order_id_temp  where customer_id=@customer_id and product_id=@product_id and product_price_id=@product_price_id and order_id is null";
                 SqlCommand cmd_category = new SqlCommand(insert_category, mst.con);
 
                 cmd_category.Parameters.AddWithValue("@product_id", lblproduct_id.Text);
@@ -216,8 +249,22 @@ public partial class checkout : System.Web.UI.Page
                 double price = Convert.ToDouble(product_final_sell_price);
                 double total = Convert.ToDouble(q) * price;
 
+                string couponCode = "";
+                if (Session["AppliedCouponCode"] != null)
+                {
+                    couponCode = Session["AppliedCouponCode"].ToString();
+                }
+
+                decimal couponValue = 0;
+                if (Session["AppliedCouponDiscount"] != null)
+                {
+                    couponValue = Convert.ToDecimal(Session["AppliedCouponDiscount"]);
+                }
+
                 cmd_category.Parameters.AddWithValue("@total_amount_of_product", Convert.ToDouble(total.ToString()));
                 cmd_category.Parameters.AddWithValue("@total_order_amount", Convert.ToDouble(lblgrandtotal.Text));
+                cmd_category.Parameters.AddWithValue("@coupan_code", couponCode);
+                cmd_category.Parameters.AddWithValue("@coupan_value", couponValue);
                 cmd_category.Parameters.AddWithValue("@product_photo", product_photo);
                 cmd_category.Parameters.AddWithValue("@product_qty", Convert.ToInt32(qty.Text));
                 cmd_category.Parameters.AddWithValue("@payment_mode", dblmode.SelectedValue);
@@ -226,7 +273,7 @@ public partial class checkout : System.Web.UI.Page
 
 
                 int success = cmd_category.ExecuteNonQuery();
-                Response.Write("Updated Rows = " + success);
+                // Response.Write("Updated Rows = " + success);
                 // Response.End();
                 if (success > 0)
                 {
@@ -242,6 +289,37 @@ public partial class checkout : System.Web.UI.Page
             }
 
         }
+
+        string customerId = Session["customer_id"].ToString();
+
+        string appliedCode = "";
+
+        if (Session["AppliedCouponCode"] != null)
+        {
+            appliedCode = Session["AppliedCouponCode"].ToString();
+        }
+
+        if (appliedCode != "")
+        {
+            mst.con.Open();
+
+            string deleteCoupon =
+                "DELETE FROM ecommerce_coupon_customer " +
+                "WHERE customer_id = @customer_id " +
+                "AND coupon_id = (SELECT id FROM ecommerce_coupon WHERE coupon_code = @coupon_code)";
+
+            SqlCommand cmdCoupon = new SqlCommand(deleteCoupon, mst.con);
+
+            cmdCoupon.Parameters.AddWithValue("@customer_id", customerId);
+            cmdCoupon.Parameters.AddWithValue("@coupon_code", appliedCode);
+
+            cmdCoupon.ExecuteNonQuery();
+
+            mst.con.Close();
+        }
+
+        Session.Remove("AppliedCouponCode");
+        Session.Remove("AppliedCouponDiscount");
 
         Response.Redirect("page-orderdetails.aspx?ref='" + order_id + "'");
 
