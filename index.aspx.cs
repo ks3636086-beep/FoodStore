@@ -25,6 +25,8 @@ public partial class index : System.Web.UI.Page
         {
             BindData();
             BindData1();
+            BindExclusiveCoupon();
+            BindReviewProduct();
 
             string search = Request.QueryString["search"];
 
@@ -342,5 +344,152 @@ public partial class index : System.Web.UI.Page
         }
 
         return stars + " <span class='text-muted' style='font-size:11px;'>(" + totalReviews + ")</span>";
+    }
+
+    private void BindExclusiveCoupon()
+    {
+        pnlExclusiveCoupon.Visible = false;
+
+        if (Session["customer_id"] == null)
+            return;
+
+        string customerId = Session["customer_id"].ToString().Trim();
+
+        if (customerId == "")
+            return;
+
+        string query = "SELECT id,coupon_code,discount_percentage,coupon_detail,    from_date,to_date,coupon_status FROM ecommerce_coupon WHERE id IN (SELECT coupon_id FROM ecommerce_coupon_customer WHERE customer_id = '" + customerId + "')";
+
+        SqlDataReader getCoupon = mst.Select_Operation(query);
+
+        if (getCoupon == null)
+            return;
+
+        if (getCoupon.Read())
+        {
+            lblCouponDetail.Text = getCoupon["coupon_detail"].ToString().Trim();
+            string couponCode = getCoupon["coupon_code"].ToString().Trim();
+            string status = getCoupon["coupon_status"].ToString().Trim();
+
+            decimal discount;
+            DateTime fromDate;
+            DateTime toDate;
+
+            bool validDiscount = decimal.TryParse(getCoupon["discount_percentage"].ToString(), out discount);
+            bool validFromDate = DateTime.TryParse(getCoupon["from_date"].ToString(), out fromDate);
+            bool validToDate = DateTime.TryParse(getCoupon["to_date"].ToString(), out toDate);
+
+            if (couponCode == "" || status != "Active" || !validDiscount || discount <= 0 ||
+                !validFromDate || !validToDate)
+            {
+                getCoupon.Close();
+                return;
+            }
+
+            if (DateTime.Now < fromDate || DateTime.Now > toDate)
+            {
+                getCoupon.Close();
+                return;
+            }
+
+            TimeSpan remainingTime = toDate - DateTime.Now;
+
+
+            lblCouponDays.Text = remainingTime.Days.ToString("00");
+            lblCouponHours.Text = ((int)remainingTime.TotalHours).ToString("00");
+            lblCouponMinutes.Text = remainingTime.Minutes.ToString("00");
+            lblCouponSeconds.Text = remainingTime.Seconds.ToString("00");
+
+            lblCouponDiscountPercentage.Text = discount.ToString("0.##");
+            lblExclusiveCouponCode.Text = couponCode;
+            hfCouponExpiryDate.Value = toDate.ToString("yyyy-MM-ddTHH:mm:ss");
+
+            pnlExclusiveCoupon.Visible = true;
+        }
+
+        getCoupon.Close();
+    }
+
+    private void BindReviewProduct()
+    {
+        if (Session["customer_id"] == null) return;
+
+        string q = @"SELECT TOP 1 product_id, product_name, product_photo, order_delivery_date
+                 FROM ecommerce_order o
+                 WHERE customer_id=@customer_id AND delivery_status='Delivered'
+                 AND NOT EXISTS (SELECT 1 FROM product_rating_review r WHERE r.product_id=o.product_id AND r.reviwer_id=@customer_id)
+                 ORDER BY o.id DESC";
+
+        using (SqlCommand cmd = new SqlCommand(q, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@customer_id", Session["customer_id"]);
+            mst.con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+
+                imgRecentProduct.ImageUrl = "auth/" + dr["product_photo"];
+                lnkRecentProduct.HRef = "product_details.aspx?ref=" + dr["product_id"];
+                lblDeliveryDate.Text = Convert.ToDateTime(dr["order_delivery_date"]).ToString("d MMM, yyyy");
+                pnlRecentOrderReview.Visible = true;
+            }
+            else pnlRecentOrderReview.Visible = false;
+
+            dr.Close();
+            mst.con.Close();
+        }
+    }
+
+    protected void btnDismissReview_Click(object sender, EventArgs e)
+    {
+        if (Session["customer_id"] == null)
+            return;
+
+        string customerId = Session["customer_id"].ToString();
+
+        // Current/latest review product ka order row
+        string q = @"SELECT TOP 1 id, product_id
+                 FROM ecommerce_order
+                 WHERE customer_id = @customer_id
+                 AND delivery_status = 'Delivered'
+                 ORDER BY id DESC";
+
+        using (SqlCommand cmd = new SqlCommand(q, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@customer_id", customerId);
+
+            mst.con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                string orderRowId = dr["id"].ToString().Trim();
+                string productId = dr["product_id"].ToString().Trim();
+
+                dr.Close();
+
+                string insert = @"INSERT INTO product_rating_review
+        (product_id, reviwer_id, order_row_id, review_status)
+        VALUES (@product_id, @customer_id, @order_row_id, 'Dismissed')";
+
+                using (SqlCommand cmd2 = new SqlCommand(insert, mst.con))
+                {
+                    cmd2.Parameters.AddWithValue("@product_id", productId);
+                    cmd2.Parameters.AddWithValue("@customer_id", customerId);
+                    cmd2.Parameters.AddWithValue("@order_row_id", orderRowId);
+                    cmd2.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                dr.Close();
+            }
+
+            mst.con.Close();
+        }
+
+        pnlRecentOrderReview.Visible = false;
     }
 }

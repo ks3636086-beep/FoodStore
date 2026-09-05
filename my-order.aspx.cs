@@ -31,7 +31,7 @@ public partial class my_order : System.Web.UI.Page
     }
     private void Binddata()
     {
-        rptbindproduct.DataSource = mst.GetData("select max(a.order_id)order_id,max(a.customer_name)customer_name,max(a.customer_mobileno)customer_mobileno,max(a.total_order_amount)total_order_amount,max(a.order_date)order_date,max(a.order_status)order_status from ecommerce_order a where a.customer_id='" + Session["customer_id"].ToString() + "' and order_id is not null group by a.order_id");
+        rptbindproduct.DataSource = mst.GetData("select max(a.order_id)order_id,max(a.product_photo) product_photo,max(a.customer_name)customer_name,max(a.customer_mobileno)customer_mobileno,max(a.total_order_amount)total_order_amount,max(a.order_date)order_date,max(a.order_status)order_status from ecommerce_order a where a.customer_id='" + Session["customer_id"].ToString() + "' and order_id is not null group by a.order_id order by max(a.id) desc");
         rptbindproduct.DataBind();
     }
 

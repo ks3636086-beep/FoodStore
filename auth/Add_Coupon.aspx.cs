@@ -58,6 +58,9 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
                 DateTime fromDate = Convert.ToDateTime(txt_from_date.Text);
                 DateTime toDate = Convert.ToDateTime(txt_to_date.Text);
 
+                string fromDateValue = fromDate.ToString("MMM  d yyyy hh:mmtt");
+                string toDateValue = toDate.ToString("MMM  d yyyy hh:mmtt");
+
                 if (toDate < fromDate)
                 {
                     ShowMessage("To Date cannot be earlier than From Date.", MessageType.Error);
@@ -79,7 +82,7 @@ public partial class auth_Add_Coupon : System.Web.UI.Page
                     return;
                 }
 
-                int success = bnc.Add_Coupon(txt_coupon_name.Text, ddl_apply_customer.SelectedValue, txt_from_date.Text, txt_to_date.Text, discount, txt_coupon_detail.Text, txt_coupon_code.Text, ddl_coupon_status.SelectedValue);
+                int success = bnc.Add_Coupon(txt_coupon_name.Text, ddl_apply_customer.SelectedValue, fromDateValue, toDateValue, discount, txt_coupon_detail.Text, txt_coupon_code.Text, ddl_coupon_status.SelectedValue);
 
 
                 if (success > 0 && ddl_apply_customer.SelectedValue == "Specific")

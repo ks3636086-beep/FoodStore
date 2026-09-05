@@ -146,22 +146,113 @@
 
 
     <!-- FULL BACKGROUND IMAGE BANNER (RESPONSIVE & MOBILE-OPTIMIZED) -->
-    <asp:Panel ID="pnlExclusiveCoupon" runat="server" Visible="true">
 
+    <asp:Panel ID="pnlExclusiveCoupon" runat="server" Visible="false">
+
+
+        <div class="container-fluid px-2 px-md-4 py-3">
+
+            <div class="exclusive-coupon-banner shadow-sm border border-light">
+
+                <div class="row align-items-center h-100 g-0">
+
+                    <!-- CONTENT AREA -->
+                    <div class="col-12 col-lg-7 p-4 p-md-5 mobile-padding">
+
+                        <!-- TOP BADGE -->
+                        <span class="badge bg-danger rounded-pill px-3 py-2 mb-3 mobile-badge">
+                            <i class="fas fa-gift me-1"></i>
+                            EXCLUSIVE OFFER FOR YOU
+                        </span>
+
+                        <!-- MAIN TITLE -->
+                        <h2 class="coupon-title display-5 mb-2">Get Flat 
+                        <span class="coupon-highlight">
+                            <asp:Label ID="lblCouponDiscountPercentage" runat="server">30</asp:Label>% OFF
+                        </span>
+                            On Daily Essentials!
+                        </h2>
+
+                        <!-- SUBTITLE -->
+                        <p class="text-secondary fw-semibold mb-4 mobile-subtext">
+                            Stock up on Fresh Vegetables, Organic Fruits, Cookies & Snacks. Special discount unlocked for your account!
+                        </p>
+
+                        <!-- COUPON BOX -->
+                        <div class="coupon-box mb-3">
+                            <asp:Label ID="lblCouponDetail" runat="server"
+                                CssClass="text-muted fw-bold d-block mb-1 mobile-coupon-label"></asp:Label>
+
+                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                <span class="coupon-code font-monospace">
+                                    <asp:Label ID="lblExclusiveCouponCode" runat="server">GROCERY30</asp:Label>
+                                </span>
+
+                                <button type="button"
+                                    class="btn btn-warning btn-sm fw-bold rounded-pill px-3 mobile-copy-btn"
+                                    onclick="navigator.clipboard.writeText(document.getElementById('<%= lblExclusiveCouponCode.ClientID %>').innerText); alert('Copied!');">
+                                    <i class="fas fa-copy me-1"></i>
+                                    COPY
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- COUNTDOWN TIMER -->
+
+                        <div class="mb-4 mobile-timer-section">
+                            <div class="d-inline-flex align-items-center gap-2 bg-danger bg-opacity-10 border border-danger border-opacity-25 rounded-pill px-3 py-1.5 shadow-sm">
+
+                                <!-- Animated Clock Icon -->
+                                <span class="text-danger fw-bold small">
+                                    <i class="fas fa-stopwatch me-1 fa-spin" style="--fa-animation-duration: 3s;"></i>OFFER ENDS IN:
+                                </span>
+
+                                <!-- Digital LED Style Timer -->
+                                <div class="d-flex align-items-center font-monospace fw-bold text-danger fs-6" style="letter-spacing: 0.5px;">
+                                    <asp:Label ID="lblCouponDays" runat="server">02</asp:Label>
+                                    <span class="mx-0.5 opacity-75">:</span>
+                                    <asp:Label ID="lblCouponHours" runat="server">02</asp:Label>
+                                    <span class="mx-0.5 opacity-75">:</span>
+                                    <asp:Label ID="lblCouponMinutes" runat="server">15</asp:Label>
+                                    <span class="mx-0.5 opacity-75">:</span>
+                                    <asp:Label ID="lblCouponSeconds" runat="server">45</asp:Label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- ACTION BUTTON -->
+                        <asp:Button ID="btnUseExclusiveCoupon"
+                            runat="server"
+                            Text="Claim & Shop Essentials →"
+                            CssClass="btn btn-danger fw-bold rounded-pill px-4 py-2 shadow-sm border-0 mobile-btn"
+                            OnClientClick="window.location.href='shop.aspx'; return false;" />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- EXPIRY DATE HIDDEN FIELD -->
+        <asp:HiddenField ID="hfCouponExpiryDate" runat="server" />
         <style>
             .exclusive-coupon-banner {
                 min-height: 340px;
                 position: relative;
                 overflow: hidden;
                 border-radius: 24px;
-                background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 48%, rgba(255,255,255,0.25) 100%), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1400&q=85') center / cover no-repeat;
+                /* Grocery, Veggies, Fruits & Snacks Visual Background */
+                background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 52%, rgba(255,255,255,0.20) 100%), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1400&q=85') center / cover no-repeat;
             }
 
             .coupon-title {
                 color: #111827;
                 font-weight: 900;
-                line-height: 1.1;
-                letter-spacing: -1px;
+                line-height: 1.15;
+                letter-spacing: -0.5px;
             }
 
             .coupon-highlight {
@@ -173,14 +264,15 @@
                 background: #fff;
                 border: 2px dashed #f59e0b;
                 border-radius: 14px;
-                padding: 14px 18px;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+                padding: 12px 16px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.06);
             }
 
             .coupon-code {
                 font-size: 1.25rem;
                 font-weight: 900;
                 letter-spacing: 2px;
+                color: #111827;
             }
 
             .timer-box {
@@ -190,7 +282,7 @@
 
             .timer-item {
                 min-width: 55px;
-                padding: 7px 8px;
+                padding: 6px 8px;
                 text-align: center;
                 background: #111827;
                 color: white;
@@ -199,7 +291,7 @@
 
             .timer-number {
                 display: block;
-                font-size: 1rem;
+                font-size: 0.95rem;
                 font-weight: 900;
             }
 
@@ -209,141 +301,315 @@
                 opacity: 0.75;
             }
 
+            /* MOBILE SPECIFIC AUTO-COMPACT RESPONSIVE STYLES */
             @media (max-width: 767px) {
                 .exclusive-coupon-banner {
                     min-height: auto;
-                    background: linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=80') center / cover no-repeat;
+                    background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80') center / cover no-repeat;
+                }
+
+                .mobile-padding {
+                    padding: 1.25rem !important;
+                }
+
+                .mobile-badge {
+                    font-size: 0.68rem !important;
+                    padding: 5px 10px !important;
+                    margin-bottom: 0.5rem !important;
                 }
 
                 .coupon-title {
-                    font-size: 1.7rem;
+                    font-size: 1.35rem !important;
+                    margin-bottom: 0.25rem !important;
+                }
+
+                .mobile-subtext {
+                    font-size: 0.78rem !important;
+                    line-height: 1.3 !important;
+                    margin-bottom: 0.75rem !important;
                 }
 
                 .coupon-box {
                     max-width: 100%;
+                    padding: 8px 12px !important;
+                    margin-bottom: 0.75rem !important;
+                }
+
+                .mobile-coupon-label {
+                    font-size: 0.6rem !important;
                 }
 
                 .coupon-code {
-                    font-size: 1rem;
+                    font-size: 0.95rem !important;
+                }
+
+                .mobile-copy-btn {
+                    font-size: 0.7rem !important;
+                    padding: 4px 10px !important;
+                }
+
+                .mobile-timer-section {
+                    margin-bottom: 0.75rem !important;
                 }
 
                 .timer-item {
-                    min-width: 48px;
+                    min-width: 42px !important;
+                    padding: 4px 6px !important;
+                }
+
+                .timer-number {
+                    font-size: 0.8rem !important;
+                }
+
+                .timer-label {
+                    font-size: 0.5rem !important;
+                }
+
+                .mobile-btn {
+                    font-size: 0.8rem !important;
+                    padding: 8px 16px !important;
+                    width: 100% !important;
                 }
             }
         </style>
+    </asp:Panel>
+    <script>
+        function startCouponTimer() {
+            var end = new Date(document.getElementById('<%= hfCouponExpiryDate.ClientID %>').value);
 
+            setInterval(function () {
+                var t = end - new Date();
 
-        <div class="container-fluid px-2 px-md-4 py-4">
+                if (t <= 0) return;
 
-            <div class="exclusive-coupon-banner shadow">
+                document.getElementById('<%= lblCouponDays.ClientID %>').innerText = String(Math.floor(t / 86400000)).padStart(2, '0');
+                document.getElementById('<%= lblCouponHours.ClientID %>').innerText = String(Math.floor(t / 3600000) % 24).padStart(2, '0');
+                document.getElementById('<%= lblCouponMinutes.ClientID %>').innerText = String(Math.floor(t / 60000) % 60).padStart(2, '0');
+                document.getElementById('<%= lblCouponSeconds.ClientID %>').innerText = String(Math.floor(t / 1000) % 60).padStart(2, '0');
+            }, 1000);
+        }
 
-                <div class="row align-items-center h-100 g-0">
+        startCouponTimer();
+    </script>
 
-                    <!-- CONTENT -->
-                    <div class="col-12 col-lg-7 p-4 p-md-5">
+    <!-- RECENT ORDERS PRODUCT REVIEW SECTION (FULL-WIDTH DESKTOP & FLUID MOBILE) -->
+    <asp:Panel ID="pnlRecentOrderReview" runat="server" Visible="true">
 
-                        <span class="badge bg-danger rounded-pill px-3 py-2 mb-3">
-                            <i class="fas fa-gift me-1"></i>
-                            EXCLUSIVE OFFER FOR YOU
-                        </span>
+        <div class="recent-order-container px-2 px-md-3 py-3">
 
-                        <h2 class="coupon-title display-5 mb-2">Your Special
-                        <span class="coupon-highlight">
-                            <asp:Label ID="lblCouponDiscountPercentage"
-                                runat="server">30</asp:Label>% OFF
-                        </span>
-                            Is Waiting!
-                        </h2>
+            <!-- HEADER ROW: Recent Orders & VIEW ALL > -->
+            <div class="d-flex align-items-center justify-content-between mb-2.5 px-1">
+                <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Recent Orders</h5>
+                <a href="my-order.aspx" class="fw-bold text-decoration-none d-flex align-items-center" style="color: #8b5cf6; font-size: 0.88rem;">VIEW ALL <i class="fas fa-chevron-right ms-1" style="font-size: 0.75rem;"></i>
+                </a>
+            </div>
 
-                        <p class="text-secondary fw-semibold mb-4">
-                            Enjoy an exclusive discount on your next order.
-                        This special offer is available only for your account.
+            <!-- REVIEW CARD (FULL WIDTH IN DESKTOP CONTAINER) -->
+            <div class="review-card-box w-100">
+
+                <asp:Button ID="btnDismissReview" runat="server"
+                    Text="×" 
+                    CssClass="btn-close"
+                    ToolTip="Don't show this again"
+                    Onclick="btnDismissReview_Click"
+                      />
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <!-- Left: Product Image -->
+                    <div class="order-img-box">
+                        <a id="lnkRecentProduct" runat="server">
+                            <asp:Image ID="imgRecentProduct" runat="server"
+                                AlternateText="Purchased Product"
+                                CssClass="w-100 h-100"
+                                Style="object-fit: cover;" />
+                        </a>
+                    </div>
+
+                    <!-- Right: Content & Interactive Stars -->
+                    <div class="flex-grow-1 overflow-hidden">
+
+                        <!-- Title with Minimal Bottom Margin -->
+                        <h6 class="heading-text">How was the product?
+                        </h6>
+
+                        <!-- Subtitle with Reduced Margin -->
+                        <p class="delivered-text">
+                            Delivered on
+                            <asp:Label ID="lblDeliveryDate" runat="server">3 Sep, 2026</asp:Label>
                         </p>
 
+                        <!-- 5 Stars with Text Labels -->
+                        <div class="star-rating-wrapper">
 
-                        <!-- COUPON -->
-                        <div class="coupon-box mb-3">
+                            <!-- Very Bad -->
+                            <asp:LinkButton ID="btnRate1" runat="server" CssClass="star-item" CommandArgument="1">
+                                <i class="far fa-star star-icon"></i>
+                                <span class="star-text">Very Bad</span>
+                            </asp:LinkButton>
 
-                            <small class="text-muted fw-bold d-block mb-1">YOUR EXCLUSIVE COUPON
-                            </small>
+                            <!-- Bad -->
+                            <asp:LinkButton ID="btnRate2" runat="server" CssClass="star-item" CommandArgument="2">
+                                <i class="far fa-star star-icon"></i>
+                                <span class="star-text">Bad</span>
+                            </asp:LinkButton>
 
-                            <div class="d-flex align-items-center justify-content-between gap-2">
+                            <!-- Ok-Ok -->
+                            <asp:LinkButton ID="btnRate3" runat="server" CssClass="star-item" CommandArgument="3">
+                                <i class="far fa-star star-icon"></i>
+                                <span class="star-text">Ok-Ok</span>
+                            </asp:LinkButton>
 
-                                <span class="coupon-code font-monospace">
-                                    <asp:Label ID="lblExclusiveCouponCode"
-                                        runat="server">MAGGIE30</asp:Label>
-                                </span>
+                            <!-- Good -->
+                            <asp:LinkButton ID="btnRate4" runat="server" CssClass="star-item" CommandArgument="4">
+                                <i class="far fa-star star-icon"></i>
+                                <span class="star-text">Good</span>
+                            </asp:LinkButton>
 
-                                <button type="button"
-                                    class="btn btn-warning btn-sm fw-bold rounded-pill px-3"
-                                    onclick="navigator.clipboard.writeText(document.getElementById('<%= lblExclusiveCouponCode.ClientID %>').innerText);">
-                                    <i class="fas fa-copy me-1"></i>
-                                    COPY
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- COUNTDOWN -->
-                        <div class="mb-4">
-
-                            <div class="small text-secondary fw-bold mb-2">
-                                <i class="fas fa-clock text-danger me-1"></i>
-                                OFFER ENDS IN
-                            </div>
-
-                            <div class="timer-box">
-
-                                <div class="timer-item">
-                                    <asp:Label ID="lblCouponHours"
-                                        runat="server"
-                                        CssClass="timer-number">02</asp:Label>
-                                    <span class="timer-label">Hours</span>
-                                </div>
-
-                                <div class="timer-item">
-                                    <asp:Label ID="lblCouponMinutes"
-                                        runat="server"
-                                        CssClass="timer-number">15</asp:Label>
-                                    <span class="timer-label">Mins</span>
-                                </div>
-
-                                <div class="timer-item">
-                                    <asp:Label ID="lblCouponSeconds"
-                                        runat="server"
-                                        CssClass="timer-number">45</asp:Label>
-                                    <span class="timer-label">Secs</span>
-                                </div>
-
-                            </div>
+                            <!-- Very Good -->
+                            <asp:LinkButton ID="btnRate5" runat="server" CssClass="star-item" CommandArgument="5">
+                                <i class="far fa-star star-icon"></i>
+                                <span class="star-text">Very Good</span>
+                            </asp:LinkButton>
 
                         </div>
-
-
-                        <!-- BUTTON -->
-                        <asp:Button ID="btnUseExclusiveCoupon"
-                            runat="server"
-                            Text="Claim & Order Now →"
-                            CssClass="btn btn-danger fw-bold rounded-pill px-4 py-2 shadow-sm border-0" />
 
                     </div>
 
                 </div>
-
             </div>
 
         </div>
 
+        <style>
+            .recent-order-container {
+                width: 100%;
+                margin: 0 auto;
+            }
 
-        <!-- EXPIRY DATE -->
-        <asp:HiddenField ID="hfCouponExpiryDate"
-            runat="server" />
+            .review-card-box {
+                background: #ffffff;
+                border: 1px solid #e2e8f0;
+                border-radius: 16px;
+                padding: 20px 24px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+                transition: all 0.2s ease-in-out;
+            }
 
+                .review-card-box:hover {
+                    border-color: #cbd5e1;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+                }
+
+            /* Product Image Box */
+            .order-img-box {
+                width: 110px;
+                height: 110px;
+                background-color: #e2e8f0;
+                border-radius: 12px;
+                overflow: hidden;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Tight Spacing for Headings */
+            .heading-text {
+                font-size: 1.15rem;
+                line-height: 1.2;
+                margin-bottom: 2px !important; /* Gap Kam Kar Diya Hai */
+                color: #1e293b;
+                font-weight: 800;
+            }
+
+            .delivered-text {
+                font-size: 0.82rem;
+                margin-bottom: 12px !important; /* Tight spacing above stars */
+                color: #64748b;
+            }
+
+            /* Star Rating & Label Styling */
+            .star-rating-wrapper {
+                display: flex;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .star-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
+                text-decoration: none !important;
+                transition: transform 0.15s ease;
+            }
+
+                .star-item:hover {
+                    transform: translateY(-2px);
+                }
+
+            .star-icon {
+                font-size: 2.2rem;
+                color: #cbd5e1;
+                transition: color 0.15s ease;
+            }
+
+            .star-text {
+                font-size: 0.78rem;
+                color: #64748b;
+                margin-top: 4px;
+                font-weight: 500;
+                white-space: nowrap;
+            }
+
+            /* Interactive Star Selection Color */
+            .star-item:hover .star-icon,
+            .star-item:hover ~ .star-item .star-icon,
+            .star-item.active .star-icon {
+                color: #8b5cf6; /* Modern Purple accent */
+            }
+
+            /* MOBILE RESPONSIVE TWEAKS */
+            @media (max-width: 576px) {
+                .review-card-box {
+                    padding: 12px !important;
+                    border-radius: 12px !important;
+                }
+
+                .order-img-box {
+                    width: 70px !important;
+                    height: 70px !important;
+                    border-radius: 8px !important;
+                }
+
+                .heading-text {
+                    font-size: 0.92rem !important;
+                    margin-bottom: 1px !important;
+                }
+
+                .delivered-text {
+                    font-size: 0.72rem !important;
+                    margin-bottom: 6px !important;
+                }
+
+                .star-rating-wrapper {
+                    gap: 4px !important;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
+                .star-icon {
+                    font-size: 1.3rem !important;
+                }
+
+                .star-text {
+                    font-size: 0.58rem !important;
+                    margin-top: 2px !important;
+                }
+            }
+        </style>
     </asp:Panel>
-
 
 
     <!-- Start Categories -->
@@ -457,9 +723,6 @@
         }
     </style>
     <!-- End Categories -->
-
-
-
 
     <div class="container px-0">
         <div class="row mx-1">

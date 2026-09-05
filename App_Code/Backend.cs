@@ -106,8 +106,8 @@ public class Backend
             {
                 cmd.Parameters.AddWithValue("@coupon_name", couponName);
                 cmd.Parameters.AddWithValue("@apply_customer", applyCustomer);
-                cmd.Parameters.AddWithValue("@from_date", Convert.ToDateTime(fromDate));
-                cmd.Parameters.AddWithValue("@to_date", Convert.ToDateTime(toDate));
+                cmd.Parameters.AddWithValue("@from_date", fromDate);
+                cmd.Parameters.AddWithValue("@to_date", toDate);
                 cmd.Parameters.AddWithValue("@discount_percentage", discountPercentage);
                 cmd.Parameters.AddWithValue("@coupon_detail", couponDetail);
                 cmd.Parameters.AddWithValue("@coupon_code", couponCode);
@@ -119,6 +119,8 @@ public class Backend
             }
         }
     }
+  
+    
     public int Add_Coupon_Customer(int couponId, string customerId)
     {
         string strConnString = ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString;

@@ -39,6 +39,7 @@
 
                             <thead style="background: #343a40; color: white;">
                                 <tr>
+                                    <th>Product</th>
                                     <th>Order ID</th>
                                     <th>Customer Name</th>
                                     <th>Mobile</th>
@@ -58,6 +59,14 @@
                                     <ItemTemplate>
 
                                         <tr>
+
+                                            <td class="align-middle">
+                                                <asp:Image ID="imgOrderProduct" runat="server"
+                                                    ImageUrl='<%# "auth/" + Eval("product_photo") %>'
+                                                    CssClass="rounded-2"
+                                                    Style="width: 50px; height: 50px; object-fit: cover;" />
+
+                                            </td>
 
                                             <td class="align-middle">#<asp:Label ID="lblorderid" runat="server"
                                                 Text='<%# Eval("order_id") %>'></asp:Label>

@@ -71,14 +71,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>From Date<span style="color: red">&nbsp;*</span></label>
-                                    <asp:TextBox ID="txt_from_date" runat="server" TextMode="Date" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txt_from_date" runat="server" TextMode="DateTimeLocal" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>To Date<span style="color: red">&nbsp;*</span></label>
-                                    <asp:TextBox ID="txt_to_date" runat="server" TextMode="Date" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txt_to_date" runat="server" TextMode="DateTimeLocal" class="form-control"></asp:TextBox>
                                 </div>
                             </div>
 
