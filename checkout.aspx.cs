@@ -33,30 +33,28 @@ public partial class checkout : System.Web.UI.Page
         string totalText = mst.Get_Total(Session["customer_id"].ToString());
 
         decimal subTotal = 0;
-
-        if (!decimal.TryParse(totalText, out subTotal))
-        {
-            subTotal = 0;
-        }
+        decimal.TryParse(totalText, out subTotal);
 
         decimal couponDiscount = 0;
 
         if (Session["AppliedCouponDiscount"] != null)
-        {
-            couponDiscount = Convert.ToDecimal(
-                Session["AppliedCouponDiscount"]
-            );
-        }
+            couponDiscount = Convert.ToDecimal(Session["AppliedCouponDiscount"]);
 
-        decimal grandTotal = subTotal - couponDiscount;
+        decimal shippingCharge = 0;
+
+        // ₹500 se kam = ₹40 shipping
+        // ₹500 ya usse zyada = Free
+        if (subTotal - couponDiscount < 500)
+            shippingCharge = 40;
+
+        decimal grandTotal = subTotal - couponDiscount + shippingCharge;
 
         if (grandTotal < 0)
-        {
             grandTotal = 0;
-        }
 
         lblsubtotal.Text = "₹" + subTotal.ToString("0.00");
         lblCouponDiscount.Text = "- ₹" + couponDiscount.ToString("0.00");
+        lblshipping.Text = shippingCharge == 0 ? "Free" : "₹" + shippingCharge.ToString("0.00");
         lblgrandtotal.Text = grandTotal.ToString("0.00");
     }
 
@@ -243,7 +241,15 @@ public partial class checkout : System.Web.UI.Page
                 cmd_category.Parameters.AddWithValue("@product_with_gst_Price", Convert.ToDouble(product_with_gst_Price));
                 cmd_category.Parameters.AddWithValue("@product_final_sell_price", Convert.ToDouble(product_final_sell_price));
                 cmd_category.Parameters.AddWithValue("@total_market_price", Convert.ToDouble(total_market_price));
-                cmd_category.Parameters.AddWithValue("@product_shipping_charge", 0.00);
+
+                decimal shippingCharge = 0;
+                decimal amountAfterCoupon = Convert.ToDecimal(lblsubtotal.Text.Replace("₹", ""))
+                                            - Convert.ToDecimal(lblCouponDiscount.Text.Replace("- ₹", ""));
+
+                if (amountAfterCoupon < 500)
+                    shippingCharge = 40;
+
+                cmd_category.Parameters.AddWithValue("@product_shipping_charge", shippingCharge);
 
                 int q = Convert.ToInt32(qty.Text);
                 double price = Convert.ToDouble(product_final_sell_price);

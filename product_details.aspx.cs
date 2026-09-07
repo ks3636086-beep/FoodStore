@@ -382,6 +382,7 @@ public partial class product_details : System.Web.UI.Page
         //Response.Redirect("checkout.aspx?ref=" + GrandTotal.Text + "");
     }
 
+
     protected void btnSubmitReview_ServerClick(object sender, EventArgs e)
     {
         // 1. Customer login check
@@ -391,7 +392,7 @@ public partial class product_details : System.Web.UI.Page
             return;
         }
 
-        string customerId = Session["customer_id"].ToString();
+        string customerId = Session["customer_id"].ToString().Trim();
         string productId = Request.QueryString["ref"];
         string reviewMessage = txtReviewMessage.Text.Trim();
 
@@ -424,82 +425,55 @@ public partial class product_details : System.Web.UI.Page
 
         mst.con.Open();
 
-
-        // 5. Customer must have ordered this product
+        // 5. Get latest Delivered purchase for this customer + product
         SqlCommand orderCmd = new SqlCommand(@"
-SELECT COUNT(*)
-FROM ecommerce_order
-WHERE customer_id = @customer_id
-AND product_id = @product_id", mst.con);
+        SELECT TOP 1 id
+        FROM ecommerce_order
+        WHERE customer_id = @customer_id
+        AND product_id = @product_id
+        AND delivery_status = 'Delivered'
+        ORDER BY id DESC", mst.con);
 
         orderCmd.Parameters.AddWithValue("@customer_id", customerId);
         orderCmd.Parameters.AddWithValue("@product_id", productId);
 
-        int orderCount = Convert.ToInt32(orderCmd.ExecuteScalar());
+        object orderResult = orderCmd.ExecuteScalar();
 
-        if (orderCount == 0)
+        if (orderResult == null)
         {
             mst.con.Close();
 
             ScriptManager.RegisterStartupScript(this, GetType(), "msg",
-                "Swal.fire('You can review only a product you have ordered');", true);
+                "Swal.fire('You can review only a delivered product');", true);
             return;
         }
 
-        // 6. Review is NOT allowed only for Confirm + Pending
+        string orderRowId = orderResult.ToString().Trim();
 
-        SqlCommand pendingCheckCmd = new SqlCommand(@"
-SELECT COUNT(*)
-FROM ecommerce_order
-WHERE customer_id = @customer_id
-AND product_id = @product_id
-AND order_status = 'Confirm'
-AND delivery_status = 'Pending'
-AND NOT EXISTS
-(
-    SELECT 1
-    FROM ecommerce_order
-    WHERE customer_id = @customer_id
-    AND product_id = @product_id
-    AND NOT (order_status = 'Confirm' AND delivery_status = 'Pending')
-)", mst.con);
-
-        pendingCheckCmd.Parameters.AddWithValue("@customer_id", customerId);
-        pendingCheckCmd.Parameters.AddWithValue("@product_id", productId);
-
-        int pendingCount = Convert.ToInt32(pendingCheckCmd.ExecuteScalar());
-
-        if (pendingCount > 0)
-        {
-            mst.con.Close();
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "msg",
-                "Swal.fire('You cannot review this product while the order is pending');", true);
-            return;
-        }
-
-        // 7. Check duplicate review
+        // 6. Check whether this specific purchase is already reviewed/dismissed
         SqlCommand duplicateCmd = new SqlCommand(@"
         SELECT COUNT(*)
         FROM product_rating_review
         WHERE product_id = @product_id
-        AND reviwer_id = @reviwer_id", mst.con);
+        AND reviwer_id = @reviwer_id
+        AND order_row_id = @order_row_id", mst.con);
 
         duplicateCmd.Parameters.AddWithValue("@product_id", productId);
         duplicateCmd.Parameters.AddWithValue("@reviwer_id", customerId);
+        duplicateCmd.Parameters.AddWithValue("@order_row_id", orderRowId);
 
         int reviewCount = Convert.ToInt32(duplicateCmd.ExecuteScalar());
 
         if (reviewCount > 0)
         {
             mst.con.Close();
-             
+
             ScriptManager.RegisterStartupScript(this, GetType(), "msg",
-                "Swal.fire('You have already reviewed this product');", true);
+                "Swal.fire('You have already reviewed this purchase');", true);
             return;
         }
 
-        // 8. Get customer name
+        // 7. Get customer name
         SqlCommand customerCmd = new SqlCommand(
             "SELECT customer_name FROM ecommerce_customer WHERE customer_id=@customer_id",
             mst.con);
@@ -508,8 +482,32 @@ AND NOT EXISTS
 
         string reviewerName = Convert.ToString(customerCmd.ExecuteScalar());
 
-        // 9. Insert review
-        SqlCommand cmd = new SqlCommand("INSERT INTO product_rating_review (product_id, reviwer_id, seller_id, reviwer_name, reviewer_message, review_star, review_date, review_status) VALUES (@product_id, @reviwer_id, NULL, @reviwer_name, @reviewer_message, @review_star, @review_date, @review_status)", mst.con);
+        // 8. Insert review with order_row_id
+        SqlCommand cmd = new SqlCommand(@"
+        INSERT INTO product_rating_review
+        (
+            product_id,
+            reviwer_id,
+            seller_id,
+            reviwer_name,
+            reviewer_message,
+            review_star,
+            review_date,
+            review_status,
+            order_row_id
+        )
+        VALUES
+        (
+            @product_id,
+            @reviwer_id,
+            NULL,
+            @reviwer_name,
+            @reviewer_message,
+            @review_star,
+            @review_date,
+            @review_status,
+            @order_row_id
+        )", mst.con);
 
         cmd.Parameters.AddWithValue("@product_id", productId);
         cmd.Parameters.AddWithValue("@reviwer_id", customerId);
@@ -518,17 +516,19 @@ AND NOT EXISTS
         cmd.Parameters.AddWithValue("@review_star", reviewStar);
         cmd.Parameters.AddWithValue("@review_date", DateTime.Now);
         cmd.Parameters.AddWithValue("@review_status", "Active");
+        cmd.Parameters.AddWithValue("@order_row_id", orderRowId);
 
         cmd.ExecuteNonQuery();
 
         mst.con.Close();
 
-        // 10. Clear review box
+        // 9. Clear review box
         txtReviewMessage.Text = "";
 
         ScriptManager.RegisterStartupScript(this, GetType(), "msg",
             "Swal.fire('Review submitted successfully ❤️');", true);
     }
+
 
     protected string GetStars(object rating)
     {

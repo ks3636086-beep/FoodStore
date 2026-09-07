@@ -319,9 +319,9 @@
 
                                 <div class="d-flex justify-content-between align-items-center mb-2 small text-secondary">
                                     <span>Shipping Cost</span>
-                                    <span class="fw-semibold text-success">Free</span>
+                                    <asp:Label ID="lblshipping" runat="server"
+                                        CssClass="fw-semibold text-success"></asp:Label>
                                 </div>
-
                                 <hr class="my-2 opacity-25" />
 
                                 <div class="d-flex justify-content-between align-items-center">

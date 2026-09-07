@@ -393,7 +393,7 @@
     </script>
 
     <!-- RECENT ORDERS PRODUCT REVIEW SECTION (FULL-WIDTH DESKTOP & FLUID MOBILE) -->
-    <asp:Panel ID="pnlRecentOrderReview" runat="server" Visible="true">
+    <asp:Panel ID="pnlRecentOrderReview" runat="server" Visible="false">
 
         <div class="recent-order-container px-2 px-md-3 py-3">
 

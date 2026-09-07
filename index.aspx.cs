@@ -412,7 +412,11 @@ public partial class index : System.Web.UI.Page
 
     private void BindReviewProduct()
     {
-        if (Session["customer_id"] == null) return;
+        if (Session["customer_id"] == null)
+        {
+            pnlRecentOrderReview.Visible = false;
+            return;
+        }
 
         string q = @"SELECT TOP 1 product_id, product_name, product_photo, order_delivery_date
                  FROM ecommerce_order o
@@ -430,7 +434,7 @@ public partial class index : System.Web.UI.Page
             {
 
                 imgRecentProduct.ImageUrl = "auth/" + dr["product_photo"];
-                lnkRecentProduct.HRef = "product_details.aspx?ref=" + dr["product_id"];
+                lnkRecentProduct.HRef = "product_details.aspx?ref=" + dr["product_id"] + "#leave-review";
                 lblDeliveryDate.Text = Convert.ToDateTime(dr["order_delivery_date"]).ToString("d MMM, yyyy");
                 pnlRecentOrderReview.Visible = true;
             }

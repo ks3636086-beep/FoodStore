@@ -214,8 +214,7 @@
                         <div class="mb-4">
                             <asp:LinkButton runat="server" ID="btnWishlist" OnClick="btnWishlist_Click" CssClass="btn btn-link text-danger text-decoration-none fw-semibold p-0">
                                 <i class="far fa-heart me-1"></i>Add to Wishlist
-                           
-                            </asp:LinkButton>
+                             </asp:LinkButton>
                         </div>
 
                         <!-- 8. Delivery / Service Features Row -->
