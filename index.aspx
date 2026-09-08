@@ -56,94 +56,90 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <!-- 2. BOTTOM 3 PROMO CARDS -->
-            <div class="px-3 px-lg-4 py-3 bg-light"
-                data-aos="fade-up"
-                data-aos-duration="1000">
-                <div class="row flex-nowrap flex-md-wrap promo-scroll-row gx-3">
-
-                    <!-- Card 1: Fresh Vegetables & Fruits -->
-                    <div class="col-md-4 promo-card-col">
-                        <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
-                            style="background: linear-gradient(135deg, #eef9f1 0%, #d8f3dc 100%); transition: all 0.3s ease;">
-
-                            <span class="badge bg-success text-white position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill small fw-bold">UP TO 30% OFF</span>
-
-                            <div class="row align-items-center g-0 h-100 pt-3">
-                                <div class="col-7 pe-2">
-                                    <h5 class="fw-bold text-dark mb-1 fs-5">Organic Veggies</h5>
-                                    <p class="small text-secondary mb-3" style="font-size: 0.825rem; line-height: 1.3;">
-                                        Fresh greens & seasonal fruits at best rates.
-                                    </p>
-                                    <a href="shop.aspx?cat=vegetables" class="btn btn-success btn-sm rounded-pill px-3 py-1 fw-bold shadow-sm">Explore <i class="fas fa-arrow-right ms-1 small"></i></a>
-                                </div>
-                                <div class="col-5 text-end position-relative">
-                                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80"
-                                        alt="Vegetables" class="img-fluid rounded-4 shadow-sm"
-                                        style="height: 110px; width: 100%; object-fit: cover;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Crispy Snacks -->
-                    <div class="col-md-4 promo-card-col">
-                        <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
-                            style="background: linear-gradient(135deg, #fff8e6 0%, #fef0c7 100%); transition: all 0.3s ease;">
-
-                            <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill small fw-bold">MIN. 20% OFF</span>
-
-                            <div class="row align-items-center g-0 h-100 pt-3">
-                                <div class="col-7 pe-2">
-                                    <h5 class="fw-bold text-dark mb-1 fs-5">Tasty Snacks</h5>
-                                    <p class="small text-secondary mb-3" style="font-size: 0.825rem; line-height: 1.3;">
-                                        Chips, namkeen, nuts & evening munchies.
-                                    </p>
-                                    <a href="shop.aspx?cat=snacks" class="btn btn-warning btn-sm text-dark rounded-pill px-3 py-1 fw-bold shadow-sm">Order Now <i class="fas fa-arrow-right ms-1 small"></i></a>
-                                </div>
-                                <div class="col-5 text-end">
-                                    <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=300&q=80"
-                                        alt="Snacks" class="img-fluid rounded-4 shadow-sm"
-                                        style="height: 110px; width: 100%; object-fit: cover;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Cookies & Bakery -->
-                    <div class="col-md-4 promo-card-col">
-                        <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
-                            style="background: linear-gradient(135deg, #fdf2f4 0%, #fce7f3 100%); transition: all 0.3s ease;">
-
-                            <span class="badge bg-danger text-white position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill small fw-bold">FLAT 15% OFF</span>
-
-                            <div class="row align-items-center g-0 h-100 pt-3">
-                                <div class="col-7 pe-2">
-                                    <h5 class="fw-bold text-dark mb-1 fs-5">Cookies & Bakery</h5>
-                                    <p class="small text-secondary mb-3" style="font-size: 0.825rem; line-height: 1.3;">
-                                        Freshly baked cookies, biscuits & treats.
-                                    </p>
-                                    <a href="shop.aspx?cat=cookies" class="btn btn-danger btn-sm rounded-pill px-3 py-1 fw-bold shadow-sm">Shop Bakery <i class="fas fa-arrow-right ms-1 small"></i></a>
-                                </div>
-                                <div class="col-5 text-end">
-                                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=300&q=80"
-                                        alt="Cookies" class="img-fluid rounded-4 shadow-sm"
-                                        style="height: 110px; width: 100%; object-fit: cover;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </section>
 
 
+    <!-- 2. BOTTOM 3 PROMO CARDS -->
+    <div class="px-3 px-lg-4 py-3 bg-light"
+        data-aos="fade-up"
+        data-aos-duration="1000">
+        <div class="row flex-nowrap flex-md-wrap promo-scroll-row gx-3">
+
+            <!-- Card 1: Fresh Vegetables & Fruits -->
+            <div class="col-md-4 promo-card-col">
+                <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
+                    style="background: linear-gradient(135deg, #eef9f1 0%, #d8f3dc 100%); transition: all 0.3s ease;">
+
+                    <span class="badge bg-success text-white position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill small fw-bold">UP TO 30% OFF</span>
+
+                    <div class="row align-items-center g-0 h-100 pt-3">
+                        <div class="col-7 pe-2">
+                            <h5 class="fw-bold text-dark mb-1 fs-5">Organic Veggies</h5>
+                            <p class="small text-secondary mb-3" style="font-size: 0.825rem; line-height: 1.3;">
+                                Fresh greens & seasonal fruits at best rates.
+                            </p>
+                            <a href="shop.aspx?cat=vegetables" class="btn btn-success btn-sm rounded-pill px-3 py-1 fw-bold shadow-sm">Explore <i class="fas fa-arrow-right ms-1 small"></i></a>
+                        </div>
+                        <div class="col-5 text-end position-relative">
+                            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80"
+                                alt="Vegetables" class="img-fluid rounded-4 shadow-sm"
+                                style="height: 110px; width: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Crispy Snacks -->
+            <div class="col-md-4 promo-card-col">
+                <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
+                    style="background: linear-gradient(135deg, #fff8e6 0%, #fef0c7 100%); transition: all 0.3s ease;">
+
+                    <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill small fw-bold">MIN. 20% OFF</span>
+
+                    <div class="row align-items-center g-0 h-100 pt-3">
+                        <div class="col-7 pe-2">
+                            <h5 class="fw-bold text-dark mb-1 fs-5">Tasty Snacks</h5>
+                            <p class="small text-secondary mb-3" style="font-size: 0.825rem; line-height: 1.3;">
+                                Chips, namkeen, nuts & evening munchies.
+                            </p>
+                            <a href="shop.aspx?cat=snacks" class="btn btn-warning btn-sm text-dark rounded-pill px-3 py-1 fw-bold shadow-sm">Order Now <i class="fas fa-arrow-right ms-1 small"></i></a>
+                        </div>
+                        <div class="col-5 text-end">
+                            <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=300&q=80"
+                                alt="Snacks" class="img-fluid rounded-4 shadow-sm"
+                                style="height: 110px; width: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Cookies & Bakery -->
+            <div class="col-md-4 promo-card-col">
+                <div class="card promo-card border-0 rounded-4 overflow-hidden shadow-sm h-100 p-3 position-relative"
+                    style="background: linear-gradient(135deg, #fdf2f4 0%, #fce7f3 100%); transition: all 0.3s ease;">
+
+                    <span class="badge bg-danger text-white position-absolute top-0 start-0 m-3 px-2 py-1 rounded-pill small fw-bold">FLAT 15% OFF</span>
+
+                    <div class="row align-items-center g-0 h-100 pt-3">
+                        <div class="col-7 pe-2">
+                            <h5 class="fw-bold text-dark mb-1 fs-5">Cookies & Bakery</h5>
+                            <p class="small text-secondary mb-3" style="font-size: 0.825rem; line-height: 1.3;">
+                                Freshly baked cookies, biscuits & treats.
+                            </p>
+                            <a href="shop.aspx?cat=cookies" class="btn btn-danger btn-sm rounded-pill px-3 py-1 fw-bold shadow-sm">Shop Bakery <i class="fas fa-arrow-right ms-1 small"></i></a>
+                        </div>
+                        <div class="col-5 text-end">
+                            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=300&q=80"
+                                alt="Cookies" class="img-fluid rounded-4 shadow-sm"
+                                style="height: 110px; width: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- FULL BACKGROUND IMAGE BANNER (RESPONSIVE & MOBILE-OPTIMIZED) -->
 
@@ -400,7 +396,7 @@
             <!-- HEADER ROW: Recent Orders & VIEW ALL > -->
             <div class="d-flex align-items-center justify-content-between mb-2.5 px-1">
                 <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Recent Orders</h5>
-                <a href="my-order.aspx" class="fw-bold text-decoration-none d-flex align-items-center" style="color: #8b5cf6; font-size: 0.88rem;">VIEW ALL <i class="fas fa-chevron-right ms-1" style="font-size: 0.75rem;"></i>
+                <a href="my-order.aspx" class="fw-bold text-decoration-none d-flex align-items-center" style="color: #198754; font-size: 0.88rem;">VIEW ALL <i class="fas fa-chevron-right ms-1" style="font-size: 0.75rem;"></i>
                 </a>
             </div>
 
@@ -408,11 +404,10 @@
             <div class="review-card-box w-100">
 
                 <asp:Button ID="btnDismissReview" runat="server"
-                    Text="×" 
+                    Text="×"
                     CssClass="btn-close"
                     ToolTip="Don't show this again"
-                    Onclick="btnDismissReview_Click"
-                      />
+                    OnClick="btnDismissReview_Click" />
 
                 <div class="d-flex align-items-center gap-3">
 
@@ -626,7 +621,7 @@
             <div class="row flex-nowrap flex-lg-wrap justify-content-start justify-content-lg-center category-scroll-container">
 
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <itemtemplate>
+                    <ItemTemplate>
 
                         <div class="col-auto col-md-3 col-lg-2 text-center mb-3 category-item"
                             data-aos="zoom-in"
@@ -650,7 +645,7 @@
 
                         </div>
 
-                    </itemtemplate>
+                    </ItemTemplate>
                 </asp:Repeater>
 
             </div>
@@ -754,98 +749,59 @@
 
     <!-- Start Products  -->
 
-    <%--<div class="container-fluid pt-5 pb-3">
-        <div class="row special-list">
-            <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <ItemTemplate>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-6 special-grid best-seller product-item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-
-                                <img class="img-fluid"
-                                    src='auth/<%# Eval("photo_path") %>' />
-
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li>
-                                            <asp:LinkButton runat="server" ID="btnwishlist" CommandArgument='<%# Eval("product_id") %>' CommandName="btnwishlist" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></asp:LinkButton>
-                                        </li>
-                                    </ul>
-                                    <asp:LinkButton runat="server" ID="lnkdelete" CommandName="btncart" CssClass="cart" Text="Add to Cart"></asp:LinkButton>
-                                </div>
-                            </div>
-                            <asp:Label ID="lbldeletecategoryid" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
-                            <asp:Label ID="lblname" runat="server" Text='<%# Eval("product_full_name") %>' Visible="false" />
-
-                            <asp:Label ID="lbl_sell_price" runat="server" Text='<%# Eval("product_sell_price") %>' Visible="false" />
-                            <asp:Label ID="lbl_market_price" runat="server" Text='<%# Eval("product_market_price") %>' Visible="false" />
-
-                            <asp:Label ID="Label1" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
-                            <asp:Label ID="product_price_id" hidden runat="server" Text='<%# Eval("price_id") %>'></asp:Label>
-                            <asp:Label ID="lbl_unit" hidden runat="server" Text='<%# Eval("product_unit") %>'></asp:Label>
-                            <asp:Label ID="lbl_unit_value" hidden runat="server" Text='<%# Eval("product_unit_value") %>'></asp:Label>
-                            <div class="why-text">
-                                <a
-                                    href='product_details.aspx?ref=<%# Eval("product_id") %>'>
-
-                                    <h4><%# Eval("product_full_name") %></h4>
-                                </a>
-                                <h5>Rs. <%# Eval("product_final_sell_price") %></h5>
-                            </div>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
-    </div>--%>
-
 
     <!-- PRODUCT GRID SECTION -->
     <div class="container-fluid py-4">
 
-        <!-- 6-COLUMN GRID MATCHING THE IMAGE -->
+        <!-- 6-COLUMN GRID MATCHING MYNTRA DESIGN -->
         <div class="row g-2 g-md-3 mx-1" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <itemtemplate>
+                <ItemTemplate>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 product-item">
-                        <div class="card h-100 bg-white rounded-3 shadow-sm border overflow-hidden product-card"
+                        <div class="product-card border-0 bg-transparent h-100"
                             data-aos="fade-up"
                             data-aos-duration="700"
                             data-aos-delay="<%# Container.ItemIndex * 150 %>"
                             data-aos-once="true">
-                            <!-- PRODUCT IMAGE & TOP-RIGHT ACTION BUTTONS -->
-                            <div class="product-img-wrapper position-relative bg-light">
 
+                            <!-- 1. ALAG IMAGE CARD CONTAINER -->
+                            <div class="product-img-card position-relative rounded-2 overflow-hidden bg-light mb-2">
 
-                                <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
+                                <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>' class="d-block w-100 h-100">
                                     <img src='<%# "auth/" + Eval("photo_path") %>'
                                         alt='<%# Eval("product_full_name") %>'
-                                        class="card-img-top product-thumb-img"
+                                        class="product-thumb-img w-100"
                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
                                 </a>
 
-                                <!-- TOP-RIGHT CIRCULAR FLOATING ICONS -->
-                                <div class="position-absolute top-0 end-0 p-2 d-flex flex-column gap-2" style="z-index: 2;">
-                                    <!-- View Details Link -->
-                                    <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'
-                                        class="btn btn-white rounded-circle shadow-sm p-0 flex-center action-circle-btn"
-                                        title="View Details">
-                                        <i class="fas fa-eye text-dark extra-small"></i>
-                                    </a>
+                                <!-- RATING BADGE (IMAGE KE BOTTOM-LEFT ME) -->
+                                <div class="rating-badge position-absolute bottom-0 start-0 m-2 px-1 py-1 bg-white rounded shadow-sm d-flex align-items-center gap-1"
+                                    style="z-index: 2; line-height: 1;">
 
+                                    <span class="fw-bold text-dark" style="font-size: 0.68rem; line-height: 1;">4.5
+                                    </span>
+
+                                    <i class="fas fa-star" style="font-size: 0.58rem; color: #03a685;"></i>
+
+                                    <span class="text-muted border-start ps-1" style="font-size: 0.64rem; line-height: 1;">| 150
+                                    </span>
+
+                                </div>
+
+                                <!-- TOP-RIGHT ACTION BUTTONS -->
+                                <div class="position-absolute top-0 end-0 p-2 d-flex flex-column gap-2" style="z-index: 2; line-height: 1;">
                                     <!-- PRESERVED: Wishlist LinkButton -->
                                     <asp:LinkButton runat="server" ID="btnwishlist"
                                         CommandArgument='<%# Eval("product_id") %>'
                                         CommandName="btnwishlist"
                                         CssClass="btn btn-white rounded-circle shadow-sm p-0 flex-center action-circle-btn"
                                         title="Add to Wishlist">
-                                        <i class="far fa-heart text-dark extra-small"></i>
+                                    <i class="far fa-heart text-dark extra-small"></i>
                                     </asp:LinkButton>
                                 </div>
                             </div>
 
-                            <!-- PRESERVED HIDDEN LABELS FOR BACKEND CODE-BEHIND -->
+                            <!-- PRESERVED HIDDEN LABELS FOR BACKEND -->
                             <asp:Label ID="lbldeletecategoryid" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
                             <asp:Label ID="lblname" runat="server" Text='<%# Eval("product_full_name") %>' Visible="false" />
                             <asp:Label ID="lbl_sell_price" runat="server" Text='<%# Eval("product_sell_price") %>' Visible="false" />
@@ -854,79 +810,70 @@
                             <asp:Label ID="product_price_id" hidden runat="server" Text='<%# Eval("price_id") %>'></asp:Label>
                             <asp:Label ID="lbl_unit" hidden runat="server" Text='<%# Eval("product_unit") %>'></asp:Label>
                             <asp:Label ID="lbl_unit_value" hidden runat="server" Text='<%# Eval("product_unit_value") %>'></asp:Label>
+                            <asp:Label ID="Label2" hidden runat="server" Text='<%# Eval("price_id") %>'></asp:Label>
 
-                            <asp:Label ID="Label2" hidden runat="server"
-                                Text='<%# Eval("price_id") %>'></asp:Label>
+                            <!-- 2. CARD KE NICHE DETAILS SECTION (COMPACT & ULTRA TIGHT) -->
+                            <div class="product-details-content px-1" style="line-height: 1;">
 
-                            <!-- PRODUCT DETAILS & ADD TO CART -->
-                            <div class="card-body p-2 p-md- d-flex flex-column justify-content-between">
-                                <div>
-                                    <h6 class="card-title fw-bold text-dark mb-1 product-title" title='<%# Eval("product_full_name") %>'>
-                                        <%# Eval("product_full_name") %>
-                                    </h6>
+                                <!-- PRODUCT TITLE -->
+                                <h6 class="fw-bold text-dark product-title" title='<%# Eval("product_full_name") %>' style="font-size: 0.85rem !important; margin: 0 0 1px 0 !important; padding: 0 !important; line-height: 1.1 !important;">
+                                    <%# Eval("product_full_name") %>
+                                </h6>
 
-                                    <div class="d-flex align-items-center gap-1 mb-1">
-                                        <span style="font-size: 12px;">
-                                            <%# GetProductRating(Eval("product_id")) %>
-                                        </span>
-                                    </div>
-
-                                    <div class="mb-1">
-                                        <div class="d-flex align-items-baseline flex-wrap gap-1">
-                                            <span class="fw-bold text-success fs-6">₹<%# Eval("product_final_sell_price") %></span>
-                                            <span class="text-muted text-decoration-line-through small" style="font-size: 0.75rem;">₹<%# Eval("product_market_price") %></span>
-                                        </div>
-                                        <%# GetDiscount(Eval("product_discount_percentage")) %>
-                                    </div>
-
+                                <!-- PRICE & DISCOUNT -->
+                                <div class="d-flex align-items-baseline flex-wrap gap-1" style="margin: 0 0 2px 0 !important; padding: 0 !important; line-height: 1 !important;">
+                                    <span class="fw-bold text-dark" style="font-size: 0.9rem; line-height: 1 !important;">Rs. <%# Eval("product_final_sell_price") %></span>
+                                    <span class="text-muted text-decoration-line-through" style="font-size: 0.62rem; line-height: 1 !important;">Rs. <%# Eval("product_market_price") %></span>
+                                    <span class="discount-badge" style="font-size: 0.62rem; line-height: 1 !important; color: #ff905a; font-weight: 400;">(<%# GetDiscount(Eval("product_discount_percentage")) %>)
+                                    </span>
                                 </div>
 
                                 <!-- PRESERVED: Add to Cart LinkButton -->
                                 <asp:LinkButton runat="server" ID="lnkdelete" CommandName="btncart"
-                                    CssClass="btn btn-outline-success btn-sm w-100 rounded-pill fw-bold py-1 mt-1 d-inline-flex align-items-center justify-content-center gap-1 cart-btn" Style="border-width: 2px;">
-                                    <span>ADD</span>
+                                    CssClass="btn btn-outline-success btn-sm w-100 rounded-1 fw-bold py-1 mt-1 d-inline-flex align-items-center justify-content-center gap-1 cart-btn">
+                                <span>ADD TO CART</span>
                                 </asp:LinkButton>
                             </div>
 
                         </div>
                     </div>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </div>
 
-        <!-- LOAD MORE BUTTON SECTION -->
     </div>
+
     <style>
-        /* Image Container - Height ko 180px se bada karke 215px kar diya h */
-        .product-img-wrapper {
-            height: 215px;
+        /* Image Box Specific Heights */
+        .product-img-card {
+            height: 250px;
             width: 100%;
-            overflow: hidden;
+            background-color: #f5f5f6;
+            transition: transform 0.2s ease;
         }
 
         .product-thumb-img {
             height: 100%;
             width: 100%;
-            object-fit: cover; /* Photo stretch hue bina card fit rahegi */
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
         .product-card:hover .product-thumb-img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
+        /* Strict Single Line Product Title */
         .product-title {
-            font-size: 0.85rem;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            white-space: normal;
-            height: 2.5em; /* Ensure title has space even if 1 line */
-            line-height: 1.25;
+            text-overflow: ellipsis;
+            height: auto !important;
         }
 
-        /* Floating Circle Action Buttons (Eye & Wishlist) */
+        /* Floating Circle Buttons */
         .btn-white {
             background-color: #ffffff;
             border: 1px solid #e9ecef;
@@ -939,14 +886,13 @@
         }
 
             .action-circle-btn:hover {
-                background-color: #198754 !important;
-                border-color: #198754 !important;
+                background-color: #ff3f6c !important;
+                border-color: #ff3f6c !important;
             }
 
                 .action-circle-btn:hover i {
                     color: #ffffff !important;
                 }
-
 
         .flex-center {
             display: inline-flex;
@@ -958,31 +904,16 @@
             font-size: 0.75rem;
         }
 
-        /* Mobile screens ke liye compact height and styles */
+        /* Mobile Adjustments */
         @media (max-width: 575.98px) {
-            .product-img-wrapper {
-                height: 140px;
-            }
-
-            .product-title {
-                font-size: 0.8rem;
-                height: 2.4em;
+            .product-img-card {
+                height: 180px;
             }
 
             .cart-btn {
-                padding: 4px !important;
-                font-size: 0.85rem;
+                padding: 3px !important;
+                font-size: 0.75rem;
             }
-
-            .discount-badge {
-                font-size: 10px;
-            }
-        }
-
-        .discount-badge {
-            color: #ff3f6c;
-            font-size: 11px;
-            font-weight: 700;
         }
     </style>
 
@@ -997,7 +928,6 @@
     </div>
 
     <!-- End Products  -->
-
 
 
     <!-- UNIQUE & MODERN GROCERY VISUAL FEATURES SECTION -->

@@ -196,107 +196,117 @@
 
 
         <!-- Start Main Top -->
-        <header class="main-header">
+        <header class="main-header sticky-top">
             <!-- Start Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 sticky-top"
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2"
                 data-aos="fade-down"
                 data-aos-duration="900">
-                <div class="container-fluid px-2 px-lg-4 d-flex flex-wrap flex-lg-nowrap align-items-center">
+                <div class="container-fluid px-2 px-sm-3 px-lg-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
 
-                    <!-- Mobile Toggler (Hamburger) - ORDER 1 ON MOBILE -->
-                    <button class="navbar-toggler border-0 shadow-none px-2 me-1 order-1 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                        <span class="navbar-toggler-icon" style="width: 1.2em; height: 1.2em;"></span>
-                    </button>
-
-                    <!-- 1. Logo - ORDER 2 ON MOBILE, ORDER 1 ON DESKTOP -->
-                    <a class="navbar-brand me-auto me-lg-2 order-2 order-lg-1"
-                        href="index.aspx"
-                        data-aos="zoom-in"
-                        data-aos-duration="1000">
-                        <img src="images/FoodStore_logo.png" alt="Food Store" class="nav-logo">
-                    </a>
-
-                    <!-- Mobile/Desktop Icons: Wishlist & Cart - ORDER 3 ON MOBILE, ORDER 3 ON DESKTOP -->
-                    <div class="d-flex align-items-center gap-1 gap-lg-3 order-3 order-lg-3 ms-auto ms-lg-2">
-                        <!-- Wishlist Button -->
-                        <a href="wishlist.aspx"
-                            class="nav-icon-btn btn btn-outline-danger position-relative rounded-circle p-0 d-inline-flex align-items-center justify-content-center border-0 shadow-sm bg-danger-subtle text-danger wishlist-pop"
-                            style="width: 38px; height: 38px;"
-                            title="View Wishlist">
-                            <i class="far fa-heart fs-6"></i>
-                            <span runat="server" id="wishlist_count"
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-2 border-white"
-                                style="font-size: 0.65rem;"></span>
+                        <!-- 1. Logo - Far Left (ORDER 1 ON MOBILE & DESKTOP) -->
+                        <a class="navbar-brand me-auto me-lg-3 order-1 d-inline-flex align-items-center p-0 m-0"
+                            href="index.aspx"
+                            data-aos="zoom-in"
+                            data-aos-duration="1000">
+                            <img src="images/FoodStore_logo.png" alt="Food Store" class="nav-logo">
                         </a>
 
-                        <!-- Cart Button -->
-                        <a href="cart.aspx"
-                            class="nav-cart-btn btn btn-success rounded-3 px-2 px-lg-3 py-1 d-inline-flex align-items-center gap-2 shadow-sm text-decoration-none">
-                            <!-- Left Cart Icon -->
-                            <i class="fas fa-shopping-bag fs-5 text-white nav-cart-icon"></i>
+                        <!-- Mobile Right Group (Wishlist + Cart + Hamburger) / Desktop Icons (Wishlist + Cart) -->
+                        <div class="d-flex align-items-center gap-2 gap-lg-3 order-2 order-lg-3 ms-auto ms-lg-2">
+                            <!-- Wishlist Button -->
+                            <a href="wishlist.aspx"
+                                class="nav-icon-btn btn btn-outline-danger position-relative rounded-circle p-0 d-inline-flex align-items-center justify-content-center border-0 shadow-sm bg-danger-subtle text-danger wishlist-pop m-0"
+                                style="width: 38px; height: 38px;"
+                                title="View Wishlist">
+                                <i class="far fa-heart fs-6"></i>
+                                <span runat="server" id="wishlist_count"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-2 border-white"
+                                    style="font-size: 0.65rem;"></span>
+                            </a>
 
-                            <!-- Right Side Stacked Items & Price (Hidden on Mobile) -->
-                            <div class="d-flex flex-column text-start lh-1 nav-cart-text"
-                                data-aos="fade-up"
-                                data-aos-duration="700"
-                                data-aos-delay="300">
-                                <span class="fw-bold text-white extra-small">
-                                    <span runat="server" id="cart_count1">1</span> item
-                                </span>
-                                <span runat="server" class="fw-extrabold text-white fs-6">₹<span runat="server" id="cart_total"> </span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                            <!-- Cart Button -->
+                            <a href="cart.aspx"
+                                class="nav-cart-btn btn btn-success rounded-3 px-2 px-lg-3 py-1 d-inline-flex align-items-center gap-2 shadow-sm text-decoration-none m-0"
+                                title="View Cart">
+                                <!-- Left Cart Icon -->
+                                <i class="fas fa-shopping-bag fs-5 text-white nav-cart-icon"></i>
 
-                    <!-- Navbar Content (Search + Links) - ORDER 4 ON MOBILE, ORDER 2 ON DESKTOP -->
-                    <div class="collapse navbar-collapse order-4 order-lg-2 mt-2 mt-lg-0 w-100-mob" id="navbarContent">
+                                <!-- Right Side Stacked Items & Price (Hidden on Mobile, shown on Desktop) -->
+                                <div class="d-flex flex-column text-start lh-1 nav-cart-text"
+                                    data-aos="fade-up"
+                                    data-aos-duration="700"
+                                    data-aos-delay="300">
+                                    <span class="fw-bold text-white extra-small">
+                                        <span runat="server" id="cart_count1">1</span> item
+                                    </span>
+                                    <span runat="server" class="fw-extrabold text-white fs-6">₹<span runat="server" id="cart_total"> </span>
+                                    </span>
+                                </div>
+                            </a>
 
-                        <!-- 2. Search Bar -->
-                        <div class="flex-grow-1 mx-lg-4 my-2 my-lg-0">
-                            <div class="input-group w-100">
-                                <asp:TextBox ID="txtSearch" runat="server"
-                                    CssClass="form-control bg-light border-end-0 rounded-start-pill ps-3"
-                                    placeholder="Search fresh groceries...">
-                                </asp:TextBox>
-
-                                <asp:LinkButton ID="btnSearch" runat="server"
-                                    CssClass="btn btn-success rounded-end-pill px-3"
-                                    OnClick="btnSearch_Click">
-                                    <i class="fa fa-search"></i>
-                                </asp:LinkButton>
-                            </div>
+                            <!-- Mobile Toggler (Hamburger 3-lines) - RIGHT SIDE ON MOBILE, HIDDEN ON DESKTOP -->
+                            <button class="navbar-toggler border-0 shadow-none p-0 d-lg-none m-0"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#navbarContent"
+                                aria-controls="navbarContent"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                                style="width: 38px; height: 38px;">
+                                <i class="fas fa-bars fs-5 text-dark"></i>
+                            </button>
                         </div>
 
-                        <!-- 3. Navigation Links -->
-                        <ul class="navbar-nav align-items-lg-center gap-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark active fw-semibold px-2" href="index.aspx">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-secondary fw-semibold px-2" href="about.aspx">About Us</a>
-                            </li>
+                        <!-- Navbar Content (Search + Links) - ORDER 3 ON MOBILE (drops down), ORDER 2 ON DESKTOP -->
+                        <div class="collapse navbar-collapse order-3 order-lg-2 mt-2 mt-lg-0 w-100-mob" id="navbarContent">
 
-                            <li class="nav-item dropdown dropdown-hover">
-                                <a class="nav-link dropdown-toggle text-secondary fw-semibold px-2" href="shop.aspx" id="shopDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-0 rounded-3" aria-labelledby="shopDropdown">
-                                    <li><a class="dropdown-item py-2" href="shop.aspx">Sidebar Shop</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item py-2" href="cart.aspx">Cart</a></li>
-                                    <li><a class="dropdown-item py-2" href="checkout.aspx">Checkout</a></li>
-                                    <li><a class="dropdown-item py-2" href="my-account.aspx">My Account</a></li>
-                                    <li><a class="dropdown-item py-2" href="wishlist.aspx">Wishlist</a></li>
-                                </ul>
-                            </li>
+                            <!-- 2. Search Bar -->
+                            <div class="flex-grow-1 mx-lg-4 my-2 my-lg-0 nav-search-container">
+                                <div class="input-group w-100 shadow-none border rounded-pill overflow-hidden bg-light">
+                                    <asp:TextBox ID="txtSearch" runat="server"
+                                        CssClass="form-control bg-transparent border-0 ps-3 py-2 shadow-none"
+                                        placeholder="Search fresh groceries...">
+                                    </asp:TextBox>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-secondary fw-semibold px-2" href="contact-us.aspx">Contact Us</a>
-                            </li>
-                        </ul>
+                                    <asp:LinkButton ID="btnSearch" runat="server"
+                                        CssClass="btn btn-success rounded-0 px-3 d-flex align-items-center justify-content-center"
+                                        OnClick="btnSearch_Click">
+                                        <i class="fa fa-search"></i>
+                                    </asp:LinkButton>
+                                </div>
+                            </div>
 
+                            <!-- 3. Navigation Links -->
+                            <ul class="navbar-nav align-items-lg-center gap-1 nav-links-list">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark active fw-semibold px-2" href="index.aspx">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-secondary fw-semibold px-2" href="about.aspx">About Us</a>
+                                </li>
+
+                                <li class="nav-item dropdown dropdown-hover">
+                                    <a class="nav-link dropdown-toggle text-secondary fw-semibold px-2" href="shop.aspx" id="shopDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-0 rounded-3" aria-labelledby="shopDropdown">
+                                        <li><a class="dropdown-item py-2" href="shop.aspx">Sidebar Shop</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item py-2" href="cart.aspx">Cart</a></li>
+                                        <li><a class="dropdown-item py-2" href="checkout.aspx">Checkout</a></li>
+                                        <li><a class="dropdown-item py-2" href="my-account.aspx">My Account</a></li>
+                                        <li><a class="dropdown-item py-2" href="wishlist.aspx">Wishlist</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-secondary fw-semibold px-2" href="contact-us.aspx">Contact Us</a>
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -863,9 +873,9 @@
                     <div style="font-size: 11px; font-weight: 500; margin-top: 2px;">Shop Now</div>
 
                 </a>
-                <a href="my-profile.aspx" class="text-dark text-decoration-none flex-fill" style="color: #333 !important;">
-                    <i class="far fa-user" style="font-size: 20px; color: #333;"></i>
-                    <div style="font-size: 11px; font-weight: 500; margin-top: 4px;">Profile</div>
+                <a href="my-order.aspx" class="text-dark text-decoration-none flex-fill" style="color: #333 !important;">
+                    <i class="fas fa-clipboard-list" style="font-size: 20px; color: #333;"></i>
+                    <div style="font-size: 11px; font-weight: 500; margin-top: 4px;">Orders</div>
                 </a>
             </div>
         </div>

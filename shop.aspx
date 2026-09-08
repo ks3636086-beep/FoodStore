@@ -202,9 +202,8 @@
 
                     <div class="d-flex align-items-center gap-2">
                         <label class="small text-muted text-nowrap mb-0 fw-semibold">Sort By:</label>
-                        <asp:DropDownList ID="ddlSort" runat="server" CssClass="form-select form-select-sm shadow-none rounded-pill px-3 fw-medium text-dark bg-light border-0" AutoPostBack="true">
+                        <asp:DropDownList ID="ddlSort" runat="server" CssClass="form-select form-select-sm shadow-none rounded-pill px-3 fw-medium text-dark bg-light border-0" OnSelectedIndexChanged="ddlSort_SelectedIndexChanged" AutoPostBack="true">
                             <asp:ListItem Value="default">Default Sorting</asp:ListItem>
-                            <asp:ListItem Value="popularity">Popularity</asp:ListItem>
                             <asp:ListItem Value="price_low">Price: Low to High</asp:ListItem>
                             <asp:ListItem Value="price_high">Price: High to Low</asp:ListItem>
                             <asp:ListItem Value="best_selling">Best Selling</asp:ListItem>
@@ -214,52 +213,56 @@
                 </div>
 
                 <!-- 5. Product Grid (6 per row on Desktop, 3 on Tablet, 2 on Mobile) -->
-                <div class="row g-3" id="product-container">
+                <div class="row g-2 g-md-5" id="product-container">
                     <asp:Repeater ID="rptProducts" runat="server">
                         <ItemTemplate>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
-                                <div class="card h-100 bg-white rounded-3 shadow-sm overflow-hidden product-card"
+                                <div class="product-card border-0 bg-transparent h-100"
                                     data-aos="fade-right"
                                     data-aos-duration="700"
                                     data-aos-delay="<%# Container.ItemIndex * 150 %>"
                                     data-aos-once="true">
-                                    <!-- Product Image & Overlay Actions -->
-                                    <div class="product-img-wrapper">
-                                        <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>'>
+
+                                    <!-- 1. ALAG PRODUCT IMAGE CONTAINER -->
+                                    <div class="product-img-card position-relative rounded-2 overflow-hidden bg-light mb-2">
+                                        <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>' class="d-block w-100 h-100">
                                             <img src='<%# "auth/" + Eval("photo_path") %>'
                                                 alt='<%# Eval("product_full_name") %>'
+                                                class="product-thumb-img w-100"
                                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop';" />
+                                        </a>
 
-                                            <div class="product-actions-overlay">
-                                                <%-- <a href='<%# "product-details.aspx?id=" + Eval("product_id") %>' class="action-btn" title="View Details">
-                                                <i class="fas fa-eye small"></i>
-                                            </a>--%>
-                                                <%-- <a href="#" class="action-btn" title="Add to Wishlist">
-                                                <i class="far fa-heart small"></i>
-                                            </a>--%>
-                                            </div>
-                                    </div>
-
-                                    <!-- Product Details -->
-                                    <div class="card-body p-3 d-flex flex-column justify-content-between">
-                                        <div>
-                                            <h6 class="card-title text-dark fw-bold mb-1 text-truncate" title='<%# Eval("product_full_name") %>'>
-                                                <%# Eval("product_full_name") %>
-                                            </h6>
-
-                                            <div class="d-flex align-items-center gap-1 mb-2">
-                                                <span style="font-size: 12px;">
-                                                    <%# GetProductRating(Eval("product_id")) %>
-                                                </span>
-                                            </div>
-
-                                            <div class="text-success fw-bold fs-6 mb-2">
-                                                ₹<%# Eval("product_final_sell_price") %>
-                                            </div>
+                                        <!-- RATING BADGE (STATIC MYNTRA STYLE: 4.5 ★ | 150) -->
+                                        <div class="rating-badge position-absolute bottom-0 start-0 m-2 px-2 py-1 bg-white rounded shadow-sm d-flex align-items-center gap-1" style="z-index: 2; line-height: 1;">
+                                            <span class="fw-bold text-dark" style="font-size: 0.72rem; line-height: 1;">4.5</span>
+                                            <i class="fas fa-star" style="font-size: 0.65rem; color: #03a685;"></i>
+                                            <span class="text-muted border-start ps-1" style="font-size: 0.68rem; line-height: 1;">| 150</span>
                                         </div>
 
-                                        <a href='<%# "cart.aspx?action=add&id=" + Eval("product_id") %>' class="btn btn-outline-success btn-sm w-100 rounded-2 mt-2 fw-semibold">
-                                            <i class="fas fa-shopping-basket me-1"></i>Add to Cart
+                                        <!-- OVERLAY ACTION BUTTONS -->
+                                        <div class="product-actions-overlay position-absolute top-0 end-0 p-2 d-flex flex-column gap-2" style="z-index: 2;">
+                                            <a href='<%# "product_details.aspx?ref=" + Eval("product_id") %>' class="action-btn" title="View Details">
+                                                <i class="fas fa-eye extra-small"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2. PRODUCT DETAILS SECTION (BELOW IMAGE) -->
+                                    <div class="product-details-content px-1" style="line-height: 1;">
+
+                                        <!-- PRODUCT TITLE -->
+                                        <h6 class="fw-bold text-dark product-title" title='<%# Eval("product_full_name") %>' style="font-size: 0.85rem !important; margin: 0 0 2px 0 !important; padding: 0 !important; line-height: 1.1 !important;">
+                                            <%# Eval("product_full_name") %>
+                                        </h6>
+
+                                        <!-- PRICE SECTION -->
+                                        <div class="d-flex align-items-baseline flex-wrap gap-1" style="margin: 0 0 4px 0 !important; padding: 0 !important; line-height: 1 !important;">
+                                            <span class="fw-bold text-dark" style="font-size: 0.9rem; line-height: 1 !important;">Rs. <%# Eval("product_final_sell_price") %></span>
+                                        </div>
+
+                                        <!-- ADD TO CART BUTTON -->
+                                        <a href='<%# "cart.aspx?action=add&id=" + Eval("product_id") %>' class="btn btn-outline-success btn-sm w-100 rounded-1 fw-bold py-1 mt-1 d-inline-flex align-items-center justify-content-center gap-1 cart-btn">
+                                            <i class="fas fa-shopping-basket me-1"></i><span>ADD TO CART</span>
                                         </a>
                                     </div>
 

@@ -496,4 +496,23 @@ public partial class index : System.Web.UI.Page
 
         pnlRecentOrderReview.Visible = false;
     }
+
+    
+    private string GetProductReviewCount(object productId)
+    {
+        string q = @"SELECT COUNT(*)
+                 FROM product_rating_review
+                 WHERE product_id = @product_id
+                 AND review_status = 'Approved'";
+
+        using (SqlCommand cmd = new SqlCommand(q, mst.con))
+        {
+            cmd.Parameters.AddWithValue("@product_id", productId);
+            mst.con.Open();
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            mst.con.Close();
+
+            return count.ToString();
+        }
+    }
 }

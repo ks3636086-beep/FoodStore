@@ -32,6 +32,7 @@ public partial class shop : System.Web.UI.Page
             else
             {
                 BindData1();
+                BindProducts();
             }
         }
 
@@ -193,5 +194,49 @@ public partial class shop : System.Web.UI.Page
         }
 
         return stars + " <span class='text-muted' style='font-size:11px;'>(" + totalReviews + ")</span>";
+    }
+    private void BindProducts()
+    {
+        string orderBy = "a.id ASC";
+
+        switch (ddlSort.SelectedValue)
+        {
+            case "price_low":
+                orderBy = "b.product_final_sell_price ASC";
+                break;
+
+            case "price_high":
+                orderBy = "b.product_final_sell_price DESC";
+                break;
+
+            case "best_selling":
+                orderBy = "ISNULL((SELECT COUNT(*) FROM ecommerce_order o WHERE o.product_id = a.product_id), 0) DESC";
+                break;
+
+            case "newest":
+                orderBy = "a.id DESC";
+                break;
+        }
+
+        string query = @"SELECT *,
+        b.id AS price_id,
+        (SELECT TOP 1 product_stock
+         FROM ecommerce_product_price
+         WHERE product_id = a.product_id) AS product_stock,
+        (SELECT TOP 1 photo_path
+         FROM ecommerce_product_photos
+         WHERE product_id = a.product_id) AS photo_path
+        FROM ecommerce_product a
+        LEFT JOIN ecommerce_product_price b
+            ON a.product_id = b.product_id
+        ORDER BY " + orderBy;
+
+        rptProducts.DataSource = mst.GetData(query);
+        rptProducts.DataBind();
+    }
+
+    protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        BindProducts();
     }
 }
