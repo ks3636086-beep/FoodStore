@@ -621,7 +621,7 @@
             <div class="row flex-nowrap flex-lg-wrap justify-content-start justify-content-lg-center category-scroll-container">
 
                 <asp:Repeater ID="rptCategory" runat="server">
-                    <ItemTemplate>
+                    <itemtemplate>
 
                         <div class="col-auto col-md-3 col-lg-2 text-center mb-3 category-item"
                             data-aos="zoom-in"
@@ -645,7 +645,7 @@
 
                         </div>
 
-                    </ItemTemplate>
+                    </itemtemplate>
                 </asp:Repeater>
 
             </div>
@@ -756,7 +756,7 @@
         <!-- 6-COLUMN GRID MATCHING MYNTRA DESIGN -->
         <div class="row g-2 g-md-3 mx-1" id="product-container">
             <asp:Repeater ID="rptProducts" OnItemCommand="rptProducts_ItemCommand" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 product-item">
                         <div class="product-card border-0 bg-transparent h-100"
                             data-aos="fade-up"
@@ -775,15 +775,11 @@
                                 </a>
 
                                 <!-- RATING BADGE (IMAGE KE BOTTOM-LEFT ME) -->
-                                <div class="rating-badge position-absolute bottom-0 start-0 m-2 px-1 py-1 bg-white rounded shadow-sm d-flex align-items-center gap-1"
+                                <div class="rating-badge position-absolute bottom-0 start-0 m-2 px-1 py-1 bg-white rounded shadow-sm"
                                     style="z-index: 2; line-height: 1;">
 
-                                    <span class="fw-bold text-dark" style="font-size: 0.68rem; line-height: 1;">4.5
-                                    </span>
-
-                                    <i class="fas fa-star" style="font-size: 0.58rem; color: #03a685;"></i>
-
-                                    <span class="text-muted border-start ps-1" style="font-size: 0.64rem; line-height: 1;">| 150
+                                    <span class="fw-bold text-dark" style="font-size: 0.68rem;">
+                                        <%# GetProductRating(Eval("product_id")) %>
                                     </span>
 
                                 </div>
@@ -796,7 +792,7 @@
                                         CommandName="btnwishlist"
                                         CssClass="btn btn-white rounded-circle shadow-sm p-0 flex-center action-circle-btn"
                                         title="Add to Wishlist">
-                                    <i class="far fa-heart text-dark extra-small"></i>
+                                        <i class="far fa-heart text-dark extra-small"></i>
                                     </asp:LinkButton>
                                 </div>
                             </div>
@@ -831,13 +827,13 @@
                                 <!-- PRESERVED: Add to Cart LinkButton -->
                                 <asp:LinkButton runat="server" ID="lnkdelete" CommandName="btncart"
                                     CssClass="btn btn-outline-success btn-sm w-100 rounded-1 fw-bold py-1 mt-1 d-inline-flex align-items-center justify-content-center gap-1 cart-btn">
-                                <span>ADD TO CART</span>
+                                    <span>ADD TO CART</span>
                                 </asp:LinkButton>
                             </div>
 
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
 

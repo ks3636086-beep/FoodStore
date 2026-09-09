@@ -214,7 +214,7 @@
 
                 <!-- 5. Product Grid (6 per row on Desktop, 3 on Tablet, 2 on Mobile) -->
                 <div class="row g-2 g-md-5" id="product-container">
-                    <asp:Repeater ID="rptProducts" runat="server">
+                    <asp:Repeater ID="rptProducts" runat="server" OnItemCommand="rptProducts_ItemCommand">
                         <ItemTemplate>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 product-item">
                                 <div class="product-card border-0 bg-transparent h-100"
@@ -233,10 +233,13 @@
                                         </a>
 
                                         <!-- RATING BADGE (STATIC MYNTRA STYLE: 4.5 ★ | 150) -->
-                                        <div class="rating-badge position-absolute bottom-0 start-0 m-2 px-2 py-1 bg-white rounded shadow-sm d-flex align-items-center gap-1" style="z-index: 2; line-height: 1;">
-                                            <span class="fw-bold text-dark" style="font-size: 0.72rem; line-height: 1;">4.5</span>
-                                            <i class="fas fa-star" style="font-size: 0.65rem; color: #03a685;"></i>
-                                            <span class="text-muted border-start ps-1" style="font-size: 0.68rem; line-height: 1;">| 150</span>
+                                        <div class="rating-badge position-absolute bottom-0 start-0 m-2 px-1 py-1 bg-white rounded shadow-sm"
+                                            style="z-index: 2; line-height: 1;">
+
+                                            <span class="fw-bold text-dark" style="font-size: 0.68rem;">
+                                                <%# GetProductRating(Eval("product_id")) %>
+                                            </span>
+
                                         </div>
 
                                         <!-- OVERLAY ACTION BUTTONS -->
@@ -260,10 +263,26 @@
                                             <span class="fw-bold text-dark" style="font-size: 0.9rem; line-height: 1 !important;">Rs. <%# Eval("product_final_sell_price") %></span>
                                         </div>
 
+
+                                        <!-- PRESERVED HIDDEN LABELS FOR BACKEND -->
+                                        <asp:Label ID="lbldeletecategoryid" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
+                                        <asp:Label ID="lblname" runat="server" Text='<%# Eval("product_full_name") %>' Visible="false" />
+                                        <asp:Label ID="lbl_sell_price" runat="server" Text='<%# Eval("product_sell_price") %>' Visible="false" />
+                                        <asp:Label ID="lbl_market_price" runat="server" Text='<%# Eval("product_market_price") %>' Visible="false" />
+                                        <asp:Label ID="Label1" hidden runat="server" Text='<%# Eval("product_id") %>'></asp:Label>
+                                        <asp:Label ID="product_price_id" hidden runat="server" Text='<%# Eval("price_id") %>'></asp:Label>
+                                        <asp:Label ID="lbl_unit" hidden runat="server" Text='<%# Eval("product_unit") %>'></asp:Label>
+                                        <asp:Label ID="lbl_unit_value" hidden runat="server" Text='<%# Eval("product_unit_value") %>'></asp:Label>
+                                        <asp:Label ID="Label2" hidden runat="server" Text='<%# Eval("price_id") %>'></asp:Label>
+
+
                                         <!-- ADD TO CART BUTTON -->
-                                        <a href='<%# "cart.aspx?action=add&id=" + Eval("product_id") %>' class="btn btn-outline-success btn-sm w-100 rounded-1 fw-bold py-1 mt-1 d-inline-flex align-items-center justify-content-center gap-1 cart-btn">
-                                            <i class="fas fa-shopping-basket me-1"></i><span>ADD TO CART</span>
-                                        </a>
+                                        <asp:LinkButton ID="btnAddCart" runat="server"
+                                            CommandName="btncart"
+                                            CommandArgument='<%# Eval("product_id") %>'
+                                            CssClass="btn btn-outline-success btn-sm w-100 rounded-1 fw-bold py-1 mt-1">
+    <i class="fas fa-shopping-basket me-1"></i> ADD TO CART
+                                        </asp:LinkButton>
                                     </div>
 
                                 </div>

@@ -328,22 +328,10 @@ public partial class index : System.Web.UI.Page
             mst.con.Close();
         }
 
-        int fullStars = (int)Math.Floor(averageRating);
-        bool halfStar = (averageRating - fullStars) >= 0.5m;
-
-        string stars = "";
-
-        for (int i = 1; i <= 5; i++)
-        {
-            if (i <= fullStars)
-                stars += "<i class='fas fa-star text-warning'></i>";
-            else if (i == fullStars + 1 && halfStar)
-                stars += "<i class='fas fa-star-half-alt text-warning'></i>";
-            else
-                stars += "<i class='far fa-star text-muted'></i>";
-        }
-
-        return stars + " <span class='text-muted' style='font-size:11px;'>(" + totalReviews + ")</span>";
+        return averageRating.ToString("0.0") +
+               " <i class='fas fa-star' style='font-size:0.58rem;color:#03a685;'></i>" +
+               " <span class='text-muted border-start ps-1' style='font-size:0.64rem;'>| " +
+               totalReviews + "</span>";
     }
 
     private void BindExclusiveCoupon()
@@ -496,23 +484,5 @@ public partial class index : System.Web.UI.Page
 
         pnlRecentOrderReview.Visible = false;
     }
-
-    
-    private string GetProductReviewCount(object productId)
-    {
-        string q = @"SELECT COUNT(*)
-                 FROM product_rating_review
-                 WHERE product_id = @product_id
-                 AND review_status = 'Approved'";
-
-        using (SqlCommand cmd = new SqlCommand(q, mst.con))
-        {
-            cmd.Parameters.AddWithValue("@product_id", productId);
-            mst.con.Open();
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-            mst.con.Close();
-
-            return count.ToString();
-        }
-    }
+        
 }
