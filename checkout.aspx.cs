@@ -293,7 +293,6 @@ public partial class checkout : System.Web.UI.Page
                 }
 
             }
-
         }
 
         string customerId = Session["customer_id"].ToString();
